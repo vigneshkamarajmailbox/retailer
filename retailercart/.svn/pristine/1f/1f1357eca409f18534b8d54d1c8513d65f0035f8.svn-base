@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:orientation="horizontal">
+
+        <!--   <TextView
+               android:id="@+id/distrubutor_name_listItem"
+               android:layout_width="100dp"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:padding="@dimen/dimen_5" />
+   -->
+
+
+        <TextView
+            android:id="@+id/trans_Date_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/dimen_5" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+
+        <TextView
+            android:id="@+id/prodname_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/prodname" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+
+        <TextView
+            android:id="@+id/Opening_SalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/Opening_SalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/Opening_UnSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/Opening_UnSalableQty" />
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/Opening_OfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/Opening_OfferQty" />
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/Purchase_SalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/Purchase_SalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/Purchase_UnSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/Purchase_UnSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/Purchase_OfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/Purchase_OfferQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/PurchaseRet_SalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/PurchaseRet_SalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/PurchaseRet_UnSalableQty_listItem"
+            android:layout_width="100dp"
+
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/PurchaseRet_UnSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/PurchaseRet_OfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/PurchaseRet_OfferQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+
+        <TextView
+            android:id="@+id/Sales_SalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/Sales_SalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+
+        <TextView
+            android:id="@+id/Sales_UnSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/Sales_UnSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/Sales_OfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:text="@string/Sales_OfferQty" />
+
+        <View
+
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/SalesRet_SalableQty_list_item"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/SalesRet_SalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+
+        <TextView
+            android:id="@+id/SalesRet_UnSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/SalesRet_UnSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/SalesRet_OfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/SalesRet_OfferQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+
+        <TextView
+            android:id="@+id/AdjIn_SalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/AdjIn_SalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+
+        <TextView
+            android:id="@+id/AdjInUnSalableQty"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/AdjInUnSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/AdjInOfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/AdjInOfferQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/AdjOutSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+
+            android:text="@string/AdjOutSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/AdjOutUnSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/AdjOutUnSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/AdjOutOfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/AdjOutOfferQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/ClosingStkUnSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/ClosingStkUnSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/ClosingStkSalableQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/ClosingStkSalableQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/ClosingStkOfferQty_listItem"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center|right"
+            android:padding="@dimen/dimen_5"
+            android:text="@string/ClosingStkOfferQty" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlack" />
+
+</LinearLayout>

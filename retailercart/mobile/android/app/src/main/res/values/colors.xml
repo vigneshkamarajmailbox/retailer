@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#485378</color>
+    <color name="colorPrimaryDark">#3B4463</color>
+    <color name="colorAccent">#3B4463</color>
+    <color name="cardview_dark_background">#FF424242</color>
+    <color name="lightred">#FF8075</color>
+    <color name="colorAccentlight">#747ea6</color>
+    <color name="light_bg">#EDEFF6</color>
+
+    <color name="sidebar_color_item_sel">#4C515D</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="navig_list_pressed_clr">#FF8075</color>
+    <color name="navig_list_normal_clr">#F2644C</color>
+
+    <!--<color name="navig_list_pressed_clr">#E11E2E</color>
+    <color name="navig_list_State_not_enabled">#E11E2E</color>
+    <color name="navig_list_normal_clr">#E11E2E</color>-->
+
+    <color name="color_light_blue">#33b5e5</color>
+    <color name="color_light_green">#B8CD01</color>
+
+    <color name="color_list_item_txt">#aaaaaa</color>
+    <color name="colorBlack">#000000</color>
+    <color name="color_list_divider">#bbbbbb</color>
+
+    <color name="color_prod_txt">#666666</color>
+    <color name="color_blue">#2196F3</color>
+
+    <color name="color_btn">#8EA6E0</color>
+    <color name="color_btn_white">#F2F2F2</color>
+
+    <color name="dash_item_color">#18203D</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="msg_bg_color">#F3F1EC</color>
+    <color name="black">#000000</color>
+    <color name="ob_stockinhand">#f44336</color>
+    <color name="ob_mustsell_promo">#BF8F00</color>
+    <color name="ob_focus">#148E77</color>
+    <color name="ob_mustsell">#F88017</color>
+    <color name="ob_promo">#7aa1d2</color>
+    <color name="red">#FE0002</color>
+
+
+    <color name="list_item_bg_col">#EEF2F5</color>
+
+    <color name="color_pink">#F1736A</color>
+    <color name="color_red">#FF0000</color>
+    <color name="color_light_red">#C33C32</color>
+    <color name="color_brown">#138466</color>
+    <color name="color_green">#006400</color>
+    <color name="color_coverage">#0d9c4d</color>
+    <color name="color_paleBlue">#4cc0d2</color>
+    <color name="color_creamBg">#F5F5F5</color>
+    <color name="color_creamBg1">#dfdddd</color>
+    <color name="color_semi_transparent">#11000000</color>
+    <color name="color_semi_transparent1">#99000000</color>
+    <color name="color_navigation_color">#4d4c4c</color>
+    <color name="color_blue_maps_line">#4a80f5</color>
+    <color name="color_paleGreen">#009F85</color>
+    <color name="color_palerGreen">#0EB89C</color>
+
+    <color name="colorPrimarysime">#E0485378</color>
+
+    <color name="simpletooltip_background">@color/colorAccent</color>
+    <color name="simpletooltip_text">@android:color/primary_text_light</color>
+    <color name="simpletooltip_arrow">@color/colorAccent</color>
+
+    <color name="lpc1">#6578D9</color>
+
+    <color name="color_pie1">#CC881B</color>
+
+    <array name="Color_navigationIcons">
+        <item>@color/lpc1</item>
+        <item>@color/color_pink</item>
+        <item>@color/ob_mustsell_promo</item>
+        <item>@color/color_light_red</item>
+        <item>@color/ob_mustsell</item>
+        <item>@color/color_coverage</item>
+        <item>@color/color_paleBlue</item>
+        <item>@color/colorPrimarysime</item>
+        <item>@color/color_brown</item>
+        <item>@color/lpc1</item>
+        <item>@color/color_pink</item>
+        <item>@color/ob_mustsell_promo</item>
+        <item>@color/color_light_red</item>
+        <item>@color/ob_mustsell</item>
+        <item>@color/color_coverage</item>
+        <item>@color/color_paleBlue</item>
+        <item>@color/colorPrimarysime</item>
+        <item>@color/color_brown</item>
+    </array>
+
+    <array name="colorProductIcons">
+        <item>@color/colorAccent</item>
+        <item>@color/color_light_red</item>
+        <item>@color/ob_promo</item>
+        <item>@color/ob_focus</item>
+        <item>@color/ob_mustsell</item>
+        <item>@color/color_pie1</item>
+    </array>
+
+
+    <color name="color0">#E3F0F8</color>
+    <color name="color1">#d7dbdd</color>
+    <color name="color2">#bfc9ca</color>
+    <color name="color3">#b2babb</color>
+    <color name="color5">#808b96</color>
+    <color name="color6">#7f8c8d</color>
+    <color name="color7">#5d6d7e</color>
+
+    <color name="color8">#3164d7</color>
+    <color name="color9">#d92d29</color>
+    <color name="color10">#eeaa10</color>
+    <color name="color11">#3164d7</color>
+    <color name="color12">#2e9641</color>
+
+    <color name="rippelColor">#0099CC</color>
+    <color name="filter_color">#f0f0f0</color>
+    <color name="left_card_bg">#eeeeee</color>
+
+    <color name="semi_trans_color">#9f2a2a2e</color>
+    <color name="light_txt_color">#989EB0</color>
+
+    <color name="unlock_icon_bg">#8E24AA</color>
+
+    <color name="calendar_active_month_bg">#fff5f7f9</color>
+    <color name="calendar_bg">#ffffffff</color>
+    <color name="calendar_divider">#ffbababa</color>
+    <color name="calendar_inactive_month_bg">#ffd7d9db</color>
+    <color name="calendar_selected_day_bg">#ff379bff</color>
+    <color name="calendar_highlighted_day_bg">#ccffcc</color>
+    <color name="calendar_selected_range_bg">#ff96caff</color>
+    <color name="calendar_text_inactive">#40778088</color>
+    <color name="calendar_text_active">#ff778088</color>
+    <color name="calendar_text_selected">#ffffffff</color>
+    <color name="calendar_text_unselectable">#7f778088</color>
+    <color name="calendar_text_highlighted">#ff778088</color>
+    <color name="ic_launcher_background">#FFF</color>
+    <color name="color_semi_transparent3">#A9000000</color>
+
+    <color name="color_signal_green">#5C9313</color>
+    <color name="color_light_yellow">#FFDE03</color>
+    <color name="color_light_pink">#1fF1736A</color>
+
+</resources>

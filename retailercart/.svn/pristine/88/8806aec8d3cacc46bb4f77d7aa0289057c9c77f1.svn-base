@@ -1,0 +1,37 @@
+export interface ProductList {
+  list: List[];
+  url: string;
+  currentPage: number;
+  limit: number;
+  offset: number;
+  totalPage: number;
+}
+
+export interface List {
+  brand: string;
+  code: string;
+  image: string;
+  name: string;
+  desc: string;
+  mrp: number;
+  priceToRetailer: number;
+  suggestOrderQty: number;
+  currencySymbol: string;
+  uom: Uom[];
+  weight: Weight[];
+  minimumOrderQty: number;
+  stockInHand: number;
+  isWishlist: boolean;
+  isScheme: boolean;
+}
+
+export interface Uom {
+  code: any;
+  name: string;
+  value?: number;
+}
+
+export interface Weight {
+  code: number;
+  name: string;
+}

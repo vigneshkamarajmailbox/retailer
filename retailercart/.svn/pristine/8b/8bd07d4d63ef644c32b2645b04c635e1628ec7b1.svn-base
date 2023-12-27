@@ -1,0 +1,203 @@
+import {Component, OnInit} from '@angular/core';
+import {AppComponent} from "../../app.component";
+import {StringConstants} from "../service/stringconstants";
+import {User} from "../model/user";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {DataService} from "../service/dataservice";
+import {SchemeCustomerMapping} from "../model/schemecustomermapping";
+import {SchemeSlab} from "../model/schemeslab";
+import {CurrencyPipe} from "@angular/common";
+
+@Component({
+    selector: 'app-schememaster',
+    templateUrl: './schememaster.component.html',
+    styleUrls: ['./schememaster.component.css']
+})
+export class SchememasterComponent implements OnInit {
+
+    user: User;
+    cols: any;
+    rowHeight: any;
+    startTime = new Date();
+    schemeDefinition = [];
+    orgSchemeDefinition = [];
+    schemeProdColumns: string[];
+    searchInput = '';
+
+    constructor(public app: AppComponent, public dataService: DataService, private http: HttpClient,
+                private currency: CurrencyPipe) {
+        app.checkUpdate();
+    }
+
+    ngOnInit(): void {
+        this.app.show();
+        this.startTime = new Date();
+        this.user = JSON.parse(localStorage.getItem(StringConstants.CONST_USER));
+        this.setCols(window.innerWidth);
+        this.schemeProdColumns = ['prodCode', 'prodName'];
+        this.downloadSchemeInfo();
+    }
+
+    onResize(event) {
+        this.setCols(event.target.innerWidth);
+    }
+
+    setCols(width: any) {
+        if (width <= 640) {
+            this.cols = 1;
+            this.rowHeight = '2:2';
+        } else if (width <= 1024) {
+            this.cols = 2;
+            this.rowHeight = '4:3';
+        } else {
+            this.cols = 3;
+            this.rowHeight = '4:3';
+        }
+    }
+
+    downloadSchemeInfo() {
+        const startTime1 = new Date();
+        this.http.get(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_DOWNLOAD_SCHEME
+            + StringConstants.CONST_CHAR_FORWARD_SLASH + this.app.language + StringConstants.CONST_CHAR_FORWARD_SLASH + this.user.loginCode,
+            this.dataService.getHttpOptions()).subscribe(
+            (res: any) => {
+                this.convertScheme(res);
+                this.dataService.uploadSyncLog(StringConstants.CONST_PROCESS_DOWNLOAD_SCHEME, startTime1, StringConstants.CONST_SUCCESS);
+            }, (err: HttpErrorResponse) => {
+                console.error(err.message);
+                this.dataService.errorPage(err);
+                this.dataService.uploadSyncLog(StringConstants.CONST_PROCESS_DOWNLOAD_SCHEME, startTime1, StringConstants.CONST_FAILURE);
+                this.app.hide();
+            }
+        );
+    }
+
+    convertScheme(resp: any) {
+        const schemeDefinitionMap = {};
+        resp.schemeDefinition.forEach(data => {
+            schemeDefinitionMap[data.cmpCode + data.schemeCode] = data;
+        });
+        const schemeMap = {};
+        // convert scheme product
+        if (resp.schemeCustomerMapping !== undefined && resp.schemeCustomerMapping !== null) {
+            resp.schemeCustomerMapping.forEach(data1 => {
+                const sch = new SchemeCustomerMapping();
+                // set scheme map
+                let schemeArr = schemeMap[data1.cmpCode + data1.schemeCode];
+                // check null condition
+                if (schemeArr === null || schemeArr === undefined) {
+                    schemeArr = [];
+                }
+                sch.prodCode = data1.prodCode;
+                sch.prodName = data1.prodName;
+                schemeArr.push(sch);
+                schemeMap[data1.cmpCode + data1.schemeCode] = schemeArr;
+            });
+        }
+
+        const schemeSlabMap = {};
+        // convert scheme slab
+        if (resp.schemeSlab !== null && resp.schemeSlab !== undefined) {
+            resp.schemeSlab.forEach((data1: SchemeSlab) => {
+                let arr1 = schemeSlabMap[data1.cmpCode + data1.schemeCode];
+                if (arr1 === null || arr1 === undefined) {
+                    arr1 = [];
+                }
+                const def = schemeDefinitionMap[data1.cmpCode + data1.schemeCode];
+                if (def.schemeBase === StringConstants.CONST_SB_AB) {
+                    data1.desc = 'From - ' + this.currency.transform(data1.slabFrom, this.app.currency, StringConstants.CONST_CURRENCY_SYMBOL);
+                } else {
+                    data1.desc = 'From - ' + data1.slabFrom + ' ' + data1.uomCode;
+                }
+
+                if (def.payOutType === StringConstants.CONST_PAYOUT_TYPE_FREE_PROD) {
+                    data1.desc = data1.desc + ' Get Free Product';
+                } else if (def.payOutType === StringConstants.CONST_PAYOUT_TYPE_FLAT_AMT) {
+                    data1.desc = data1.desc + ' Get ' + this.currency.transform(this.dataService.parseFloat(data1.payout), this.app.currency, StringConstants.CONST_CURRENCY_SYMBOL) + ' ' + def.payOutType;
+                } else {
+                    data1.desc = data1.desc + ' Get ' + this.dataService.parseFloat(data1.payout) + ' ' + def.payOutType;
+                }
+                data1.everyDesc = '';
+                if (data1.forEvery > 0) {
+                    data1.everyDesc = 'every ' + data1.forEvery + ' item';
+                }
+                arr1.push(data1);
+                schemeSlabMap[data1.cmpCode + data1.schemeCode] = arr1;
+            });
+        }
+
+        const schemeSlabProdMap = {};
+        // convert scheme slab product
+        if (resp.schemeSlabProduct !== undefined && resp.schemeSlabProduct !== null) {
+            resp.schemeSlabProduct.forEach(slabProduct1 => {
+                let arr = schemeSlabProdMap[slabProduct1.cmpCode + slabProduct1.schemeCode];
+                if (arr === null || arr === undefined) {
+                    arr = [];
+                }
+                slabProduct1.desc = 'Get ' + slabProduct1.qty + ' qty of ' + slabProduct1.prodName + ' free';
+                arr.push(slabProduct1);
+                schemeSlabProdMap[slabProduct1.cmpCode + slabProduct1.schemeCode] = arr;
+            });
+        }
+        const schemeList = [];
+        if (resp.schemeDefinition !== null && resp.schemeDefinition !== undefined) {
+            resp.schemeDefinition.forEach(data => {
+                if (schemeMap.hasOwnProperty(data.cmpCode + data.schemeCode)) {
+                    data.schemeProduct = schemeMap[data.cmpCode + data.schemeCode];
+                    data.schemeSlab = schemeSlabMap[data.cmpCode + data.schemeCode];
+                    data.schemeSlabProd = schemeSlabProdMap[data.cmpCode + data.schemeCode];
+                    schemeList.push(data);
+                }
+            });
+        }
+        this.schemeDefinition = schemeList;
+        this.orgSchemeDefinition = schemeList;
+        this.app.hide();
+    }
+
+    applyFilter() {
+        const schemeList = [];
+        if (this.searchInput.trim().length > 2) {
+            this.app.show();
+            this.orgSchemeDefinition.forEach(data => {
+                let check = false;
+                if (data.schemeDescription.toLowerCase().includes(this.searchInput.trim().toLowerCase())
+                    || data.schemeBase.toLowerCase().includes(this.searchInput.trim().toLowerCase())
+                    || this.dataService.formatDateToStandard(data.schemeFromDt).includes(this.searchInput.trim().toLowerCase())
+                    || this.dataService.formatDateToStandard(data.schemeToDt).includes(this.searchInput.trim().toLowerCase())) {
+                    check = true;
+                }
+                data.schemeProduct.forEach(prod => {
+                    if (prod.prodName.toLowerCase().includes(this.searchInput.trim().toLowerCase())) {
+                        check = true;
+                    }
+                });
+                data.schemeSlab.forEach(slab => {
+                    if (slab.desc.toLowerCase().includes(this.searchInput.trim().toLowerCase())
+                        || slab.everyDesc.toLowerCase().includes(this.searchInput.trim().toLowerCase())) {
+                        check = true;
+                    }
+                });
+                if (data.schemeSlabProd !== null && data.schemeSlabProd !== undefined && data.schemeSlabProd.length > 0) {
+                    data.schemeSlabProd.forEach(slab => {
+                        if (slab.desc.toLowerCase().includes(this.searchInput.trim().toLowerCase())) {
+                            check = true;
+                        }
+                    });
+                }
+                if (check) {
+                    schemeList.push(data);
+                }
+            })
+            this.schemeDefinition = schemeList;
+            this.app.hide();
+        } else if (this.searchInput.trim().length === 0) {
+            this.clearFilter();
+        }
+    }
+
+    clearFilter() {
+        this.searchInput = '';
+        this.schemeDefinition = JSON.parse(JSON.stringify(this.orgSchemeDefinition));
+    }
+}

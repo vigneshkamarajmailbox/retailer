@@ -1,0 +1,38 @@
+
+
+<div style="display: flex;align-items: center;">
+    <i class="fa fa-user-secret order-confirmation-icon" style="color: green;"></i>&nbsp;{{'ORDER.CONFIRM.ADD_SALESMAN_REFERRAL'|translate}}
+</div>
+<hr>
+<div mat-dialog-content class="flex-column justify-content-between">
+    <div class="height-100">
+        <div style="margin-left: auto !important;margin-right: auto !important; padding: 10px;">
+           
+                <form class="login-wrapper-form" [formGroup]="referralCodeForm">
+                    
+               
+                        <!--Select with pure css-->
+                            <div class="select">
+                                <select class="select-text" required formControlName="referral_code">
+                                    <option *ngFor="let salesmanOption of salesmanOptions" value="{{salesmanOption.salesmanCode}}" >{{salesmanOption.salesmanName}}</option>
+                                </select>
+                                <label class="select-label">{{'REF_SALESMAN_SELECT'|translate}}</label>
+                            </div>
+                        <!--Select with pure css-->  
+              
+                    <app-field-error-display [displayError]="referralCodeMsg()" errorMsg={{referralCodeErrMsg}}>
+                    </app-field-error-display>
+                    <div style="padding: 10px;">
+                        <button mat-stroked-button  mat-dialog-close color="warn" 
+                        class="login-btn-block login-btn-padding">{{'REF_CODE.SKIP_BTN'|translate}}</button>
+                        <button mat-stroked-button class="login-btn-block login-btn-padding login-button-pos"
+                            [disabled]="!referralCodeForm.valid || loading" [class.spinner]="loading"
+                            (click)="onSubmitCode()">
+                            {{'REF_CODE.SAVE_BTN'|translate}}
+                        </button>
+                    </div>
+                </form>
+     
+        </div>
+    </div>
+</div>

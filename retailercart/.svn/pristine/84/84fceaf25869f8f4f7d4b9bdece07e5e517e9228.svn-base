@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <query name="FETCH_MASTERS_MAPPING_FOR_SAVING_ORDER_NESTLE">
+        SELECT  c.distrCode                             as distrCode,
+                c.customerCode                          as customerCode,
+                Concat(c.distrCode,'^',c.customerCode)  as distrCustomerCode,
+                s.salesmanCode                          as salesmanCode,
+                r.routeCode                             as routeCode
+        FROM Customer c
+        INNER JOIN CustomerRoute cr
+            ON c.CmpCode=cr.CmpCode
+            AND c.DistrCode=cr.DistrCode
+            AND c.DistrBrCode=cr.DistrBrCode
+            AND c.CustomerCode=cr.CustomerCode
+        INNER JOIN Route r
+            ON cr.CmpCode=R.CmpCode
+            AND cr.DistrCode=R.DistrCode
+            AND cr.DistrBrCode=R.DistrBrCode
+            AND cr.RouteCode=R.RouteCode
+        INNER JOIN SalesmanRoute sr
+            ON cr.CmpCode=sr.CmpCode
+            AND cr.DistrCode=sr.DistrCode
+            AND cr.DistrBrCode=sr.DistrBrCode
+            AND cr.RouteCode=sr.RouteCode
+        INNER JOIN Salesman s
+            ON sr.CmpCode=s.CmpCode
+            AND sr.DistrCode=s.DistrCode
+            AND sr.DistrBrCode=s.DistrBrCode
+            AND sr.SalesmanCode=s.SalesmanCode
+        WHERE c.cmpCode = :cmpCode
+            AND r.routeType = 'S'
+            AND r.IsActive='Y'
+            AND s.IsActive='Y'
+            AND concat(c.DistrCode,'^',c.CustomerCode) IN (:distrCode)
+    </query>
+    <query name="INSERT_OFFLINE_ORDER_HEADER_NESTLE">
+        INSERT INTO OffLineOrderHeader (CmpCode, DistrCode, DistrBrCode, OrderNo, SalesmanCode,
+        CustomerCode, RouteCode, RouteType,OrderDt,Status,Remarks,Source,CustomerShipCode,ModUserCode, ModDt)
+        VALUES(:cmpCode,:distrCode,:distrCode,:orderNo,:salesmanCode,:customerCode,:routeCode,'S',
+        :orderDt,'O','Order generated from Retailer SSFA','S',:customerShipCode,'Admin',NOW())
+ON DUPLICATE KEY UPDATE
+        ModDt = VALUES(ModDt)
+    </query>
+    <query name="INSERT_OFFLINE_ORDER_DETAILS_NESTLE">
+        INSERT INTO OfflineOrderDetails(DistrCode, DistrBrCode, OrderNo, CmpCode, ProdCode, ProdBatchCode, TotalOrderQty,
+        UomCode1,OrderQty1,ProductTaggedFor,OriginalQty,GrossAmt, ModUserCode, ModDt)
+        VALUES (:distrCode,:distrCode,:orderNo,:cmpCode,:prodCode,:prodBatchCode,:orderQty,:uomCode,:orderQty,'main',:orderQty,:orderQty * :sellRate,'Admin',NOW())
+ON DUPLICATE KEY UPDATE
+        ModDt = VALUES(ModDt)
+    </query>
+    <query name="INSERT_OFFLINE_ORDER_CHANGELOG_NESTLE">
+        INSERT INTO ChangeLog(CmpCode, DistrCode, DistrBrCode, ObjectType, EventType,Key1, Key2, Key3, key4,
+        ModUserCode, ModDt)
+        VALUES (:cmpCode,:distrCode,:distrCode,'com.botree.csng.domain.OfflineOrderHeader', 'C',
+        :cmpCode,:distrCode,:distrCode,:orderNo,'Admin',NOW())
+    </query>
+</queries>

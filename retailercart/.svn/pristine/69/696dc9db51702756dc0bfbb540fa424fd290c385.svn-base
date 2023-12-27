@@ -1,0 +1,135 @@
+import { InjectRepository } from '@nestjs/typeorm';
+import { SignupDto } from 'src/users/dto/signup.dto';
+import { UserEntity } from 'src/users/entities/user.entity';
+import { UserOTPEntity } from 'src/users/entities/user-otp.entity';
+import { UserCompanyMapEntity } from 'src/users/entities/user-company-mapping.entity';
+import { Repository } from 'typeorm';
+import { HttpException, HttpStatus, Inject } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Company } from 'src/shared/entities/company.entity';
+
+var request = require('request');
+
+export class UserRepository {
+  @Inject(ConfigService)
+  private readonly config: ConfigService;
+
+  @InjectRepository(UserEntity)
+  private userRepository: Repository<UserEntity>;
+
+  @InjectRepository(UserOTPEntity)
+  private userotpRepository: Repository<UserOTPEntity>;
+
+  @InjectRepository(UserCompanyMapEntity)
+  private userCompanyMapRepository: Repository<UserCompanyMapEntity>;
+  
+  @InjectRepository(Company)
+  private companyRepository: Repository<Company>;
+  
+
+  async findAll(): Promise<UserEntity[]> {
+    return await this.userRepository.find();
+  }
+
+  async findOne(username: any) {
+    return await this.userRepository.findOne({
+      where: [{ userName: username }],
+    });
+  }
+
+  async findAllByUserCompanyMap(username: any) {
+    return await this.userCompanyMapRepository.findBy({ userName: username });
+  }
+
+  async findCmpName(cmpCode: any) {
+
+    const data= await this.companyRepository.findBy({ cmpCode: cmpCode });
+    
+    for(const entity of data){
+      return  entity.cmpName;
+    }
+  }
+
+  async findByMobileNo(mobile: number): Promise<UserEntity> {
+    return await this.userRepository.findOne({ where: { mobileNo:mobile } });
+  }
+
+  async create(signupDto: SignupDto): Promise<any> {
+    try {
+      const data = this.userRepository.create(signupDto);
+      const data1 = this.userotpRepository.create(signupDto);
+      const data2 = this.userCompanyMapRepository.create(signupDto);
+      this.userRepository.save(data);
+      this.userotpRepository.save(data1);
+      this.userCompanyMapRepository.save(data2);
+    } catch (error) {
+      console.log(error);
+    }
+
+    return signupDto;
+  }
+
+  async validateUser(username: any, pass: string): Promise<UserEntity> {
+    let user;
+    if (typeof username == 'string') {
+      user = await this.userRepository.findOne({
+        where: [{ userName: username, password: pass }],
+      });
+    } else {
+      user = await this.userRepository.findOne({
+        where: [{ mobileNo: username, password: pass }],
+      });
+    }
+
+    if (!user) {
+      throw new HttpException('Incorrect Password', HttpStatus.BAD_REQUEST);
+    }
+
+    return user;
+  }
+
+  async validateOTP(mobile: number, otp: number): Promise<UserOTPEntity> {
+    const user = await this.userotpRepository.findOneBy({ mobileNo: mobile });
+
+    if (otp != user.otp) {
+      throw new HttpException('Incorrect OTP', HttpStatus.BAD_REQUEST);
+    }
+
+    return user;
+  }
+
+  async sendOTP(mobile: number): Promise<any> {
+    console.log(mobile, 'pod');
+    const user = await this.userotpRepository.findOneBy({ mobileNo:mobile });
+
+    if (!user) {
+      throw new HttpException('User Not Exist', HttpStatus.BAD_REQUEST);
+    }
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    
+    const username = this.config.get<string>('SMS_USERNAME');
+    const password = this.config.get<string>('SMS_PASSWORD');
+
+    let options = {
+      method: 'GET',
+      url: this.config.get<string>('SMS_URL'),
+      qs: {
+        auth: username + ':' + password,
+        sms: 'Hello, This is test message from Authkey.io',
+        mobile: mobile,
+        country_code: +91,
+        sender: 'BSSSFA',
+      },
+    };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+      console.log(response);
+      console.log(body);
+    });
+
+    
+
+    return user;
+  }
+}

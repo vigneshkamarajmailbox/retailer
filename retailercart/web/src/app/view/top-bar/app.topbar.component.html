@@ -1,0 +1,76 @@
+<div class="layout-topbar">
+    <div class="container">
+        <a href="" class="logo">
+            <span>RSFA</span>
+        </a>
+        <!-- <a href="#" id="layout-menu-btn" class="menu-btn" (click)="app.onMenuButtonClick($event)">
+            <i class="pi pi-bars"></i>
+        </a> -->
+
+        <div class="topbar-search">
+            <input type="text" class="ui-widget" placeholder="Search your product" />
+            <i class="pi pi-search"></i>
+        </div>
+
+        <div class="layout-topbar-menu-wrapper">
+            <ul class="topbar-menu fadeInDown" [ngClass]="{'topbar-menu-active': app.topbarMenuActive}">
+
+                <li>
+                   
+                    <a href="#">
+                        <i class="topbar-icon pi pi-fw pi-cart-plus"></i>
+                    </a>
+                    <ul class="fadeInDown animated">
+                        <li>cart details</li>
+                       
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- <a href="#" class="topbar-menu-btn" (click)="app.onTopbarMenuButtonClick($event)">
+                <img src="assets/layout/images/avatar.png" alt="manhattan-layout" />
+            </a> -->
+
+            <!-- <a href="#" class="rightpanel-btn" [ngClass]="{'rightpanel-btn-active': app.rightPanelActive}"
+                (click)="app.onRightPanelButtonClick($event)">
+                <i class="topbar-icon pi pi-fw pi-align-right"></i>
+            </a> -->
+        </div>
+        <div class="layout-topbar-menu-wrapper">
+            <ul class="topbar-menu fadeInDown" [ngClass]="{'topbar-menu-active': app.topbarMenuActive}">
+
+                <li #notifications [ngClass]="{'active-topmenuitem':app.activeTopbarItem === notifications}">
+                    <a href="#" (click)="app.onTopbarItemClick($event, notifications)">
+                        <i class="topbar-icon pi pi-fw pi-user"></i>
+                    </a>
+                    <ul class="fadeInDown animated">
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="topbar-icon pi pi-fw pi-sign-in"></i>
+                                Login
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="topbar-icon pi pi-fw pi-sign-out"></i>
+                                Logout
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- <a href="#" class="topbar-menu-btn" (click)="app.onTopbarMenuButtonClick($event)">
+                <img src="assets/layout/images/avatar.png" alt="manhattan-layout" />
+            </a> -->
+
+            <!-- <a href="#" class="rightpanel-btn" [ngClass]="{'rightpanel-btn-active': app.rightPanelActive}"
+                (click)="app.onRightPanelButtonClick($event)">
+                <i class="topbar-icon pi pi-fw pi-align-right"></i>
+            </a> -->
+        </div>
+      
+
+    </div>
+</div>

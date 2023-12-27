@@ -1,0 +1,22 @@
+.order-place-confirmation-icon {
+  font-size: 32px;
+  color: #4CAF50;
+}
+
+.order-place-confirmation-title {
+  margin: 0 !important;
+  padding-top: 2% !important;
+  padding-left: 1% !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+@media screen and (max-width: 767px) {
+  .order-place-confirmation-title {
+    font-size: 0.88rem !important;
+  }
+}
+
+p {
+  margin: 0 !important;
+}

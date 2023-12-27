@@ -1,0 +1,41 @@
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Code, In, Repository } from 'typeorm';
+import { CreateMediaSubCategoryDto } from './dto/create-media-sub-category.dto';
+import { UpdateMediaSubCategoryDto } from './dto/update-media-sub-category.dto';
+import { MediaSubCategory } from './entities/media-sub-category.entity';
+
+@Injectable()
+export class MediaSubCategoryService {
+  constructor(
+    @InjectRepository(MediaSubCategory)
+    private mediaSubCategoryRepository: Repository<MediaSubCategory>
+  ){}
+  create(createMediaSubCategoryDto: CreateMediaSubCategoryDto) {
+    return 'This action adds a new mediaSubCategory';
+  }
+
+  async findAll() {
+    let mediaData = await this.mediaSubCategoryRepository.find({select:{code:true,name:true,categoryCode:true}});
+    return {
+      statusCode : HttpStatus.OK,
+      mediaSubCategory : mediaData
+    }
+  }
+
+  async fetchCSubategoryByCode(data){
+    return await this.mediaSubCategoryRepository.find({where:{code: In([data.code])}});
+  }
+
+  async findOne(code: string) {
+    return await this.mediaSubCategoryRepository.findOne({select:{code:true,name:true,categoryCode:true}, where:{code:code}});
+  }
+
+  update(id: number, updateMediaSubCategoryDto: UpdateMediaSubCategoryDto) {
+    return `This action updates a #${id} mediaSubCategory`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} mediaSubCategory`;
+  }
+}

@@ -1,0 +1,525 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { User } from '../model/user';
+import { DataService } from '../service/dataservice';
+import { StringConstants } from '../service/stringconstants';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { timer } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { AppComponent } from '../../app.component';
+import { MatDialog } from '@angular/material/dialog';
+import { LanguagedialogComponent } from '../languagedialog/languagedialog.component';
+
+@Component({
+    selector: 'app-log-in',
+    templateUrl: './log-in.component.html',
+    styleUrls: ['./log-in.component.css']
+})
+export class LogInComponent implements OnInit {
+
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': StringConstants.CONTENT_TYPE_JSON
+        })
+    };
+
+    loginForm: FormGroup;
+    loginOtpForm: FormGroup;
+    loginPasswordForm: FormGroup;
+    forgotPasswordForm: FormGroup;
+    changePasswordForm: FormGroup;
+    referralCodeForm: FormGroup;
+    errorMsg: string;
+    hide = true;
+    showPage = StringConstants.PAGE_LOGIN;
+    otpTimeInterval = StringConstants.OTP_TIMER;
+    interval = StringConstants.OTP_TIMER;
+    loading = false;
+    newPasswordEye = true;
+    confirmPasswordEye = true;
+    loginData: User;
+    changePasswordErrMsg = '';
+    referralCodeErrMsg = '';
+    timerSource: any;
+    otpLoginCode = '';
+    otpCode = '';
+    otpLoading = false;
+    enableResend = false;
+    loginOtpLoading = false;
+    otpMobileNo = '';
+    otpRefCode = '';
+    salesmanOptions:any=[];
+
+    get passwordInput() {
+        return this.loginForm.get('password');
+    }
+
+    constructor(private fb: FormBuilder, private router: Router, public app: AppComponent,
+        private http: HttpClient, private dataService: DataService, public dialog: MatDialog,
+        private deviceService: DeviceDetectorService, private cookieService: CookieService) {
+        app.checkUpdate();
+    }
+
+    ngOnInit() {
+        this.loginForm = this.fb.group({
+            loginCode: new FormControl(this.cookieService.get(StringConstants.CONST_LOGIN_CODE), Validators.required),
+            signInOption: new FormControl("withPassword", Validators.required)
+        });
+
+        this.loginOtpForm = this.fb.group({
+            loginCode: new FormControl('', Validators.required),
+            otp: new FormControl('', Validators.required)
+        });
+
+        this.loginPasswordForm = this.fb.group({
+            loginCode: new FormControl('', Validators.required),
+            password: new FormControl('', Validators.required)
+        });
+
+        this.forgotPasswordForm = this.fb.group({
+            loginCode: new FormControl('', Validators.required),
+            otp: new FormControl('', Validators.required)
+        });
+
+        this.changePasswordForm = this.fb.group({
+            new_password: new FormControl('', Validators.required),
+            confirm_password: new FormControl('', Validators.required)
+        });
+
+        this.referralCodeForm = this.fb.group({
+            referral_code: new FormControl('', Validators.required)
+        });
+    }
+
+    loginMessage() {
+        return this.errorMsg !== null && this.errorMsg !== undefined && this.errorMsg !== '';
+    }
+
+    onSubmit(value: any, from: string) {
+        const startTime = new Date();
+        this.errorMsg = '';
+        this.loading = true;
+        this.checkCookie(from);
+        const deviceInfo = this.deviceService.getDeviceInfo();
+        value.deviceBrand = deviceInfo.browser;
+        value.deviceModel = deviceInfo.device;
+        value.deviceVersion = deviceInfo.browser_version;
+        this.http.post(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_AUTHENTICATE_LOGIN,
+            JSON.stringify(value), this.httpOptions).subscribe(
+                (res: User) => {
+                    if (res.loginStatus) {
+                        this.loginData = res;
+                        this.dataService.setUser(res);
+                        this.fetchSalesman();
+                        if (res.newPassword === StringConstants.CONST_YES) {
+                            // this.showPage = StringConstants.PAGE_CHANGE_PASSWORD;
+                            this.toggleScreen(StringConstants.PAGE_CHANGE_PASSWORD);
+                        } 
+                        else {
+                            
+                            this.errorMsg = res.message;
+                            //  this.toggleScreen(StringConstants.PAGE_REFERRAL_SALESMAN);
+                            this.router.navigate([StringConstants.REDIRECT_LANDING_HOME]);
+                            this.dataService.uploadSyncLog(StringConstants.CONST_PROCESS_AUTHENTICATE, startTime, StringConstants.CONST_SUCCESS);
+                        }
+                    } else {
+                        if (StringConstants.MSG_SERVER_INVALID_LOGIN === res.message) {
+                            this.errorMsg = StringConstants.MSG_INVALID_LOGIN;
+                        } else {
+                            this.errorMsg = res.message;
+                        }
+                    }
+                    this.loading = false;
+                }, (err: HttpErrorResponse) => {
+                    if (this.cookieService.get(StringConstants.CONST_LOGIN_CODE) !== ''
+                        && this.cookieService.get(StringConstants.CONST_PASSWORD) !== '') {
+                        this.authenticate();
+                    } else {
+                        console.error(err.message);
+                        this.errorMsg = StringConstants.MSG_LOGIN_FAILED;
+                        this.loading = false;
+                    }
+                }
+            );
+    }
+
+    toggleScreen(str: string) {
+        if (str === StringConstants.PAGE_SIGN_IN_WITH_OTP) {
+            this.loginOtpForm = this.fb.group({
+                loginCode: new FormControl(this.otpLoginCode, Validators.required),
+                otp: new FormControl('', Validators.required)
+            });
+        } else if (str === StringConstants.PAGE_SIGN_IN_WITH_PASSWORD) {
+            this.loginPasswordForm = this.fb.group({
+                loginCode: new FormControl(this.otpLoginCode, Validators.required),
+                password: new FormControl(this.cookieService.get(StringConstants.CONST_PASSWORD), Validators.required)
+            });
+        } else if (str === StringConstants.PAGE_FORGOT_PASSWORD) {
+            this.resetOtpInfo();
+            this.forgotPasswordForm = this.fb.group({
+                loginCode: new FormControl('', Validators.required),
+                otp: new FormControl('', Validators.required)
+            });
+        } else if (str === StringConstants.PAGE_CHANGE_FORGOT_PASSWORD) {
+            this.resetOtpInfo();
+            this.changePasswordForm = this.fb.group({
+                new_password: new FormControl('', Validators.required),
+                confirm_password: new FormControl('', Validators.required)
+            });
+        } else if (str === StringConstants.PAGE_LOGIN) {
+            this.resetOtpInfo();
+            this.loginForm = this.fb.group({
+                loginCode: new FormControl(this.cookieService.get(StringConstants.CONST_LOGIN_CODE), Validators.required),
+                signInOption: new FormControl(StringConstants.CONST_SIGN_IN_WITH_OTP, Validators.required)
+            });
+            if (this.timerSource !== undefined && this.timerSource !== null) {
+                this.timerSource.unsubscribe();
+            }
+        }
+        this.showPage = str;
+    }
+
+    resetOtpInfo() {
+        this.errorMsg = '';
+        this.otpCode = '';
+        this.otpMobileNo = '';
+        this.otpRefCode = '';
+        this.enableResend = false;
+    }
+
+    checkOtpForm() {
+        return this.forgotPasswordForm.get(StringConstants.CONST_LOGIN_CODE).value !== '';
+    }
+
+    checkVerifyOtpForm() {
+        return this.forgotPasswordForm.get(StringConstants.CONST_OTP).value !== '';
+    }
+
+    sendOtp(value: any) {
+        this.resetOtpInfo();
+        this.otpLoading = true;
+        value.enableCompress = false;
+        this.interval = StringConstants.OTP_TIMER;
+        this.otpTimeInterval = StringConstants.OTP_TIMER;
+        this.http.post(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_SEND_OTP,
+            JSON.stringify(value), this.httpOptions).subscribe(
+                (res: any) => {
+                    if (res.deliveryStatus === '-2') {
+                        this.errorMsg = res.message;
+                    } else if (res.deliveryStatus !== '-1') {
+                        this.otpLoginCode = res.loginCode;
+                        this.otpMobileNo = res.mobileNo.replace(res.mobileNo.substring(2, 7), StringConstants.CONST_REPLACE_STR);
+                        this.otpRefCode = res.refCode;
+                        this.otpCode = res.otpCode;
+                        this.toggleScreen(StringConstants.PAGE_VERIFY_OTP);
+                        this.startTimer();
+                    } else {
+                        this.errorMsg = StringConstants.MSG_GENERATE_OTP_FAILED;
+                    }
+                    this.otpLoading = false;
+                }, (err: HttpErrorResponse) => {
+                    console.error(err.message);
+                    this.errorMsg = StringConstants.MSG_GENERATE_OTP_FAILED;
+                    this.otpLoading = false;
+                }
+            );
+    }
+
+    validateOtp() {
+        const { value: otp } = this.forgotPasswordForm.get(StringConstants.CONST_OTP);
+        if (this.otpCode === otp) {
+            this.toggleScreen(StringConstants.PAGE_CHANGE_FORGOT_PASSWORD);
+        } else {
+            this.errorMsg = StringConstants.MSG_VALID_OTP;
+        }
+    }
+
+    startTimer() {
+        const source = timer(1000, 1000);
+        this.timerSource = source.subscribe(val => {
+            this.interval = this.otpTimeInterval - val;
+            if (this.interval === 0) {
+                this.timerSource.unsubscribe();
+                this.enableResend = true;
+                this.otpCode = '';
+                this.otpMobileNo = '';
+                this.otpRefCode = '';
+            }
+        });
+    }
+
+    navigatePage(str: string) {
+        return this.showPage === str;
+    }
+
+    onChangePasswordSubmit() {
+        this.loading = true;
+        const { value: newPassword } = this.changePasswordForm.get('new_password');
+        const { value: confirmPassword } = this.changePasswordForm.get('confirm_password');
+        this.changePasswordErrMsg = '';
+        if (newPassword === confirmPassword) {
+            const user = new User();
+            user.loginCode = this.loginData.loginCode;
+            user.password = confirmPassword;
+            this.changePasswordService(user);
+        } else {
+            this.changePasswordErrMsg = StringConstants.MSG_PASSWORD_MISMATCH;
+            this.loading = false;
+        }
+    }
+
+    navigateToHome() {
+        const user = new User();
+        // user.loginCode = this.loginData.loginCode;
+        // user.password = this.loginData.password;
+        // this.changePasswordService(user);
+        this.router.navigate([StringConstants.REDIRECT_LANDING_HOME]);
+    }
+
+    // navigateToReferalPage()
+    // {
+    //     this.toggleScreen(StringConstants.PAGE_REFERRAL_SALESMAN);
+    // }
+
+    changePasswordService(user: User) {
+        const startTime = new Date();
+        this.http.post(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_CHANGE_PASSWORD,
+            JSON.stringify(user), {
+            headers: new HttpHeaders({
+                'Content-Type': StringConstants.CONTENT_TYPE_JSON
+            }), observe: StringConstants.OBSERVER_RESPONSE
+        }).subscribe(resp => {
+            if (resp.status === 200) {
+                this.dataService.setUser(this.loginData);
+                this.toggleScreen(StringConstants.PAGE_REFERRAL_SALESMAN);
+                // this.router.navigate([StringConstants.REDIRECT_LANDING_HOME]);
+                this.dataService.uploadSyncLog(StringConstants.CONST_PROCESS_CHANGE_PASSWORD, startTime, StringConstants.CONST_SUCCESS);
+                this.loading = false;
+            }
+        }, (err: HttpErrorResponse) => {
+            console.error(err.message);
+            this.changePasswordErrMsg = StringConstants.MSG_CHANGE_PASSWORD_FAILED;
+            this.dataService.uploadSyncLog(StringConstants.CONST_PROCESS_CHANGE_PASSWORD, startTime, StringConstants.CONST_FAILURE);
+            this.loading = false;
+        });
+    }
+
+    changePasswordMsg() {
+        return this.changePasswordErrMsg !== '';
+    }
+
+    checkCookie(from: string) {
+        this.cookieService.deleteAll();
+        if (from === StringConstants.PAGE_SIGN_IN_WITH_PASSWORD) {
+            const { value: loginCode } = this.loginPasswordForm.get(StringConstants.CONST_LOGIN_CODE);
+            const { value: password } = this.loginPasswordForm.get(StringConstants.CONST_PASSWORD);
+            if (loginCode !== '' && password !== '') {
+                this.cookieService.set(StringConstants.CONST_LOGIN_CODE, loginCode);
+                this.cookieService.set(StringConstants.CONST_PASSWORD, password);
+            }
+        } else {
+            const { value: loginCode } = this.loginOtpForm.get(StringConstants.CONST_LOGIN_CODE);
+            if (loginCode !== '') {
+                this.cookieService.set(StringConstants.CONST_LOGIN_CODE, loginCode);
+            }
+        }
+    }
+
+    authenticate() {
+        const { value: loginCode } = this.loginPasswordForm.get(StringConstants.CONST_LOGIN_CODE);
+        const { value: password } = this.loginPasswordForm.get(StringConstants.CONST_PASSWORD);
+        if (loginCode === this.cookieService.get(StringConstants.CONST_LOGIN_CODE)
+            && password === this.cookieService.get(StringConstants.CONST_PASSWORD)) {
+            this.router.navigate([StringConstants.REDIRECT_LANDING_HOME]);
+        } else {
+            this.errorMsg = StringConstants.MSG_INVALID_LOGIN;
+        }
+        this.loading = false;
+    }
+
+    onChangeForgotPasswordSubmit() {
+        this.loading = true;
+        const { value: newPassword } = this.changePasswordForm.get('new_password');
+        const { value: confirmPassword } = this.changePasswordForm.get('confirm_password');
+        this.changePasswordErrMsg = '';
+        if (newPassword === confirmPassword) {
+            const user = new User();
+            user.loginCode = this.otpLoginCode;
+            user.password = confirmPassword;
+            this.submitForgotPasswordService(user);
+        } else {
+            this.changePasswordErrMsg = StringConstants.MSG_PASSWORD_MISMATCH;
+            this.loading = false;
+        }
+    }
+
+    submitForgotPasswordService(user: User) {
+        this.http.post(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_CHANGE_PASSWORD,
+            JSON.stringify(user), {
+            headers: new HttpHeaders({
+                'Content-Type': StringConstants.CONTENT_TYPE_JSON
+            }), observe: StringConstants.OBSERVER_RESPONSE
+        }).subscribe(resp => {
+            if (resp.status === 200) {
+                this.toggleScreen(StringConstants.PAGE_LOGIN);
+                this.loading = false;
+            }
+        }, (err: HttpErrorResponse) => {
+            console.error(err.message);
+            this.changePasswordErrMsg = StringConstants.MSG_CHANGE_PASSWORD_FAILED;
+            this.loading = false;
+        });
+    }
+
+    showButton() {
+        const { value: signInOption } = this.loginForm.get(StringConstants.CONST_SIGN_IN_OPTION);
+        return signInOption === StringConstants.CONST_SIGN_IN_WITH_OTP;
+    }
+
+    sendLoginOtp(value: any) {
+        this.errorMsg = '';
+        this.resetOtpInfo();
+        this.loginOtpLoading = true;
+        value.enableCompress = false;
+        this.interval = StringConstants.OTP_TIMER;
+        this.otpTimeInterval = StringConstants.OTP_TIMER;
+        this.http.post(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_SEND_OTP,
+            JSON.stringify(value), this.httpOptions).subscribe(
+                (res: any) => {
+                    if (res.deliveryStatus === '-2') {
+                        if (res.message === StringConstants.MSG_SERVER_INVALID_MOBILE_NUMBER) {
+                            this.errorMsg = StringConstants.MSG_INVALID_MOBILE_NUMBER;
+                        } else {
+                            this.errorMsg = res.message;
+                        }
+                    } else if (res.deliveryStatus !== '-1') {
+                        this.otpCode = res.otpCode;
+                        this.otpLoginCode = res.loginCode;
+                        this.toggleScreen(StringConstants.PAGE_SIGN_IN_WITH_OTP);
+                        this.startTimer();
+                    } else {
+                        this.errorMsg = StringConstants.MSG_GENERATE_OTP_FAILED;
+                    }
+                    this.loginOtpLoading = false;
+                }, (err: HttpErrorResponse) => {
+                    console.error(err.message);
+                    this.errorMsg = StringConstants.MSG_GENERATE_OTP_FAILED;
+                    this.loginOtpLoading = false;
+                }
+            );
+    }
+
+    navigateLoginWithPassword() {
+        this.errorMsg = '';
+        const { value: loginCode } = this.loginForm.get(StringConstants.CONST_LOGIN_CODE);
+        if (loginCode !== this.cookieService.get(StringConstants.CONST_LOGIN_CODE)) {
+            this.cookieService.deleteAll();
+        }
+        this.otpLoginCode = loginCode;
+        this.toggleScreen(StringConstants.PAGE_SIGN_IN_WITH_PASSWORD);
+    }
+
+    checkLoginOtpForm() {
+        return this.loginOtpForm.get(StringConstants.CONST_OTP).value !== '';
+    }
+
+    loginWithOtp() {
+        const { value: otp } = this.loginOtpForm.get(StringConstants.CONST_OTP);
+        if (this.otpCode === otp) {
+            this.onSubmit(this.loginOtpForm.value, StringConstants.PAGE_SIGN_IN_WITH_OTP);
+        } else {
+            this.errorMsg = StringConstants.MSG_VALID_OTP;
+        }
+    }
+
+    checkLoginPasswordForm() {
+        return this.loginPasswordForm.get(StringConstants.CONST_PASSWORD).value !== '';
+    }
+
+    loginWithPassword() {
+        this.onSubmit(this.loginPasswordForm.value, StringConstants.PAGE_SIGN_IN_WITH_PASSWORD);
+    }
+
+    languageDialog(): void {
+        const lang = this.app.language;
+        const dialogRef = this.dialog.open(LanguagedialogComponent, {
+            width: '500px',
+            height: '250px',
+            data: { lang }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result !== undefined && result !== null) {
+                this.app.setLanguage(result);
+            }
+        });
+    }
+
+    fetchSalesman():void
+    {
+        this.http.get(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_FETCH_SALESMAN + '?customerCode='+localStorage.getItem(StringConstants.CUSTOMER_CODE), this.dataService.getHttpOptions()).subscribe(resp => {
+            console.log(resp)
+            if (resp) 
+            {
+                this.salesmanOptions = resp;
+                this.loading = false;
+            }
+        }, (err: HttpErrorResponse) => {
+            this.referralCodeErrMsg = StringConstants.MSG_CHANGE_PASSWORD_FAILED;
+            this.loading = false;
+        });
+    }
+
+    onSubmitCode() {
+        this.loading = true;
+        const referralCode = this.referralCodeForm.get('referral_code').value;
+        this.referralCodeErrMsg = '';
+        let param: any;
+
+        this.salesmanOptions.forEach(data=> {
+            if(data.salesmanCode === referralCode)
+            {
+                param = 
+                {
+                    "cmpCode": data.cmpCode,
+                    "distrCode" : data.distrCode,
+                    "salesmanCode" : data.salesmanCode,
+                    "customerCode" : localStorage.getItem(StringConstants.CUSTOMER_CODE),
+                }
+            }
+            
+         });
+
+        if(param)
+        {
+            this.http.post(localStorage.getItem(StringConstants.EXTERNAL_API_URL) + StringConstants.URL_SAVE_SALESMAN, JSON.stringify(param),
+            {
+                // headers: new HttpHeaders({
+                //     'Content-Type': StringConstants.CONTENT_TYPE_JSON
+                // }), observe: StringConstants.OBSERVER_RESPONSE
+
+                headers: new HttpHeaders({
+                    'Content-Type': StringConstants.CONTENT_TYPE_JSON,
+                    'X-Auth-Token': localStorage.getItem(StringConstants.TOKEN),
+                    'X-Login-Code': localStorage.getItem(StringConstants.LOGIN_CODE),
+                    'Cache-Control': StringConstants.NO_CACHE,
+                    Pragma: StringConstants.NO_CACHE,
+                    Expires: StringConstants.EXPIRES
+                  }), observe: StringConstants.OBSERVER_RESPONSE
+            }).subscribe(resp => {
+                if (resp) {
+                    this.app.openSnackBar(StringConstants.MSG_SALESMAN_REF_SUCCESSFULLY_SAVED);
+                    this.loading = false;
+                    this.router.navigate([StringConstants.REDIRECT_LANDING_HOME]);
+                    // this.navigateToHome();
+                }
+            }, (err: HttpErrorResponse) => {
+                this.referralCodeErrMsg = StringConstants.MSG_SALESMAN_REF_FAILED_TO_SAVE;
+                this.loading = false;
+            });
+        }
+        
+    }
+}

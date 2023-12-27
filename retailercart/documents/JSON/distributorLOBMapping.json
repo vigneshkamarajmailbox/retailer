@@ -1,0 +1,83 @@
+[
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587467100000,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "lobCode": "10"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587467100000,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "lobCode": "20"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587467100000,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "lobCode": "30"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "lobCode": "F1"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "lobCode": "F2"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "lobCode": "F3"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "lobCode": "F4"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "lobCode": "F5"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "lobCode": "F6"
+  }
+]

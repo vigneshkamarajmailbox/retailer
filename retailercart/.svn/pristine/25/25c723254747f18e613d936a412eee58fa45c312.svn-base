@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { UomMasterService } from './uom-master.service';
+
+describe('UomMasterService', () => {
+  let service: UomMasterService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [UomMasterService],
+    }).compile();
+
+    service = module.get<UomMasterService>(UomMasterService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

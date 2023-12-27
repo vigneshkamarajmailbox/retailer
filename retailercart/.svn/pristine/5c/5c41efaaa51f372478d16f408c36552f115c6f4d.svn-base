@@ -1,0 +1,39 @@
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Feedback } from './entities/feedback.entity';
+import { CreateFeedbackDto } from './dto/create-feedback.dto';
+
+export class feedbackRepository {
+    @InjectRepository(Feedback)
+    private feedbackRepository: Repository<Feedback>;
+
+    async create(saveFeedback: CreateFeedbackDto): Promise<any> {
+        console.log(saveFeedback);
+
+        return await this.feedbackRepository.save(saveFeedback);
+    }
+
+    async findAll() {
+        const fetchField = { 
+            userName:true, 
+            title:true, 
+            comments:true, 
+            imagePath:true
+        }
+        return await this.feedbackRepository.find({select:fetchField});
+    }
+    
+    findOne(userName: string): Promise<Feedback | null> {
+        return this.feedbackRepository.findOneBy({userName:userName});
+    }
+    
+
+    // update(id: number, updateKycDetailDto: UpdateKycDetailDto) {
+    //     return `This action updates a #${id} kycDetail`;
+    // }
+
+    // remove(id: number) {
+    //     return `This action removes a #${id} kycDetail`;
+    // }
+
+}

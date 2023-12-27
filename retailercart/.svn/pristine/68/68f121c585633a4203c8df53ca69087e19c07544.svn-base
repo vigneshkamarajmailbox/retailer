@@ -1,0 +1,34 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, PrimaryColumn } from "typeorm";
+
+@Entity({ name: TableName.RETAILER_CATEGORY })
+export class RetailerCategory extends AbstractModel {
+    @PrimaryColumn({ name: 'cmp_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    cmpCode: string;
+
+    @PrimaryColumn({ name: 'channel_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    channelCode: string;
+
+    @Column({ name: 'channel_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    channelName: string; 
+
+    @PrimaryColumn({ name: 'sub_channel_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    subChannelCode: string;
+
+    @Column({ name: 'sub_channel_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    subChannelName: string; 
+
+    @PrimaryColumn({ name: 'group_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    groupCode: string;
+
+    @Column({ name: 'group_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    groupName: string; 
+
+    @PrimaryColumn({ name: 'class_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    classCode: string;
+
+    @Column({ name: 'class_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    className: string; 
+}

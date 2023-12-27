@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/orderbooking_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.botree.retailerssfa.support.NestedCoordinatorLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--
+                        app:layout_scrollFlags="scroll|enterAlways"-->
+
+                        <LinearLayout
+                            android:id="@+id/stocktake_brand_spinner_layout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal">
+
+
+                            <Button
+                                android:id="@+id/brand_filter_btn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/custom_filter_btn"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:text="@string/brand_filter"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/txt_size_normal"
+                                android:typeface="serif" />
+
+                            <Button
+                                android:id="@+id/other_filter_btn"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/custom_filter_btn"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:text="@string/other_filter"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/txt_size_normal"
+                                android:typeface="serif" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/edit_bg"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <Spinner
+                                    android:id="@+id/spinner_mian_brand"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="text" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/stockload_spinner_layout"
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/edit_bg"
+                                android:orientation="horizontal">
+
+                                <Spinner
+                                    android:id="@+id/stockload_spinner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:entries="@array/stkloaddata"
+                                    android:inputType="text" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/product_name_title_label_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:paddingEnd="1dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="1dp"
+                                android:paddingStart="10dp"
+                                android:text="@string/product_name"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/txt_size_normal"
+                                android:typeface="serif" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+                                <TextView
+                                    android:id="@+id/mrp_title_label_txt"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.6"
+                                    android:gravity="left"
+                                    android:maxLines="1"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text="@string/mrp"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="@dimen/txt_size_normal"
+                                    android:typeface="serif" />
+
+                                <TextView
+                                    android:id="@+id/ptr_label_txt"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.6"
+                                    android:maxLines="1"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text="@string/ptr"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="@dimen/txt_size_normal"
+                                    android:typeface="serif" />
+
+                                <TextView
+                                    android:id="@+id/stock_label_txt"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/stk_tk"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="@dimen/txt_size_normal"
+                                    android:typeface="serif"
+                                    android:visibility="visible" />
+
+                                <TextView
+                                    android:id="@+id/tvQty"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="@string/qty"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="@dimen/txt_size_normal"
+                                    android:typeface="serif" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:background="@color/color1"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:sfaActivity="com.botree.productsfa.main.OrderBookingFragment">
+
+                    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/orderbooking_recyclerview"
+                        android:name="com.botree.productsfa.fragment_pending_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:clipToPadding="false"
+                        tools:listitem="@layout/orderbooking_list_item"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        tools:sfaActivity=".main.MainActivity" />
+
+                    <TextView
+                        android:id="@+id/orderbooking_empty_tag_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/no_record"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/txt_size_large"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </com.botree.retailerssfa.support.NestedCoordinatorLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/colorPrimary"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:id="@+id/tax_scheme_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/order_count"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_small"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/order_count_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_small"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/instock_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="@string/instock_count"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_small"
+                        android:typeface="serif"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/instock_count_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_small"
+                        android:typeface="serif"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_u20b9"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_semi_medium"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/order_total_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_semi_medium"
+                        android:textStyle="bold"
+                        android:typeface="serif"/>
+
+                    <TextView
+                        android:id="@+id/sov_label_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="@string/sov"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_semi_medium"
+                        android:typeface="serif"
+                        android:visibility="gone"
+                        android:layout_marginStart="25dp" />
+
+                    <TextView
+                        android:id="@+id/sov_value_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_semi_medium"
+                        android:typeface="serif"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/orderbooking_cancel_btn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/custom_btn_red"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/cancel"
+                android:textColor="@color/colorWhite"
+                android:typeface="serif"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/orderbooking_submit_btn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_btn_red"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/view_cart"
+                android:textColor="@color/colorWhite"
+                android:typeface="serif"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

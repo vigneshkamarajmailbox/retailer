@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvBillNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/billno"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/tvBillDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.3"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/billdate"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal"
+        android:typeface="serif" />
+
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:maxLines="1"
+        android:text="@string/outstandingamt"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/tvAdjustAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/txt_underline"
+        android:gravity="end"
+        android:hint="@string/_0"
+        android:inputType="number"
+        android:maxLines="1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/txt_size_normal"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/tvAdjustBalance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal"
+        android:typeface="serif" />
+</LinearLayout>

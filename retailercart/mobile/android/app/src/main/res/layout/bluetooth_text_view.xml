@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txt_bluetooth"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingBottom="5dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:text="@string/paired"
+    android:gravity="center_vertical"
+    android:drawablePadding="14dp"
+    android:drawableLeft="@drawable/bluetooth"
+    android:drawableStart="@drawable/bluetooth"
+    android:textAppearance="@android:style/TextAppearance.Large"
+    android:textColor="@color/colorPrimary" />

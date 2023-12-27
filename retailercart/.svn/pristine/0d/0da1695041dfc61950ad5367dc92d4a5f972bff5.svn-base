@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <!-- EXPORT TRANSACTION TO EXTERNAL SYSTEM RELATED QUERIES -->
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGHEADERENTITY_FOR_CMP">
+        SELECT oh.CmpCode,
+               oh.DistrCode,
+               oh.OrderNo,
+               oh.CustomerRefNo,
+               oh.CustomerCode,
+               oh.CustomerShipCode,
+               oh.OrderDt,
+               oh.Remarks,
+               oh.Latitude,
+               oh.Longitude,
+               oh.StartTime,
+               oh.EndTime,
+               oh.OrderStatus,
+               oh.TotalDiscount,
+               oh.TotalTax,
+               oh.TotalOrderValue
+        FROM orderbookingheader oh
+        WHERE oh.UploadFlag = 'N'
+          AND oh.CmpCode = :param1
+    </query>
+
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGHEADERENTITY_FOR_DISTR">
+        SELECT oh.CmpCode,
+               oh.DistrCode,
+               oh.OrderNo,
+               oh.CustomerRefNo,
+               oh.CustomerCode,
+               oh.CustomerShipCode,
+               oh.OrderDt,
+               oh.Remarks,
+               oh.Latitude,
+               oh.Longitude,
+               oh.StartTime,
+               oh.EndTime,
+               oh.OrderStatus,
+               oh.TotalDiscount,
+               oh.TotalTax,
+               oh.TotalOrderValue
+        FROM orderbookingheader oh
+        WHERE oh.UploadFlag = 'N'
+          AND oh.CmpCode = :param1
+          AND oh.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGDETAILSENTITY_FOR_CMP">
+        SELECT od.CmpCode,
+               od.DistrCode,
+               od.OrderNo,
+               od.ProdCode,
+               od.ProdName,
+               od.ProdBatchCode,
+               od.OrderQty,
+               od.ServicedQty,
+               od.UomCode,
+               od.inputStr,
+               od.SellRate,
+               od.SchAmt,
+               od.TaxAmt,
+               od.TaxCode,
+               od.CgstPerc,
+               od.CgstAmt,
+               od.SgstPerc,
+               od.SgstAmt,
+               od.UgstPerc,
+               od.UgstAmt,
+               od.IgstPerc,
+               od.IgstAmt,
+               od.OrderValue,
+               od.ProdType
+        FROM orderbookingdetails od
+        WHERE od.UploadFlag = 'N'
+          AND od.CmpCode = :param1
+    </query>
+
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGDETAILSENTITY_FOR_DISTR">
+        SELECT od.CmpCode,
+               od.DistrCode,
+               od.OrderNo,
+               od.ProdCode,
+               od.ProdName,
+               od.ProdBatchCode,
+               od.OrderQty,
+               od.ServicedQty,
+               od.UomCode,
+               od.inputStr,
+               od.SellRate,
+               od.SchAmt,
+               od.TaxAmt,
+               od.TaxCode,
+               od.CgstPerc,
+               od.CgstAmt,
+               od.SgstPerc,
+               od.SgstAmt,
+               od.UgstPerc,
+               od.UgstAmt,
+               od.IgstPerc,
+               od.IgstAmt,
+               od.OrderValue,
+               od.ProdType
+        FROM orderbookingdetails od
+        WHERE od.UploadFlag = 'N'
+          AND od.CmpCode = :param1
+          AND od.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGSCHEMEDETAILSENTITY_FOR_CMP">
+        SELECT osd.CmpCode,
+               osd.DistrCode,
+               osd.OrderNo,
+               osd.SchemeCode,
+               osd.SlabNo,
+               osd.FreeProdCode,
+               osd.FreeQty
+        FROM orderbookingschemedetails osd
+        WHERE osd.UploadFlag = 'N'
+          AND osd.CmpCode = :param1
+    </query>
+
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGSCHEMEDETAILSENTITY_FOR_DISTR">
+        SELECT osd.CmpCode,
+               osd.DistrCode,
+               osd.OrderNo,
+               osd.SchemeCode,
+               osd.SlabNo,
+               osd.FreeProdCode,
+               osd.FreeQty
+        FROM orderbookingschemedetails osd
+        WHERE osd.UploadFlag = 'N'
+          AND osd.CmpCode = :param1
+          AND osd.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGSCHEMEPRODUCTRULEENTITY_FOR_CMP">
+        SELECT osp.CmpCode,
+               osp.DistrCode,
+               osp.OrderNo,
+               osp.SchemeCode,
+               osp.SlabNo,
+               osp.ProdCode,
+               osp.DiscPerc,
+               osp.DiscAmt
+        FROM orderbookingschemeproductrule osp
+        WHERE osp.UploadFlag = 'N'
+          AND osp.CmpCode = :param1
+    </query>
+
+    <query name="FETCH_TRANSACTION_ORDERBOOKINGSCHEMEPRODUCTRULEENTITY_FOR_DISTR">
+        SELECT osp.CmpCode,
+               osp.DistrCode,
+               osp.OrderNo,
+               osp.SchemeCode,
+               osp.SlabNo,
+               osp.ProdCode,
+               osp.DiscPerc,
+               osp.DiscAmt
+        FROM orderbookingschemeproductrule osp
+        WHERE osp.UploadFlag = 'N'
+          AND osp.CmpCode = :param1
+          AND osp.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_TRANSACTION_FEEDBACKENTITY_FOR_CMP">
+        SELECT fb.CmpCode,
+               fb.DistrCode,
+               fb.FeedbackNo,
+               fb.CustomerCode,
+               fb.FeedBackDt,
+               fb.FeedbackType,
+               fb.Message,
+               fb.ImagePath
+        FROM feedback fb
+        WHERE fb.UploadFlag = 'N'
+          AND fb.CmpCode = :param1
+    </query>
+
+    <query name="FETCH_TRANSACTION_FEEDBACKENTITY_FOR_DISTR">
+        SELECT fb.CmpCode,
+               fb.DistrCode,
+               fb.FeedbackNo,
+               fb.CustomerCode,
+               fb.FeedBackDt,
+               fb.FeedbackType,
+               fb.Message,
+               fb.ImagePath
+        FROM feedback fb
+        WHERE fb.UploadFlag = 'N'
+          AND fb.CmpCode = :param1
+          AND fb.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_TRANSACTION_LOCATIONUPDATEENTITY_FOR_CMP">
+        SELECT lus.CmpCode,
+               lus.DistrCode,
+               lu.LoginCode,
+               lu.UpdateDt,
+               lu.Latitude,
+               lu.Longitude,
+               lu.ImagePath,
+               lu.PostalCode
+        FROM locationupdatestatus lus
+                 INNER JOIN locationupdate lu
+                            ON lus.LoginCode = lu.LoginCode
+                                AND lus.UpdateDt = lu.UpdateDt
+        WHERE lus.UploadFlag = 'N'
+          AND lus.CmpCode = :param1
+    </query>
+
+    <query name="FETCH_TRANSACTION_LOCATIONUPDATEENTITY_FOR_DISTR">
+        SELECT lus.CmpCode,
+               lus.DistrCode,
+               lu.LoginCode,
+               lu.UpdateDt,
+               lu.Latitude,
+               lu.Longitude,
+               lu.ImagePath,
+               lu.PostalCode
+        FROM locationupdatestatus lus
+                 INNER JOIN locationupdate lu
+                            ON lus.LoginCode = lu.LoginCode
+                                AND lus.UpdateDt = lu.UpdateDt
+        WHERE lus.UploadFlag = 'N'
+          AND lus.CmpCode = :param1
+          AND lus.DistrCode IN (:param2)
+    </query>
+
+    <!-- UPDATE TRANSACTION TO EXTERNAL SYSTEM RELATED QUERIES -->
+    <query name="UPDATE_TRANSACTION_ORDERBOOKINGHEADERENTITY">
+        UPDATE orderbookingheader
+        SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND OrderNo = :orderNo
+    </query>
+
+    <query name="UPDATE_TRANSACTION_ORDERBOOKINGDETAILSENTITY">
+        UPDATE orderbookingdetails
+        SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND OrderNo = :orderNo
+    </query>
+
+    <query name="UPDATE_TRANSACTION_ORDERBOOKINGSCHEMEDETAILSENTITY">
+        UPDATE orderbookingschemedetails
+        SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND OrderNo = :orderNo
+    </query>
+
+    <query name="UPDATE_TRANSACTION_ORDERBOOKINGSCHEMEPRODUCTRULEENTITY">
+        UPDATE orderbookingschemeproductrule
+        SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND OrderNo = :orderNo
+    </query>
+
+    <query name="UPDATE_TRANSACTION_FEEDBACKENTITY">
+        UPDATE feedback
+        SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND FeedbackNo = :feedbackNo
+    </query>
+
+    <query name="UPDATE_TRANSACTION_LOCATIONUPDATEENTITY">
+        UPDATE locationupdatestatus
+        SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND LoginCode = :loginCode
+          AND UpdateDt = :updateDt
+    </query>
+
+
+    <query name="FETCH_LOGIN_REFERRAL">
+        SELECT
+            CmpCode,
+            DistrCode,
+            SalesmanCode,
+            CustomerCode,
+            UploadFlag,
+            ModDt
+        FROM login_referral where
+            UploadFlag = 'N'
+            AND CmpCode = :param1
+    </query>
+
+    <query name="FETCH_ORDER_REFERRAL">
+        SELECT
+            CmpCode,
+            DistrCode,
+            SalesmanCode,
+            CustomerCode,
+            OrderNo,
+            UploadFlag,
+            ModDt
+        FROM
+          order_referral
+        where
+            UploadFlag = 'N'
+            AND CmpCode = :param1
+    </query>
+
+    <query name="FETCH_SYNC_LOG">
+        SELECT
+                SyncNo,
+                LoginCode,
+                AppVersion,
+                SyncDt,
+                SyncStartTime,
+                SyncEndTime,
+                Mode,
+                ProcessName,
+                UserName,
+                Message,
+                UploadFlag,
+                ModDt
+            FROM synclog
+        where
+        UploadFlag = :param1
+        </query>
+
+    <query name="UPDATE_LOGIN_REFERRAL_ENTITY">
+        UPDATE login_referral
+            SET UploadFlag = 'Y',
+                ModDt   = NOW()
+            WHERE CmpCode = :cmpCode
+                AND DistrCode = :distrCode
+                AND customerCode = :customerCode
+                AND salesmanCode = :salesmanCode
+    </query>
+
+    <query name="UPDATE_ORDER_REFERRAL_ENTITY">
+        UPDATE order_referral
+            SET UploadFlag = 'Y',
+                ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+            AND DistrCode = :distrCode
+            AND CustomerCode = :customerCode
+            AND OrderNo = :orderNo
+            AND salesmanCode = :salesmanCode
+    </query>
+    <query name="UPDATE_ORDER_REFERRAL_ENTITY">
+        UPDATE order_referral
+            SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE CmpCode = :cmpCode
+                AND DistrCode = :distrCode
+                AND CustomerCode = :customerCode
+                AND OrderNo = :orderNo
+                AND salesmanCode = :salesmanCode
+    </query>
+
+    <query name="UPDATE_SYNC_ENTITY">
+        UPDATE synclog
+          SET UploadFlag = 'Y',
+            ModDt      = NOW()
+            WHERE SyncNo = :syncNo
+    </query>
+</queries>

@@ -1,0 +1,119 @@
+[
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587467580000,
+    "changeNo": null,
+    "lobCode": "10",
+    "lobName": "Milk Products"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587467580000,
+    "changeNo": null,
+    "lobCode": "20",
+    "lobName": "Fresh Products"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587467580000,
+    "changeNo": null,
+    "lobCode": "30",
+    "lobName": "Frozen Products"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587467580000,
+    "changeNo": null,
+    "lobCode": "60",
+    "lobName": "Other Products"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "F1",
+    "lobName": "Home and personal Care"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "F2",
+    "lobName": "FEM"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "F3",
+    "lobName": "Oral Care"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "F4",
+    "lobName": "Supplements and Digestive"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "F5",
+    "lobName": "Foods"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "F6",
+    "lobName": "OTC"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "F7",
+    "lobName": "OTC Common"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "H2",
+    "lobName": "Ayurvedic"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "lobCode": "H3",
+    "lobName": "Ayur Common"
+  }
+]

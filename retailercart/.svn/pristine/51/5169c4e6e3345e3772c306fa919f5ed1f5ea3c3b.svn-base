@@ -1,0 +1,4 @@
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateLobMasterDto } from './create-lob-master.dto';
+
+export class UpdateLobMasterDto extends PartialType(CreateLobMasterDto) {}

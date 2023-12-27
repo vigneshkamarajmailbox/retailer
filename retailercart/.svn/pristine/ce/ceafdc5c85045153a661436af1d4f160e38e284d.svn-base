@@ -1,0 +1,33 @@
+import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+  
+export class CreateRetailerDto {
+    @PrimaryColumn() @IsString() @IsNotEmpty()
+    cmpCode: string;
+
+    @PrimaryColumn() @IsString() @IsNotEmpty()
+    userName: string;
+
+    @PrimaryColumn() @IsString() @IsNotEmpty()
+    retailerCode: string;
+
+    @IsString() @IsOptional()
+    retailerName: string;
+
+    @IsString() @IsOptional() @IsEmail()
+    email: string;
+
+    @IsNumber() @IsOptional()
+    //  @MaxLength(10) @MinLength(10)
+    mobileNo: string;
+    
+    @IsNumber() @IsOptional()
+    //  @MaxLength(10) @MinLength(10)
+    altMobileNo: string;
+    
+    @IsString() @IsOptional()
+    gstNo: string;
+
+    @IsString() @IsOptional()
+    panNo: string;
+}

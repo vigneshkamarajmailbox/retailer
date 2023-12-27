@@ -1,0 +1,29 @@
+[
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": 1587636358000,
+    "changeNo": null,
+    "feedbackType": "FB",
+    "feedbackName": "FEEDBACK"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": 1587636358000,
+    "changeNo": null,
+    "feedbackType": "MC",
+    "feedbackName": "MERCHANDISE"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": 1587636358000,
+    "changeNo": null,
+    "feedbackType": "SV",
+    "feedbackName": "STORE VISIBILITY"
+  }
+]

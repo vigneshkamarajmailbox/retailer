@@ -1,0 +1,15 @@
+import { IsNotEmpty, IsString } from "class-validator";
+
+export class CreateMediaSubCategoryDto {
+    @IsString() 
+    @IsNotEmpty()
+    code: string;
+
+    @IsString() 
+    @IsNotEmpty() 
+    name: string;
+
+    @IsString() 
+    @IsNotEmpty() 
+    category_code: string;
+}

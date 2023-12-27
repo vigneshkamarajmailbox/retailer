@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_margin="4dp"
+    android:elevation="4dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/null_val"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/ic_delete" />
+
+                <ImageView
+                    android:id="@+id/ivScheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:contentDescription="@string/null_val"
+                    android:padding="2dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_offers" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:id="@+id/order_product_name_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingTop="2dp"
+                    android:text="@string/product_name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layoutStockTake"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/stock_qty_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:text="@string/_0"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:id="@+id/tvStk"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/qty"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_small"
+                            android:typeface="serif" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/qty_2_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/order_qty_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:gravity="center"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:id="@+id/tvOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/qty_2"
+                            android:gravity="center"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_small"
+                            android:typeface="serif" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/free_ord_qty_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_0"
+                            android:gravity="center"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fr_qty"
+                            android:gravity="center"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_small"
+                            android:typeface="serif" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/free_qty_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight=".5"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text="@string/_0"
+                        android:textColor="@color/color_prod_txt"
+                        android:textSize="@dimen/txt_size_semi_medium"
+                        android:typeface="serif"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/order_rate_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/_0_00"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/ptr"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_small"
+                            android:typeface="serif" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/order_ltotal_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/_0_00"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/l_total"
+                            android:textColor="@color/color_prod_txt"
+                            android:textSize="@dimen/txt_size_small"
+                            android:typeface="serif" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutDiscount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="1dp">
+
+                    <LinearLayout
+                        android:id="@+id/free_lnlayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvFreeQtyLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tentative_discount"
+                        android:textColor="@color/color_blue_maps_line"
+                        android:textSize="@dimen/txt_size_normal"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/freeProdLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:maxLines="1"
+                            android:text="@string/free_product"
+                            android:textColor="@color/color_blue_maps_line"
+                            android:textSize="@dimen/txt_size_normal" />
+
+                        <TextView
+                            android:id="@+id/tvFreeQtyValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:paddingStart="1dp"
+                            android:paddingLeft="1dp"
+                            android:paddingEnd="5dp"
+                            android:paddingRight="5dp"
+                            android:text="@string/_0"
+                            android:textColor="@color/color_blue_maps_line"
+                            android:textSize="@dimen/txt_size_semi_medium" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dimen_5"
+                        android:layout_marginBottom="@dimen/dimen_5"
+                        android:background="@color/color1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/layoutScheme"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/tvDisValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/_0_00"
+                                android:textColor="@color/ob_mustsell_promo"
+                                android:textSize="@dimen/txt_size_semi_medium" />
+
+                            <TextView
+                                android:id="@+id/tvTentative"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autoLink="none"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/tentative_discount"
+                                android:textColor="@color/ob_mustsell_promo"
+                                android:textSize="@dimen/txt_size_small" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/db_discount_amt_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/_0_00"
+                                android:textColor="@color/color_light_red"
+                                android:textSize="@dimen/txt_size_semi_medium" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/db_discount_amt"
+                                android:textColor="@color/color_light_red"
+                                android:textSize="@dimen/txt_size_small" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/cd_discount_amt_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/_0_00"
+                                android:textColor="@color/color_light_red"
+                                android:textSize="@dimen/txt_size_semi_medium" />
+
+                            <TextView
+                                android:id="@+id/cash_disc_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/cash_discount_amt"
+                                android:textColor="@color/color_light_red"
+                                android:textSize="@dimen/txt_size_small" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvTaxValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/_0_00"
+                                android:textColor="@color/ob_mustsell_promo"
+                                android:textSize="@dimen/txt_size_semi_medium" />
+
+                            <TextView
+                                android:id="@+id/tvTaxLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/tentative_tax"
+                                android:textColor="@color/ob_mustsell_promo"
+                                android:textSize="@dimen/txt_size_small" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvTentativeLineTotal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/_00"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/txt_size_semi_medium" />
+
+                            <TextView
+                                android:id="@+id/tvTentativeLine"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="@string/net_amt"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/txt_size_small" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="2dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/layoutSchemeDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ob_mustsell_promo"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingEnd="1dp"
+                    android:paddingRight="1dp"
+                    android:text="@string/applied_schemes"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_size_small" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSchemeDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

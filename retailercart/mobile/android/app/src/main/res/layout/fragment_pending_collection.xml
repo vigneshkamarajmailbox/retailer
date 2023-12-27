@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <com.botree.retailerssfa.support.NestedCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <LinearLayout
+                        android:id="@+id/layoutHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal"
+                        android:paddingStart="1dp"
+                        android:paddingLeft="1dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="10dp"
+                        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.8"
+                            android:maxLines="1"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:text="@string/billno"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/billdate"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="@string/outstandingamt"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="@string/adjust_amout"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="@string/adjust_bal"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_normal"
+                            android:typeface="serif" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/viewCreditNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="5"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        tools:sfaActivity="com.botree.retailerssfa.main.MainActivity">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:name="com.botree.productsfa.fragment_pending_tab"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorWhite"
+                            android:clipToPadding="false"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                            tools:listitem="@layout/pending_collection_list_item"
+                            tools:sfaActivity=".main.MainActivity" />
+
+                        <TextView
+                            android:id="@+id/empty_tag_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/no_record"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/txt_size_large"
+                            android:visibility="gone" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.botree.retailerssfa.support.NestedCoordinatorLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/outstanding_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/txt_size_normal"
+                    android:typeface="serif"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/collection_total_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/txt_size_semi_medium"
+                    android:typeface="serif" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/remarks_btn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="1dp"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/custom_btn_red"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/remarks"
+                android:textColor="@color/colorWhite"
+                android:typeface="serif"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/submit_btn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_btn_red"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/submit"
+                android:textColor="@color/colorWhite"
+                android:typeface="serif" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,47 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Retailer } from "./retailer.entity";
+
+@Entity({ name: TableName.RETAILER_CREDIT })
+export class RetailerCredit extends AbstractModel {
+
+    @PrimaryColumn({ name: 'cmp_code', type: SQLColumnType.VARCHAR, length: 10, nullable: false })
+    cmpCode: string;
+
+    @Index()
+    @PrimaryColumn({ name: 'user_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    userName: string;
+
+    @Column({ name: 'retailer_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    retailerCode: string;
+
+    @Column({ name: 'credit_bills', type: SQLColumnType.VARCHAR, length: 50, nullable: true })
+    creditBills: string;
+
+    @Column({ name: 'credit_days', type: SQLColumnType.VARCHAR, length: 50, nullable: true })
+    creditDays: string;
+    
+    @Column({ name: 'credit_limit', type: SQLColumnType.DECIMAL, precision: 22, scale: 6, nullable: false, default: '0.000000' })
+    creditLimit: string;
+
+    @Column({ name: 'credit_usage', type: SQLColumnType.DECIMAL, precision: 22, scale: 6, nullable: false, default: '0.000000' })
+    creditUsage: string;
+
+    @Column({ name: 'cash_disc_perc', type: SQLColumnType.DECIMAL, precision: 22, scale: 6, nullable: false, default: '0.000000' })
+    cashDiscPerc: string;
+
+    @Column({ name: 'out_standing_amt', type: SQLColumnType.DECIMAL, precision: 22, scale: 6, nullable: false, default: '0.000000' })
+    outStandingAmt: string;
+
+    // @OneToOne(() => Retailer, (retailer) => retailer.userName)
+    // @JoinColumn([
+    //     {
+    //     name: 'user_name',
+    //     referencedColumnName: 'userName',
+    //     },
+    // ])
+    // retailer: Retailer;
+    
+}

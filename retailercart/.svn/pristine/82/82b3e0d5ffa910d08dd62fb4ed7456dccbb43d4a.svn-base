@@ -1,0 +1,42 @@
+[
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587466380000,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "distrName": "GANPATI ENTERPRISES",
+    "distrAddr1": "A-9,NEHRU GROUND N.I.T. F",
+    "distrAddr2": "",
+    "distrAddr3": "",
+    "pinCode": "",
+    "phoneNo": "0",
+    "mobileNo": "0",
+    "contactPerson": "",
+    "emailID": "ganpatienterprises@amulwd.com",
+    "gstStateCode": "06",
+    "dayOff": 0,
+    "distrStatus": "Y"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "distrName": "C L TRADERS",
+    "distrAddr1": "",
+    "distrAddr2": "",
+    "distrAddr3": "",
+    "pinCode": "",
+    "phoneNo": "",
+    "mobileNo": "",
+    "contactPerson": "C L TRADERS",
+    "emailID": "",
+    "gstStateCode": "CH",
+    "dayOff": 1,
+    "distrStatus": "Y"
+  }
+]

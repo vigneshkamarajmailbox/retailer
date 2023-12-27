@@ -1,0 +1,41 @@
+[
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": null,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "customerCode": "00020002430003",
+    "stock": null,
+    "prodCode": "BTRCP01",
+    "soq": 0,
+    "ppq": "50"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": null,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "customerCode": "00020002430003",
+    "stock": null,
+    "prodCode": "CHTCP51",
+    "soq": 0,
+    "ppq": "10"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": null,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "customerCode": "00020002430003",
+    "stock": null,
+    "prodCode": "CHTCP87",
+    "soq": 0,
+    "ppq": "1"
+  }
+]

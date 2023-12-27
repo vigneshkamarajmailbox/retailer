@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="1dp">
+
+    <LinearLayout
+        android:layout_width="850dp"
+        android:layout_height="wrap_content"
+        android:background="#DDD"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:paddingBottom="1dp">
+
+        <TextView
+            android:id="@+id/prod_name"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@color/color_btn_white"
+            android:clickable="false"
+            android:ellipsize="end"
+            android:padding="5dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="@dimen/txt_size_small" />
+
+        <TextView
+            android:id="@+id/order_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/color_btn_white"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="@dimen/txt_size_small" />
+
+
+        <TextView
+            android:id="@+id/serviced_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/color_btn_white"
+            android:clickable="false"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="@dimen/txt_size_small" />
+
+
+        <TextView
+            android:id="@+id/sell_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/color_btn_white"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="@dimen/txt_size_small" />
+
+        <TextView
+            android:id="@+id/order_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/color_btn_white"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="@dimen/txt_size_small" />
+
+    </LinearLayout>
+</RelativeLayout>

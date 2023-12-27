@@ -1,0 +1,51 @@
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { Feedback } from './entities/feedback.entity';
+import { UpdateFeedbackDto } from './dto/update-feedback.dto';
+import { feedbackRepository } from './feedback.repository';
+import { CreateFeedbackDto } from './dto/create-feedback.dto';
+
+
+@Injectable()
+export class FeedbackService {
+
+    @Inject()
+    feedbackRepository: feedbackRepository;
+
+    async create(saveFeedBack: CreateFeedbackDto) {
+        let find = await this.feedbackRepository.create(saveFeedBack);
+        if (!find) {
+            throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return {
+                statusCode: HttpStatus.CREATED,
+                message: "FeedBack Saved Successfully"
+            };
+        }
+    }
+
+    async findAll(): Promise<any> {
+
+        let find = await this.feedbackRepository.findAll();
+        console.log(find)
+        if (!find) {
+            throw new HttpException('List Empty', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return {Feedback:find};
+        }
+    }
+
+
+    findOne(userName: string): Promise<Feedback | null> {
+        return this.feedbackRepository.findOne(userName);
+    }
+
+    update(id: number, updateFeedbackDto: UpdateFeedbackDto) {
+        return `This action updates a #${id} feedback`;
+    }
+
+    remove(id: number) {
+        return `This action removes a #${id} feedback`;
+    }
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+
+    <!-- MDM2INTERDB INTEGRATION RELATED QUERIES -->
+    <query name="FETCH_DISTRIBUTOR_FOR_INTEGRATION">
+        SELECT distrCode
+        FROM distributor
+    </query>
+
+    <query name="FETCH_PROCESSDETAILS">
+        SELECT cmpCode,
+               interDBProcess,
+               processType,
+               processEnable,
+               interDBQuery,
+               interDBUpdateQuery,
+               entity,
+               processSequence,
+               processStatus,
+               startDate,
+               endDate,
+               distributorWise,
+               incremental,
+               maxChangeNo,
+               intervals
+        FROM externalprocessdetail
+        WHERE ProcessEnable = ?
+          AND ProcessType = ?
+          AND Intervals = ?
+        ORDER BY processSequence ASC,
+                 interDBProcess ASC,
+                 processType ASC
+    </query>
+
+    <query name="UPDATE_PROCESSDETAILS">
+        UPDATE externalprocessdetail
+        SET ProcessStatus = :processStatus,
+            StartDate = :startDate,
+            EndDate = :endDate,
+            MaxChangeNo = :maxChangeNo
+        WHERE CmpCode = :cmpCode
+          AND InterDBProcess = :interDBProcess
+          AND ProcessType = :processType
+    </query>
+
+    <query name="FETCH_MAX_CHANGE_NO">
+        SELECT COALESCE(MAX(ChangeNo), 0)
+        FROM changelog
+    </query>
+</queries>

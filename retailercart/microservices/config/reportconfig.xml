@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <reports>
+        <title>USAGE</title>
+        <sheets>
+            <sheetno>1</sheetno>
+            <sheetname>Ordered Retailers</sheetname>
+            <index>2</index>
+            <header>
+                Date, Dist Code, Dist Name, Rtr Code, Rtr Name, Ord. No, No of Lines, Grs. Val, Disc, Tax, Net Val
+            </header>
+            <field>
+                Date, Dist Code, Dist Name, Rtr Code, Rtr Name, Ord. No, No of Lines, Grs. Val, Disc, Tax, Net Val
+            </field>
+            <summary>
+                No of Lines, Grs. Val, Disc, Tax, Net Val
+            </summary>
+            <query>FETCH_ORDERED_RETAILERS_EMAIL_TEMPLATE</query>
+        </sheets>
+        <sheets>
+            <sheetno>2</sheetno>
+            <sheetname>Not Ordered Retailers</sheetname>
+            <index>2</index>
+            <header>
+                Dist Code, Dist Name, Rtr Code, Rtr Name, Ord. No, No of Lines, Grs. Val, Disc, Tax, Net Val
+            </header>
+            <field>
+                Dist Code, Dist Name, Rtr Code, Rtr Name, Ord. No, No of Lines, Grs. Val, Disc, Tax, Net Val
+            </field>
+            <summary>
+
+            </summary>
+            <query>FETCH_NOT_ORDERED_RETAILERS_EMAIL_TEMPLATE</query>
+        </sheets>
+    </reports>
+</config>

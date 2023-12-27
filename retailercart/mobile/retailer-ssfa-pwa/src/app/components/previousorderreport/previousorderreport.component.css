@@ -1,0 +1,80 @@
+.previous-order-table ::ng-deep .mat-step-header .mat-step-icon {
+  background-color: #1976D2 !important;
+}
+
+.previous-order-table ::ng-deep .mat-tab-header {
+  height: 42px !important;
+}
+
+.previous-order-table ::ng-deep .mat-tab-label {
+  background-color: #ede7f6 !important;
+  width: 50% !important;
+}
+
+
+@media screen and (max-width: 768px) {
+  .previous-order-table ::ng-deep .mat-tab-label {
+    width: auto !important;
+  }
+}
+
+.previous-order-table ::ng-deep .mat-tab-label .mat-tab-label-active {
+  background-color: transparent;
+}
+
+.previous-order-table ::ng-deep .mat-ink-bar {
+  background-color: #0D47A1;
+}
+
+.previous-order-table .mat-vertical-content {
+  padding: 0 !important;
+}
+
+.previous-order-detail-table th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+  padding-left: 2px !important;
+}
+
+.previous-order-detail-table th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+  padding-right: 2px !important;
+}
+
+.previous-order-filter-paginator {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 767px) {
+  .previous-order-filter-paginator {
+    flex-direction: column;
+  }
+}
+
+.previous-order-search-filter {
+  width: 60%;
+  display: inline-block;
+}
+
+@media screen and (max-width: 767px) {
+  .previous-order-search-filter {
+    width: 100%;
+  }
+}
+
+.previous-order-filter-paginator ::ng-deep .mat-paginator-container {
+  min-height: 0;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .previous-order-filter-paginator ::ng-deep .mat-paginator-container {
+    margin-top: 0;
+  }
+}
+
+.w-200px {
+  width: 200px;
+}
+.w-75px {
+  width: 75px;
+}

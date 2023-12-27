@@ -1,0 +1,85 @@
+<div class="height-100 width-100">
+    <div class="landing-panel-form">
+        <mat-card class="landing-mat-card-1">
+            <div class="font-size-x-large padding-top-60 padding-left-5">{{welcomeMsg|translate}}️
+                <i class="material-icons md-dark orange600">{{welcomeSymbol}}</i>
+            </div>
+            <div class="font-size-large padding-left-10">{{user.userName}}️</div>
+        </mat-card>
+
+        <mat-card class="landing-mat-card-2">
+            <mat-card class="landing-banner-mat-card landing-header-box banner-card">
+                <ng-image-slider *ngIf="showSlide" [images]="sliderImages" [infinite]="true" [autoSlide]="2"
+                    [imageSize]="getImageSize()" slideImage="1" (imageClick)="bannerSliderView($event)">
+                </ng-image-slider>
+                <ng-image-slider *ngIf="!showSlide" [images]="images" [imageSize]="getImageSize()" slideImage="1"
+                    (imageClick)="bannerView($event)"></ng-image-slider>
+            </mat-card>
+
+            <div class="wedget-card">
+                <mat-card  class="p-0 box-design" *ngFor="let salesInfoCard of salesInfoCards" [ngStyle]="{'border-left':salesInfoCard.bordercolor}">
+                    <div *ngIf="!showDashboardBar(salesInfoCard.displayCode)" class="box-content"  [ngStyle]="{'color': salesInfoCard.displayColor}">
+                        <div class="icon-box" [ngStyle]="{'background-color': salesInfoCard.displayColor}">
+                            <i class="{{salesInfoCard.displayIcon}} fa-user"></i>
+                        </div>
+                        <div class="box-text">
+                            <div class="title">{{salesInfoCard.displayCode}}</div>
+                            <div class="sub-title">{{salesInfoCard.displayValue}}</div>                                                                                                                                                                                 
+                        </div>
+                    </div>
+                </mat-card>  
+            </div>  
+            
+            <!-- <div class="details-card-div">
+                <mat-card *ngFor="let salesInfoCard of salesInfoCards" class="details-card-box card-box" [ngStyle]="{'border-left':salesInfoCard.bordercolor}">
+                    <div class="overview-box overview-box-1" [ngStyle]="{'color': salesInfoCard.displayColor}">
+                        <div class="overview-box-icon" [ngStyle]="{'background-color': salesInfoCard.displayColor}">
+                            <i class="{{salesInfoCard.displayIcon}} icon-circle"></i>
+                        </div>
+                        <div class="overview-box-content">
+                            <div class="overview-box-title">{{salesInfoCard.displayCode}}</div>
+                            <div class="overview-box-stats">{{salesInfoCard.displayValue}}</div>                                                                                                                                                                                 
+                        </div>
+                    </div>
+                </mat-card>   
+            </div>   -->
+
+            
+
+            <mat-card class="landing-notification-mat-card">
+                <table class="width-100 height-100">
+                    <tr class="landing-notification-align" *ngFor="let data of notificationList">
+                        <td style="padding: 1% !important;">
+                            <mat-card class="landing-notification-card">
+                                <div class="flex-row justify-content-between">
+                                    <div class="notification-subject">{{data.subject}}</div>
+                                    <i class="material-icons deeporange500"
+                                        *ngIf="data.important == 'Y'">assignment_turned_in</i>
+                                </div>
+                                <div class="flex-column notification-image-card">
+                                    <img *ngIf="data.image != ''" src="{{data.image}}" width="100%" height="90%">
+                                    <hr *ngIf="data.image != ''" class="hr-tag">
+                                    <div class="notification-description" [innerHTML]="data.description"></div>
+                                    <div>
+                                        <span class="notification-time">{{data.time}}</span>
+                                    </div>
+                                </div>
+                            </mat-card>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card>
+        </mat-card>
+
+        <div class="btn-order-global">
+            <div class="btn-order-slider" style="transform: none;">
+                <span class="flex flex-column items-end">
+                    <div class="btn-start-order-div">
+                        <button class="btn-start-order" (click)="navigateScreen('order')">
+                            {{'HOME.ORDER_HERE'|translate}}</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateDigitalContentDto } from './create-digital-content.dto';
+
+export class UpdateDigitalContentDto extends PartialType(CreateDigitalContentDto) {}

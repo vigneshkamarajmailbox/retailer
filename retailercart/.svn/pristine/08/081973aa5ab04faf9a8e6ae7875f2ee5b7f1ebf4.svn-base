@@ -1,0 +1,351 @@
+<div class="order-booking-screen" *ngIf="noProduct">
+  <p class="no-product-available">Product not available</p>
+</div>
+
+<div class="page spinner" *ngIf="loading">
+</div>
+
+<div class="order-booking-screen" *ngIf="!summaryEnable && !noProduct">
+  <div class="order-booking-product-listing-div">
+    <div class="topBar">
+      <form class="width-auto height-auto">
+        <mat-form-field class="product-search-input">
+          <input matInput
+                 placeholder="{{'ORDER.SEARCH_FOR_PRODUCTS'|translate}}"
+                 [matAutocomplete]="auto"
+                 [formControl]="productFilterControl">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let data of productOptions | async" [value]="data.prodName"
+                        (onSelectionChange)="onProductFilterChange(data)">
+              <mat-list class="width-auto height-auto">
+                <mat-list-item class="order-booking-product-search-list">
+                  <div class="width-10">
+                    <img width="36px" height="36px" src="{{data.image}}">
+                  </div>
+                  <div class="padding-left-5 width-90">
+                    <div class="order-booking-product-search-weight">
+                      <span>{{data.prodName}}</span>
+                    </div>
+                    <div class="order-booking-product-search-weight">
+                      <div class="order-booking-product-search-line-level-list-card width-40">
+                        <span style="color: #9E9E9E">{{data.brandName}}</span>
+                      </div>
+                      <div class="order-booking-product-search-line-level-list-card width-30">
+                        <span class="order-booking-product-search-list-card-header">{{'ORDER.MRP'|translate}} : <span
+                          class="order-booking-product-search-list-card-detail">{{data.mrp | currency:app.currency:'symbol'}}</span></span>
+                      </div>
+                      <div class="order-booking-product-search-line-level-list-card width-30">
+                        <span class="order-booking-product-search-list-card-header">{{'ORDER.PTR'|translate}} : <span
+                          class="order-booking-product-search-list-card-detail">{{data.sellRate | currency:app.currency:'symbol'}}</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <i class="material-icons cursor filter_search_btn" (click)="resetProductSearchFilter()">close</i>
+      </form>
+    </div>
+    <mat-tab-group mat-align-tabs="start" [(selectedIndex)]="selectedIndex"
+                   (selectedTabChange)="orderBookingBrandTabChange($event)"
+                   style="background: #ede7f6;" *ngIf="!hideTab">
+      <mat-tab *ngFor="let brand of brandList">
+        <div style="display: flex; flex-direction: column; height: auto; width: auto">
+          <ng-template mat-tab-label>
+            <img width="36px" height="36px" style="padding-right: 5%" [src]="getBrandImage(brand.code)">
+            {{brand.name}}
+          </ng-template>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <mat-grid-list cols="{{cols}}" class="order-booking-align" (window:resize)="onResize($event)"
+                   rowHeight="{{rowHeight}}">
+      <mat-grid-tile *ngFor="let data of productList" style="background: #f7f7f7;">
+        <mat-card class="order-booking-mat-card" *ngIf="!data.showSchemeCard">
+          <div class="order-booking-prod-name-weight">
+            <p  [ngClass]="!data.saleableQty ? 'noSaleableQty' : ''">{{data.prodName}}</p>
+            <div class="padding-top-3 padding-right-1 display: flex" style="flex-direction: row;    justify-content: space-between;">
+              <i class="material-icons cursor deeporange500"
+                 *ngIf="data.schemeAvailable" (click)="showSchemeCard(data)">local_offer</i>
+              <i class="material-icons cursor indigo500"
+                 *ngIf="data.favorite == 'N'" (click)="checkFavorite(data, 'Y')">favorite_border</i>
+              <i class="material-icons cursor red500"
+                 *ngIf="data.favorite == 'Y'" (click)="checkFavorite(data, 'N')">favorite</i>
+            </div>
+          </div>
+          <div class="order-booking-align-product">
+            <div class="width-45">
+              <img width=" 100%" height="90%" src="{{data.image}}">
+            </div>
+            <div class="padding-top-1 padding-left-5 width-55">
+              <div class="order-booking-rate-weight">
+                <p style="color: #00796B; width: 40%">{{'ORDER.MRP'|translate}}</p>
+                <p style="color: #00796B; width: 10%"> : </p>
+                <p style="width: 50%">{{data.mrp | currency:app.currency:'symbol'}}</p>
+              </div>
+              <div class="order-booking-rate-weight">
+                <p style="color: #E64A19; width: 40%">{{'ORDER.PTR'|translate}}</p>
+                <p style="color: #E64A19; width: 10%"> : </p>
+                <p style="width: 50%">{{data.sellRate | currency:app.currency:'symbol'}}</p>
+              </div>
+              <div class="order-booking-rate-weight" *ngIf="data.soq >= 0 && enableSOQ">
+                <p style="color: #EF9A9A; width: 40%">{{'ORDER.SOQ'|translate}}</p>
+                <p style="color: #EF9A9A; width: 10%"> : </p>
+                <p style="width: 50%">{{data.soq}}</p>
+              </div>
+              <div class="order-booking-rate-weight" *ngIf="data.soq < 0 && enableSOQ">
+                <p style="color: #EF9A9A; width: 40%">{{'ORDER.SOQ'|translate}}</p>
+                <p style="color: #EF9A9A; width: 10%"> : </p>
+                <p style="width: 50%">-</p>
+              </div>
+              <div class="order-booking-rate-weight">
+                <p style="color: #0f45da; width: 40%">{{'ORDER.SIH'|translate}}</p>
+                <p style="color: #0f45da; width: 10%"> : </p>
+                <p style="width: 50%">{{data.saleableQty}}</p>
+                <!-- <p *ngIf="!data.saleableQty" style="width: 70%;color: red;text-align: center;margin-top: 30px;">{{'ORDER.OOS'|translate}}</p> -->
+              </div>
+              <div class="order-toggle-button-container" >
+                <mat-button-toggle-group #group="matButtonToggleGroup" value="{{data.uomCode}}"
+                                         *ngFor="let option of data.uomDisplayList"
+                                         (change)="onUomChange(data, group.value)">
+                  <mat-button-toggle [style.background-color]="option.color" value="{{option.value}}">
+                    <div style="display: flex; flex-direction: column">
+                      <span class="uom-display-size">{{option.value}}</span>
+                      <span class="uom-conv-display-size">{{option.convSlab}}</span>
+                    </div>
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
+              </div>
+              <div class="order-qty-button-container">
+                <i class="material-icons mat-qty-add-btn" (click)="removeQty(data, data.saleableQty)">remove</i>
+                <div class="padding-left-5 padding-right-5">
+                  <input class="order-qty-input-container"
+                         [style.background-color]="data.prodColor" [style.border]="data.borderColor"
+                         type="text" style="text-align: center;" maxlength="5"
+                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                         [(ngModel)]="data.qty" (input)="modifyCartList(data, false)"
+                         >
+                </div>
+                <i class="material-icons mat-qty-add-btn" style="margin-left: 5px;" (click)="addQty(data, data.saleableQty)">add</i>
+              </div>
+              
+            </div>
+          </div>
+          <div>
+            <!-- [ngClass]="data.saleableQty < data.qty ? 'qtyClass' : ''" -->
+            <p style="width: 70%;color: red;text-align: center;display:none;">{{'ORDER.NVQ'|translate}}</p>
+          </div>
+          <div class="order-booking-scheme-description" *ngIf="!showSchemeTag">
+            <span class="text-truncate-desc" (click)="showSchemeCard(data)">{{data.schemeDescription}}</span><br>
+            <span class="text-truncate-scheme-count" (click)="showSchemeCard(data)">{{data.schemeCount}}</span>
+          </div>
+          <div class="order-booking-scheme-suggest">
+            <a  *ngIf="data.slabArr && data.slabArr[0].desc" class="scheme-desc" href="javascript:void(0)" (click)="showSchemeCard(data)"> <p class="schemeDis"> {{'SCHEME.FOR_PURCHASE' | translate}} : {{data.slabArr[0].desc}}</p> </a>
+            <p *ngIf="data.schemeSuggestion" class="text-truncate-suggestion">{{data.schemeSuggestionText}}</p>
+          </div>
+        </mat-card>
+        <mat-card class="order-booking-mat-card" *ngIf="data.showSchemeCard">
+          <div class="order-booking-prod-name-weight">
+            <p>{{data.prodName}}</p>
+            <i class="material-icons cursor padding-top-3 padding-left-1 indigo500"
+               *ngIf="data.schemeAvailable" (click)="showSchemeCard(data)">close</i>
+          </div>
+          <div class="scheme-card-container">
+            <table class="width-100 height-100">
+              <tr class="width-100 height-100">
+                <td class="width-100 height-100">
+                  <div class="scheme-list-container" [style.background-color]="data.selectedScheme.color">
+                    <div class="scheme-desc-card">
+                      <i class="material-icons cursor indigo500 padding-top-2 width-5"
+                         *ngIf="data.showPrevNavigation" (click)="selectPrevScheme(data)">navigate_before</i>
+                      <div *ngIf=!data.showPrevNavigation class="width-5"></div>
+                      <p class="width-85">{{data.selectedScheme.schemeDescription}}</p>
+                      <i class="material-icons cursor indigo500 padding-top-2 width-5"
+                         *ngIf="data.showNextNavigation" (click)="selectNextScheme(data)">navigate_next</i>
+                      <div *ngIf=!data.showNextNavigation class="width-5"></div>
+                    </div>
+                    <div class="scheme-date-card">
+                      <div class="scheme-list-card">
+                        <span class="scheme-list-card-header">{{'ORDER.SCHEME.SCHEME_TYPE'|translate}}</span>
+                        <span class="scheme-list-card-detail">
+                              {{dataService.getSchemeBase(data.selectedScheme.schemeBase)}}</span>
+                      </div>
+                      <div class="scheme-list-card">
+                        <span class="scheme-list-card-header">{{'ORDER.SCHEME.FROM_DATE'|translate}}</span>
+                        <span class="scheme-list-card-detail">
+                              {{dataService.formatDateToStandard(data.selectedScheme.schemeFromDt)}}</span>
+                      </div>
+                      <div class="scheme-list-card">
+                        <span class="scheme-list-card-header">{{'ORDER.SCHEME.TO_DATE'|translate}}</span>
+                        <span class="scheme-list-card-detail">
+                              {{dataService.formatDateToStandard(data.selectedScheme.schemeToDt)}}</span>
+                      </div>
+                    </div>
+                    <hr class="width-95">
+                    <div class="scheme-slab-card">
+                      <div class="width-100 height-auto">
+                        <span class="scheme-list-card-header">{{'SCHEME.APPLICABLE_FOR_PURCHASE'|translate}}</span><br>
+                        <div *ngFor="let element of data.slabArr">
+                            <span class="scheme-notification">{{element.desc}}</span>
+                            <span class="scheme-notification"> ({{element.everyDesc}})</span>
+                            <br>
+                            <div *ngFor="let freeProd of element.slabProduct">
+                              <span class="scheme-notification">{{freeProd.desc}}</span>
+                              <br>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="order-booking-add-cart-div">
+    <div class="width-100 padding-top-1">
+      <div class="order-booking-footer-order-val-div">
+        <div class="flex-column">
+          <span class="total-order-value-size">
+            {{'ORDER.FOOTER.ORDER_VALUE'|translate}}
+            : {{dataService.parseFloat(totalOrderValue) | currency:app.currency:'symbol'}}
+          </span>
+          <div style="display: flex; flex-direction: row">
+            <span class="total-tax-scheme-value-size">
+                {{'ORDER.FOOTER.TAX'|translate}}
+              : {{dataService.parseFloat(totalTaxValue) | currency:app.currency:'symbol'}}
+            </span>
+            <span class="total-tax-scheme-value-size" style="margin-left: 1rem">
+                {{'ORDER.FOOTER.SCHEME'|translate}}
+              : {{dataService.parseFloat(totalSchemeValue) | currency:app.currency:'symbol'}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="order-booking-footer-view-cart-div">
+        <button mat-raised-button color="primary" aria-label="add_to_cart_btn"
+                matBadge="{{totalLineCount}}" matBadgePosition="before" matBadgeColor="accent"
+                (click)="addToCart()" style="padding: 0 15px !important;">
+          <i class="material-icons">add_shopping_cart</i>
+          {{'ORDER.FOOTER.VIEW_CART'|translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="order-booking-summary-screen" *ngIf="summaryEnable && !noProduct">
+  <div class="order-booking-summary-product-listing-div">
+    <mat-card class="view-cart-card">
+      <p class="text-align-center" style="margin-top: 25px;">{{'ORDER.SUMMARY.VIEW_CART'|translate}}</p>
+    </mat-card>
+    <div class="order-summary-place-margin">
+      <div *ngFor="let data of summaryList" style="background: #f7f7f7;">
+        <mat-card class="order-booking-summary-mat-card">
+          <div class="order-booking-summary-image-card">
+            <div class="height-10"></div>
+            <img width=" 100%" height="80%" class="padding-left-2" src="{{data.image}}">
+            <div class="height-10"></div>
+          </div>
+          <div class="order-booking-summary-val-mat-card">
+            <div class="order-booking-summary-prod-name-weight">
+              <p>{{data.prodName}}</p>
+              <i class="material-icons cursor grey500 delete-cart-icon"
+                 (click)="deleteFromCart(data)">delete</i>
+            </div>
+            <div class="order-booking-summary-line-level-card">
+              <div class="order-booking-summary-line-level-list-card">
+                <span class="scheme-list-card-header">{{'ORDER.SUMMARY.MRP'|translate}}</span>
+                <span class="scheme-list-card-detail">{{data.mrp | currency:app.currency:'symbol'}}</span>
+              </div>
+              <div class="order-booking-summary-line-level-list-card">
+                <span class="scheme-list-card-header">{{'ORDER.SUMMARY.PTR'|translate}}</span>
+                <span class="scheme-list-card-detail">{{data.actualSellRate | currency:app.currency:'symbol'}}</span>
+              </div>
+              <div class="order-booking-summary-line-level-list-card">
+                <span class="scheme-list-card-header">{{'ORDER.SUMMARY.QTY'|translate}}</span>
+                <span class="scheme-list-card-detail">{{data.inputStr}}</span>
+              </div>
+            </div>
+            <div class="order-booking-summary-line-level-card">
+              <div class="order-booking-summary-line-level-list-card">
+                <span class="scheme-list-card-header">{{'ORDER.SUMMARY.GROSS_VALUE'|translate}}</span>
+                <span
+                  class="scheme-list-card-detail">{{dataService.parseFloat(data.grossValue) | currency:app.currency:'symbol'}}</span>
+              </div>
+              <div class="order-booking-summary-line-level-list-card">
+                <span class="scheme-list-card-header">{{'ORDER.SUMMARY.SCH_VALUE'|translate}}</span>
+                <span
+                  class="scheme-list-card-detail">{{dataService.parseFloat(
+                  dataService.checkNumber(data.schAmt) + dataService.checkNumber(data.orderLevelSchAmt))
+                  | currency:app.currency:'symbol'}}</span>
+              </div>
+              <div class="order-booking-summary-line-level-list-card">
+                  <span class="scheme-list-card-header">
+                    {{'ORDER.SUMMARY.TAX_VALUE'|translate}}
+                    ({{dataService.parseFloat(dataService.checkNumber(data.ugstPerc)
+                    + dataService.checkNumber(data.sgstPerc) + dataService.checkNumber(data.cgstPerc)
+                    + dataService.checkNumber(data.igstPerc))}}%)
+                  </span>
+                <span
+                  class="scheme-list-card-detail">{{dataService.parseFloat(data.taxAmt) | currency:app.currency:'symbol'}}</span>
+              </div>
+            </div>
+            <div class="order-booking-summary-line-level-card">
+              <div class="order-booking-summary-line-level-list-card">
+                <span class="scheme-list-card-header">{{'ORDER.SUMMARY.TENTATIVE_LINE_VALUE'|translate}}</span>
+                <span
+                  class="scheme-list-card-detail">{{dataService.parseFloat(data.orderValue) | currency:app.currency:'symbol'}}</span>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <div class="padding-top-2 mob-padding">
+      <div class="order-booking-summary-rate">
+        <span class="order-booking-summary-rate-label">{{'ORDER.SUMMARY.TOTAL_GROSS_VALUE'|translate}}</span>
+        <span
+          class="order-booking-summary-rate-value">{{totalGrossValue | currency:app.currency:'symbol'}}</span>
+      </div>
+      <div class="order-booking-summary-rate">
+        <span class="order-booking-summary-rate-label">{{'ORDER.SUMMARY.TOTAL_SCHEME_VALUE'|translate}}</span>
+        <span class="order-booking-summary-rate-value">
+          (-)
+          {{totalSchemeValue | currency:app.currency:'symbol'}}
+            </span>
+      </div>
+      <div class="order-booking-summary-rate">
+        <span class="order-booking-summary-rate-label">{{'ORDER.SUMMARY.TOTAL_TAX_VALUE'|translate}}</span>
+        <span class="order-booking-summary-rate-value">
+          (+)
+          {{totalTaxValue | currency:app.currency:'symbol'}}
+            </span>
+      </div>
+      <div class="order-booking-summary-rate">
+        <span class="order-booking-summary-rate-label">{{'ORDER.SUMMARY.TOTAL_ORDER_VALUE'|translate}}</span>
+        <span
+          class="order-booking-summary-rate-value">{{totalOrderValue | currency:app.currency:'symbol'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="order-booking-add-cart-div">
+    <div class="order-booking-footer-place-cart-div">
+      <button mat-raised-button color="primary" aria-label="edit_cart_btn" style="float: left;" (click)="editCart()">
+        {{'ORDER.SUMMARY.EDIT_CART'|translate}}
+      </button>
+      <button mat-raised-button color="primary" aria-label="add_to_cart_btn" style="float: right;"
+              matBadge="{{totalLineCount}}" matBadgePosition="before" matBadgeColor="accent" (click)="confirmCart()">
+        {{'ORDER.SUMMARY.PLACE_ORDER'|translate}}
+      </button>
+    </div>
+  </div>
+</div>
+

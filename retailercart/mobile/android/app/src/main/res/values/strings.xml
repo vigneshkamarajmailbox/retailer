@@ -1,0 +1,729 @@
+<resources>
+    <string name="release_date">17-09-2019</string>
+    <!--Product filter level-->
+    <string name="filter_level">3</string>
+
+    <string name="about_us_txt"> \t Anand Milk Union Limited or Amul is an Indian cooperative dairy company, based at Anand in the state of Gujarat.\n\n
+\t Formed in 1948, it is a cooperative brand managed by a cooperative body, the Gujarat Co-operative Milk Marketing Federation Ltd. (GCMMF), which today is jointly owned by 3.6 million milk producers in Gujarat.
+Amul spurred Indias White Revolution, which made the country the worlds largest producer of milk and milk products.\n\n
+\t White revolution was spearheaded by Tribhuvandas Patel under the guidance of Sardar Patel. As a result, Kaira District Milk Union Limited was born in 1946. Tribhuvandas became the founding chairman of the organization and led it until his death. He hired Dr. Verghese Kurien three years after the white revolution. He convinced Dr. Kurien to stay and help with the mission.</string>
+
+    <string name="download_local_url">redirect/download</string>
+
+    <string name="download_distMaster_url">controller/download</string>
+    <string name="upload_local_url">controller/upload</string>
+    <!--<string name="notification_url">sfaweb/services/sfa/salesforce/broadcastDownload</string>-->
+
+    <string name="app_name">SSFA</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
+
+    <string name="channel">Channel*</string>
+    <string name="group">Group*</string>
+    <string name="retailer_class">Class*</string>
+    <string name="retailer_name">Retailer Name </string>
+    <string name="phone_number">Phone Number</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="address">Address</string>
+    <string name="tin">Tin</string>
+    <string name="zip">Zip*</string>
+    <string name="capture_photo">Capture Photo</string>
+    <string name="reset">Reset</string>
+    <string name="filter">Filter</string>
+    <string name="product_filter">Product Filter</string>
+    <string name="select_category">Select Category</string>
+    <string name="select_brand">Select Brand</string>
+    <string name="based_on_stocks">Based on Stocks</string>
+    <string name="all">All</string>
+    <string name="zero">Zero</string>
+    <string name="non_zero">Non Zero</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="enter_minimum_char">Enter Product Name Or Code</string>
+    <string name="add">Add</string>
+    <string name="no_record">No Record</string>
+    <string name="next">Next</string>
+    <string name="view_cart">View Cart</string>
+    <string name="validate">Validate</string>
+    <string name="invoice_no">Invoice No</string>
+    <string name="due_since">Due Since</string>
+    <string name="balance">Balance</string>
+    <string name="submit">Submit</string>
+    <string name="place_order">Place Order</string>
+    <string name="update_location">Update Location</string>
+    <string name="null_val">null</string>
+    <string name="invoice">Invoice</string>
+    <string name="cgst">CGST % </string>
+    <string name="sgst">SGST % </string>
+    <string name="igst">IGST % </string>
+    <string name="cesscaps">CESS % </string>
+
+    <string name="remarks">Enter Remarks (Optional)</string>
+
+    <!-- Sync Screen validation message -->
+    <string name="ERR_INTERNAL_SERVER">Internal Server Error</string>
+    <string name="ERR_SYNCFAIL">Sync failed, Please try again</string>
+    <string name="MSG_DLSUCCESS">Download Successful</string>
+    <string name="MSG_APK_DL_FAILED">Sorry, Apk download failed.</string>
+    <string name="MSG_UPLOADSUCCESS">Upload Successful.</string>
+
+    <string name="MSG_NONETCONNECTION">No Network connection </string>
+
+    <!-- Alert Dialog Message -->
+    <string name="MSG_LOADING">Loading…</string>
+    <string name="MSG_ORDER_PROCESSING">Order Processing…</string>
+    <string name="MSG_NEW_APK">A new apk version is available. Please download and install now.</string>
+    <string name="MSG_Perform_sync">Please Sync to proceed.</string>
+    <string name="codification_success">Codification successful</string>
+    <string name="codification_failure">Codification failed</string>
+    <string name="logout_failure">Logout failed</string>
+    <string name="MSG_Logout">Do you want to logout ?</string>
+    <string name="logout_previous_user">This phone is already mapped to some other user. Kindly logout from previous user and login to the current user.</string>
+
+
+    <!-- Sync Screen -->
+    <string name="title_downloading">Downloading</string>
+
+    <string name="Rs">\u20B9</string>
+    <string name="rs_string">\u20B9 %s</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="select_channel">Select Channel</string>
+    <string name="select_state_name">Select State</string>
+    <string name="select_group">Select Group</string>
+    <string name="select_sub_channel">Select SubChannel</string>
+
+    <string name="select_class">Select Class</string>
+    <string name="s_qty">S.Qty</string>
+    <string name="l_total">L.Total</string>
+    <string name="product_not_ava_err">Product not available</string>
+    <string name="quantity">Quantity</string>
+    <string name="stock">Stock</string>
+    <string name="err_no_valid_order">You did not place any order yet!</string>
+    <string name="success_dialog">Successfully Authenticated</string>
+    <string name="no_recods_found">No Records Found</string>
+
+    <string name="page">Page :</string>
+    <string name="scheme_empty">Scheme Not Available</string>
+    <string name="scheme_detail">Scheme Details</string>
+    <string name="user_name">User Code/Mobile No</string>
+
+    <string-array name="faq_question_array">
+        <item>(1) Location update</item>
+        <item>(2) Coverage Plan</item>
+        <item>(3) SYNC failed</item>
+        <item>(4) Crash Report</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string-array name="gps_signal_ans">
+        <item>* Kill the app</item>
+        <item>* Switch on the data/Wi-Fi (whatever is available)</item>
+        <item>* Switch on GPS</item>
+        <item>* Open the app and check</item>
+        <item>* If all this do not work, then update Google Map application and Google Play Store</item>
+    </string-array>
+
+    <string-array name="coverage_ans">
+        <item>* If coverage dialog is show</item>
+        <item>* Contact to your distributor.</item>
+        <item>* Tag the beat and do mobile sync in XDM.</item>
+    </string-array>
+
+    <string-array name="sync_failed_ans">
+        <item>* Restart the application</item>
+        <item>* Check the data connection – This can be because of very low data speed</item>
+        <item>* Try sync </item>
+
+    </string-array>
+
+    <string-array name="crash_report_ans">
+        <item>* If  SSFA app is crash</item>
+        <item>* Crash report will generate</item>
+        <item>* Please send the crash report through mail.</item>
+    </string-array>
+
+
+    <string name="google_maps_key">AIzaSyA5N5nO4AEgdvbPPjeD9qp_WzlIKRaVaCo</string>
+
+    <string name="msg_contact_distributor">Please contact administrator.</string>
+    <string name="available_bluetooth_device">Available Bluetooth Device</string>
+    <string name="qty">Qty</string>
+    <string name="rate">Rate</string>
+    <string name="contact">Contact</string>
+    <string name="product">Product</string>
+    <string name="quote">:</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="select_image">Select Image from Gallery Or Capture from camera</string>
+    <string name="tax">Tax</string>
+    <string name="gst_no">GSTIN No*</string>
+    <string name="pan_no">PAN No</string>
+    <string name="message_not_available">Message Not Available</string>
+    <string name="count">count</string>
+
+
+    <string name="ERR_GST">GSTIN No must be valid alphanumeric 15 digits characters</string>
+    <string name="ERR_lat_lng">Wait until current location is captured! or Try again Later!</string>
+    <string name="ERR_Pan">PAN No must be valid alphanumeric 10 digits characters</string>
+    <string name="distributor_code">Distributor Code</string>
+
+    <string name="register">Register</string>
+    <string name="unregister">Unregister</string>
+    <string name="search">Search</string>
+
+    <item name="fgelv_tag_changed_visibility" type="id" />
+    <string name="title_activity_mtddetail">""</string>
+    <string name="label_stk">STK</string>
+    <string name="label_Ord">ORD</string>
+
+    <string name="free_product">Free Product</string>
+    <string name="tentative_discount"><u>Sch Disc</u></string>
+    <string name="tentative_line_val">Tentative Line Value</string>
+    <string name="error_return_type">Select Return Type</string>
+    <string name="error_invoice_no">Enter Invoice No Or GRN No</string>
+    <string name="days">Days</string>
+
+
+    <string-array name="dropdown_quick_access">
+        <item>3</item>
+        <item>6</item>
+        <item>9</item>
+    </string-array>
+
+    <string-array name="lang_dropdown">
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
+
+
+    <string-array name="dropdown_prod_filer">
+        <item>Product 1 Filter</item>
+        <item>Product 2 Filter</item>
+        <item>Category Filter</item>
+        <item>Brand Filter</item>
+    </string-array>
+
+
+    <string name="filter_one">Product 1 Filter</string>
+    <string name="filter_two">Product 2 Filter</string>
+    <string name="filter_three">Category Filter</string>
+    <string name="filter_four">Brand Filter</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Messages</string>
+    <string name="favorite">Favorite</string>
+    <string name="search_hint">Search</string>
+    <string name="menu_search">Search Menu</string>
+    <string name="sub_channel">Sub-channel*</string>
+    <string name="address_1">Address 1*</string>
+    <string name="order_count">Order Count :</string>
+    <string name="instock_count">InStock Count :</string>
+    <string name="enter_remarks">Enter Remarks</string>
+    <string name="about_us">About Us</string>
+    <string name="usbsync">Usb Sync</string>
+
+
+    <string name="net_amt">Net Amt</string>
+    <string name="stock_upload_msg">Do you want to upload previous day VAN sales stocks ?</string>
+    <string name="full">Full</string>
+    <string name="partial">Partial</string>
+    <string name="total">Total</string>
+    <string name="enter_invoice_no">Enter Invoice No</string>
+    <string name="language">Language</string>
+    <string name="downloading">Downloading</string>
+    <string name="uploading">Uploading</string>
+    <string name="brand_name">Brand Name</string>
+    <string name="ord_val">Ord Val</string>
+    <string name="password">Password</string>
+    <string name="remember_password">Remember Password</string>
+    <string name="notification">Notification</string>
+    <string name="login">Login</string>
+    <string name="modDt">Date</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_code">Product Code</string>
+    <string name="mtd_dashboard">MTD Dashboard</string>
+    <string name="total_u20b9">Total : ₹ </string>
+    <string name="discount">Discount</string>
+    <string name="date">Date</string>
+    <string name="scheme_discount">Scheme Dis</string>
+    <string name="print">Print</string>
+    <string name="values">values</string>
+    <string name="price">Price :</string>
+    <string name="stk_tk">Stk Tk</string>
+    <string name="hi">Hi, </string>
+    <string name="today_s_beat">Today\'s Beat</string>
+    <string name="outlet_to_be_covered">Outlet to be Covered</string>
+    <string name="menu">Menu</string>
+    <string name="quick_access">Quick Access</string>
+    <string name="notifications">Notifications</string>
+    <string name="gst_user">GST User</string>
+    <string name="gst_type">GST Type</string>
+    <string name="composite">Composite</string>
+    <string name="app_version">Version </string>
+    <string name="n_o_items">No. Items</string>
+    <string name="sign_pad">Sign Pad</string>
+    <string name="total_purchase_receipt">Total Purchase Receipt</string>
+    <string name="grn_no">GRN No</string>
+    <string name="inv_no">Inv No</string>
+    <string name="inv_amt">Inv Amt</string>
+    <string name="reason">Reason</string>
+    <string name="remarks_label">Remarks</string>
+    <string name="s_uom">S.UOM</string>
+    <string name="us_qty">Us.Qty</string>
+    <string name="us_uom">Us.UOM</string>
+    <string name="pur_price">Pur.Price</string>
+    <string name="scheme_name">Scheme Desc</string>
+    <string name="payout">Payout</string>
+    <string name="slab_uom">UOM</string>
+    <string name="scheme_type">Scheme Type</string>
+    <string name="start_date">Start Date</string>
+    <string name="scheme_end_date">Scheme End Date</string>
+    <string name="scheme_slab">Scheme Slabs</string>
+
+    <string name="scheme_slabno">SlabNo</string>
+    <string name="scheme_slabfrom">SlabFrom</string>
+    <string name="scheme_slabto">SlabTo</string>
+    <string name="scheme_slab_forevery">Slab\nForEvery</string>
+    <string name="scheme_slab_payout">Pay Out</string>
+
+
+    <string name="van_sales">Van Sales</string>
+    <string name="credit_note">Credit Note</string>
+    <string name="custom_order_screen">Select Order Booking</string>
+    <string name="geofencing">Geofencing</string>
+    <string name="clear_app_data">Clear App Data</string>
+    <string name="currency">Currency</string>
+    <string name="auto_quick_access">Auto Quick Access</string>
+    <string name="previous_order">Previous Order</string>
+    <string name="faqs">FAQs</string>
+    <string name="version">Version</string>
+    <string name="message">message</string>
+    <string name="alert">Alert</string>
+    <string name="at_a_time_you_can_do_one_operation">At a time you can do one operation, save the data and come again to do the other operation.</string>
+    <string name="tentative_tax">Tax</string>
+    <string name="applied_schemes">Applied Schemes</string>
+    <string name="uom">UOM</string>
+    <string name="enter_quantity">Enter quantity</string>
+    <string name="select_uom">Select UOM</string>
+    <string name="no_scheme_available">No Scheme Available</string>
+    <string name="scheme_code">Scheme Code</string>
+    <string name="clear_pad">clear pad</string>
+    <string name="settings">Settings</string>
+    <string name="sync">Sync</string>
+
+    <string name="total_discount">Disc : ₹ </string>
+    <string name="total_tax">Tax : ₹ </string>
+    <string name="voice_search">Voice</string>
+    <string name="search_screen">Search Screen</string>
+    <string name="op_stock">Op.Stock</string>
+    <string name="op_stock_val">Op.Stock Val</string>
+    <string name="cl_stock">Cl.Stock</string>
+    <string name="cl_stock_val">Cl.Stock Val</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="retailer_approval_detail">Retailer Approval Detail</string>
+    <string name="pin_code">PIN Code</string>
+    <string name="retailer_code">Retailer Code</string>
+    <string name="tab_to_close">Tab here to close</string>
+    <string name="apo_code">APO Code</string>
+    <string name="own_wd_code">OWN WD Code</string>
+    <string name="file">File</string>
+    <string name="ord_qty">Ord.Qty</string>
+    <string name="double_zero">0.00</string>
+    <string name="total_cl_st_val">Total Cl.St.Val</string>
+    <string name="total_ord_val">Total Ord.Val</string>
+    <string name="total_op_st_val">Total Op.St.Val</string>
+
+    <string name="filter_brands">Filter Brands</string>
+    <string name="brand_filter">Brand Filter</string>
+    <string name="other_filter">Other Filter</string>
+    <string name="existing_password">Existing Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="generate_otp">Generate OTP</string>
+    <string name="change_password">Change Password</string>
+    <string name="expiry_date">Expiry Date</string>
+
+    <string name="unable_connect_server">Unable to connect server</string>
+    <string name="invalid_request">Invalid Request</string>
+    <string name="internal_server_error">Internal Server Error</string>
+    <string name="service_unreachable">Service Unavailable</string>
+    <string name="request_timeout">Request Timeout</string>
+    <string name="file_format_error">File format is not supported</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="err_creating_fragment">Error in creating fragment</string>
+    <string name="check_internet_connection_try_again">Please check your internet connection and try again</string>
+    <string name="all_route">All Routes</string>
+    <string name="ent_qty_outofstock">Entered Quantity is out of stock</string>
+    <string name="no_record_found">No Record Found</string>
+    <string name="_00">00</string>
+    <string name="of_0">0 of 00</string>
+    <string name="_0_00">0.00</string>
+    <string name="hi_how_can_i_help_you">Hi, How can i help you</string>
+    <string name="lable_s">S</string>
+    <string name="paired">paired</string>
+    <string name="_99">99+</string>
+    <string name="ptr">PTR</string>
+    <string name="mrp">MRP</string>
+    <string name="_0">0</string>
+    <string name="retaielr_name">Retaielr Name</string>
+    <string name="dis">dis</string>
+    <string name="user">User</string>
+    <string name="bot">Bot</string>
+    <string name="label_empty">""</string>
+
+    <string name="total_val">Total Value : </string>
+    <string name="normal">Normal</string>
+    <string name="quick">Quick</string>
+    <string name="custom">Custom</string>
+
+    <string name="bot_service">Bot Service</string>
+
+    //stockledger reports strings
+
+    <string name="prodname">Product Name</string>
+    <string name="Opening_SalableQty">Opening\nSalableQty</string>
+    <string name="Opening_UnSalableQty">Opening\nUnSalableQty</string>
+    <string name="Opening_OfferQty">Opening\nOfferQty</string>
+    <string name="Purchase_SalableQty">Purchase\nSalableQty</string>
+
+    <string name="Purchase_UnSalableQty">Purchase\nUnSalableQty</string>
+    <string name="Purchase_OfferQty">Purchase\nOfferQty</string>
+    <string name="PurchaseRet_SalableQty">PurchaseRet\nSalableQty</string>
+    <string name="PurchaseRet_UnSalableQty">PurchaseRet\nUnSalableQty</string>
+    <string name="PurchaseRet_OfferQty">PurchaseRet\nOfferQty</string>
+    <string name="Sales_SalableQty">Sales\nSalableQty</string>
+    <string name="Sales_UnSalableQty">Sales\nUnSalableQty</string>
+
+    <string name="Sales_OfferQty">Sales\nOfferQty</string>
+    <string name="SalesRet_SalableQty">SalesRet\nSalableQty</string>
+    <string name="SalesRet_UnSalableQty">SalesRet\nUnSalableQty</string>
+    <string name="SalesRet_OfferQty">SalesRet\nOfferQty</string>
+    <string name="AdjIn_SalableQty">AdjIn\nSalableQty</string>
+
+    <string name="AdjInUnSalableQty">AdjIn\nUnSalableQty</string>
+    <string name="AdjInOfferQty">AdjIn\nOfferQty</string>
+    <string name="AdjOutSalableQty">AdjOut\nSalableQty</string>
+    <string name="AdjOutUnSalableQty">AdjOut\nUnSalableQty</string>
+    <string name="AdjOutOfferQty">AdjOut\nOfferQty</string>
+    <string name="ClosingStkUnSalableQty">ClosingStk\nUnSalableQty</string>
+    <string name="ClosingStkSalableQty">ClosingStk\nSalableQty</string>
+    <string name="ClosingStkOfferQty">ClosingStk\nOfferQty</string>
+
+
+    <string name="enter_mobile_no">Enter Valid Mobile Number</string>
+    <string name="enter_zip_code">Enter valid Zip Code</string>
+
+    //usb Sync
+
+
+    <string name="MSG_DOWNLOAD_SHEMES">Download Schemes…</string>
+
+    <string name="speech_prompt">Say something</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="apply">Apply</string>
+
+    <string name="pin_code_with_semi">PIN Code :</string>
+    <string name="wrong_weight"> is wrong weight,</string>
+    <string name="mrp_msg"> MRP : </string>
+    <string name="outofstock_msg"> is out of stock, Please check the Stock and enter the quantity</string>
+    <string name="error_stock_weight">Enter the correct stock weight</string>
+    <string name="error_weight_less_than_prod">Entered Weight is less than product weight.\n Minimum product Weight is</string>
+    <string name="error_quantity">Enter Quantity</string>
+
+    <string name="new_fingerprint_enrolled_description">A new fingerprint was added to this device, so your password is required.</string>
+    <string name="use_fingerprint_in_future">Use fingerprint in the future</string>
+    <string name="use_fingerprint_to_authenticate_key">use_fingerprint_to_authenticate_key</string>
+    <string name="description_fingerprint_icon">Fingerprint icon</string>
+    <string name="fingerprint_description">Confirm fingerprint to continue</string>
+    <string name="fingerprint_hint">Touch sensor</string>
+    <string name="password_description">Enter your store password to continue</string>
+    <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
+    <string name="finger_print_auth">Finger Print Authentication </string>
+    <string name="finger_print">Finger Print</string>
+
+    <string name="salable">Salable</string>
+    <string name="unsalable">Unsalable</string>
+
+    <string name="verify">Verify OTP</string>
+    <string name="otp_hint">Enter valid OTP</string>
+    <string name="resend_otp"><u>Resend OTP!</u></string>
+    <string name="otp_dialog_title">OTP Validation</string>
+
+    <string name="verified">Verified</string>
+    <string name="otp_send_msg">An OTP is sent to the given mobile number : </string>
+    <string name="outlet_images">Outlet Images</string>
+    <string name="ERR_GST_state">GST state code and GSTIN No should be same</string>
+    <string name="location_err">Please wait until the last location is update.</string>
+    <string name="error_weight">Enter the correct order weight</string>
+
+
+    <string name="support_mail">amulsupport@botree.co.in</string>
+    <string name="support_contact">18004191597</string>
+    <string name="shared_customer">Shared Customer</string>
+    <string name="shared_customer_msg">This mobile No is already exist,So we will use the existing customer details for this retailer creation.</string>
+
+    <string name="server_unreachable">Server Unreachable</string>
+    <string name="server_unreach_err_msg">We are facing some technical issue, Please try again later.</string>
+
+    <string name="uploading_msg">Uploading Transaction data…</string>
+
+    <string name="address_digits_pattern">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ./,</string>
+    <string name="outlet_name_digits_pattern">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ./,&amp;</string>
+    <string name="email">Email ID</string>
+
+    <string name="routelist">Route List*</string>
+    <string name="region">Geography*</string>
+    <string name="drug_licence_number">Drug Licence Number</string>
+    <string name="credit_bills">Cr.Bills</string>
+    <string name="credit_day">Cr.Days</string>
+    <string name="credit_limit">Cr.Limit</string>
+    <string name="cash_discount">Cash Disc %</string>
+    <string name="previous">Previous</string>
+    <string name="relationstatus">Relation Status</string>
+    <string-array name="relationstatus">
+        <item>Independent</item>
+        <item>Parent</item>
+        <item>Child</item>
+    </string-array>
+    <string name="enter_address">Shipping Address</string>
+    <string name="password_strength_weak">Weak</string>
+    <string name="password_strength_medium">Medium</string>
+    <string name="password_strength_strong">Strong</string>
+    <string name="password_strength_very_strong">Very Strong</string>
+
+    <string name="route_name">Route Name</string>
+
+    <string name="contact_person">Contact Person</string>
+    <string name="ffsa_licence_number">FSSAI License Number</string>
+    <string name="bankname">Bank Name</string>
+    <string name="branchname">Branch Name</string>
+    <string name="ifsccode">IFSC Code</string>
+    <string name="accounttype">Account Type</string>
+    <string name="currentaccount">Current</string>
+    <string name="savings">Savings</string>
+    <string name="accountno">Account Number</string>
+    <string name="city">City*</string>
+
+    <string name="previous_purchase_order">Purchase Order Status</string>
+
+    <string name="menu_refresh">refresh</string>
+    <string name="brand">Brand</string>
+
+
+    <string name="skip">&#60;&#60; SKIP</string>
+    <string name="retailer_day_off">Retailer Day Off</string>
+    <string name="gst_state">GST State*</string>
+
+
+    <string name="sales_value">MTD Sales:</string>
+    <string name="no_chart_datas_found">No Data Found</string>
+    <string name="u_batch"><u>Batch</u></string>
+    <string name="u_uom"><u>UOM</u></string>
+    <string name="country">Country*</string>
+    <string name="retailer_status">Retailer Status</string>
+    <string name="gross_amt">Gross Amt</string>
+    <string name="po_status">PO Status</string>
+    <string name="tax_amt">Tax</string>
+    <string name="citytown">City / Town*</string>
+    <string name="extracting_products_msg">Extracting Master Data…</string>
+
+    <string name="salesman">Salesman</string>
+    <string name="route">Route</string>
+    <string name="order_no">Order No</string>
+    <string name="company">Company</string>
+    <string name="distr">Distr Name</string>
+    <string name="retailer_not_available">Retailer not available</string>
+    <string name="order_total">Order Total</string>
+
+    <string name="day_name_format">EEE</string>
+    <string name="invalid_date">Date must be between %1$s and %2$s.</string>
+    <string name="banner_image">getbannerimage/%1$s/jpeg</string>
+    <string name="month_only_name_format">MMMM</string>
+    <string name="year_only_format">yyyy</string>
+
+
+    <string name="billno">Bill No</string>
+    <string name="billdate">Date</string>
+    <string name="outstandingamt">Amount</string>
+
+    <string name="retailer">Retailer</string>
+    <string name="cashdiscount_">Cash Discount : </string>
+    <string name="percentage">Percentage</string>
+
+    <string name="qty_1">Qty 1</string>
+    <string name="qty_2">Qty 2</string>
+    <string name="db_discount_amt">DB Disc</string>
+    <string name="fr_qty">F.Qty</string>
+
+
+    <string name="custom_data_value">Value</string>
+
+    <string name="order_qty">Order Qty</string>
+    <string name="serviced_qty">Serviced Qty</string>
+    <string name="sell_rate">Sell Rate</string>
+    <string name="order_value">Order Value</string>
+
+    <string name="adjust_amout">Adjust Amt</string>
+    <string name="adjust_bal">Adjust Bal</string>
+    <string name="prodBatchCode">Batch Code</string>
+
+    <string name="retailer_name_mandate">Retailer Name*</string>
+    <string name="actual_net_amt">Net Amt\n₹ </string>
+    <string name="product_tax"><u>Tax</u></string>
+    <string name="value">value</string>
+    <string name="cash_discount_amt">Cash Disc</string>
+    <string name="confirm">Confirm</string>
+    <string name="last_sync">Last Sync : </string>
+    <string name="lob_filter">LOB Filter</string>
+    <string name="newhint">New</string>
+    <string name="db_perc">DB Perc</string>
+    <string name="db_val">DB Val</string>
+    <string name="uom_1">Uom 1</string>
+    <string name="uom_2">Uom 2</string>
+    <string name="MSG_DOWNLOAD_REPORT">Download Reports…</string>
+    <string name="grossamt">Grs Amt : ₹ </string>
+    <string name="discamt">Disc Amt : ₹ </string>
+    <string name="taxamt">Tax Amt : ₹ </string>
+    <string name="channel_label">Channel</string>
+    <string name="sym_percentage">"%"</string>
+    <string name="noOfInvoice">No. Invoice</string>
+    <string name="not_available">Not Available</string>
+    <string name="customer">Customer</string>
+    <string name="channellabel">Channel</string>
+    <string name="subchannellabel">Sub-channel</string>
+    <string name="grouplabel">Group</string>
+    <string name="classlabel">Class</string>
+
+    <string name="top_sheet_behavior" translatable="false">com.botree.smdms.support.TopSheetBehavior</string>
+    <string name="gross_amt_label"> ₹ Gross Amt</string>
+    <string name="tax_label"> ₹ Tax</string>
+    <string name="net_amt_label"> ₹ Net Amt</string>
+    <string name="order_val_label"> ₹ Order Val</string>
+    <string name="forgot_password"><u>Forgot Password</u></string>
+    <string name="validate_otp">Validate OTP</string>
+    <string name="report_download_failed">Report Download Failed</string>
+    <string name="failure">Failure</string>
+    <string name="success">Success</string>
+    <string name="gst_pattern">[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9]{1}[A-Z]{1}[0-9A-Z]{1}</string>
+    <string name="pan_pattern">[A-Z]{5}[0-9]{4}[A-Z]{1}</string>
+    <string name="mail_pattern">.+@.+\\.[a-z]+</string>
+
+    <string-array name="version_changes">
+        <item>&#9673; SSFA App for Retailer to place orders</item>
+    </string-array>
+
+    <string name="label_ptr">PTR</string>
+    <string name="kg_rate">KG RATE</string>
+    <string name="no_zero">0</string>
+    <string name="view_catalog"><u>View Catalog</u></string>
+    <string name="pur_pr">Pur.Pr</string>
+    <string name="feedback_store_visibility">Feedback</string>
+    <string name="label_mrp">MRP</string>
+    <string name="feedback">Feedback</string>
+    <string name="store_visibility">Store Visibility</string>
+    <string name="enter_text_here">Enter Text Here</string>
+    <string name="ordbooking_is_ptr_show">true</string>
+    <string name="ptr_with_tax">PTR W-Tax</string>
+    <string name="sov">SOV : </string>
+    <string name="error_uom">UOM not available contact you distributor</string>
+
+
+    <string-array name="stkloaddata">
+        <item>All Products</item>
+        <item>Top SKU</item>
+    </string-array>
+
+    <string name="submit_arrow">Submit >></string>
+    <string name="address_2">Address 2</string>
+    <string name="address_3">Address 3</string>
+    <string name="pincode">Pincode</string>
+    <string name="e_mail_id">E Mail Id</string>
+
+    <string name="gst_statecode">GST State Code</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="branch_code">Branch Code</string>
+    <string name="aadhar_number">Aadhar Number</string>
+    <string name="geo_hier_path">Geography Hierarchy Path</string>
+    <string name="fssai_number">FSSAI Number</string>
+    <string name="gst_number">GST Number</string>
+    <string name="pan_number">PAN Number</string>
+    <string name="day_off">Day Off</string>
+    <string name="drug_license_number">Drug Licence Number</string>
+    <string name="type">Type</string>
+    <string name="distributor_adapter_nil">Nil</string>
+    <string name="net_rtr_margin">Net Rtr Margin %</string>
+    <string name="taxable_amt">Taxable Amt</string>
+
+    <string name="scheme">Scheme :</string>
+    <string name="order">Order</string>
+    <string name="scheme_util">Scheme Util</string>
+    <string name="no_of_invoice">No of Invoice</string>
+    <string name="scheme_description">Scheme Description</string>
+    <string name="utilized">Utilized</string>
+    <string name="scheme_distr_company_code_label">Company Code</string>
+    <string name="scheme_distr_code_label">Distributor Code</string>
+
+    <string-array name="spinner_sales_report_arr">
+        <item>All</item>
+        <item>Salesman</item>
+        <item>Route</item>
+        <item>Retailer</item>
+    </string-array>
+
+    <string name="route_total">Route Total</string>
+    <string name="outlets">Outlets</string>
+    <string name="items">Items</string>
+    <string name="share">Share</string>
+    <string name="order_summary">Order summary not available</string>
+    <string name="sales_return">Sales Return</string>
+    <string name="total_orders_values">Total Order Values</string>
+    <string name="zero_zero">0</string>
+    <string name="cash_total">Cash total</string>
+    <string name="cheque_total">Cheque Total</string>
+    <string name="beat_name">Beat Name</string>
+    <string name="total_line_items">Total Line Items</string>
+    <string name="new_outlets">New Outlets Added</string>
+    <string name="view_all_orders">View All Orders</string>
+    <string name="total_collection">Total Collection</string>
+    <string name="order_not_taken">Order Not Taken</string>
+    <string name="order_taken">Order Taken</string>
+    <string name="order_synced">Order Synced</string>
+    <string name="invoice_not_taken">Invoice Not Taken</string>
+    <string name="invoice_taken">Invoice Taken</string>
+    <string name="invoice_synced">Invoice Synced</string>
+    <string name="FILE_GENRATING">Generating file…</string>
+    <string name="dicount_amt">Discount Amt</string>
+    <string name="item">Item</string>
+    <string name="retailers">Retailers</string>
+    <string name="scheme_distr_company_name_label">Company Name</string>
+    <string name="scheme_distr_name_label">Distributor Name</string>
+    <string name="total_unique_line_items">Total Unique Line Items</string>
+
+    <string name="new_user_err">This phone is already mapped to some other user, proceeding to login will upload all the transaction data for the previous user. Are you sure do you want to proceed ?</string>
+<!--    <string name="new_user_err">This phone is already mapped to some other user, proceeding to login will delete all the transaction data for the previous user. Are you sure do you want to proceed ?</string>-->
+    <string name="screen_name_new_order">New Order</string>
+    <string name="screen_name_scheme">Scheme</string>
+    <string name="screen_name_product">Product</string>
+    <string name="screen_name_feedback">Feedback</string>
+    <string name="screen_name_order_details">Order Details</string>
+    <string name="screen_name_day_summary">Day Summary</string>
+    <string name="screen_name_update_location">Update Location</string>
+    <string name="screen_name_distributor_info">Distributor Info</string>
+    <string name="screen_name_messages">Messages</string>
+    <string name="screen_name_settings">Settings</string>
+    <string name="screen_name_order_summary">Cart</string>
+
+</resources>

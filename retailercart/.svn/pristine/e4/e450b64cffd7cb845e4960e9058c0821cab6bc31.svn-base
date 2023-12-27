@@ -1,0 +1,41 @@
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { In, Repository } from 'typeorm';
+import { CreateUomMasterDto } from './dto/create-uom-master.dto';
+import { UpdateUomMasterDto } from './dto/update-uom-master.dto';
+import { UomMaster } from './entities/uom-master.entity';
+
+@Injectable()
+export class UomMasterService {
+  constructor(
+    @InjectRepository(UomMaster)
+    private uomRepository : Repository<UomMaster>
+  ){}
+  create(createUomMasterDto: CreateUomMasterDto) {
+    return 'This action adds a new uomMaster';
+  }
+
+  async findAll(): Promise<any> {
+    let uomData = await this.uomRepository.find({select:{code:true,name:true}});
+    return {
+      statusCode : HttpStatus.OK,
+      uom : uomData
+    }
+  }
+
+  async fetchUomByCode(data){
+     return await this.uomRepository.find({where:{code: In([data.code])}});
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} uomMaster`;
+  }
+
+  update(id: number, updateUomMasterDto: UpdateUomMasterDto) {
+    return `This action updates a #${id} uomMaster`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} uomMaster`;
+  }
+}

@@ -1,0 +1,9 @@
+export class CreateDigitalContentDto {
+    readonly cmpCode : string;
+    readonly brochureCode : string;
+    readonly title : string;
+    readonly desc : string;
+    readonly mediaType: string;
+    readonly meadiaName: string;
+    readonly isDownload:boolean;
+}

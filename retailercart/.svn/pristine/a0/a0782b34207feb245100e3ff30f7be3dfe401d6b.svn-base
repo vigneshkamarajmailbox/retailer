@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description"
+        content="Retailer SSFA PWA application is to place orders by the customers directly to the distributors.">
+  <meta name="author" content="Botree Team">
+  <meta name="theme-color" content="#1976d2">
+  <title>Retailer SSFA PWA</title>
+  <base href="/">
+  <link rel="preload" href="assets/iconfont/MaterialIcons-Regular.woff2" as="font" type="font/woff2"
+        crossorigin>
+  <link rel="preload" href="assets/iconfont/MaterialIcons-Regular.woff" as="font" type="font/woff"
+        crossorigin>
+  <link rel="preload" href="assets/iconfont/MaterialIcons-Regular.ttf" as="font" type="font/truetype"
+        crossorigin>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+</head>
+<body>
+<app-root></app-root>
+<noscript>Please enable JavaScript to continue using this application.</noscript>
+
+
+</body>
+</html>

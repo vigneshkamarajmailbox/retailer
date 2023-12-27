@@ -1,0 +1,6 @@
+<mat-selection-list [multiple]="false" (selectionChange)="languageChange($event.option.value)">
+  <mat-list-option *ngFor="let lang of languages" [value]="lang.code" [selected]="setSelectedValue(lang.code)">
+    {{lang.name}}
+    <mat-divider></mat-divider>
+  </mat-list-option>
+</mat-selection-list>

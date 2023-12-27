@@ -1,0 +1,38 @@
+import { AbstractModel } from 'src/shared/entities/abstract.model';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { SQLColumnType } from '../../shared/enum/column-type.enum';
+import { TableName } from '../../shared/enum/table-name.enum';
+import { UserEntity } from 'src/users/entities/user.entity';
+
+
+@Entity({ name: TableName.FEEDBACK })
+export class Feedback extends AbstractModel {
+
+  @PrimaryGeneratedColumn({ name: 'id' })
+  id: number;
+  
+  @PrimaryColumn({ name: 'user_name', type: 'varchar', length: 50, nullable: false })
+  userName: string;
+
+  @Column({ name: 'title', type: SQLColumnType.VARCHAR, length: 50, nullable: true })
+  title: string;
+
+  @Column({ name: 'comments', type: SQLColumnType.VARCHAR, length: 250, nullable: true })
+  comments: string;
+
+  @Column({ name: 'image_path', type: SQLColumnType.VARCHAR, length: 250, nullable: true })
+  imagePath: string;
+
+  // @ManyToOne(() => UserEntity, (user) => user.userName, {
+  //   eager: true,
+  //   deferrable: 'INITIALLY IMMEDIATE',
+  //   cascade: ['insert', 'update'],
+  // })
+  // @JoinColumn([
+  //   {
+  //     name: 'userName',
+  //     referencedColumnName: 'userName',
+  //   },
+  // ])
+  // user: UserEntity;
+}

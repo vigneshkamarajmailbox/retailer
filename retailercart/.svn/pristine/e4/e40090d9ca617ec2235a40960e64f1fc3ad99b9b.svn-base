@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:background="@color/color_creamBg">
+
+    <TextView
+        android:id="@+id/serial_no"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:padding="2dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/txt_size_normal" />
+
+    <TextView
+        android:id="@+id/mrp"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:gravity="center"
+        android:layout_marginLeft = "5dp"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/txt_size_normal" />
+
+    <TextView
+        android:id="@+id/purchase_price"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="2dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/txt_size_normal"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/selling_price"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:gravity="center"
+        android:layout_marginLeft = "5dp"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/txt_size_normal" />
+
+    <TextView
+        android:id="@+id/stock"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:gravity="center"
+        android:layout_marginLeft = "5dp"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/txt_size_normal"
+        android:visibility="gone"/>
+</LinearLayout>

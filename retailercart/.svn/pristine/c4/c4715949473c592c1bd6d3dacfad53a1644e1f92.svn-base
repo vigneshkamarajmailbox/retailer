@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:id="@+id/main_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_bg"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/salesman"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/txt_size_semi_medium"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_list_item_txt" />
+
+        <Spinner
+            android:id="@+id/spinner_salesman"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_margin="3dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_5"
+            android:layout_marginLeft="@dimen/dimen_5"
+            android:layout_marginEnd="@dimen/dimen_5"
+            android:layout_marginRight="@dimen/dimen_5"
+            android:layout_marginBottom="@dimen/dimen_5"
+            android:background="@drawable/edit_bg"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/route"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/txt_size_semi_medium"
+                android:textStyle="bold"
+                android:typeface="serif" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_list_item_txt" />
+
+            <Spinner
+                android:id="@+id/spinner_route"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_margin="3dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/pending_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/color_btn_white"
+        android:padding="5dp"
+        tools:sfaActivity="com.botree.productsfa.main.PendingTabFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:name="com.botree.productsfa.fragment_pending_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/item_list_content"
+            tools:sfaActivity=".main.MainActivity" />
+
+        <TextView
+            android:id="@+id/empty_list_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/sad"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="@string/retailer_not_available"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/txt_size_large"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

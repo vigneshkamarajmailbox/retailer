@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+
+    <query name="INSERT_LOGIN_REFERRAL">
+        INSERT INTO login_referral
+        (CmpCode,
+        DistrCode,
+        SalesmanCode,
+        CustomerCode)
+        VALUES
+        (:CmpCode,
+        :DistrCode,
+        :SalesmanCode,
+        :CustomerCode) ON DUPLICATE KEY
+        UPDATE
+        CmpCode=:CmpCode,
+        DistrCode=:DistrCode,
+        SalesmanCode=:SalesmanCode,
+        CustomerCode=:CustomerCode
+    </query>
+
+
+    <query name="FETCH_SALESMAN">
+        SELECT DISTINCT
+            sm.CmpCode,
+            sm.DistrCode,
+            sm.SalesmanCode,
+            sm.SalesmanName,
+            sm.MobileNo,
+            sm.EmailID
+        FROM
+         salesman sm
+        INNER JOIN
+            salesmanroutemapping smr ON
+            smr.cmpCode = sm.cmpCode AND
+            smr.DistrCode = sm.DistrCode
+            AND smr.SalesmanCode = sm.SalesmanCode
+        INNER JOIN
+            customerroutemapping cr ON
+            smr.CmpCode = cr.CmpCode AND
+            smr.DistrCode = cr.DistrCode AND
+            smr.RouteCode= cr.RouteCode
+        where cr.customerCode = :param1
+    </query>
+
+
+
+    <query name="INSERT_ORDER_REFERRAL">
+        INSERT INTO order_referral
+        (CmpCode,
+        DistrCode,
+        OrderNo,
+        SalesmanCode,
+        customerCode
+        )
+        VALUES
+        (:cmpCode,
+        :distrCode,
+        :orderNo,
+        :salesmanCode,
+        :customerCode
+        ) ON DUPLICATE KEY
+        UPDATE
+        cmpCode=:cmpCode,
+        distrCode=:distrCode,
+        orderNo=:orderNo,
+        salesmanCode=:salesmanCode,
+        customerCode=:customerCode
+    </query>
+
+    <query name="FETCH_SALESMAN_BY_CODE">
+        SELECT
+            CmpCode,
+            DistrCode,
+            SalesmanCode,
+            SalesmanName
+                FROM
+        salesman
+            where
+        CmpCode=:param1 AND
+        DistrCode=:param2 AND
+        SalesmanCode=:param3
+    </query>
+    <query name="FETCH_CUSTOMER_BY_CODE">
+        SELECT
+            CmpCode,
+            DistrCode,
+            CustomerCode
+                FROM
+        customer
+            where
+        CmpCode=:param1 AND
+        CustomerCode=:param2
+    </query>
+
+    <query name="FETCH_ORDER_BY_CODE">
+        SELECT
+            CmpCode,
+            DistrCode,
+            OrderNo
+        FROM orderbookingheader
+        where
+            CmpCode=:param1
+        AND OrderNo=:param2
+    </query>
+
+
+
+</queries>

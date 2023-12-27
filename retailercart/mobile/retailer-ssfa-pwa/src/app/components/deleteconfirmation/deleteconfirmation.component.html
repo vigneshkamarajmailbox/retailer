@@ -1,0 +1,14 @@
+<div class="flex-row">
+  <i class="material-icons delete-confirmation-icon">info</i>
+  <span mat-dialog-title class="delete-confirmation-title">{{'ORDER.CONFIRM.DELETE.HEADER'|translate}}</span>
+</div>
+<hr>
+<div mat-dialog-content>
+  <span>{{'ORDER.CONFIRM.DELETE.MSG'|translate}} </span>
+  <span class="deeporange500" style="align-self: center">{{data.prodName}}</span>
+</div>
+<div mat-dialog-actions class="flex-row justify-content-between">
+  <button mat-stroked-button color="warn" (click)="onClose()">{{'ORDER.CONFIRM.DELETE.NO'|translate}}</button>
+  <button mat-stroked-button mat-dialog-close color="primary"
+          (click)="onDelete()">{{'ORDER.CONFIRM.DELETE.YES'|translate}}</button>
+</div>

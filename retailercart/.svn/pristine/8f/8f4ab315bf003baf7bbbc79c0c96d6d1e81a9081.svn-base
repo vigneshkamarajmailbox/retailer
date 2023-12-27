@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/voice_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/voice_top_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/txt_size_semi_medium"
+            android:padding="20dp"
+            android:background="@color/transparent"
+            android:textColor="@color/white"
+            android:text="@string/tab_to_close"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:text="@string/hi_how_can_i_help_you"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/voice_txt_bg"
+                android:textColor="@color/color6" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/voice_to_text_recyclerview"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/voice_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="8dp"
+                android:background="@drawable/voice_txt_bg"
+                android:textColor="@color/color6" />
+        </LinearLayout>
+
+        <com.botree.retailerssfa.speechview.RecognitionProgressView
+            android:id="@+id/recognition_view"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,14 @@
+# suppress inspection "UnusedProperty" for whole file
+# JDBC
+spring.datasource.url=jdbc:mysql://localhost:3306/retailer_ssfa?useServerPrepStmts=false&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+# FILE LOCATION
+master.blob.local.path=/home/local/BSILIND/vinodkumar.a/VINOD/BOTREE/RETAILER_CART/TRUNK/external_services/master-engine/config/master
+query.location=/home/local/BSILIND/vinodkumar.a/VINOD/BOTREE/RETAILER_CART/TRUNK/external_services/master-engine/config/queries.xml
+# JOB CRON
+import.master.corn=0 * * * * *
+batch.size=1000000
+# SEQUENCE
+process.sequence=company,companyuser,customer,customerroutemapping,customershipaddress,customerstock,distributor,distributorlobmapping,distributorsaleshierarchy,distributorstock,lobmaster,otherattributes,product,productbatch,producthierlevel,producthiervalue,productuom,retailercategory,route,salesman,salesmanroutemapping,schemeattributes,schemecombiproduct,schemecustomer,schemedefinition,schemedistributorbudget,schemeproduct,schemeproductcategory,schemeretailercategory,schemeslab,schemeslabproduct,taxstructure

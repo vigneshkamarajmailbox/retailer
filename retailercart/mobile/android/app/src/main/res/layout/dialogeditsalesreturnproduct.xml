@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/dialog_bg"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/salesreturn_productShort_name_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="@string/product_name"
+        android:textColor="@color/lightred"
+        android:textSize="@dimen/txt_size_semi_medium"
+        android:typeface="serif" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/color_list_divider" />
+
+    <LinearLayout
+        android:id="@+id/linaerLayoutSalQty"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/text_padding_small"
+                android:paddingRight="@dimen/text_padding_small"
+                android:text="@string/salable"
+                android:textColor="@color/colorPrimarysime"
+                android:textSize="@dimen/txt_size_semi_medium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/SaleablespinnerSalesReason"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:spinnerMode="dropdown"
+                android:theme="@style/ThemeOverlay.AppCompat.Light" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtsaledQuantitySalQty"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/edit_bg"
+            android:cursorVisible="false"
+            android:ems="3"
+            android:focusable="true"
+            android:hint="@string/qty"
+            android:inputType="numberSigned"
+            android:maxLength="4"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/txt_size_semi_medium" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutUnsalableQty"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/text_padding_small"
+                android:paddingRight="@dimen/text_padding_small"
+                android:text="@string/unsalable"
+                android:textColor="@color/colorPrimarysime"
+                android:textSize="@dimen/txt_size_semi_medium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerSalesReasonUnsaleQty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:spinnerMode="dropdown"
+                android:theme="@style/ThemeOverlay.AppCompat.Light" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editUnsaledtQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/edit_bg"
+            android:cursorVisible="false"
+            android:ems="3"
+            android:focusable="true"
+            android:hint="@string/qty"
+            android:inputType="numberSigned"
+            android:maxLength="4"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/txt_size_semi_medium"
+            android:autofillHints="@string/qty" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/editSalesreturn_cancel_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_btn_red"
+            android:text="@string/cancel"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/editSalesreturn_submit_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_btn"
+            android:text="@string/submit"
+            android:textColor="@color/colorWhite" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

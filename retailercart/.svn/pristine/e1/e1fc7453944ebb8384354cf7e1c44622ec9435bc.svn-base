@@ -1,0 +1,52 @@
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { Retailer } from './entities/retailer.entity';
+import { CreateRetailerDto } from './dto/create-retailer.dto';
+import { UpdateRetailerDto } from './dto/update-retailer.dto';
+import { retailerRepository } from './retailer.repository';
+
+
+@Injectable()
+export class RetailerService {
+
+  @Inject()
+  retailerRepository: retailerRepository;
+
+    async create(saveRetailer:CreateRetailerDto) {
+        let find = await this.retailerRepository.create(saveRetailer);
+        if (!find) {
+            throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+        }
+        else 
+        {
+            return {
+                statusCode : HttpStatus.CREATED,
+                message    : "Contact Details Saved Successfully"
+            };
+        }
+    }
+
+    async findAll(): Promise<any> {
+
+        let find = await this.retailerRepository.findAll();
+        
+        if (!find) {
+            throw new HttpException('List Empty', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return  {contact:find};
+        }
+    }
+
+
+    findOne(cmpCode: string): Promise<Retailer | null> {
+        return this.retailerRepository.findOne(cmpCode);
+    }
+
+  update(id: number, updateRetailerDto: UpdateRetailerDto) {
+    return `This action updates a #${id} retailer`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} retailer`;
+  }
+}

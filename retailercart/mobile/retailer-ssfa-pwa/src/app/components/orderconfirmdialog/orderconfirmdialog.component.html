@@ -1,0 +1,32 @@
+<div style="display: flex;align-items: center;">
+  <i class="material-icons order-place-confirmation-icon">info</i>{{'ORDER.PRE.CONFIRM.PLACE_ORDER'|translate}}
+</div>
+<hr>
+<div mat-dialog-content class="flex-column">
+  <p class="padding-bottom-3">{{'ORDER.PRE.CONFIRM.ORDER_CONFIRM_TO_PLACE'|translate}} </p>
+  <div class="flex-row justify-content-between">
+    <p>{{'ORDER.PRE.CONFIRM.NO_OF_ITEMS'|translate}} </p>
+    <p>{{data.itemCount}}</p>
+  </div>
+  <div class="flex-row justify-content-between">
+    <p>{{'ORDER.PRE.CONFIRM.GROSS_VALUE'|translate}} </p>
+    <p>{{data.totalGrossValue}}</p>
+  </div>
+  <div class="flex-row justify-content-between">
+    <p>{{'ORDER.PRE.CONFIRM.SCHEME_VALUE'|translate}} </p>
+    <p>{{data.totalDiscount}}</p>
+  </div>
+  <div class="flex-row justify-content-between">
+    <p>{{'ORDER.PRE.CONFIRM.TAX_VALUE'|translate}} </p>
+    <p>{{data.totalTax}}</p>
+  </div>
+  <div class="flex-row justify-content-between">
+    <p>{{'ORDER.PRE.CONFIRM.ORDER_VALUE'|translate}} </p>
+    <p>{{data.totalOrderValue}}</p>
+  </div>
+</div>
+<div mat-dialog-actions class="flex-row justify-content-between">
+  <button mat-stroked-button color="warn" (click)="onClose()">{{'ORDER.PRE.CONFIRM.NO'|translate}}</button>
+  <button mat-stroked-button mat-dialog-close color="primary"
+          (click)="onConfirm()">{{'ORDER.PRE.CONFIRM.CONFIRM'|translate}}</button>
+</div>

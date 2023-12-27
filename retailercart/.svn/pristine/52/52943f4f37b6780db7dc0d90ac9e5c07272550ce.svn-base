@@ -1,0 +1,169 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <include layout="@layout/custom_toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:id="@+id/profile_bg_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/null_val"
+            android:scaleType="centerCrop"
+            android:src="@drawable/distributor_master_header_bg" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_semi_transparent1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_collapseMode="pin">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/distributor_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="1"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:paddingTop="2dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_size_medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Code"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/distributor_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="1"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    android:paddingTop="2dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/txt_size_medium" />
+            </LinearLayout>
+
+            <com.botree.retailerssfa.util.CircleImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="10dp"
+                android:contentDescription="@string/null_val"
+                android:gravity="right|center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/distributor_master_header_bg" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tracker_sliding_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/navig_list_pressed_clr"
+                app:tabIndicatorHeight="2dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/navig_list_pressed_clr"
+                app:tabTextAppearance="@style/MineCustomTabText"
+                app:tabTextColor="@color/color_list_item_txt" />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_creamBg1">
+
+        <com.botree.retailerssfa.support.CustomViewPager
+            android:id="@+id/distributor_master_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/submit_button"
+            android:layout_alignParentTop="true"
+            android:background="#FFF"
+            android:clipToPadding="false" />
+        <!-- <LinearLayout -->
+        <!-- android:id="@+id/submit_button_layout" -->
+        <!-- android:layout_width="match_parent" -->
+        <!-- android:layout_height="45dp" -->
+        <!-- android:layout_alignParentBottom="true" -->
+        <!-- android:layout_centerHorizontal="true" -->
+        <!-- android:background="@color/color1"> -->
+        <!-- <TextView -->
+        <!-- android:layout_width="0dip" -->
+        <!-- android:layout_height="match_parent" -->
+        <!-- android:layout_weight="1" /> -->
+        <Button
+            android:id="@+id/submit_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/custom_btn"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/submit_arrow"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_size_medium"
+            android:visibility="gone"/>
+        <!-- </LinearLayout> -->
+    </RelativeLayout>
+</LinearLayout>

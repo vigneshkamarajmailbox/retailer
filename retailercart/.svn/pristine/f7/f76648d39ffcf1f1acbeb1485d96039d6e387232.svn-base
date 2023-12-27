@@ -1,0 +1,38 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { KycTypeService } from './kyc-type.service';
+import { CreateKycTypeDto } from './dto/create-kyc-type.dto';
+import { UpdateKycTypeDto } from './dto/update-kyc-type.dto';
+
+@Controller('kyc-type')
+export class KycTypeController {
+  constructor(private readonly kycTypeService: KycTypeService) {}
+
+  @Post('save')
+  create(@Body() createKycTypeDto: CreateKycTypeDto) {
+    return this.kycTypeService.create(createKycTypeDto);
+  }
+  @Post('by-code')
+  fetchKycTypeByCode(@Body() data) {
+    return this.kycTypeService.fetchKycTypeByCode(data);
+  }
+
+  @Get()
+  findAll() {
+    return this.kycTypeService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.kycTypeService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateKycTypeDto: UpdateKycTypeDto) {
+    return this.kycTypeService.update(+id, updateKycTypeDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.kycTypeService.remove(+id);
+  }
+}

@@ -1,0 +1,27 @@
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+
+export class CreateScreenDto {
+    @IsNumber() 
+    @IsNotEmpty()
+    module_no: number;
+
+    @IsNumber() 
+    @IsNotEmpty() 
+    screen_no: number;
+
+    @IsString() 
+    @IsNotEmpty() 
+    module_name: string;
+
+    @IsString() 
+    @IsNotEmpty() 
+    screen_name: string;
+
+    @IsString() 
+    @IsNotEmpty() 
+    screen_type: string;
+
+    @IsNumber() 
+    @IsNotEmpty() 
+    sequence: number;
+}

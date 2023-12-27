@@ -1,0 +1,39 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { LobMasterService } from './lob-master.service';
+import { CreateLobMasterDto } from './dto/create-lob-master.dto';
+import { UpdateLobMasterDto } from './dto/update-lob-master.dto';
+
+@Controller('lob-master')
+export class LobMasterController {
+  constructor(private readonly lobMasterService: LobMasterService) {}
+
+  @Post()
+  create(@Body() createLobMasterDto: CreateLobMasterDto) {
+    return this.lobMasterService.create(createLobMasterDto);
+  }
+
+  @Post('by-lob-code')
+  fetchAllByCode(@Body() data ) {
+    return this.lobMasterService.fetchAllByCode(data);
+  }
+
+  @Get()
+  findAll() {
+    return this.lobMasterService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.lobMasterService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateLobMasterDto: UpdateLobMasterDto) {
+    return this.lobMasterService.update(+id, updateLobMasterDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.lobMasterService.remove(+id);
+  }
+}

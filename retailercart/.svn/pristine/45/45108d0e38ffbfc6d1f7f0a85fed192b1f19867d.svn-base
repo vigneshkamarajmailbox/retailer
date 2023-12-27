@@ -1,0 +1,51 @@
+import { IsNotEmpty, IsNumber, IsOptional, IsString, Matches, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { Pattern } from '../../shared/enum/pattern.enum';
+
+export class SignupDto {
+ 
+  @IsString()
+  @IsNotEmpty()
+  cmpCode: string;
+
+
+  @IsString()
+  @IsNotEmpty()
+  userName: string;
+
+
+  @IsNumber()
+  @IsNotEmpty()
+  mobileNo: number;
+
+
+  @IsString()
+  @IsNotEmpty()
+  groupCode: string
+
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  
+  @MaxLength(15)
+  @MinLength(15)
+  @IsString()
+  @Matches(Pattern.GST)
+  @IsOptional()
+  gstNo: string;
+
+
+  @Matches(Pattern.PAN)
+  @MaxLength(10)
+  @MinLength(10)
+  @IsString()
+  @IsOptional()
+  panNo: string;
+
+
+  @Max(999999)
+  @Min(111111)
+  @IsNotEmpty()
+  pincode: number;
+}

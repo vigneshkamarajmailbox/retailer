@@ -1,0 +1,183 @@
+URL 	- /interdb/transaction/actionapi
+METHOD	- POST
+
+ACTION API REQUEST FOR ORDER STATUS :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "Perfetti",
+      "distrCode": "305094",
+      "actionTime": 1588662022000,
+      "actionCode": "ORDER_STATUS",
+      "actionTemplate": "305094R13493242020050500001^R^Order Recevied"
+    },
+    {
+      "cmpCode": "Perfetti",
+      "distrCode": "305094",
+      "actionTime": 1588676422000,
+      "actionCode": "ORDER_STATUS",
+      "actionTemplate": "305094R13493242020050500001^S^Stock Allocated"
+    },
+    {
+      "cmpCode": "Perfetti",
+      "distrCode": "305094",
+      "actionTime": 1588708822000,
+      "actionCode": "ORDER_STATUS",
+      "actionTemplate": "305094R13493242020050500001^V^Vehicle Allocated"
+    },
+    {
+      "cmpCode": "Perfetti",
+      "distrCode": "305094",
+      "actionTime": 1588759222000,
+      "actionCode": "ORDER_STATUS",
+      "actionTemplate": "305094R13493242020050500001^D^Delivered"
+    },
+    {
+      "cmpCode": "Perfetti",
+      "distrCode": "305094",
+      "actionTime": 1588662022000,
+      "actionCode": "ORDER_STATUS",
+      "actionTemplate": "305094R13493242020050500002^R^Order Recevied"
+    },
+    {
+      "cmpCode": "Perfetti",
+      "distrCode": "305094",
+      "actionTime": 1588676422000,
+      "actionCode": "ORDER_STATUS",
+      "actionTemplate": "305094R13493242020050500002^S^Stock Allocated"
+    },
+    {
+      "cmpCode": "Perfetti",
+      "distrCode": "305094",
+      "actionTime": 1588845622000,
+      "actionCode": "ORDER_STATUS",
+      "actionTemplate": "305094R13493242020050500002^V^Vehicle Allocated"
+    }
+  ]
+}
+
+
+ACTION API REQUEST FOR ORDER VS INVOICE VALUE :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "actionTime": 1588044900000,
+      "actionCode": "ORDER_INVOICE_VALUE",
+      "actionTemplate": "0022000004CHN0CH0014586520200425070500001^1009.704300~INV001^1000.00"
+    },
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "actionTime": 1588064100000,
+      "actionCode": "ORDER_INVOICE_VALUE",
+      "actionTemplate": "0022000004CHN0CH0014586520200425070500111^2002.22~INV111^2220.00"
+    }
+  ]
+}
+
+
+ACTION API REQUEST FOR ORDER VS INVOICE LINE LEVEL :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "actionTime": 1588044900000,
+      "actionCode": "ORDER_INVOICE_LINE_LEVEL",
+      "actionTemplate": "0022000004CHN0CH0014586520200425070500001^INV001~E^FC010050^BM16823-14.5499_20^6?E^FC010200^BT0517-64.0195_1.50P_88^6?E^FC030050^BU0814-19.6423_3.00P_27^3?E^FC060100^BU5022-14.5499_12.00P_20^6?E^FC250100^RU4447-36.3747_50^6"
+    },
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "actionTime": 1588064100000,
+      "actionCode": "ORDER_INVOICE_LINE_LEVEL",
+      "actionTemplate": "0022000004CHN0CH0014586520200425070500111^INV111~E^FC010050^BM16823-14.5499_20^1?N^FC250100^RU4447-36.3747_50^60"
+    }
+  ]
+}
+
+ACTION API REQUEST FOR GENERAL NOTIFICATION FOR ALL USERS IN COMPANY :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "actionTime": 1588044900000,
+      "actionCode": "GN_NOTIFICATION_FOR_ALL",
+      "actionTemplate": "New Product is launched."
+    }
+  ]
+}
+
+ACTION API REQUEST FOR GENERAL NOTIFICATION FOR ALL USERS IN DISTRIBUTOR :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "actionTime": 1588044900000,
+      "actionCode": "GN_NOTIFICATION_FOR_DISTR",
+      "actionTemplate": "New Scheme is launched."
+    }
+  ]
+}
+
+ACTION API REQUEST FOR GENERAL NOTIFICATION FOR SPECIFIED USERS IN DISTRIBUTOR :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "actionTime": 1588044900000,
+      "actionCode": "GN_NOTIFICATION_FOR_CUST",
+      "actionTemplate": "0022000004CHN0CH00145865^New Scheme is launched~0022000004CHN0CH00145870~Product Details"
+    }
+  ]
+}
+
+ACTION API REQUEST FOR GENERAL SMS FOR ALL USERS IN COMPANY :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "actionTime": 1588044900000,
+      "actionCode": "SMS_NOTIFICATION_FOR_ALL",
+      "actionTemplate": "New Product is launched."
+    }
+  ]
+}
+
+ACTION API REQUEST FOR SMS NOTIFICATION FOR ALL USERS IN DISTRIBUTOR :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "actionTime": 1588044900000,
+      "actionCode": "SMS_NOTIFICATION_FOR_DISTR",
+      "actionTemplate": "New Scheme is launched."
+    }
+  ]
+}
+
+ACTION API REQUEST FOR SMS NOTIFICATION FOR SPECIFIED USERS IN DISTRIBUTOR :
+
+{
+  "actionList": [
+    {
+      "cmpCode": "DIL",
+      "actionTime": 1588044900000,
+      "actionCode": "SMS_NOTIFICATION_FOR_CUST",
+      "actionTemplate": "9635285263^9023248232^9632589655~New Scheme is launched."
+    }
+  ]
+}

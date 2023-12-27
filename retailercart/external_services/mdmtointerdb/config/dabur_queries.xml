@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <query name="INSERT_ORDER_HEADER_DABUR">
+        MERGE RtrApptoConsole_OrderBookingHeader AS target
+        USING (
+            VALUES (
+                :cmpCode,
+                :distrCode,
+                :orderNo
+                )
+            ) AS source(CmpCode, DistrCode, OrderNo)
+            ON target.CmpCode = source.CmpCode
+                AND target.DistrCode = source.DistrCode
+                AND target.OrderNo = source.OrderNo
+        WHEN MATCHED
+            THEN
+                UPDATE
+                SET ModDt = GETDATE()
+        WHEN NOT MATCHED
+            THEN
+                INSERT (
+                    CmpCode,
+                    DistrCode,
+                    OrderNo,
+                    DistrSalesmanCode,
+                    RouteCode,
+                    CustomerCode,
+                    OrderDt,
+                    Remarks,
+                    Latitude,
+                    Longitude,
+                    StartTime,
+                    EndTime,
+                    Digitalsignature,
+                    NewCustomerFlag,
+                    UploadFlag,
+                    ModDt
+                    )
+                VALUES (
+                    :cmpCode,
+                    :distrCode,
+                    :orderNo,
+                    '',
+                    '',
+                    :customerCode,
+                    :orderDt,
+                    'Order generated from Retailer SSFA',
+                    :latitude,
+                    :longitude,
+                    :startTime,
+                    :endTime,
+                    '',
+                    '',
+                    'N',
+                    GETDATE()
+                    );
+    </query>
+    <query name="INSERT_ORDER_DETAILS_DABUR">
+        MERGE RtrApptoConsole_OrderBookingDetails AS target
+        USING (
+            VALUES (
+                :cmpCode,
+                :distrCode,
+                :orderNo,
+                :prodCode,
+                :prodBatchCode
+                )
+            ) AS source(CmpCode, DistrCode, OrderNo, ProdCode, ProdBatchCode)
+            ON target.CmpCode = source.CmpCode
+                AND target.DistrCode = source.DistrCode
+                AND target.OrderNo = source.OrderNo
+                AND target.ProdCode = source.ProdCode
+                AND target.ProdBatchCode = source.ProdBatchCode
+        WHEN MATCHED
+            THEN
+                UPDATE
+                SET ModDt = GETDATE()
+        WHEN NOT MATCHED
+            THEN
+                INSERT (
+                    CmpCode,
+                    DistrCode,
+                    OrderNo,
+                    ProdCode,
+                    ProdBatchCode,
+                    OrderQty,
+                    UOMCode,
+                    OrderValue,
+                    UploadFlag,
+                    ModDt
+                    )
+                VALUES (
+                    :cmpCode,
+                    :distrCode,
+                    :orderNo,
+                    :prodCode,
+                    :prodBatchCode,
+                    :orderQty,
+                    :uomCode,
+                    :orderValue,
+                    'N',
+                    GETDATE()
+                    );
+    </query>
+
+    <query name="INSERT_LOGIN_REFERRAL_DABUR">
+        MERGE RtrApp2Console__Login_Referral AS target
+            USING (
+                VALUES (:CmpCode,
+                :DistrCode,
+                :SalesmanCode,
+                :CustomerCode)
+            ) AS source(CmpCode, DistrCode, SalesmanCode, CustomerCode)
+                ON target.CmpCode = source.CmpCode
+                AND target.DistrCode = source.DistrCode
+                AND target.SalesmanCode = source.SalesmanCode
+                AND target.CustomerCode = source.CustomerCode
+                WHEN MATCHED
+                THEN
+        UPDATE
+            SET ModDt = GETDATE()
+        WHEN NOT MATCHED
+            THEN
+        INSERT (
+            CmpCode,
+            DistrCode,
+            SalesmanCode,
+            CustomerCode,
+            UploadFlag,
+            ModDt
+        )
+        VALUES (
+            :CmpCode,
+            :DistrCode,
+            :SalesmanCode,
+            :CustomerCode,
+            'N',
+            GETDATE()
+        );
+    </query>
+    <query name="INSERT_ORDER_REFERRAL_DABUR">
+        MERGE RtrApp2Console_Order_Referral AS target
+        USING (
+            VALUES (:CmpCode,
+            :DistrCode,
+            :OrderNo,
+            :SalesmanCode,
+            :CustomerCode)
+            ) AS source(CmpCode, DistrCode, OrderNo , SalesmanCode, CustomerCode)
+            ON target.CmpCode = source.CmpCode
+            AND target.DistrCode = source.DistrCode
+            AND target.OrderNo = source.OrderNo
+            AND target.SalesmanCode = source.SalesmanCode
+            AND target.CustomerCode = source.CustomerCode
+        WHEN MATCHED
+            THEN
+        UPDATE
+            SET ModDt = GETDATE()
+        WHEN NOT MATCHED
+            THEN
+        INSERT (
+            CmpCode,
+            DistrCode,
+            OrderNo,
+            SalesmanCode,
+            CustomerCode,
+            UploadFlag,
+            ModDt
+        )
+        VALUES (
+            :CmpCode,
+            :DistrCode,
+            :OrderNo,
+            :SalesmanCode,
+            :CustomerCode,
+            'N',
+            GETDATE()
+        );
+    </query>
+
+    <query name="INSERT_SYNC_LOG_DABUR">
+        INSERT INTO RtrApp2Console_SyncLog (LoginCode,
+                AppVersion,
+                SyncDt,
+                SyncStartTime,
+                SyncEndTime,
+                Mode,
+                ProcessName,
+                UserName,
+                Message,
+                UploadFlag,
+                ModDt)
+        VALUES
+                (:LoginCode,
+                :AppVersion,
+                :SyncDt,
+                :SyncStartTime,
+                :SyncEndTime,
+                :Mode,
+                :ProcessName,
+                :UserName,
+                :Message,
+                'N',
+                GETDATE());
+    </query>
+</queries>

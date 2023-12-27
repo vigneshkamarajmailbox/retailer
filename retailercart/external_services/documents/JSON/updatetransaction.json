@@ -1,0 +1,65 @@
+UPDATE LOCATION TRANSACTION REQUEST :
+
+{
+  "cmpCode": "DIL",
+  "entity": "com.botree.interdbentity.model.LocationUpdateEntity",
+  "updateList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "loginCode": "9635585398",
+      "updateDt": "2019-04-03"
+    },
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "loginCode": "9635585398",
+      "updateDt": "2019-04-04"
+    },
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "loginCode": "9635585398",
+      "updateDt": "2019-04-08"
+    }
+  ],
+  "interDBProcess": "locationupdate"
+}
+
+RESPONSE :200 OK
+
+
+UPDATE ORDER TRANSACTION REQUEST :
+
+{
+  "cmpCode": "DIL",
+  "entity": "com.botree.interdbentity.model.OrderBookingHeaderEntity",
+  "updateList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "orderNo": "0022000004CHN0CH0014586520200425070500001"
+    }
+  ],
+  "interDBProcess": "order"
+}
+
+RESPONSE : 200 OK
+
+
+UPDATE FEEDBACK TRANSACTION REQUEST :
+
+{
+  "cmpCode": "DIL",
+  "entity": "com.botree.interdbentity.model.FeedBackEntity",
+  "updateList": [
+    {
+      "cmpCode": "DIL",
+      "distrCode": "0022000004",
+      "feedbackNo": "026ec02c-e4ff-4a96-81a2-e7f177cf47d2"
+    }
+  ],
+  "interDBProcess": "feedback"
+}
+
+RESPONSE : 200 OK

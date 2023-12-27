@@ -1,0 +1,702 @@
+<resources>
+    <string name="release_date">17-09-2019</string>
+    <!--Product filter level-->
+    <string name="filter_level">3</string>
+
+    <string name="about_us_txt"> \t Anand Milk Union Limited or Amul is an Indian cooperative dairy company, based at Anand in the state of Gujarat.\n\n
+\t Formed in 1948, it is a cooperative brand managed by a cooperative body, the Gujarat Co-operative Milk Marketing Federation Ltd. (GCMMF), which today is jointly owned by 3.6 million milk producers in Gujarat.
+Amul spurred Indias White Revolution, which made the country the worlds largest producer of milk and milk products.\n\n
+\t White revolution was spearheaded by Tribhuvandas Patel under the guidance of Sardar Patel. As a result, Kaira District Milk Union Limited was born in 1946. Tribhuvandas became the founding chairman of the organization and led it until his death. He hired Dr. Verghese Kurien three years after the white revolution. He convinced Dr. Kurien to stay and help with the mission.</string>
+
+    <string name="download_local_url">redirect/download</string>
+
+    <string name="download_distMaster_url">controller/download</string>
+    <string name="upload_local_url">controller/upload</string>
+    <string name="banner_image">getbannerimage/%1$s/jpeg</string>
+    <!--<string name="notification_url">sfaweb/services/sfa/salesforce/broadcastDownload</string>-->
+
+    <string name="app_name">एसमडीमएस</string>
+    <string name="action_settings">सेटिंग्स</string>
+    <string name="action_logout">लॉग आउट</string>
+
+    <string name="channel">चैनल*</string>
+    <string name="group">ग्रुप*</string>
+    <string name="retailer_class">क्लास</string>
+    <string name="retailer_name">रिटेलर नेम</string>
+    <string name="phone_number">फोन नंबर</string>
+    <string name="mobile_number">मोबाइल नंबर*</string>
+    <string name="address">पता</string>
+    <string name="tin">टिन</string>
+    <string name="zip">पिन *</string>
+    <string name="capture_photo">फोटो कैप्चर करें</string>
+    <string name="reset">रीसेट</string>
+    <string name="filter">फ़िल्टर</string>
+    <string name="product_filter">प्रोडक्ट फिल्टर</string>
+    <string name="select_category">श्रेणी का चयन करें</string>
+    <string name="select_brand">ब्रांड का चयन करें</string>
+    <string name="based_on_stocks">स्टॉक्स पर आधारित</string>
+    <string name="all">सब</string>
+    <string name="zero">शून्य</string>
+    <string name="non_zero">गैर शून्य</string>
+    <string name="cancel">रद्द करना</string>
+    <string name="ok">ठीक</string>
+    <string name="enter_minimum_char">उत्पाद का नाम या कोड दर्ज करें</string>
+    <string name="add">जोड़ना</string>
+    <string name="no_record">कोई रिकॉर्ड नहीं</string>
+    <string name="next">आगे</string>
+    <string name="validate">मान्य</string>
+    <string name="invoice_no">इनवॉइस नंबर</string>
+    <string name="due_since">के बाद से</string>
+    <string name="balance">बैलेंस</string>
+    <string name="submit">सबमिट करें</string>
+    <string name="update_location">स्थान अपडेट करें</string>
+    <string name="null_val">नाल</string>
+    <string name="invoice">इनवॉइस</string>
+    <string name="cgst">सीजीएसटी%</string>
+    <string name="sgst">एसजीएसटी%</string>
+    <string name="igst">आईजीएसटी%</string>
+    <string name="cesscaps">सेस%</string>
+
+    <string name="remarks">टिप्पणी लिखें (वैकल्पिक)</string>
+
+    <!-- Sync Screen validation message -->
+    <string name="ERR_INTERNAL_SERVER">आंतरिक सर्वर त्रुटि</string>
+    <string name="ERR_SYNCFAIL">समन्वयन विफल, कृपया पुनः प्रयास करें</string>
+    <string name="MSG_DLSUCCESS">डाउनलोड सफल</string>
+    <string name="MSG_APK_DL_FAILED">क्षमा करें, एपीके  डाउनलोड विफल रहा।</string>
+    <string name="MSG_UPLOADSUCCESS">सफलतापूर्वक अपलोड हो गया।</string>
+
+    <string name="MSG_NONETCONNECTION">नेटवर्क कनेक्शन नहीं है</string>
+
+    <!-- Alert Dialog Message -->
+    <string name="MSG_LOADING">लोड हो रहा है…</string>
+    <string name="MSG_ORDER_PROCESSING">आदेश प्रसंस्करण…</string>
+    <string name="MSG_NEW_APK">एक नया एपीके संस्करण उपलब्ध है। कृपया अब डाउनलोड और इंस्टॉल करें।</string>
+    <string name="MSG_Perform_sync">कृपया आगे बढ़ने के लिए सिंक करें।</string>
+    <string name="codification_success">संहिताकरण सफल</string>
+    <string name="codification_failure">संहिताकरण विफल रहा</string>
+    <string name="logout_failure">लॉगआउट विफल रहा</string>
+    <string name="MSG_Logout">क्या आप लॉगआउट करना चाहते हैं?</string>
+    <string name="logout_previous_user">यह फोन पहले से ही किसी अन्य उपयोगकर्ता के लिए मैप किया गया है। कृपया पिछले उपयोगकर्ता से लॉगआउट करें और वर्तमान उपयोगकर्ता में प्रवेश करें।</string>
+
+
+    <!-- Sync Screen -->
+    <string name="title_downloading">डाउनलोड कर रहा है</string>
+
+    <string name="Rs">\u20B9</string>
+    <string name="rs_string">\u20B9 %s</string>
+    <string name="latitude">अक्षांश</string>
+    <string name="longitude">देशान्तर</string>
+    <string name="select_channel">चैनल का चयन करें</string>
+    <string name="select_state_name">राज्य चुनें</string>
+    <string name="select_group">ग्रुप का चयन करें</string>
+    <string name="select_sub_channel">साबचैनल का चयन करें</string>
+
+    <string name="select_class">क्लास का चयन करें</string>
+    <string name="s_qty">एस.क्वांटिटी</string>
+    <string name="l_total">एल.टोटल</string>
+    <string name="product_not_ava_err">उत्पाद उपलब्ध नहीं है</string>
+    <string name="quantity">क्वांटिटी</string>
+    <string name="stock">भण्डार</string>
+    <string name="err_no_valid_order">आपने अभी तक कोई आदेश नहीं दिया!</string>
+    <string name="success_dialog">सफलतापूर्वक प्रमाणित किया गया</string>
+    <string name="no_recods_found">कोई रिकॉर्ड नहीं मिला</string>
+
+    <string name="page">पृष्ठ :</string>
+    <string name="scheme_empty">स्कीम उपलब्ध नहीं है</string>
+    <string name="scheme_detail">योजना का विवरण</string>
+    <string name="user_name">उपयोगकर्ता कोड / मोबाइल नं</string>
+
+    <string-array name="faq_question_array">
+        <item>(1) Location update</item>
+        <item>(2) Coverage Plan</item>
+        <item>(3) SYNC failed</item>
+        <item>(4) Crash Report</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string-array name="gps_signal_ans">
+        <item>* Kill the app</item>
+        <item>* Switch on the data/Wi-Fi (whatever is available)</item>
+        <item>* Switch on GPS</item>
+        <item>* Open the app and check</item>
+        <item>* If all this do not work, then update Google Map application and Google Play Store</item>
+    </string-array>
+
+    <string-array name="coverage_ans">
+        <item>* If coverage dialog is show</item>
+        <item>* Contact to your distributor.</item>
+        <item>* Tag the beat and do mobile sync in XDM.</item>
+    </string-array>
+
+    <string-array name="sync_failed_ans">
+        <item>* Restart the application</item>
+        <item>* Check the data connection – This can be because of very low data speed</item>
+        <item>* Try sync </item>
+
+    </string-array>
+
+    <string-array name="crash_report_ans">
+        <item>* If  SSFA app is crash</item>
+        <item>* Crash report will generate</item>
+        <item>* Please send the crash report through mail.</item>
+    </string-array>
+
+
+    <string name="google_maps_key">AIzaSyA5N5nO4AEgdvbPPjeD9qp_WzlIKRaVaCo</string>
+
+    <string name="msg_contact_distributor">कृपया व्यवस्थापक से संपर्क करें।</string>
+    <string name="available_bluetooth_device">उपलब्ध ब्लूटूथ डिवाइस</string>
+    <string name="qty">क्वांटिटी</string>
+    <string name="rate">मूल्यांकन करें</string>
+    <string name="contact">संपर्क करें</string>
+    <string name="product">प्रोडक्ट</string>
+    <string name="quote">:</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="select_image">गैलरी से छवि का चयन करें या कैमरे से कैप्चर करें</string>
+    <string name="tax">कर</string>
+    <string name="gst_no">जीएसटीआईएन नंबर *</string>
+    <string name="pan_no">पैन नंबर</string>
+    <string name="message_not_available">संदेश उपलब्ध नहीं है</string>
+    <string name="count">गिनती</string>
+
+
+    <string name="ERR_GST">जीएसटीआईएन नंबर 15 वर्णों का मान्य वर्णमाला नहीं होना चाहिए</string>
+    <string name="ERR_lat_lng">वर्तमान स्थान पर कब्जा होने तक प्रतीक्षा करें! या बाद में फिर से कोशिश करें!</string>
+    <string name="ERR_Pan">पैन नंबर 10 वर्णों का वैध वर्ण होना चाहिए</string>
+    <string name="distributor_code">वितरक कोड</string>
+
+    <string name="register">रजिस्टर करें</string>
+    <string name="unregister">अपंजीकृत</string>
+    <string name="search">खोज</string>
+
+    <item name="fgelv_tag_changed_visibility" type="id" />
+    <string name="title_activity_mtddetail">""</string>
+    <string name="label_stk">एसटीके</string>
+    <string name="label_Ord">ओआरडी</string>
+
+    <string name="free_product">नि: शुल्क प्रोडक्ट</string>
+    <string name="tentative_discount"><u>Sch Disc</u></string>
+    <string name="tentative_line_val">टेंटेटिव लाइन वैल्यू</string>
+    <string name="error_return_type">रिटर्न प्रकार चुनें</string>
+    <string name="error_invoice_no">इनवॉइस संख्या या जीआरएन नहीं दर्ज करें</string>
+    <string name="days">दिन</string>
+
+
+    <string-array name="dropdown_quick_access">
+        <item>3</item>
+        <item>6</item>
+        <item>9</item>
+    </string-array>
+
+    <string-array name="lang_dropdown">
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
+
+
+    <string-array name="dropdown_prod_filer">
+        <item>Product 1 Filter</item>
+        <item>Product 2 Filter</item>
+        <item>Category Filter</item>
+        <item>Brand Filter</item>
+    </string-array>
+
+
+    <string name="filter_one">प्रोडक्ट १ फ़िल्टर</string>
+    <string name="filter_two">प्रोडक्ट २ फ़िल्टर</string>
+    <string name="filter_three">श्रेणी फ़िल्टर</string>
+    <string name="filter_four">ब्रांड फ़िल्टर</string>
+
+    <string name="title_home">घर</string>
+    <string name="title_notifications">संदेश</string>
+    <string name="favorite">पसंदीदा</string>
+    <string name="search_hint">खोज</string>
+    <string name="menu_search">मेनू खोजें</string>
+    <string name="sub_channel">साबचैनल-चैनल *</string>
+    <string name="address_1">पता १*</string>
+    <string name="order_count">आदेश गणना:</string>
+    <string name="instock_count">इनस्टॉक गणना:</string>
+    <string name="enter_remarks">टिप्पणी दर्ज करें</string>
+    <string name="about_us">हमारे बारे में</string>
+    <string name="usbsync">यूएसबी सिंक</string>
+
+
+    <string name="net_amt">नेट आमेट</string>
+    <string name="stock_upload_msg">क्या आप पिछले दिन VAN बिक्री स्टॉक अपलोड करना चाहते हैं?</string>
+    <string name="full">पूर्ण</string>
+    <string name="partial">आंशिक</string>
+    <string name="total">कुल</string>
+    <string name="enter_invoice_no">इनवॉइस संख्या दर्ज करें</string>
+    <string name="language">भाषा:</string>
+    <string name="downloading">डाउनलोड कर रहा है</string>
+    <string name="uploading">अपलोड हो रहा है</string>
+    <string name="brand_name">ब्रांड का नाम</string>
+    <string name="ord_val">ऑर्ड वाल</string>
+    <string name="password">कुंजिका</string>
+    <string name="remember_password">पासवर्ड याद रखें</string>
+    <string name="notification">अधिसूचना</string>
+    <string name="login">लॉग इन करें</string>
+    <string name="modDt">दिनांक</string>
+    <string name="product_name">प्रोडक्ट का नाम</string>
+    <string name="product_code">उत्पाद कोड</string>
+    <string name="mtd_dashboard">एमटीडी डैशबोर्ड</string>
+    <string name="total_u20b9">"कुल: ₹ "</string>
+    <string name="discount">छूट</string>
+    <string name="scheme_discount">स्कीम डिस</string>
+    <string name="print">छाप</string>
+    <string name="values">मान</string>
+    <string name="price">कीमत :</string>
+    <string name="stk_tk">एसटीके टीके</string>
+    <string name="hi">नमस्ते</string>
+    <string name="today_s_beat">आज का बीट</string>
+    <string name="outlet_to_be_covered">कवर किया जाने वाला आउटलेट</string>
+    <string name="menu">मेन्यू</string>
+    <string name="quick_access">त्वरित ऐक्सेस</string>
+    <string name="notifications">सूचनाएं</string>
+    <string name="gst_user">जीएसटी उपयोगकर्ता</string>
+    <string name="gst_type">जीएसटी प्रकार</string>
+    <string name="composite">कम्पोजिट</string>
+    <string name="app_version">संस्करण</string>
+    <string name="n_o_items">कोई वस्तु नहीं</string>
+    <string name="sign_pad">पैड पर हस्ताक्षर करें</string>
+    <string name="total_purchase_receipt">कुल खरीद रसीद</string>
+    <string name="grn_no">जीआरएन नं</string>
+    <string name="inv_no">इनवॉइस नंबर:</string>
+    <string name="inv_amt">इनवॉइस रकम</string>
+    <string name="reason">कारण</string>
+    <string name="remarks_label">टिप्पणियों</string>
+    <string name="s_uom">एस. यूउम</string>
+    <string name="us_qty">यूएस. क्वांटिटी</string>
+    <string name="us_uom">यूएस. यूउम</string>
+    <string name="pur_price">खरीद मूल्य</string>
+    <string name="scheme_name">स्कीम का नाम</string>
+    <string name="payout">भुगतान</string>
+    <string name="slab_uom">यूउम</string>
+    <string name="scheme_type">स्कीम का प्रकार</string>
+    <string name="start_date">आरंभ करने की तिथि</string>
+    <string name="scheme_end_date">स्कीम की अंतिम तिथि</string>
+    <string name="scheme_slab">स्कीम स्लैब</string>
+
+    <string name="scheme_slabno">स्लैब नंबर</string>
+    <string name="scheme_slabfrom">स्लैब से</string>
+    <string name="scheme_slabto">स्लैब टू</string>
+    <string name="scheme_slab_forevery">स्लैब \\ तथा हर के लिए</string>
+    <string name="scheme_slab_payout">भुगतान करें</string>
+
+
+    <string name="van_sales">वैन की बिक्री</string>
+    <string name="credit_note">क्रेडिट नोट</string>
+    <string name="custom_order_screen">ऑर्डर बुकिंग / वैन बिक्री का चयन करें</string>
+    <string name="geofencing">जियोफ़ेंसिंग</string>
+    <string name="clear_app_data">ऐप डेटा साफ़ करें</string>
+    <string name="currency">मुद्रा</string>
+    <string name="auto_quick_access">ऑटो क्विक एक्सेस</string>
+    <string name="previous_order">पिछला आदेश</string>
+    <string name="faqs">पूछे जाने वाले प्रश्न</string>
+    <string name="version">संस्करण</string>
+    <string name="message">संदेश</string>
+    <string name="alert">चेतावनी</string>
+    <string name="at_a_time_you_can_do_one_operation">एक बार में आप एक ऑपरेशन कर सकते हैं, डेटा को बचा सकते हैं और दूसरे ऑपरेशन को करने के लिए फिर से आ सकते हैं।</string>
+    <string name="tentative_tax">कर</string>
+    <string name="applied_schemes">लागू स्कीमस</string>
+    <string name="uom">यूउम</string>
+    <string name="enter_quantity">मात्रा दर्ज करें</string>
+    <string name="select_uom">यूउम का चयन करें</string>
+    <string name="no_scheme_available">कोई योजना उपलब्ध नहीं है</string>
+    <string name="scheme_code">स्कीम कोड</string>
+    <string name="clear_pad">स्पष्ट पैड</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="sync">सिंक</string>
+
+    <string name="total_discount">डिस्क: ₹</string>
+    <string name="total_tax">कर: ₹</string>
+    <string name="voice_search">आवाज़</string>
+    <string name="search_screen">स्क्रीन खोजें</string>
+    <string name="op_stock">आरंभिक स्टॉक</string>
+    <string name="op_stock_val">ओपनिंग स्टॉक वैल्यू</string>
+    <string name="cl_stock">आखरी बचा हुआ माल</string>
+    <string name="cl_stock_val">आखरी बचा हुआ माल की मूल्य</string>
+    <string name="accept">स्वीकार करना</string>
+    <string name="reject">अस्वीकार</string>
+    <string name="retailer_approval_detail">रिटेलर स्वीकृति विस्तार से</string>
+    <string name="pin_code">पिन कोड</string>
+    <string name="retailer_code">रिटेलर कोड</string>
+    <string name="tab_to_close">यहाँ टैब को बंद करें</string>
+    <string name="apo_code">एपीओ कोड</string>
+    <string name="own_wd_code">खुद का डब्ल्यूडी कोड</string>
+    <string name="file">फ़ाइल</string>
+    <string name="ord_qty">आदेश की मात्रा</string>
+    <string name="double_zero">0.00</string>
+    <string name="total_cl_st_val">कुल समापन स्टॉक मूल्य</string>
+    <string name="total_ord_val">"कुल आदेश मूल्य "</string>
+    <string name="total_op_st_val">कुल ओपनिंग स्टॉक मूल्य</string>
+
+    <string name="filter_brands">फ़िल्टर ब्रांड</string>
+    <string name="brand_filter">ब्रांड फ़िल्टर</string>
+    <string name="other_filter">अन्य फ़िल्टर</string>
+    <string name="existing_password">मौजूदा पासवर्ड</string>
+    <string name="new_password">नया पासवर्ड</string>
+    <string name="confirm_new_password">नए पासवर्ड की पुष्टि करें</string>
+    <string name="enter_otp">ओटीपी दर्ज करें</string>
+    <string name="generate_otp">ओटीपी जनरेट करें</string>
+    <string name="change_password">पासवर्ड बदलें</string>
+    <string name="expiry_date">समाप्ति तिथि</string>
+
+    <string name="unable_connect_server">सर्वर कनेक्ट करने में असमर्थ</string>
+    <string name="invalid_request">अमान्य अनुरोध</string>
+    <string name="internal_server_error">आंतरिक सर्वर त्रुटि</string>
+    <string name="service_unreachable">सेवा उप्लब्ध् नहीं है</string>
+    <string name="request_timeout">ब्रेक का अनुरोध</string>
+    <string name="type_a_message">एक संदेश लिखें</string>
+    <string name="err_creating_fragment">टुकड़ा बनाने में त्रुटि</string>
+    <string name="check_internet_connection_try_again">अपने इंटरनेट कनेक्शन की जाँच करें और पुन: प्रयास करें</string>
+    <string name="all_route">सभी मार्गों</string>
+    <string name="ent_qty_outofstock">दर्ज की गई मात्रा स्टॉक से बाहर है</string>
+    <string name="no_record_found">कोई रिकॉर्ड नहीं मिला</string>
+    <string name="_00">00</string>
+    <string name="of_0">0 ऑफ़ 00</string>
+    <string name="_0_00">0.00</string>
+    <string name="hi_how_can_i_help_you">नमस्कार, मैं किस प्रकार से आपकी सहायता कर सकता हूँ</string>
+    <string name="lable_s">एस</string>
+    <string name="paired">बनती</string>
+    <string name="_99">९९+</string>
+    <string name="ptr">पीटीआर</string>
+    <string name="mrp">मआरपी</string>
+    <string name="_0">0</string>
+    <string name="retaielr_name">रिटेलर का नाम</string>
+    <string name="dis">छूट</string>
+    <string name="user">उपयोगकर्ता</string>
+    <string name="bot">बॉट</string>
+    <string name="label_empty">""</string>
+
+    <string name="total_val">कुल मूल्य :</string>
+    <string name="normal">साधारण</string>
+    <string name="quick">शीघ्र</string>
+    <string name="custom">रिवाज</string>
+
+    <string name="bot_service">बॉट सेवा</string>
+
+    //stockledger reports strings
+
+    <string name="prodname">उत्पाद का नाम</string>
+    <string name="Opening_SalableQty">आरंभिक \n तथा विक्रेय माल</string>
+    <string name="Opening_UnSalableQty">आरंभिक \n तथा अविक्रेय माल</string>
+    <string name="Opening_OfferQty">आरंभिक \n तथा  प्रस्ताव माल</string>
+    <string name="Purchase_SalableQty">क्रय  \n तथा विक्रेय माल</string>
+
+    <string name="Purchase_UnSalableQty">क्रय  \n तथा अविक्रेय माल</string>
+    <string name="Purchase_OfferQty">क्रय \n तथा  प्रस्ताव माल</string>
+    <string name="PurchaseRet_SalableQty">क्रय वापसी\n तथा विक्रेय माल</string>
+    <string name="PurchaseRet_UnSalableQty">क्रय वापसी\n तथा अविक्रेय माल</string>
+    <string name="PurchaseRet_OfferQty">क्रय वापसी \n तथा  प्रस्ताव माल</string>
+    <string name="Sales_SalableQty">बिक्री \n तथा विक्रेय माल</string>
+    <string name="Sales_UnSalableQty">बिक्री \n तथा अविक्रेय माल</string>
+
+    <string name="Sales_OfferQty">बिक्री \nतथा  प्रस्ताव माल</string>
+    <string name="SalesRet_SalableQty">बिक्री वापसी \n तथा विक्रेय माल</string>
+    <string name="SalesRet_UnSalableQty">बिक्री वापसी \n तथा अविक्रेय माल</string>
+    <string name="SalesRet_OfferQty">बिक्री वापसी \n तथा प्रस्ताव माल</string>
+    <string name="AdjIn_SalableQty">समायोजन में \n तथा विक्रेय माल</string>
+
+    <string name="AdjInUnSalableQty">समायोजन में \n तथा अविक्रेय माल</string>
+    <string name="AdjInOfferQty">समायोजन में \n तथा प्रस्ताव माल</string>
+    <string name="AdjOutSalableQty">समायोजन \n तथा विक्रेय माल</string>
+    <string name="AdjOutUnSalableQty">समायोजन \n तथा अविक्रेय माल</string>
+    <string name="AdjOutOfferQty">समायोजन \n तथा प्रस्ताव माल</string>
+    <string name="ClosingStkUnSalableQty">आखरी बचा \n तथा अविक्रेय माल</string>
+    <string name="ClosingStkSalableQty">आखरी बचा \n तथा विक्रेय माल</string>
+    <string name="ClosingStkOfferQty">आखरी बचा \n तथा प्रस्ताव माल</string>
+
+
+    <string name="enter_mobile_no">वैध मोबाइल नंबर दर्ज करें</string>
+    <string name="enter_zip_code">मान्य ज़िप कोड दर्ज करें</string>
+
+    //usb Sync
+
+
+    <string name="MSG_DOWNLOAD_SHEMES">डाउनलोड योजनाएं ...</string>
+
+    <string name="speech_prompt">बोलो भी</string>
+    <string name="speech_not_supported">माफ़ करना! आपका उपकरण भाषण समर्थन इनपुट नहीं करता है</string>
+    <string name="apply">लागू</string>
+
+    <string name="pin_code_with_semi">पिन कोड</string>
+    <string name="wrong_weight">गलत वजन है,</string>
+    <string name="mrp_msg">एम आर पी :</string>
+    <string name="outofstock_msg">स्टॉक से बाहर है, कृपया स्टॉक की जाँच करें और मात्रा दर्ज करें</string>
+    <string name="error_stock_weight">सही स्टॉक वजन दर्ज करें</string>
+    <string name="error_weight_less_than_prod">दर्ज वजन उत्पाद के वजन से कम है। \\n न्यूनतम उत्पाद वजन है</string>
+    <string name="error_quantity">मात्रा दर्ज करें</string>
+
+    <string name="new_fingerprint_enrolled_description">इस डिवाइस में एक नया फिंगरप्रिंट जोड़ा गया है, इसलिए आपका पासवर्ड आवश्यक है।</string>
+    <string name="use_fingerprint_in_future">भविष्य में फिंगरप्रिंट का उपयोग करें</string>
+    <string name="use_fingerprint_to_authenticate_key">_अंगुली की छाप_सेवा_प्रमाणित_चाभी</string>
+    <string name="description_fingerprint_icon">फिंगरप्रिंट आइकन</string>
+    <string name="fingerprint_description">जारी रखने के लिए फिंगरप्रिंट की पुष्टि करें</string>
+    <string name="fingerprint_hint">टच सेंसर</string>
+    <string name="password_description">जारी रखने के लिए अपना स्टोर पासवर्ड दर्ज करें</string>
+    <string name="fingerprint_not_recognized">फ़िंगरप्रिंट नहीं पहचाना गया। पुनः प्रयास करें</string>
+    <string name="finger_print_auth">फिंगर प्रिंट प्रमाणीकरण</string>
+    <string name="finger_print">फिंगर प्रिंट</string>
+
+    <string name="salable">विक्रेय</string>
+    <string name="unsalable">अविक्रेय</string>
+
+    <string name="verify">ओटीपी सत्यापित करें</string>
+    <string name="otp_hint">मान्य ओटीपी दर्ज करें</string>
+    <string name="resend_otp"><u>Resend OTP!</u></string>
+    <string name="otp_dialog_title">ओटीपी मान्यता</string>
+
+    <string name="verified">सत्यापित</string>
+    <string name="otp_send_msg">एक ओटीपी दिए गए मोबाइल नंबर पर भेजा जाता है:</string>
+    <string name="outlet_images">आउटलेट छवियाँ</string>
+    <string name="ERR_GST_state">जीएसटी राज्य कोड और जीएसटीआईएन नंबर समान होना चाहिए</string>
+    <string name="location_err">कृपया अंतिम स्थान अपडेट होने तक प्रतीक्षा करें।</string>
+    <string name="error_weight">सही क्रम वजन दर्ज करें</string>
+
+
+    <string name="support_mail">amulsupport@botree.co.in</string>
+    <string name="support_contact">18004191597</string>
+    <string name="shared_customer">साझा किया गया ग्राहक</string>
+    <string name="shared_customer_msg">यह मोबाइल नंबर पहले से मौजूद नहीं है, इसलिए हम इस रिटेलर के निर्माण के लिए मौजूदा ग्राहक विवरण का उपयोग करेंगे।</string>
+
+    <string name="server_unreachable">सर्वर पहुँच से बाहर</string>
+    <string name="server_unreach_err_msg">हम कुछ तकनीकी समस्या का सामना कर रहे हैं, कृपया बाद में पुनः प्रयास करें।.</string>
+
+    <string name="uploading_msg">लेनदेन डेटा अपलोड कर रहा है ...</string>
+
+    <string name="address_digits_pattern">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ./,</string>
+    <string name="outlet_name_digits_pattern">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ./,&amp;</string>
+    <string name="email">ईमेल आईडी</string>
+
+    <string name="routelist">रूट सूची *</string>
+    <string name="region">भूगोल *</string>
+    <string name="drug_licence_number">ड्रग लाइसेंस नंबर</string>
+    <string name="credit_bills">क्रेडिट बिल</string>
+    <string name="credit_day">क्रेडिट के दिन</string>
+    <string name="credit_limit">क्रेडिट सीमा</string>
+    <string name="cash_discount">कैश डिस्क%</string>
+    <string name="previous">पिछला</string>
+    <string name="relationstatus">संबंध स्थिति</string>
+    <string-array name="relationstatus">
+        <item>Independent</item>
+        <item>Parent</item>
+        <item>Child</item>
+    </string-array>
+    <string name="enter_address">शिपिंग पता</string>
+    <string name="password_strength_weak">कमज़ोर</string>
+    <string name="password_strength_medium">मध्यम</string>
+    <string name="password_strength_strong">मजबूत</string>
+    <string name="password_strength_very_strong">बहुत ताकतवर</string>
+
+    <string name="route_name">रूट का नाम</string>
+
+    <string name="contact_person">संपर्क व्यक्ति</string>
+    <string name="ffsa_licence_number">एफएसएसएआइ लाइसेंस नंबर</string>
+    <string name="bankname">बैंक का नाम</string>
+    <string name="branchname">शाखा का नाम</string>
+    <string name="ifsccode">IFSC कोड</string>
+    <string name="accounttype">खाते का प्रकार</string>
+    <string name="currentaccount">वर्तमान</string>
+    <string name="savings">जमा पूंजी</string>
+    <string name="accountno">खाता संख्या</string>
+    <string name="city">शहर*</string>
+
+    <string name="previous_purchase_order">खरीद आदेश की स्थिति</string>
+
+    <string name="menu_refresh">ताज़ा करना</string>
+    <string name="brand">ब्रांड</string>
+
+
+    <string name="skip">&#60;&#60; छोड़ें</string>
+    <string name="retailer_day_off">रिटेलर डे ऑफ</string>
+    <string name="gst_state">जीएसटी राज्य *</string>
+
+    <string name="sales_value">एमटीडी बिक्री:</string>
+    <string name="no_chart_datas_found">कोई डेटा नहीं मिला</string>
+    <string name="u_batch"><u>Batch</u></string>
+    <string name="u_uom"><u>UOM</u></string>
+    <string name="country">देश *</string>
+    <string name="retailer_status">खुदरा विक्रेता स्थिति</string>
+    <string name="gross_amt">सकल अमत</string>
+    <string name="po_status">पीओ की स्थिति</string>
+    <string name="tax_amt">कर</string>
+    <string name="citytown">शहर / नगर *</string>
+    <string name="extracting_products_msg">मास्टर डेटा निकालना ...</string>
+
+    <string name="salesman">विक्रेता</string>
+    <string name="route">मार्ग</string>
+    <string name="retailer_not_available">खुदरा विक्रेता उपलब्ध नहीं है</string>
+    <string name="order_total">कुल आदेश</string>
+
+    <string name="day_name_format">इइइ</string>
+    <string name="invalid_date">दिनांक% 1 $ s और% 2 $ s के बीच होना चाहिए।</string>
+    <string name="month_only_name_format">MMMM</string>
+    <string name="year_only_format">yyyy</string>
+
+
+    <string name="billno">बिल नहीं</string>
+    <string name="billdate">तारीख</string>
+    <string name="outstandingamt">रकम</string>
+
+    <string name="retailer">खुदरा विक्रेता</string>
+    <string name="cashdiscount_">नकद छूट :</string>
+    <string name="percentage">प्रतिशत</string>
+
+    <string name="qty_1">मात्रा १</string>
+    <string name="qty_2">मात्रा २</string>
+    <string name="db_discount_amt">डीबी डिस्क</string>
+    <string name="fr_qty">एफ.मात्रा</string>
+
+
+    <string name="custom_data_value">मूल्य</string>
+
+    <string name="order_qty">आदेश मात्रा</string>
+    <string name="serviced_qty">सेवा की गई मात्रा</string>
+    <string name="sell_rate">बेचने की दर</string>
+    <string name="order_value">ऑर्डर का मूल्य</string>
+
+    <string name="adjust_amout">आमेट को समायोजित करें</string>
+    <string name="adjust_bal">संतुलन समायोजित करें</string>
+    <string name="prodBatchCode">बैच कोड</string>
+
+    <string name="retailer_name_mandate">रिटेलर का नाम *</string>
+    <string name="actual_net_amt">नेट एमटी: ₹</string>
+    <string name="product_tax"><u>Tax</u></string>
+    <string name="value">मूल्य</string>
+    <string name="cash_discount_amt">कैश डिस्क</string>
+    <string name="confirm">पुष्टि करें</string>
+    <string name="last_sync">अंतिम सिंक:</string>
+    <string name="lob_filter">एलओबी फ़िल्टर</string>
+    <string name="newhint">नया</string>
+    <string name="db_perc">डीबी प्रतिशत</string>
+    <string name="db_val">डीबी वैल</string>
+    <string name="uom_1">यूओएम १</string>
+    <string name="uom_2">यूओएम २</string>
+    <string name="MSG_DOWNLOAD_REPORT">रिपोर्ट डाउनलोड करें …</string>
+    <string name="grossamt">जीआरएस एमटी: ₹</string>
+    <string name="discamt">डिस्क एमटी: ₹</string>
+    <string name="taxamt">टैक्स एएमटी: ₹</string>
+    <string name="channel_label">चैनल</string>
+    <string name="sym_percentage">"%"</string>
+    <string name="noOfInvoice">चालान संख्या</string>
+    <string name="not_available">उपलब्ध नहीं है</string>
+    <string name="customer">ग्राहक</string>
+    <string name="channellabel">चैनल</string>
+    <string name="subchannellabel">उप-चैनल</string>
+    <string name="grouplabel">ग्रुप</string>
+    <string name="classlabel">क्लास</string>
+
+    <string name="top_sheet_behavior" translatable="false">com.botree.smdms.support.TopSheetBehavior</string>
+    <string name="gross_amt_label">" ₹ सकल राशि"</string>
+    <string name="tax_label">" ₹ कर"</string>
+    <string name="net_amt_label">" ₹ नेट एएमटी"</string>
+    <string name="forgot_password"><u>Forgot Password</u></string>
+    <string name="validate_otp">ओटीपी सत्यापित करें</string>
+    <string name="report_download_failed">रिपोर्ट डाउनलोड विफल</string>
+    <string name="failure">असफलता</string>
+    <string name="success">सफलता</string>
+    <string name="gst_pattern">[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9]{1}[A-Z]{1}[0-9A-Z]{1}</string>
+    <string name="pan_pattern">[A-Z]{5}[0-9]{4}[A-Z]{1}</string>
+    <string name="mail_pattern">.+@.+\\.[a-z]+</string>
+
+    <string-array name="version_changes">
+        <item>&#9673; SSFA App for Retailer to place orders</item>
+    </string-array>
+
+    <string name="file_format_error">फ़ाइल प्रारूप समर्थित नहीं है</string>
+
+
+    <string name="label_ptr">PTR</string>
+    <string name="kg_rate">KG RATE</string>
+    <string name="no_zero">0</string>
+    <string name="view_catalog"><u>View Catalog</u></string>
+    <string name="pur_pr">Pur.Pr</string>
+    <string name="feedback_store_visibility">Feedback</string>
+    <string name="label_mrp">MRP</string>
+    <string name="feedback">Feedback</string>
+    <string name="store_visibility">Store Visibility</string>
+    <string name="enter_text_here">Enter Text Here</string>
+    <string name="ordbooking_is_ptr_show">true</string>
+    <string name="ptr_with_tax">PTR W-Tax</string>
+    <string name="sov">SOV : </string>
+    <string name="error_uom">UOM not available contact you distributor</string>
+
+
+    <string-array name="stkloaddata">
+        <item>All Products</item>
+        <item>Top SKU</item>
+    </string-array>
+
+    <string name="submit_arrow">Submit >></string>
+    <string name="address_2">Address 2</string>
+    <string name="address_3">Address 3</string>
+    <string name="pincode">Pincode</string>
+    <string name="e_mail_id">E Mail Id</string>
+
+    <string name="gst_statecode">GST State Code</string>
+    <string name="branch_name">Branch Name</string>
+    <string name="branch_code">Branch Code</string>
+    <string name="aadhar_number">Aadhar Number</string>
+    <string name="geo_hier_path">Geography Hierarchy Path</string>
+    <string name="fssai_number">FSSAI Number</string>
+    <string name="gst_number">GST Number</string>
+    <string name="pan_number">PAN Number</string>
+    <string name="day_off">Day Off</string>
+    <string name="drug_license_number">Drug Licence Number</string>
+    <string name="type">Type</string>
+    <string name="distributor_adapter_nil">Nil</string>
+    <string name="net_rtr_margin">Net Rtr Margin %</string>
+    <string name="taxable_amt">Taxable Amt</string>
+    <string name="scheme">Scheme :</string>
+    <string name="order">Order</string>
+    <string name="scheme_util">Scheme Util</string>
+    <string name="no_of_invoice">No of Invoice</string>
+    <string name="scheme_description">Scheme Description</string>
+    <string name="utilized">Utilized</string>
+    <string name="scheme_distr_company_code_label">Company Code</string>
+    <string name="scheme_distr_code_label">Distributor Code</string>
+    <string name="route_total">Route Total</string>
+    <string name="outlets">Outlets</string>
+    <string name="items">Items</string>
+    <string name="share">Share</string>
+    <string name="order_summary">Order summary not available</string>
+    <string name="sales_return">Sales Return</string>
+    <string name="total_orders_values">Total Order Values</string>
+    <string name="zero_zero">0/0</string>
+    <string name="cash_total">Cash total</string>
+    <string name="cheque_total">Cheque Total</string>
+    <string name="beat_name">Beat Name</string>
+    <string name="total_line_items">Total Line Items</string>
+    <string name="new_outlets">New Outlets Added</string>
+    <string name="view_all_orders">View All Orders</string>
+    <string name="total_collection">Total Collection</string>
+    <string name="order_not_taken">Order Not Taken</string>
+    <string name="order_taken">Order Taken</string>
+    <string name="order_synced">Order Synced</string>
+    <string name="invoice_not_taken">Invoice Not Taken</string>
+    <string name="invoice_taken">Invoice Taken</string>
+    <string name="invoice_synced">Invoice Synced</string>
+    <string name="FILE_GENRATING">Generating file…</string>
+    <string name="dicount_amt">Discount Amt</string>
+    <string name="item">Item</string>
+    <string name="retailers">Retailers</string>
+    <string name="order_no">Order No</string>
+    <string name="total_unique_line_items">Total Unique Line Items</string>
+    <string name="scheme_distr_company_name_label">Company Name</string>
+    <string name="scheme_distr_name_label">Distributor Name</string>
+
+    <string name="new_user_err">This phone is already mapped to some other user, proceeding to login will upload all the transaction data for the previous user. Are you sure do you want to proceed ?</string>
+
+</resources>

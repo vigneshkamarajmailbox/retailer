@@ -1,0 +1,132 @@
+package com.botree.sfaweb.service;
+
+import com.botree.common.constants.StringConstants;
+import com.botree.common.exception.CommonExceptionHandler;
+import com.botree.common.model.LoginReferralModel;
+import com.botree.common.model.OrderReferralModel;
+import com.botree.common.model.ResponseModel;
+import com.botree.common.service.IQueryService;
+import com.botree.interdbentity.model.CustomerEntity;
+import com.botree.interdbentity.model.SalesmanEntity;
+import com.botree.sfadbrepository.dao.DAORepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Referral service to get all the referral related information.
+ * @author Naveen kumar.r Emp Id (1261)
+ */
+@Component
+public class ReferralService {
+    /** queryService. */
+    private final IQueryService queryService;
+
+    /** repository. */
+    private final DAORepository repository;
+
+
+    /**
+     * Constructor Method.
+     * @param queryServiceIn queryServiceIn
+     * @param repositoryIn   repositoryIn
+     */
+    public ReferralService(final IQueryService queryServiceIn, final DAORepository repositoryIn) {
+        this.queryService = queryServiceIn;
+        this.repository = repositoryIn;
+    }
+
+    /**
+     * This method used to fetch salesman.
+     * @param loginCode loginCode
+     * @return salesman
+     */
+    public List<SalesmanEntity> fetchSalesman(final String loginCode) {
+        return repository
+                .queryForList(queryService.get(StringConstants.FETCH_SALESMAN),
+                        Map.of(StringConstants.CONST_PARAM_1, loginCode),
+                        SalesmanEntity.class);
+    }
+
+    /**
+     * This method used to save login referral.
+     * @param referralModel LoginReferralModel
+     * @return responseModel
+     */
+    public ResponseModel saveLoginReferral(final LoginReferralModel referralModel) throws CommonExceptionHandler {
+        var salesman = repository.queryForList(
+                queryService.get(StringConstants.FETCH_SALESMAN_BY_CODE),
+                Map.of(StringConstants.CONST_PARAM_1, referralModel.getCmpCode(),
+                        StringConstants.CONST_PARAM_2, referralModel.getDistrCode(),
+                        StringConstants.CONST_PARAM_3, referralModel.getSalesmanCode()
+                ),
+                SalesmanEntity.class);
+        if (salesman != null && salesman.size() == 0) {
+            throw new CommonExceptionHandler("Salesman not found");
+        }
+        var customer = repository.queryForList(
+                queryService.get(StringConstants.FETCH_CUSTOMER_BY_CODE),
+                Map.of(StringConstants.CONST_PARAM_1, referralModel.getCmpCode(),
+                        StringConstants.CONST_PARAM_2, referralModel.getCustomerCode()
+                ),
+                CustomerEntity.class);
+        if (customer != null && customer.size() == 0) {
+            throw new CommonExceptionHandler("customer not found");
+        }
+        repository.insert(queryService.get(StringConstants.INSERT_LOGIN_REFERRAL), referralModel);
+        return new ResponseModel(HttpStatus.CREATED.value(), "Saved");
+    }
+
+
+    /**
+     * This method used to save order referral.
+     * @param referralModel OrderReferralModel
+     * @return responseModel
+     */
+    public ResponseModel saveOrderReferral(final OrderReferralModel referralModel)
+            throws CommonExceptionHandler {
+        var salesman = repository.queryForList(
+                queryService.get(StringConstants.FETCH_SALESMAN_BY_CODE),
+                Map.of(StringConstants.CONST_PARAM_1, referralModel.getCmpCode(),
+                        StringConstants.CONST_PARAM_2, referralModel.getDistrCode(),
+                        StringConstants.CONST_PARAM_3, referralModel.getSalesmanCode()
+                ),
+                SalesmanEntity.class);
+        if (salesman != null && salesman.size() == 0) {
+            throw new CommonExceptionHandler("Salesman not found");
+        }
+        var order = repository.queryForList(
+                queryService.get(StringConstants.FETCH_ORDER_BY_CODE),
+                Map.of(StringConstants.CONST_PARAM_1, referralModel.getCmpCode(),
+                        StringConstants.CONST_PARAM_2, referralModel.getOrderNo()
+                ),
+                CustomerEntity.class);
+        if (order != null && order.size() == 0) {
+            throw new CommonExceptionHandler("Order not found");
+        }
+        repository.insert(queryService.get(StringConstants.INSERT_ORDER_REFERRAL), referralModel);
+        return new ResponseModel(HttpStatus.CREATED.value(), "Saved");
+    }
+
+
+    /**
+     * This method used to fetch login referral.
+     * @return loginReferral
+     */
+    public List<LoginReferralModel> fetchLoginReferral() {
+        return repository
+                .queryForListWithRowMapper(queryService.get(StringConstants.FETCH_LOGIN_REFERRAL),
+                        LoginReferralModel.class);
+    }
+
+
+    /**
+     * This method used to save order referral.
+     * @return responseModel
+     */
+    public List<OrderReferralModel> fetchOrderReferral() {
+        return repository.queryForListWithRowMapper(queryService.get(StringConstants.FETCH_ORDER_REFERRAL),
+                OrderReferralModel.class);
+    }
+}

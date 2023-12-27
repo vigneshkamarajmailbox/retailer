@@ -1,0 +1,186 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/prismjs/themes/prism-coy.css";
+@import "assets/demo/flags/flags.css";
+@import "assets/demo/documentation.scss";
+
+body{background: #fff;}
+.loginBg{background:#e6e0e0;width:100%;padding: 150px 50px 5px;height:100vh;}
+img{max-width:100%;}
+.loginBgRight img {
+    height:100%;
+    width:302px;
+    float:right;
+    border-radius: 0 10px 10px 0;
+}
+.loginBgInner{background: #fff;width:60%;margin-left:20%;border-radius:10px}
+.loginBgLeft{padding:50px}
+.loginBgLeft h4{font-size:26px;font-weight:bold;margin-bottom: 5px;}
+.loginBgLeft p{font-size:14px;}
+.forgotpassword{display: inline-block;width:100%;text-align:right;margin-top:0;cursor: pointer;color:#827d7d}
+.loginBgLeft input{
+    width:100%;
+    border:0;
+    border-bottom:1px solid #ddd;
+    height:40px;
+    width:100%;
+    margin-bottom:15px;
+    padding-bottom:5px;
+    padding-left: 0!important;
+    border-radius: 0;
+}
+.loginBgLeft .p-float-label > label{
+    left:0;
+    color:#b1b3b5;
+    top:45%;
+}
+.loginBtn{background: #BB0000;border:0;width:100%;padding:10px;cursor: pointer;color:#fff;font-size: 18px;font-weight:bold;margin-top: 0px;border-radius: 5px;}
+.loginBgLeft input:focus {
+    outline: none;
+     
+  }
+ .loginBgLeft .p-inputtext:enabled:focus{
+    box-shadow: none;
+  }
+  .p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label{
+    top:0;
+    color:#646464;
+  }
+  .loginBgLeft .p-float-label i{
+    position: absolute;
+    top:20px;
+    left:0
+  }
+  .p-radiobutton .p-radiobutton-box .p-radiobutton-icon{
+    width:8px;
+    height:8px;
+  }
+  .p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: #B00;
+    background: #B00;
+    border-color: #B00;
+    box-shadow: none;
+  }
+  .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+    border-color: #B00;
+    background: #B00;
+    color: #ffffff;
+    border-color: #B00;
+
+  }
+  .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+    border-color: #B00;
+  }
+  .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus{
+    box-shadow: none;
+  }
+  .loginBgRight{padding:0}
+  .dontaccount{color:#827d7d;width: 100%;
+    text-align: center;  margin-top: 10px;}
+  .dontaccount span{color:#B00;cursor: pointer;}
+.container{margin:0 auto;max-width:1300px;}
+.layout-wrapper .layout-main .layout-topbar{background: #E94057;height: 70px;}
+.logo{font-size:40px;color:#fff;font-weight:bold;display: inline-block;  line-height: 36px;}
+.layout-wrapper .layout-main .layout-topbar .topbar-search{
+    vertical-align: top;
+    margin-left: 25%;
+}
+.layout-wrapper .layout-main .layout-topbar .topbar-search input{
+  background: #fff;
+  height: 40px;
+  border-radius: 25px;
+  width:500px;
+}
+ .layout-wrapper .layout-main .layout-topbar .topbar-search input:focus{
+     width:500px;
+     background: #eee;
+
+ }
+.layout-wrapper .layout-main .layout-topbar .topbar-search i {
+    color: #1C80CF;
+    height: 40px;  left: auto;  right: 20px;
+    font-size: 22px;
+}
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul a{
+    padding:14px;
+}
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul{
+    border-radius:4px;
+}
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > a i{
+    color:#fff;
+}
+ h2{  margin: 10px 0 70px;  position: relative;text-shadow: 3px 0px 7px #b2adad, -3px 0px 7px #b2adad, 0px 4px 7px #b2adad;}
+ h4{font-size:2rem;  color: #736f6f !important;  margin-top: 50px!important;}
+ h2:after{
+    position: absolute;
+    content:"";
+    width:80px;
+    height:4px;
+    background: #E94057;
+    bottom:-20px;
+    z-index: 1;
+    left: calc(50% - 40px);
+}
+
+
+.innerpages .p-galleria .p-galleria-item-nav{
+    background:#E94057;
+    width: 3rem;
+  height: 3rem;
+}
+.innerpages .p-galleria .p-galleria-item-nav .p-icon-wrapper .p-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+ .innerpages .p-galleria-item-prev{left:-28px;}
+ .innerpages .p-galleria-item-next{right:-28px}
+
+.menu-trend{background: #FAE3B5;color: #FFAA00;padding:5px 10px;border-radius:4px;position: absolute;
+    top: 10px;}
+.menu-best{background: #EEFAEA;color: #4F865B;padding:5px 10px;border-radius:4px;position: absolute;
+    top: 10px;}
+.menu-new{background: #F6BFF6;color: #C14BC3;padding:5px 10px;border-radius:4px;position: absolute;
+    top: 10px;}
+.product-name{
+font-size:16px;
+margin-top:20px;
+height: 35px;
+}
+.border-right{border-right:1px solid #d7d3d3}
+.surface-card{cursor: pointer;position: relative;}
+.menu-status{color:#E94057;padding-top: 10px;
+    display: inline-block;}
+    .layout-wrapper .layout-main .layout-footer{
+        background: #E94057;
+        padding: 50px 10px 20px;
+    }
+.surface-ground, .surface-section{padding:0 0 100px!important}
+.foot-cont{color:#fff;margin-top:20px;font-size:15px;  padding-right: 60px;}
+.foot-ul ul{list-style-type: none;padding:0;}
+.foot-ul ul li {margin-bottom:10px;}
+.foot-ul ul li a{color:#fff;}
+.foot-ul h5{color:#b8b5b5}
+.foot-bottom{
+    border-top: 1px solid #bda0a0;
+  margin-top: 30px;
+  padding-top: 30px;
+
+}
+.foot-copy{color:#fff;}
+.layout-footer-icons a i{color:#fff!important;}
+
+
+
+  @media screen and (max-width:767px){
+    .loginBgInner{
+        margin-left:0;
+        width:100%;
+    }
+    .loginBg{padding:50px 20px 50px}
+    .loginBgRight img{width:100%;border-radius: 0;}
+    .loginBgRight{padding:0.5rem}
+  }

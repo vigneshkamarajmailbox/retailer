@@ -1,0 +1,119 @@
+[
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587468240000,
+    "changeNo": null,
+    "prodHierLvlCode": 0,
+    "prodHierLvlName": "Company"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587468240000,
+    "changeNo": null,
+    "prodHierLvlCode": 1,
+    "prodHierLvlName": "Product Class"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587468240000,
+    "changeNo": null,
+    "prodHierLvlCode": 2,
+    "prodHierLvlName": "Product Type"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587468240000,
+    "changeNo": null,
+    "prodHierLvlCode": 3,
+    "prodHierLvlName": "Product Group"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587468240000,
+    "changeNo": null,
+    "prodHierLvlCode": 4,
+    "prodHierLvlName": "Product_"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587468240000,
+    "changeNo": null,
+    "prodHierLvlCode": 5,
+    "prodHierLvlName": "Brand"
+  },
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587468240000,
+    "changeNo": null,
+    "prodHierLvlCode": 6,
+    "prodHierLvlName": "Pack Category"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528544000,
+    "changeNo": null,
+    "prodHierLvlCode": 0,
+    "prodHierLvlName": "Company"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528544000,
+    "changeNo": null,
+    "prodHierLvlCode": 1,
+    "prodHierLvlName": "BrandGroup"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528544000,
+    "changeNo": null,
+    "prodHierLvlCode": 2,
+    "prodHierLvlName": "Category"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528544000,
+    "changeNo": null,
+    "prodHierLvlCode": 3,
+    "prodHierLvlName": "Brand"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528544000,
+    "changeNo": null,
+    "prodHierLvlCode": 4,
+    "prodHierLvlName": "Varient"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528544000,
+    "changeNo": null,
+    "prodHierLvlCode": 5,
+    "prodHierLvlName": "Design"
+  }
+]

@@ -1,0 +1,16 @@
+import { Module } from '@nestjs/common';
+import { SharedModule } from './shared/shared.module';
+import { KycTypeModule } from './kyc-type/kyc-type.module';
+import { MediaCategoryModule } from './media-category/media-category.module';
+import { MediaSubCategoryModule } from './media-sub-category/media-sub-category.module';
+import { LanguageModule } from './language/language.module';
+import { ScreenModule } from './screen/screen.module';
+import { LobMasterModule } from './lob-master/lob-master.module';
+import { RetailerCategoryModule } from './retailer-category/retailer-category.module';
+import { LocationModule } from './location/location.module';
+import { UomMasterModule } from './uom-master/uom-master.module';
+
+@Module({
+  imports: [SharedModule, KycTypeModule, MediaCategoryModule, MediaSubCategoryModule, LanguageModule, ScreenModule, LobMasterModule, RetailerCategoryModule, LocationModule, UomMasterModule],
+})
+export class AppModule {}

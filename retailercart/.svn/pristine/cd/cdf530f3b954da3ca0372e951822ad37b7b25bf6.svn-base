@@ -1,0 +1,38 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateKpiDto } from './dto/create-kpi.dto';
+import { UpdateKpiDto } from './dto/update-kpi.dto';
+import { Kpi } from './entities/kpi.entity';
+
+@Injectable()
+export class KpiService {
+  constructor(
+    @InjectRepository(Kpi)
+    private kpiRepository: Repository<Kpi>,
+  ){
+    
+  }
+  create(createKpiDto: CreateKpiDto) {
+    return 'This action adds a new kpi';
+  }
+
+ async findAll() {
+    let data =  await this.kpiRepository.find({select:{kpiCode:true,cmpCode:true,name:true,target:true,achieved:true,achievedPercentage:true}});
+    return {
+      kpi : data
+    }
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} kpi`;
+  }
+
+  update(id: number, updateKpiDto: UpdateKpiDto) {
+    return `This action updates a #${id} kpi`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} kpi`;
+  }
+}

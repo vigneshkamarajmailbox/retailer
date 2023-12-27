@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/new_outlet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                <!--app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/profile_bg_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/null_val"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/tab" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/color_semi_transparent1" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|center"
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        app:layout_collapseMode="pin">
+
+                        <RelativeLayout
+                            android:layout_width="120dp"
+                            android:layout_height="120dp">
+
+                            <ImageView
+                                android:id="@+id/user_img"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:contentDescription="@string/null_val"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/shop" />
+
+                            <ImageView
+                                android:id="@+id/btn_choose_newretailer"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/count_bubble"
+                                android:contentDescription="@string/null_val"
+                                android:padding="12dp"
+                                android:tint="@color/color_btn_white"
+                                app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
+
+                        </RelativeLayout>
+
+                        <com.botree.retailerssfa.arcprogressbar.ArcProgress
+                            android:id="@+id/arc_progress1"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:visibility="gone"
+                            app:arc_angle="280"
+                            app:arc_bottom_text="Completion"
+                            app:arc_bottom_text_size="@dimen/txt_size_small"
+                            app:arc_finished_color="@color/white"
+                            app:arc_max="100"
+                            app:arc_progress="0"
+                            app:arc_stroke_width="4dp"
+                            app:arc_unfinished_color="@color/color_blue_maps_line" />
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include layout="@layout/fragment_new_outlet_container" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/custom_btn"
+                android:text="@string/capture_photo"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/dash_item_color"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_reset_newretailer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/custom_btn"
+                android:text="@string/reset"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_save_newretailer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/custom_btn_red"
+                android:text="@string/next"
+                android:textAppearance="?android:attr/textAppearanceSmallInverse"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

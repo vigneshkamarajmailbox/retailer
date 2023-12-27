@@ -1,0 +1,402 @@
+<div class="grid signup-background">
+  <p-toast></p-toast>
+  <div class="col-1"></div>
+  <div class="col-4" style="padding-top: 50px">
+    <p-card
+      [style]="{ 
+        border: '2px solid black',  
+        borderRadius: '15px',  
+        padding: '15px',
+        width: '550px',  
+        backgroundColor: '##B6B6B6',
+    }"
+      class="signup-card"
+    >
+      <ng-template pTemplate="header">
+        <h1 style="text-align: center; padding-top: 20px; font-weight: bold">
+          Create a new account
+        </h1>
+        <h6 style="text-align: center">
+          Enter the following details to create a new account
+        </h6>
+      </ng-template>
+      <ng-template pTemplate="body">
+        <form
+          class="form-class"
+          [formGroup]="signupForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-user"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="userName"
+                    class="w-full"
+                    type="text"
+                    minlength="3"
+                    pInputText
+                    formControlName="userName"
+                  />
+                  <label for="username"> User Name</label>
+                </div>
+                <small
+                  *ngIf="
+                    signupForm.get('userName').invalid &&
+                    signupForm.get('userName').touched
+                  "
+                  class="p-error"
+                >
+                  User Name is required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-lock"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="password"
+                    class="w-full"
+                    type="password"
+                    minlength="8"
+                    pInputText
+                    formControlName="password"
+                  />
+                  <label for="password"> Password</label>
+                </div>
+                <small
+                  *ngIf="
+                    signupForm.get('password').invalid &&
+                    signupForm.get('password').touched
+                  "
+                  class="p-error"
+                >
+                  Password is required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-mobile"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="mobileNo"
+                    class="w-full"
+                    type="number"
+                    minlength="7"
+                    maxlength="10"
+                    pInputText
+                    formControlName="mobileNo"
+                  />
+                  <label for="mobileNo"> Mobile No</label>
+                </div>
+                <small
+                  *ngIf="
+                    signupForm.get('mobileNo').invalid &&
+                    signupForm.get('mobileNo').touched
+                  "
+                  class="p-error"
+                >
+                  Mobile No required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-envelope"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="email"
+                    class="w-full"
+                    type="email"
+                    pInputText
+                    formControlName="email"
+                  />
+                  <label for="email"> Email Id</label>
+                </div>
+                <small
+                  *ngIf="
+                    signupForm.get('email').invalid &&
+                    signupForm.get('email').touched
+                  "
+                  class="p-error"
+                >
+                  Email required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-book"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="gst"
+                    class="w-full"
+                    type="text"
+                    pInputText
+                    formControlName="gst"
+                  />
+                  <label for="gst"> GST</label>
+                </div>
+                <small
+                  *ngIf="
+                    signupForm.get('gst').invalid &&
+                    signupForm.get('gst').touched
+                  "
+                  class="p-error"
+                >
+                  GST Number required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-credit-card"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="pan"
+                    class="w-full"
+                    type="text"
+                    pInputText
+                    formControlName="pan"
+                  />
+                  <label for="pan"> PAN</label>
+                </div>
+                <small
+                  *ngIf="
+                    signupForm.get('pan').invalid &&
+                    signupForm.get('pan').touched
+                  "
+                  class="p-error"
+                >
+                  PAN Number required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-map-marker"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="postalCode"
+                    class="w-full"
+                    type="number"
+                    pInputText
+                    formControlName="postalCode"
+                  />
+                  <label for="postalCode"> Postal Code</label>
+                </div>
+                <small
+                  *ngIf="
+                    signupForm.get('postalCode').invalid &&
+                    signupForm.get('postalCode').touched
+                  "
+                  class="p-error"
+                >
+                  Postal Code required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="form-group p-field">
+            <label for="userName"> <i class="pi pi-user"></i> User Name</label>
+            <input
+              id="userName"
+              class="w-full"
+              type="text"
+              minlength="3"
+              pInputText
+              formControlName="userName"
+            />
+            <small
+              *ngIf="
+                signupForm.get('userName').invalid &&
+                signupForm.get('userName').touched
+              "
+              class="p-error"
+            >
+              User Name is required..!
+            </small>
+           </div> 
+
+          <div class="form-group p-field">
+            <label for="password"> <i class="pi pi-lock"></i> Password</label>
+            <input
+              id="password"
+              class="w-full"
+              type="password"
+              minlength="8"
+              pInputText
+              formControlName="password"
+            />
+            <small
+              *ngIf="
+                signupForm.get('password').invalid &&
+                signupForm.get('password').touched
+              "
+              class="p-error"
+            >
+              Password is required..!
+            </small>
+          </div>
+
+          <div class="form-group p-field">
+            <label for="mobileNo">
+              <i class="pi pi-mobile"></i> Mobile Number</label
+            >
+            <input
+              id="mobileNo"
+              class="w-full"
+              type="number"
+              minlength="7"
+              maxlength="10"
+              pInputText
+              formControlName="mobileNo"
+            />
+            <small
+              *ngIf="
+                signupForm.get('mobileNo').invalid &&
+                signupForm.get('mobileNo').touched
+              "
+              class="p-error"
+            >
+              Mobile Number is required..!
+            </small>
+          </div>
+
+          <div class="form-group p-field">
+            <label for="email"><i class="pi pi-envelope"></i> Email ID</label>
+            <input
+              id="email"
+              class="w-full"
+              type="email"
+              pInputText
+              formControlName="email"
+            />
+            <small
+              *ngIf="
+                signupForm.get('email').invalid &&
+                signupForm.get('email').touched
+              "
+              class="p-error"
+            >
+              Email is required..!
+            </small>
+          </div>
+
+          <div class="form-group p-field">
+            <label for="gst"><i class="pi pi-book"></i> GST</label>
+            <input
+              id="gst"
+              class="w-full"
+              type="text"
+              pInputText
+              formControlName="gst"
+            />
+            <small
+              *ngIf="
+                signupForm.get('gst').invalid && signupForm.get('gst').touched
+              "
+              class="p-error"
+            >
+              GST is required..!
+            </small>
+          </div>
+
+          <div class="form-group p-field">
+            <label for="pan"><i class="pi pi-credit-card"></i> PAN</label>
+            <input
+              id="pan"
+              class="w-full"
+              type="text"
+              pInputText
+              formControlName="pan"
+            />
+            <small
+              *ngIf="
+                signupForm.get('pan').invalid && signupForm.get('pan').touched
+              "
+              class="p-error"
+            >
+              PAN is required..!
+            </small>
+          </div>
+
+          <div class="form-group p-field">
+            <label for="postalCode"
+              ><i class="pi pi-map-marker"></i> Postal Code</label
+            >
+            <input
+              id="postalCode"
+              class="w-full"
+              type="number"
+              pInputText
+              formControlName="postalCode"
+            />
+            <small
+              *ngIf="
+                signupForm.get('postalCode').invalid &&
+                signupForm.get('postalCode').touched
+              "
+              class="p-error"
+            >
+              Postal Code is required..!
+            </small>
+          </div> -->
+          <div class="form-group p-field" style="text-align: center">
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Create New Account"
+              class="w-full form-button"
+            ></button>
+            <!-- <button
+              pButton
+              pRipple
+              type="button"
+              (click)="Login()"
+              label="Go To Login"
+              class="p-button-rounded p-button-danger mr-2 mb-2"
+            ></button> -->
+          </div>
+        </form>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

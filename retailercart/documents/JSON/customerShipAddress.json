@@ -1,0 +1,36 @@
+[
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587462721000,
+    "changeNo": null,
+    "distrCode": "0002000243",
+    "customerCode": "00020002430003",
+    "customerShipCode": "CSA190003",
+    "customerShipAddr1": "Sector 34",
+    "customerShipAddr2": "Faridabad",
+    "customerShipAddr3": "India",
+    "city": "FARIDABAD M CORP",
+    "gstStateCode": "06",
+    "phoneNo": "8700616161",
+    "defaultShipAddr": "Y"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528543000,
+    "changeNo": null,
+    "distrCode": "0022000004",
+    "customerCode": "0022000004CHN0CH00145865",
+    "customerShipCode": "0022000004CHN0CH00145865",
+    "customerShipAddr1": "S 8",
+    "customerShipAddr2": "",
+    "customerShipAddr3": "",
+    "city": "",
+    "gstStateCode": "CH",
+    "phoneNo": "9635585398",
+    "defaultShipAddr": "Y"
+  }
+]

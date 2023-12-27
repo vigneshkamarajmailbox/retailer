@@ -1,0 +1,32 @@
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { TableName } from '../../shared/enum/table-name.enum';
+import { SQLColumnType } from '../../shared/enum/column-type.enum';
+import { AbstractModel } from 'src/shared/entities/abstract.model';
+
+
+@Entity({ name: TableName.DIGITAL_CONTENT })
+export class DigitalContent extends AbstractModel {
+
+
+    @PrimaryColumn({ name: 'brochure_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    brochure_code: string;
+
+    @Column({ name: 'cmp_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    cmp_code: string;
+
+    @Column({ name: 'title', type: SQLColumnType.VARCHAR, length: 50, nullable: true, })
+    title: string;
+
+    @Column({ name: 'desc', type: SQLColumnType.VARCHAR, length: 75, nullable: true, })
+    desc: string;
+
+    @Column({ name: 'media_type', type: SQLColumnType.VARCHAR, length: 50, nullable: true, })
+    media_type: string;
+
+    @Column({ name: 'media_name', type: SQLColumnType.VARCHAR, length: 50, nullable: true, })
+    media_name: string;
+
+    @Column({ name: 'isdownload', type: SQLColumnType.BOOLEAN, default: true })
+    isdownload: boolean;
+
+}

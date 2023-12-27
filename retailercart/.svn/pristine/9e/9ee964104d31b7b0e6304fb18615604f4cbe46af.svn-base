@@ -1,0 +1,34 @@
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import { TableName } from '../../shared/enum/table-name.enum';
+import { SQLColumnType } from '../../shared/enum/column-type.enum';
+import { Company } from 'src/shared/entities/company.entity';
+import { AbstractModel } from 'src/shared/entities/abstract.model';
+
+@Entity({ name: TableName.CONTACT_US })
+// export class ContactUs {
+export class ContactUs extends AbstractModel {
+    @PrimaryColumn({ name: 'cmp_code', type: 'varchar', length: 50, nullable: false })
+    cmpCode: string;
+
+    @Column({ name: 'email', type: SQLColumnType.VARCHAR, length: 50, nullable: true })
+    email: string;
+
+    @Column({ name: 'mobile_no', type: SQLColumnType.VARCHAR, length: 20, nullable: true })
+    mobileNo: string;
+
+    @Column({ name: 'tollfree_no', type: SQLColumnType.VARCHAR, length: 20, nullable: true })
+    tollFreeNo: string;
+
+    // @ManyToOne(() => Company, (cmp) => cmp.cmpCode, {
+    //     eager: true,
+    //     deferrable: 'INITIALLY IMMEDIATE',
+    //     cascade: ['insert', 'update'],
+    // })
+    // @JoinColumn([
+    //     {
+    //         name: 'cmpCode',
+    //         referencedColumnName: 'cmpCode',
+    //     },
+    // ])
+    // company: Company;
+}

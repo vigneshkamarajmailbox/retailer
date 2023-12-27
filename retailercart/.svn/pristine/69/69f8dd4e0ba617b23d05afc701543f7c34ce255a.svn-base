@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS useractivation;
+CREATE TABLE useractivation (
+    LoginCode VARCHAR(100) NOT NULL,
+    UserName VARCHAR(250) NOT NULL,
+    UserStatus CHAR(1) DEFAULT 'C',
+    CreationDt DATETIME NOT NULL,
+    MsgRequestDt DATETIME DEFAULT NULL,
+    ActivationDt DATETIME DEFAULT NULL,
+    DeactivationDt DATETIME DEFAULT NULL,
+    UploadFlag CHAR(1) DEFAULT 'N',
+    ModDt DATETIME NOT NULL,
+    PRIMARY KEY (LoginCode)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8;

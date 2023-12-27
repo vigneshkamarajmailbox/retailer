@@ -1,0 +1,26 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, Index, OneToMany, PrimaryColumn } from "typeorm";
+import { City } from "./city.entity";
+import { State } from "./state.entity";
+
+@Entity({ name: TableName.COUNTRY })
+export class Country extends AbstractModel {
+    @Column({ name: 'country_dial_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    countryDialCode: string;
+
+    @Index()
+    @PrimaryColumn({ name: 'country_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    countryCode: string;
+
+    @Column({ name: 'country_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    countryName: string;
+
+    @Column({ name: 'flag_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    flagName: string; 
+
+    @Column({ name: 'flag_image', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    flagImage: string; 
+
+}

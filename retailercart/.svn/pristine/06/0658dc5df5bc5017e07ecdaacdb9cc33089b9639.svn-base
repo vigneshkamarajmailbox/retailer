@@ -1,0 +1,202 @@
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class HomeService {
+  async getHomeScreenData() {
+    return {
+      highlights: [
+        {
+          title: "Today's Offer",
+          content: 'Buy any  product to get 30% off',
+        },
+        {
+          title: 'Diwali Offer',
+          content: 'Gulab Jamun flat 50% off',
+        },
+      ],
+      banner: {
+        url: '',
+        list: [
+          {
+            format: 'png',
+            sequence: 1,
+            name: 'Dark Chocolate',
+          },
+          {
+            format: 'png',
+            sequence: 2,
+            name: 'Gulab Jamum',
+          },
+          {
+            format: 'mp4',
+            sequence: 3,
+            name: 'Rasagulla',
+          },
+          {
+            format: 'png',
+            sequence: 3,
+            name: 'Gulab Jamum & Rasagulla Combo',
+          },
+        ],
+      },
+      catergory: [
+        {
+          name: 'Paneer',
+          image: 'Paneer.png',
+          sequence: 1,
+        },
+        {
+          name: 'Ice Cream',
+          image: 'iceCream.png',
+          sequence: 2,
+        },
+        {
+          name: 'Latose Free',
+          image: 'iceCream.png',
+          sequence: 3,
+        },
+      ],
+      productGroup: [
+        {
+          catergoryTitle: 'Most Popular Product',
+          sequence: 1,
+          products: [
+            {
+              image: 'darkChocolate.png',
+              title: 'Dark Chocolate',
+              wishlist: false,
+              sequence: 1,
+              mrp: '400',
+              sellingPrice: '390',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'jamun.png',
+              title: 'Gulab Jamum',
+              wishlist: false,
+              sequence: 2,
+              mrp: '250',
+              sellingPrice: '220',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'jamun.png',
+              title: 'Gulab Jamum',
+              wishlist: false,
+              sequence: 3,
+              mrp: '250',
+              sellingPrice: '220',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'jamun.png',
+              title: 'Combo Gulab Jamum & Rasakula',
+              wishlist: false,
+              sequence: 4,
+              mrp: '350',
+              sellingPrice: '250',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+          ],
+        },
+        {
+          catergoryTitle: 'Power of protein',
+          sequence: 2,
+          products: [
+            {
+              image: 'protein.png',
+              title: 'Protein Lassi',
+              wishlist: false,
+              sequence: 1,
+              mrp: '40',
+              sellingPrice: '',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'protein.png',
+              title: 'Protein Shake',
+              wishlist: false,
+              sequence: 2,
+              mrp: '40',
+              sellingPrice: '',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'protein.png',
+              title: 'Milk Shake',
+              wishlist: false,
+              sequence: 3,
+              mrp: '40',
+              sellingPrice: '',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'protein.png',
+              title: 'Milk Shake',
+              wishlist: false,
+              sequence: 4,
+              mrp: '40',
+              sellingPrice: '',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+          ],
+        },
+        {
+          catergoryTitle: 'Recommend Product',
+          sequence: 3,
+          url: '',
+          products: [
+            {
+              image: 'darkChocolate.png',
+              title: 'Dark Chocolate',
+              wishlist: false,
+              sequence: 1,
+              mrp: '400',
+              sellingPrice: '390',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'jamun.png',
+              title: 'Gulab Jamum',
+              wishlist: false,
+              sequence: 2,
+              mrp: '250',
+              sellingPrice: '220',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'jamun.png',
+              title: 'Gulab Jamum',
+              wishlist: false,
+              sequence: 3,
+              mrp: '250',
+              sellingPrice: '220',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+            {
+              image: 'jamun.png',
+              title: 'Combo Gulab Jamum & Rasakula',
+              wishlist: false,
+              sequence: 4,
+              mrp: '350',
+              sellingPrice: '250',
+              symbol: '₹',
+              isSchemeAvailable: true,
+            },
+          ],
+        },
+      ],
+    };
+  }
+}

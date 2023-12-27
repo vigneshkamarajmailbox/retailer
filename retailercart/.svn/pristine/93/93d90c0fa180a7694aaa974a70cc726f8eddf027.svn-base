@@ -1,0 +1,16 @@
+export enum SQLColumnType {
+  INT = 'int',
+  INT2 = 'int2',
+  INT4 = 'int4',
+  INT8 = 'int8',
+  INTEGER = 'integer',
+  TINYINT = 'tinyint',
+  SMALLINT = 'smallint',
+  VARCHAR = 'varchar',
+  BOOLEAN = 'boolean',
+  CHAR = 'char',
+  DECIMAL = 'decimal',
+  DATE_TIME = 'datetime',
+  JSON = 'json',
+  ENUM = 'enum',
+}

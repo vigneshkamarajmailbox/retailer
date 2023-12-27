@@ -1,0 +1,15 @@
+import { Module } from '@nestjs/common';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { KycDetailsModule } from './kyc-details/kyc-details.module';
+import { FeedbackModule } from './feedback/feedback.module';
+import { DigitalContentModule } from './digital-content/digital-content.module';
+import { NotificationModule } from './notification/notification.module';
+import { KpiModule } from './kpi/kpi.module';
+import { RetailerModule } from './retailer/retailer.module';
+
+@Module({
+  imports: [SharedModule, AuthModule, ContactUsModule, KycDetailsModule, FeedbackModule, DigitalContentModule, NotificationModule, KpiModule, RetailerModule],
+})
+export class AppModule {}

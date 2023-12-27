@@ -1,0 +1,6 @@
+export enum TableName {
+  PRODUCT = 'product_t',
+  PRODUCT_UOM = 'product_uom_t',
+  HOME_BANNER= 'home_banner_t',
+  HOME_HIGHLIGHTS = 'home_highlights_t'
+}

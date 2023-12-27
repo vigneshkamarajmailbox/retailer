@@ -1,0 +1,41 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/product_search"
+        android:icon="@drawable/search_icon"
+        android:orderInCategory="5"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/product_voice_search"
+        android:icon="@drawable/ic_mic"
+        android:orderInCategory="999"
+        android:title="@string/search"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/product_filter"
+        android:icon="@drawable/filter"
+        android:orderInCategory="9990"
+        android:title="@string/filter"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_favorite_star"
+        android:orderInCategory="9992"
+        android:title="@string/favorite"
+        android:visible="false"
+        app:showAsAction="always|collapseActionView" />
+
+
+    <item android:id="@+id/all_prod_count"
+        android:actionLayout="@layout/coverage_msg"
+        app:showAsAction="always"
+        android:orderInCategory="9999"
+        android:icon="@android:drawable/ic_popup_reminder"
+        android:title="@string/count" />
+</menu>

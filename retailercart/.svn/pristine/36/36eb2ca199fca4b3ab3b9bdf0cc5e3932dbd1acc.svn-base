@@ -1,0 +1,102 @@
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Retailer } from './entities/retailer.entity';
+import { CreateRetailerDto } from './dto/create-retailer.dto';
+import { RetailerCredit } from './entities/retailer-credit.entity';
+import { RetailerAddMapping } from './entities/retailer-add-mapping.entity';
+
+export class retailerRepository {
+    @InjectRepository(Retailer)
+    private retailerRepo: Repository<Retailer>;
+
+    @InjectRepository(Retailer)
+    private retailerCreditRepo: Repository<RetailerCredit>;
+
+    @InjectRepository(Retailer)
+    private retailerAddMapRepo: Repository<RetailerAddMapping>;
+
+    async create(saveRetailer:CreateRetailerDto): Promise<any> {
+        console.log(saveRetailer);
+        try
+        {
+            // return await this.retailerRepo.save(saveRetailer);
+            const data = this.retailerRepo.create(saveRetailer);
+            const data1 = this.retailerCreditRepo.create(saveRetailer);
+            const data2 = this.retailerAddMapRepo.create(saveRetailer);
+
+            await this.retailerRepo.save(data);
+            await this.retailerCreditRepo.save(data1);
+            return await this.retailerAddMapRepo.save(data2);
+        }
+        catch(error)
+        {
+            console.log(error);
+            return error;
+        }
+
+        
+    }
+
+    async findAll() {
+        
+        let fetchField = { 
+            cmpCode : true,
+            userName : true,
+            retailerCode : true,
+            retailerName : true,
+            mobileNo : true,
+            altMobileNo: true,
+            email : true,
+            gstNo : true,
+            panNo : true,
+            groupCode : true,
+            credit:{
+                creditBills : true,
+                creditDays : true,
+                creditLimit : true,
+                creditUsage : true,
+                cashDiscPerc : true,
+                outStandingAmt : true,
+            },
+            address: {
+                address1 : true,
+                address2 : true,
+                cityCode : true,
+                stateCode : true,
+                gstStateCode : true,
+                mobileNo : true,
+                defaultAddress : true
+            }
+        };  
+
+        return await this.retailerRepo.find({select: fetchField});
+
+        // return await this.retailerRepo.find({
+        //     relations: ["credit", "address"], 
+        //     select: {
+        //         credit: {
+        //             creditBills: true,
+        //             creditLimit: true,
+        //         },
+        //         address: {
+        //             address1: true,
+        //         }
+        //     }
+        // });
+        
+        
+    }
+    
+    findOne(cmpCode: string): Promise<Retailer | null> {
+        return this.retailerRepo.findOneBy({cmpCode:cmpCode});
+    }
+
+    // update(id: number, updateKycDetailDto: UpdateKycDetailDto) {
+    //     return `This action updates a #${id} kycDetail`;
+    // }
+
+    // remove(id: number) {
+    //     return `This action removes a #${id} kycDetail`;
+    // }
+
+}

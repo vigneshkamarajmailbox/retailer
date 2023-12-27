@@ -1,0 +1,21 @@
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import { FeedbackService } from './feedback.service';
+import { CreateFeedbackDto } from './dto/create-feedback.dto';
+import { Public } from 'src/auth/decorators/public.decorator';
+
+@Controller('feedback')
+export class FeedbackController {
+  constructor(private readonly feedbackService: FeedbackService) {}
+
+  @Public()
+  @Post()
+  create(@Body() createFeedbackDto: CreateFeedbackDto) {
+    return this.feedbackService.create(createFeedbackDto);
+  }
+
+  @Public()
+  @Get()
+  findAll() {
+    return this.feedbackService.findAll();
+  }
+}

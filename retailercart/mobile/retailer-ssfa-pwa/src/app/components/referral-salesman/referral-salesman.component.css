@@ -1,0 +1,119 @@
+.body {
+    position: relative;
+    font-family:
+      'Roboto','Helvetica','Arial',sans-serif;
+  }
+  
+  .wrap {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    width: 350px;
+    left: 0;
+    margin: 0 auto;
+  }
+/*   
+  /* select starting stylings ------------------------------*/
+  .select {
+    font-family:
+      'Roboto','Helvetica','Arial',sans-serif;
+      position: relative;
+      width: 100%;
+  }
+  
+  .select-text {
+      position: relative;
+      font-family: inherit;
+      background-color: transparent;
+      width: 100%;
+      padding: 10px 10px 10px 10px;
+      font-size: 18px;
+      border:0px;
+      border-bottom: 1px solid #7d7e80;
+  }
+  
+  /* Remove focus */
+  .select-text:focus {
+        outline: none;
+        border-bottom: 2px solid #194381;
+  }
+  
+      /* Use custom arrow */
+  .select .select-text {
+      appearance: none;
+      -webkit-appearance:none;
+        color: #555;
+  }
+  
+  .select:after {
+      position: absolute;
+      top: 18px;
+      right: 10px;
+      /* Styling the down arrow */
+      width: 0;
+      height: 0;
+      padding: 0;
+      content: '';
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid rgba(0, 0, 0, 0.83);
+    
+      pointer-events: none;
+  }
+  
+  /* LABEL ======================================= */
+  .select-label {
+      color: #2b377b;
+      background: white;
+      font-size: 18px;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+      padding: 0 5px;
+      left: 2px;
+      top: 12px;
+      transition: 0.2s ease all;
+  }
+  
+  
+  /* active state */
+  .select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
+      color: rgb(35, 58, 108);;
+      top: -8px;
+      transition: 0.2s ease all;
+      font-size: 14px;
+  }
+  
+  .select-text:valid:not(focus) ~ .select-label {
+        color: rgb(35, 58, 108);
+        background: white;
+  }
+  .select-text:valid:focus ~ .select-label {
+    color: rgb(35, 58, 108);;
+  } */
+
+  .order-confirmation-icon {
+    font-size: 32px;
+    color: #4CAF50;
+  }
+  
+  @media screen and (max-width: 640px) {
+    .order-confirmation-icon {
+      padding-top: 1% !important;
+    }
+  }
+  
+  .order-confirmation-title {
+    margin: 0 !important;
+    padding-left: 1% !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+  }
+  
+  
+  @media screen and (max-width: 767px) {
+    .order-confirmation-title {
+      font-size: 0.88rem !important;
+    }
+  }
+  

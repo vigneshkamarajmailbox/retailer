@@ -1,0 +1,48 @@
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateDigitalContentDto } from './dto/create-digital-content.dto';
+import { UpdateDigitalContentDto } from './dto/update-digital-content.dto';
+import { DigitalContent } from './entities/digital-content.entity';
+
+@Injectable()
+export class DigitalContentService {
+  constructor(
+    @InjectRepository(DigitalContent)
+    private digitalContentRepository: Repository<DigitalContent>,
+  ){}
+
+  create(data: CreateDigitalContentDto) {
+    let digiCont = this.digitalContentRepository.save(data);
+      if (!digiCont) {
+        throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+      }
+      else {
+          return digiCont;
+      }
+  }
+
+  async findAll() {
+    let digiCont = await this.digitalContentRepository.find({select: {cmp_code:true,title:true,desc:true,media_type:true, media_name:true}});
+    if (!digiCont) {
+      throw new HttpException('List Empty', HttpStatus.BAD_REQUEST);
+    }
+    else {
+        return {
+          digitalContent: digiCont
+        }
+    }
+  }
+
+  findOne(id: string) {
+    return this.digitalContentRepository.find({where:{brochure_code:id}});
+  }
+
+  update(id: string, updateDigitalContentDto: UpdateDigitalContentDto) {
+    return this.digitalContentRepository.update(id, updateDigitalContentDto);
+  }
+
+  remove(id: string) {
+    return this.digitalContentRepository.delete(id);
+  }
+}

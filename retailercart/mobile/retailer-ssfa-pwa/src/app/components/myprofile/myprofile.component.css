@@ -1,0 +1,70 @@
+
+.retailer-info-screen {
+  margin: 2%;
+}
+
+@media screen and (max-width: 1024px) {
+  .retailer-info-screen {
+    padding-top: 5% !important;
+  }
+}
+
+.retailer-info-card-align {
+  width: 100% !important;
+}
+
+.retailer-card-header {
+  color: #00796B;
+  font-weight: 900 !important;
+  font-size: 0.8rem;
+}
+
+@media screen and (max-width: 640px) {
+  .retailer-card-header {
+    font-size: 0.5rem;
+  }
+}
+
+.retailer-card-detail {
+  font-weight: 400 !important;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 640px) {
+  .retailer-card-detail {
+    font-size: 0.7rem;
+  }
+}
+
+.retailer-info-div {
+  width: auto;
+  height: auto !important;
+  margin: 1% !important;
+}
+
+.retailer-mapping-div {
+  width: 100%;
+  height: 150px !important;
+  overflow-y: scroll !important;;
+}
+
+.retailer-mapping-table {
+  table-layout: fixed;
+  min-width: 750px !important;
+}
+
+.divider {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin: 18px;
+}
+
+.divider::before, .divider::after {
+  flex: 1;
+  content: '';
+  padding: 1px;
+  background-color:rgb(37, 37, 37);
+  margin: 5px; 
+}
+

@@ -1,0 +1,14 @@
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { RetailerService } from './retailer.service';
+import { RetailerController } from './retailer.controller';
+import { Retailer } from './entities/retailer.entity';
+import { retailerRepository } from './retailer.repository';
+
+@Module({
+  controllers: [RetailerController],
+  providers: [RetailerService, retailerRepository],
+  imports: [TypeOrmModule.forFeature([Retailer])],
+  exports: [RetailerService, retailerRepository],
+})
+export class RetailerModule {}

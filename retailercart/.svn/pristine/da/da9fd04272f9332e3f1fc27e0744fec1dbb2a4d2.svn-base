@@ -1,0 +1,136 @@
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { UpdateKycDetailDto } from './dto/update-kyc-detail.dto';
+import { CreateKycDetailDto } from './dto/create-kyc-detail.dto';
+import { CreateKycDocTypeDto } from './dto/create-kyc-doc-type.dto';
+import { kycRepository } from './kyc-details.repository';
+
+
+@Injectable()
+export class KycDetailsService {
+    
+    @Inject()
+    kycDetailsRepository: kycRepository;
+
+    async create(saveKycDetailDto: CreateKycDetailDto) 
+    {  
+        let find = await this.kycDetailsRepository.createKycDetail(saveKycDetailDto);
+        console.log(find)
+        if (!find) {
+            throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return {
+                statusCode : HttpStatus.CREATED,
+                message    : "KYC Saved Successfully"
+            };
+        }
+    }
+
+    async findAll(): Promise<any> {
+        
+        let find = await this.kycDetailsRepository.findAll();
+        if (!find) {
+            throw new HttpException('List Empty', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return {KycDetails:find};;
+        }
+    }
+
+    async findOne(userName: string) {
+        return await this.kycDetailsRepository.findOne(userName);
+    }
+
+    update(id: number, updateKycDetailDto: UpdateKycDetailDto) {
+        return `This action updates a #${id} kycDetail`;
+    }
+
+    remove(id: number) {
+        return `This action removes a #${id} kycDetail`;
+    }
+
+    
+
+    //KYC Document Types
+    async createDocType(saveKycDocTypeDto : CreateKycDocTypeDto) {
+        console.log(saveKycDocTypeDto);
+
+        let find = await this.kycDetailsRepository.createKycDocType(saveKycDocTypeDto);
+        if (!find) {
+            throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return {
+                statusCode : HttpStatus.CREATED,
+                message    : "KYC types Saved Successfully"
+            };
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    // constructor(@InjectRepository(KycDetail) private kycRepository: Repository<KycDetail>,
+    // @InjectRepository(KycDocType) private kycdocRepository: Repository<KycDocType>) { }
+
+    // async create(saveKycDetailDto: CreateKycDetailDto) {
+    //     console.log(saveKycDetailDto);
+
+    //     let find = await this.kycRepository.save(saveKycDetailDto);
+    //     if (!find) {
+    //         throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+    //     }
+    //     else {
+    //         return find;
+    //     }
+    // }
+
+    // async findAll() {
+    //     let find = await this.kycRepository.find();
+    //     if (!find) {
+    //         throw new HttpException('List Empty', HttpStatus.BAD_REQUEST);
+    //     }
+    //     else {
+    //         return find;
+    //     }
+    // }
+
+    // findOne(userName: string): Promise<KycDetail | null> {
+    //     return this.kycRepository.findOneBy({ userName: userName });
+    // }
+
+    // update(id: number, updateKycDetailDto: UpdateKycDetailDto) {
+    //     return `This action updates a #${id} kycDetail`;
+    // }
+
+    // remove(id: number) {
+    //     return `This action removes a #${id} kycDetail`;
+    // }
+
+    //KYC Document Types
+    // async createDocType(saveKycDocTypeDto : CreateKycDocTypeDto) {
+    //     console.log(saveKycDocTypeDto);
+
+    //     let find = await this.kycdocRepository.save(saveKycDocTypeDto);
+    //     if (!find) {
+    //         throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+    //     }
+    //     else {
+    //         return find;
+    //     }
+    // }
+
+

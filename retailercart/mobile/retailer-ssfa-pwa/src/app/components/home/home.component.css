@@ -1,0 +1,59 @@
+.banner-card
+{
+    margin: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.icon-circle
+{
+    font-size: xx-large;
+    margin: 8px;
+    color: white;
+}
+
+.details-card-div .overview-box.overview-box-1 .overview-box-icon {
+    background-color: #3d3d82;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 139, 0.53);
+    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 139, 0.53);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.53);
+}
+.details-card-div .overview-box .overview-box-icon {
+    height: 48px;
+    width: 48px;
+    line-height: 48px;
+    text-align: center;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 16px;
+}
+.details-card-div .overview-box {
+    margin-bottom: 0;
+    padding: 16px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.details-card-div .overview-box .overview-box-content {
+    display: inline-block;
+    padding-left: 8px;
+}
+
+.details-card-div .overview-box .overview-box-content .overview-box-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.details-card-div .overview-box .overview-box-content .overview-box-stats {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.details-card-div .overview-box.overview-box-1 .overview-box-details {
+    color: #00008b;
+}
+.details-card-div .overview-box .overview-box-content .overview-box-details {
+    font-size: 12px;
+    font-weight: 700;
+}

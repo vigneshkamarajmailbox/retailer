@@ -1,0 +1,69 @@
+<div class="height-5 landing-header-box for-browser">
+  <mat-card class="height-100" style="padding: 0 0 0 0 !important;">
+    <div class="landing-header-form">
+      <div class="width-10">
+        <img src="/assets/layout/images/logo.png" alt="logo" class="landing-logo cursor"
+             (click)="navigateScreen('home')">
+      </div>
+      <div class="width-3"></div>
+      <mat-nav-list *ngFor="let screen of screenList" class="menu-with-icon-browser width-15">
+        <div (click)="navigateScreen(screen['link'])" class="landing-menu-form">
+          <i *ngIf="screen['link'] !== 'scheme'" class="material-icons" style="font-size: xx-large;">{{screen["icon"]}}</i>
+          <i *ngIf="screen['link'] === 'scheme'" class="material-icons" style="font-size: xx-large;" matBadge="{{schemeCount}}" matBadgePosition="above" matBadgeColor="warn">{{screen["icon"]}}</i>
+          <span class="menu font-size-medium padding-top-5">{{screen["name"]|translate}}</span>
+        </div>
+      </mat-nav-list>
+    </div>
+  </mat-card>
+</div>
+
+<div class="height-5 landing-header-box for-device">
+  <mat-card class="height-100" style="padding: 0 0 0 0 !important;">
+    <div class="landing-header-form">
+      <div class="width-100"
+           style="display: flex; flex-direction: row;  justify-content: space-between; padding-top: 1%">
+        <div class="height-auto width-30">
+          <img src="/assets/layout/images/logo.png" alt="logo" class="landing-logo cursor"
+               style="float: left" (click)="navigateScreen('home')">
+        </div>
+        <div class="for-device padding-top-2">
+          <div class="font-size-large">{{welcomeMsg|translate}}️
+            <i class="material-icons md-dark orange600" style="font-size: 1rem">{{welcomeSymbol}}</i>
+          </div>
+          <div class="font-size-medium">{{user.userName}}️</div>
+        </div>
+        <div style="float: right" class="padding-right-2">
+          <button mat-mini-fab color="primary" aria-label="menu selection" *ngIf="!rightPanelVisible"
+                  (click)="showRightPanel()">
+            <i class="material-icons">menu</i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div class="layout-rightpanel" *ngIf="rightPanelVisible">
+    <span class="layout-closing-width">
+    <button class="layout-rightpanel-close" mat-mini-fab color="warn" aria-label="menu selection"
+            *ngIf="rightPanelVisible"
+            (click)="showRightPanel()">
+    <i class="material-icons">close</i>
+    </button>
+    </span>
+  <mat-drawer-container autosize [ngClass]="{'layout-rightpanel-active': rightPanelActive}">
+    <mat-drawer mode="side" opened></mat-drawer>
+    <mat-drawer-content class="height-100">
+      <mat-list *ngFor="let screen of screenList" style="background-color: white">
+        <div class="menu-with-icon cursor">
+          <i *ngIf="screen['link'] !== 'scheme'"  class="material-icons padding-top-2 padding-left-5" style="font-size: xx-large">{{screen["icon"]}}</i>
+          <i *ngIf="screen['link'] === 'scheme'"  class="material-icons padding-top-2 padding-left-5" style="font-size: xx-large" matBadge="{{schemeCount}}" matBadgePosition="above after" matBadgeColor="warn">{{screen["icon"]}}</i>
+          <mat-list-item (click)="navigateScreen(screen['link'])">
+            {{screen["name"]|translate}}
+          </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

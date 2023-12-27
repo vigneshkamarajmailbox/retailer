@@ -1,0 +1,20 @@
+[
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": 1587704197000,
+    "changeNo": null,
+    "notificationType": "CV",
+    "notificationName": "COVID-19"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": 1587704197000,
+    "changeNo": null,
+    "notificationType": "GN",
+    "notificationName": "GENERAL"
+  }
+]

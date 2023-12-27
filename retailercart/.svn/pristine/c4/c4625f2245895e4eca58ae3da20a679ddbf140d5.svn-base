@@ -1,0 +1,50 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { KycDetailsService } from './kyc-details.service';
+import { CreateKycDetailDto } from './dto/create-kyc-detail.dto';
+import { UpdateKycDetailDto } from './dto/update-kyc-detail.dto';
+import { CreateKycDocTypeDto } from './dto/create-kyc-doc-type.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { Public } from 'src/auth/decorators/public.decorator';
+
+@Controller('kyc-details')
+export class KycDetailsController {
+  constructor(private readonly kycDetailsService: KycDetailsService) {}
+
+  @ApiProperty()
+  @Public()
+  @Post()
+  create(@Body() createKycDetailDto: CreateKycDetailDto) {
+    return this.kycDetailsService.create(createKycDetailDto);
+  }
+
+  @Public()
+  @Get()
+  findAll() {
+    return this.kycDetailsService.findAll();
+  }
+
+  @Public()
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.kycDetailsService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateKycDetailDto: UpdateKycDetailDto) {
+    return this.kycDetailsService.update(+id, updateKycDetailDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.kycDetailsService.remove(+id);
+  }
+
+  //KYC Document Types
+  @Public()
+  @Post('doc-type')
+  createDocType(@Body() CreateKycDocTypeDto: CreateKycDocTypeDto) {
+    return this.kycDetailsService.createDocType(CreateKycDocTypeDto);
+  }
+
+}
+

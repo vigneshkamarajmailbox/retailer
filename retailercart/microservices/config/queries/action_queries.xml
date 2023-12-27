@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <!-- FETCH QUERIES -->
+    <query name="FETCH_PENDING_ACTION_TEMPLATE">
+        SELECT SyncNo,
+               CmpCode,
+               DistrCode,
+               ActionTime,
+               ActionCode,
+               ActionTemplate,
+               ProcessedFlag,
+               ModDt
+        FROM actionapi
+        WHERE ActionCode = :param1
+          AND ProcessedFlag = 'N'
+    </query>
+
+    <query name="UPDATE_PARSED_ACTION_TEMPLATE">
+        UPDATE actionapi
+        SET ProcessedFlag = 'Y',
+            ModDt         = NOW()
+        WHERE SyncNo = :syncNo
+    </query>
+
+    <!-- INSERT OR UPDATE QUERIES -->
+    <query name="INSERT_ACTION_ORDER_STATUS">
+        INSERT INTO action_order_status (CmpCode,
+                                         DistrCode,
+                                         OrderNo,
+                                         OrderStatus,
+                                         ActionTime,
+                                         FreeText,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :orderStatus,
+                :actionTime,
+                :freeText,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ActionTime = :actionTime,
+                   FreeText   = :freeText,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_ACTION_ORDER_INVOICE_VALUE">
+        INSERT INTO action_order_invoice_value (CmpCode,
+                                                DistrCode,
+                                                OrderNo,
+                                                InvoiceNo,
+                                                OrderValue,
+                                                InvoiceValue,
+                                                ActionTime,
+                                                FreeText,
+                                                UploadFlag,
+                                                ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :invoiceNo,
+                :orderValue,
+                :invoiceValue,
+                :actionTime,
+                :freeText,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE OrderValue   = :orderValue,
+                   InvoiceValue = :invoiceValue,
+                   ActionTime   = :actionTime,
+                   FreeText     = :freeText,
+                   UploadFlag   = :uploadFlag,
+                   ModDt        = :modDt
+    </query>
+
+    <query name="INSERT_ACTION_ORDER_INVOICE_LINE_LEVEL">
+        INSERT INTO action_order_invoice_line_level (CmpCode,
+                                                     DistrCode,
+                                                     OrderNo,
+                                                     InvoiceNo,
+                                                     ProdCode,
+                                                     ProdBatchCode,
+                                                     OrderQty,
+                                                     InvoiceQty,
+                                                     LineType,
+                                                     ActionTime,
+                                                     FreeText,
+                                                     UploadFlag,
+                                                     ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :invoiceNo,
+                :prodCode,
+                :prodBatchCode,
+                :orderQty,
+                :invoiceQty,
+                :lineType,
+                :actionTime,
+                :freeText,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE OrderQty   = :orderQty,
+                   InvoiceQty = :invoiceQty,
+                   LineType   = :lineType,
+                   ActionTime = :actionTime,
+                   FreeText   = :freeText,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <!-- FETCH MESSAGING QUERIES -->
+    <query name="FETCH_USERS_FOR_ACTIVATION">
+        SELECT LoginCode,
+               UserName
+        FROM useractivation
+        WHERE UserStatus = 'P'
+    </query>
+
+    <query name="FETCH_USERS_FOR_ACTIVATION_CONFIRMATION">
+        SELECT LoginCode,
+               UserName,
+               UserStatus
+        FROM useractivation
+        WHERE LoginCode = ?
+    </query>
+
+    <query name="FETCH_USERS_FOR_EMAIL">
+        SELECT CmpCode, LoginCode, UserName, UserType, EmailId, MobileNo
+        FROM companyuser
+        WHERE EmailId IS NOT NULL
+          AND UserStatus = 'Y'
+    </query>
+
+    <query name="FETCH_USERS_USAGE_REPORT_TODAY">
+        SELECT cu.LoginCode                                          AS loginCode,
+               cu.UserName                                           AS userName,
+               cu.MappedCode                                         AS mappedCode,
+               cu.MobileNo                                           AS mobileNo,
+               COUNT(DISTINCT oh.CustomerCode)                       AS customerCount,
+               COUNT(DISTINCT oh.OrderNo)                            AS orderCount,
+               COUNT(DISTINCT CONCAT(od.ProdCode, od.ProdBatchCode)) AS uniqueLines,
+               COUNT(od.ProdCode)                                    AS totalLines,
+               ROUND(SUM(od.OrderValue), 2)                          AS orderValue
+        FROM companyuser cu
+                 INNER JOIN
+             distributorsaleshierarchy dsh ON dsh.CmpCode = cu.CmpCode
+                 AND dsh.SalesHierPath LIKE CONCAT('%/', cu.MappedCode, '/%')
+                 INNER JOIN
+             product p ON dsh.CmpCode = p.CmpCode
+                 AND dsh.LOBCode = p.LOBCode
+                 INNER JOIN
+             orderbookingheader oh ON dsh.CmpCode = oh.CmpCode
+                 AND dsh.DistrCode = oh.DistrCode
+                 AND oh.OrderDt = CURDATE()
+                 INNER JOIN
+             orderbookingdetails od ON oh.CmpCode = od.CmpCode
+                 AND oh.DistrCode = od.DistrCode
+                 AND oh.OrderNo = od.OrderNo
+                 AND od.CmpCode = p.CmpCode
+                 AND od.ProdCode = p.ProdCode
+	WHERE cu.UserStatus = 'Y'
+        GROUP BY cu.LoginCode, cu.UserName, cu.MappedCode, cu.MobileNo
+    </query>
+
+    <query name="FETCH_ORDERED_RETAILERS_EMAIL_TEMPLATE">
+        SELECT userTmp.LoginCode               AS loginCode,
+               userTmp.UserName                AS userName,
+               userTmp.MappedCode              AS mappedCode,
+               userTmp.EmailId                 AS emailId,
+               oh.OrderDt                      AS 'Date',
+               oh.DistrCode                    AS 'Dist Code',
+               d.DistrName                     AS 'Dist Name',
+               oh.CustomerCode                 AS 'Rtr Code',
+               c.CustomerName                  AS 'Rtr Name',
+               oh.customerRefNo                AS 'Ord. No',
+               (SELECT COUNT(od.ProdCode)
+                FROM orderbookingdetails od
+                WHERE od.CmpCode = oh.CmpCode
+                  AND od.DistrCode = oh.DistrCode
+                  AND od.OrderNo = oh.OrderNo) AS 'No of Lines',
+               ROUND(oh.TotalGrossValue, 2)    AS 'Grs. Val',
+               ROUND(oh.TotalDiscount, 2)      AS 'Disc',
+               ROUND(oh.TotalTax, 2)           AS 'Tax',
+               ROUND(oh.TotalOrderValue, 2)    AS 'Net Val'
+        FROM (SELECT DISTINCT cu.LoginCode,
+                              cu.UserName,
+                              cu.MappedCode,
+                              cu.EmailId,
+                              dsh.CmpCode,
+                              dsh.DistrCode
+              FROM companyuser cu
+                       INNER JOIN distributorsaleshierarchy dsh ON dsh.CmpCode = cu.CmpCode
+                  AND dsh.SalesHierPath LIKE CONCAT('%/', cu.MappedCode, '/%')
+		  AND cu.UserStatus = 'Y') userTmp
+                 INNER JOIN
+             orderbookingheader oh ON userTmp.CmpCode = oh.CmpCode
+                 AND userTmp.DistrCode = oh.DistrCode
+                 INNER JOIN
+             distributor d ON oh.CmpCode = d.CmpCode
+                 AND oh.DistrCode = d.DistrCode
+                 INNER JOIN
+             customer c ON oh.CmpCode = c.CmpCode
+                 AND oh.DistrCode = c.DistrCode
+                 AND oh.CustomerCode = c.CustomerCode
+        WHERE oh.OrderDt BETWEEN DATE_FORMAT(LAST_DAY(CURRENT_DATE() - INTERVAL 1 MONTH), '%Y-%m-01') AND CURRENT_DATE()
+	ORDER BY userTmp.LoginCode, userTmp.UserName, userTmp.MappedCode, userTmp.EmailId, oh.OrderDt DESC, oh.DistrCode, oh.CustomerCode, oh.customerRefNo DESC
+    </query>
+
+    <query name="FETCH_NOT_ORDERED_RETAILERS_EMAIL_TEMPLATE">
+        SELECT userTmp.LoginCode  AS loginCode,
+               userTmp.UserName   AS userName,
+               userTmp.MappedCode AS mappedCode,
+               userTmp.EmailId    AS emailId,
+               c.DistrCode        AS 'Dist Code',
+               d.DistrName        AS 'Dist Name',
+               c.CustomerCode     AS 'Rtr Code',
+               c.CustomerName     AS 'Rtr Name',
+               ''                 AS 'Ord. No',
+               ''                 AS 'No of Lines',
+               ''                 AS 'Grs. Val',
+               ''                 AS 'Disc',
+               ''                 AS 'Tax',
+               ''                 AS 'Net Val'
+        FROM (SELECT DISTINCT cu.LoginCode,
+                              cu.UserName,
+                              cu.MappedCode,
+                              cu.EmailId,
+                              dsh.CmpCode,
+                              dsh.DistrCode
+              FROM companyuser cu
+                       INNER JOIN distributorsaleshierarchy dsh ON dsh.CmpCode = cu.CmpCode
+                  AND dsh.SalesHierPath LIKE CONCAT('%/', cu.MappedCode, '/%')) userTmp
+                 INNER JOIN
+             customer c
+             ON userTmp.CmpCode = c.CmpCode
+                 AND userTmp.DistrCode = c.DistrCode
+                 INNER JOIN
+             distributor d ON c.CmpCode = d.CmpCode
+                 AND c.DistrCode = d.DistrCode
+                 LEFT JOIN
+             orderbookingheader oh ON c.CmpCode = oh.CmpCode
+                 AND c.DistrCode = oh.DistrCode
+                 AND c.CustomerCode = oh.CustomerCode
+                 AND oh.OrderDt BETWEEN DATE_FORMAT(LAST_DAY(CURRENT_DATE() - INTERVAL 1 MONTH), '%Y-%m-01') AND CURRENT_DATE()
+        WHERE oh.CmpCode IS NULL
+          AND oh.DistrCode IS NULL
+          AND oh.CustomerCode IS NULL
+    </query>
+
+    <query name="FETCH_SYSTEM_NOTIFICATION_BY_INTERVALS">
+        SELECT CmpCode,
+               MessageType,
+               ValidFrom,
+               ValidTo,
+               MessageQuery,
+               Message,
+               IsActive,
+               Intervals
+        FROM systemnotification
+        WHERE CURDATE() BETWEEN ValidFrom AND ValidTo
+          AND IsActive = 'Y'
+          AND Intervals = ?
+    </query>
+
+    <query name="FETCH_SMS_NOTIFICATION_FOR_ALL_USERS">
+        SELECT CmpCode,
+               DistrCode,
+               CustomerCode,
+               CustomerName,
+               MobileNo
+        FROM customer
+        WHERE CmpCode = :param1
+          AND RetailerStatus = 'Y'
+    </query>
+
+    <query name="FETCH_SMS_NOTIFICATION_FOR_DISTR_USERS">
+        SELECT CmpCode,
+               DistrCode,
+               CustomerCode,
+               CustomerName,
+               MobileNo
+        FROM customer
+        WHERE CmpCode = :param1
+          AND DistrCode = :param2
+          AND RetailerStatus = 'Y'
+    </query>
+
+    <query name="FETCH_SMS_NOTIFICATION_FOR_CUSTOMER">
+        SELECT CmpCode,
+               DistrCode,
+               CustomerCode,
+               CustomerName,
+               MobileNo
+        FROM customer
+        WHERE CmpCode = :param1
+          AND MobileNo IN (:param2)
+          AND RetailerStatus = 'Y'
+    </query>
+
+    <!-- UPDATE MESSAGING QUERIES -->
+    <query name="UPDATE_USERS_FOR_ACTIVATION">
+        UPDATE useractivation
+        SET MsgRequestDt = NOW(),
+            UserStatus   = 'M',
+            UploadFlag   = 'N',
+            ModDt        = NOW()
+        WHERE LoginCode = ?
+    </query>
+
+    <query name="UPDATE_USERS_FOR_ACTIVATION_CONFIRMATION">
+        UPDATE useractivation
+        SET ActivationDt = NOW(),
+            UserStatus   = 'A',
+            UploadFlag   = 'N',
+            ModDt        = NOW()
+        WHERE LoginCode = ?
+    </query>
+</queries>

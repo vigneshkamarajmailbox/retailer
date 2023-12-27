@@ -1,0 +1,16 @@
+export enum TableName {
+  PRODUCT = 'product_t',
+  KYC_TYPE = 'kyc_type_t',
+  MEDIA_CATEGORY = 'media_category_t',
+  MEDIA_SUB_CATEGORY = 'media_sub_category_t',
+  LANGUAGE = 'language_t',
+  SCREEN = 'screen_t',
+  SCREEN_ACCESS = 'screen_access_t',
+  LOB_MASTER = 'lob_master_t',
+  RETAILER_CATEGORY = 'retailer_category_t',
+  LOCATION = 'location_t',
+  COUNTRY = 'country_t',
+  STATE = 'state_t',
+  CITY = 'city_t',
+  UOM_MASTER = 'uom_master_t'
+}

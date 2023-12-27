@@ -1,0 +1,18 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+
+export class UserDto {
+  @ApiProperty({ example: 9876543210, description: 'enter the mobileNo' })
+  @IsNotEmpty()
+  userName: any;
+
+  @ApiProperty({ example: 'P@SSword', description: 'enter the password' })
+  @IsString()
+  @IsOptional()
+  password: string;
+
+  @ApiProperty({ example: 'P@SSword', description: 'enter the otp' })
+  @IsNumber()
+  @IsOptional()
+  otp: number;
+}

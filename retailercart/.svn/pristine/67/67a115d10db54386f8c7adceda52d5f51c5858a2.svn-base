@@ -1,0 +1,227 @@
+REQUEST IF DISTRIBUTOR WISE :
+{
+	"cmpCode":"DIL",
+	"entity": "com.botree.interdbentity.model.OrderBookingHeaderEntity",
+	"distrCode" : ["0022000004"],
+	"interDBProcess":"order"
+}
+
+REQUEST IF COMPNAY WISE :
+{
+	"cmpCode":"DIL",
+	"entity": "com.botree.interdbentity.model.OrderBookingHeaderEntity",
+	"distrCode" : [],
+	"interDBProcess":"order"
+}
+
+RESPONSE:
+[
+  {
+    "cmpCode": "DIL",
+    "distrCode": "0022000004",
+    "orderNo": "0022000004CHN0CH0014586520200425070500001",
+    "customerRefNo": "2020042500001",
+    "customerCode": "0022000004CHN0CH00145865",
+    "customerShipCode": "",
+    "orderDt": 1563129000000,
+    "remarks": "",
+    "latitude": "30.7403821",
+    "longitude": "76.7982505",
+    "startTime": 1519634707000,
+    "endTime": 1519634733000,
+    "orderStatus": "P",
+    "totalDiscount": 34.8789,
+    "totalTax": 159.3432,
+    "totalOrderValue": 1009.7043,
+    "orderBookingDetailsList": [
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "prodCode": "FC010050",
+        "prodName": "Amla Hair Oil 50ml",
+        "prodBatchCode": "BM16823-14.5499_20",
+        "orderQty": 6,
+        "servicedQty": 0,
+        "uomCode": "EA",
+        "inputStr": "6EA",
+        "sellRate": 15.41,
+        "schAmt": 5.0853,
+        "taxAmt": 16.6428,
+        "taxCode": "CGST",
+        "cgstPerc": 9,
+        "cgstAmt": 8.3214,
+        "sgstPerc": 0,
+        "sgstAmt": 0,
+        "ugstPerc": 9,
+        "ugstAmt": 8.3214,
+        "igstPerc": 0,
+        "igstAmt": 0,
+        "orderValue": 104.0175,
+        "prodType": "N"
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "prodCode": "FC010200",
+        "prodName": "Amla Hair Oil 200ml",
+        "prodBatchCode": "BT0517-64.0195_1.50P_88",
+        "orderQty": 6,
+        "servicedQty": 0,
+        "uomCode": "EA",
+        "inputStr": "6EA",
+        "sellRate": 67.8,
+        "schAmt": 12.204,
+        "taxAmt": 73.224,
+        "taxCode": "CGST",
+        "cgstPerc": 9,
+        "cgstAmt": 36.612,
+        "sgstPerc": 0,
+        "sgstAmt": 0,
+        "ugstPerc": 9,
+        "ugstAmt": 36.612,
+        "igstPerc": 0,
+        "igstAmt": 0,
+        "orderValue": 467.82,
+        "prodType": "N"
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "prodCode": "FC030050",
+        "prodName": "Jasmine Hair Oil 50 ml",
+        "prodBatchCode": "BU0814-19.6423_3.00P_27",
+        "orderQty": 3,
+        "servicedQty": 0,
+        "uomCode": "EA",
+        "inputStr": "3EA",
+        "sellRate": 20.8,
+        "schAmt": 1.872,
+        "taxAmt": 11.232,
+        "taxCode": "CGST",
+        "cgstPerc": 9,
+        "cgstAmt": 5.616,
+        "sgstPerc": 0,
+        "sgstAmt": 0,
+        "ugstPerc": 9,
+        "ugstAmt": 5.616,
+        "igstPerc": 0,
+        "igstAmt": 0,
+        "orderValue": 71.76,
+        "prodType": "N"
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "prodCode": "FC060100",
+        "prodName": "Sarson Amla Hair Oil 100ml",
+        "prodBatchCode": "BU5022-14.5499_12.00P_20",
+        "orderQty": 6,
+        "servicedQty": 0,
+        "uomCode": "EA",
+        "inputStr": "6EA",
+        "sellRate": 15.41,
+        "schAmt": 11.0952,
+        "taxAmt": 16.6428,
+        "taxCode": "CGST",
+        "cgstPerc": 9,
+        "cgstAmt": 8.3214,
+        "sgstPerc": 0,
+        "sgstAmt": 0,
+        "ugstPerc": 9,
+        "ugstAmt": 8.3214,
+        "igstPerc": 0,
+        "igstAmt": 0,
+        "orderValue": 98.0076,
+        "prodType": "N"
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "prodCode": "FC250100",
+        "prodName": "Dabur Red Tooth Paste 100gm",
+        "prodBatchCode": "RU4447-36.3747_50",
+        "orderQty": 6,
+        "servicedQty": 0,
+        "uomCode": "EA",
+        "inputStr": "6EA",
+        "sellRate": 38.52,
+        "schAmt": 4.6224,
+        "taxAmt": 41.6016,
+        "taxCode": "CGST",
+        "cgstPerc": 9,
+        "cgstAmt": 20.8008,
+        "sgstPerc": 0,
+        "sgstAmt": 0,
+        "ugstPerc": 9,
+        "ugstAmt": 20.8008,
+        "igstPerc": 0,
+        "igstAmt": 0,
+        "orderValue": 268.0992,
+        "prodType": "N"
+      }
+    ],
+    "orderBookingServiceDetailsList": [
+      
+    ],
+    "orderBookingSchemeDetailsList": [
+      
+    ],
+    "orderBookingSchemeProductRuleList": [
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "schemeCode": "SCH000455678",
+        "slabNo": "1",
+        "prodCode": "FC250100",
+        "discPerc": 2,
+        "discAmt": 4.6224
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "schemeCode": "SCH000455710",
+        "slabNo": "1",
+        "prodCode": "FC010200",
+        "discPerc": 1,
+        "discAmt": 12.204
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "schemeCode": "SCH000455711",
+        "slabNo": "1",
+        "prodCode": "FC010050",
+        "discPerc": 4,
+        "discAmt": 5.0853
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "schemeCode": "SCH000455727",
+        "slabNo": "1",
+        "prodCode": "FC030050",
+        "discPerc": 3,
+        "discAmt": 1.872
+      },
+      {
+        "cmpCode": "DIL",
+        "distrCode": "0022000004",
+        "orderNo": "0022000004CHN0CH0014586520200425070500001",
+        "schemeCode": "SCH000455736",
+        "slabNo": "1",
+        "prodCode": "FC060100",
+        "discPerc": 12,
+        "discAmt": 11.0952
+      }
+    ]
+  }
+]

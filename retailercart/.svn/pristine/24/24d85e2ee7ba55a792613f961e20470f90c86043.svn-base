@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "http://checkstyle.sourceforge.net/dtds/suppressions_1_1.dtd">
+<suppressions>
+    <suppress checks="HideUtilityClassConstructor"
+              files="ExternalApiApplication|DataExporterApplication|DataImporterApplication|ReportSchedulerApplication"/>
+    <suppress checks="DesignForExtension"
+              files="DAORepository|ExternalApiApplication|ExternalAPIService|DataExporterService|ReportSchedulerService|AuthServerConfig|CustomAuthenticationProvider|MutableHttpServletRequest|SecurityConfig|SimpleCorsFilter|ExportService|ReportQueryService"/>
+</suppressions>

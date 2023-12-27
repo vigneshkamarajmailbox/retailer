@@ -1,0 +1,12 @@
+import { Module } from '@nestjs/common';
+import { UomMasterService } from './uom-master.service';
+import { UomMasterController } from './uom-master.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UomMaster } from './entities/uom-master.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([UomMaster])],
+  controllers: [UomMasterController],
+  providers: [UomMasterService]
+})
+export class UomMasterModule {}

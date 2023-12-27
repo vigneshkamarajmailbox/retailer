@@ -1,0 +1,39 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { UomMasterService } from './uom-master.service';
+import { CreateUomMasterDto } from './dto/create-uom-master.dto';
+import { UpdateUomMasterDto } from './dto/update-uom-master.dto';
+
+@Controller('uom-master')
+export class UomMasterController {
+  constructor(private readonly uomMasterService: UomMasterService) {}
+
+  @Post()
+  create(@Body() createUomMasterDto: CreateUomMasterDto) {
+    return this.uomMasterService.create(createUomMasterDto);
+  }
+
+  @Post('by-code')
+  fetchUomByCode(@Body() data) {
+    return this.uomMasterService.fetchUomByCode(data);
+  }
+
+  @Get()
+  findAll() {
+    return this.uomMasterService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.uomMasterService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUomMasterDto: UpdateUomMasterDto) {
+    return this.uomMasterService.update(+id, updateUomMasterDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.uomMasterService.remove(+id);
+  }
+}

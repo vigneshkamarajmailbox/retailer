@@ -1,0 +1,425 @@
+package com.botree.interdb.service;
+
+import com.botree.common.constants.StringConstants;
+import com.botree.common.model.OrderReferralModel;
+import com.botree.common.service.IQueryService;
+import com.botree.common.util.Function;
+import com.botree.interdbentity.model.AbstractEntity;
+import com.botree.interdbentity.model.FeedBackEntity;
+import com.botree.interdbentity.model.LocationUpdateEntity;
+import com.botree.interdbentity.model.LoginReferralEntity;
+import com.botree.interdbentity.model.OrderBookingDetailsEntity;
+import com.botree.interdbentity.model.OrderBookingHeaderEntity;
+import com.botree.interdbentity.model.OrderBookingSchemeDetailsEntity;
+import com.botree.interdbentity.model.OrderBookingSchemeProductRuleEntity;
+import com.botree.interdbentity.model.SyncLogEntity;
+import com.botree.interdbentity.model.TransactionModel;
+import com.botree.sfadbrepository.dao.DAORepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+/**
+ * This class is call the repository with respective data.
+ * @author vinodkumar.a
+ */
+@Component
+@Transactional
+public class TransactionService {
+
+    /** LOG. */
+    private static final Logger LOG = LoggerFactory.getLogger(TransactionService.class);
+
+    /** imageLocalFilePath. */
+    @Value("${image.path}")
+    private String imageLocalFilePath;
+
+    /** queryService. */
+    private final IQueryService queryService;
+
+    /** repository. */
+    private final DAORepository repository;
+
+    /**
+     * Constructor Method.
+     * @param queryServiceIn queryServiceIn
+     * @param repositoryIn   repositoryIn
+     */
+    public TransactionService(final IQueryService queryServiceIn, final DAORepository repositoryIn) {
+        this.queryService = queryServiceIn;
+        this.repository = repositoryIn;
+    }
+
+    /**
+     * Method to fetch transaction data.
+     * @param model model
+     * @return data
+     */
+    @SuppressWarnings("unchecked")
+    public List<AbstractEntity> fetchData(final TransactionModel model) {
+        List<?> responseList = new ArrayList<>();
+        try {
+            switch (model.getEntity()) {
+                case StringConstants.ORDERBOOKING_HEADER_ENTITY:
+                    responseList = convertOrder(model);
+                    break;
+                case StringConstants.FEEDBACK_ENTITY:
+                    responseList = convertFeedback(model);
+                    break;
+                case StringConstants.LOCATION_UPDATE_ENTITY:
+                    responseList = convertLocationUpdate(model);
+                    break;
+                case StringConstants.LOGIN_REFERRAL_ENTITY:
+                    responseList = fetchLoginReferral(model);
+                    break;
+                case StringConstants.ORDER_REFERRAL_ENTITY:
+                    responseList = fetchOrderReferral(model);
+                    break;
+                case StringConstants.SYNC_ENTITY:
+                    responseList = fetchSyncLog();
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+            LOG.error("fetch transaction data exception :: ", e);
+        }
+        LOG.info("response list :: {} : {} ", model.getEntity(), responseList.size());
+        return (List<AbstractEntity>) responseList;
+    }
+
+    /**
+     * Method to update the transaction success status.
+     * @param model model
+     */
+    @Transactional
+    public void updateTransactionStatus(final TransactionModel model) {
+        try {
+            switch (model.getEntity()) {
+                case StringConstants.ORDERBOOKING_HEADER_ENTITY:
+                    updateOrder(model);
+                    break;
+                case StringConstants.FEEDBACK_ENTITY:
+                    updateFeedback(model);
+                    break;
+                case StringConstants.LOCATION_UPDATE_ENTITY:
+                    updateLocationUpdate(model);
+                    break;
+                case StringConstants.LOGIN_REFERRAL_ENTITY:
+                    updateLoginReferral(model);
+                    break;
+                case StringConstants.ORDER_REFERRAL_ENTITY:
+                    updateOrderReferral(model);
+                    break;
+                case StringConstants.SYNC_ENTITY:
+                    updateSyncLog(model);
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+            LOG.error("update transaction status exception :: ", e);
+        }
+    }
+
+    /**
+     * Method to save action data to be performed in server.
+     * @param model model
+     */
+    public void saveActionAPI(final TransactionModel model) {
+        repository.bulkInsert(queryService.get(StringConstants.INSERT_ACTION_API_ENTITY), model.getActionList());
+    }
+
+    /**
+     * Method to convert order.
+     * @param model model
+     * @return order list
+     */
+    private List<OrderBookingHeaderEntity> convertOrder(final TransactionModel model) {
+        if (model.getDistrCode() != null && !model.getDistrCode().isEmpty()) {
+            return convertOrderForDistributor(model);
+        } else {
+            return convertOrderForCompany(model);
+        }
+    }
+
+    /**
+     * Method to convert for distributor.
+     * @param model model
+     * @return order list
+     */
+    private List<OrderBookingHeaderEntity> convertOrderForDistributor(final TransactionModel model) {
+        var orderHeaderList = repository.queryForList(queryService.get(
+                        StringConstants.FETCH_TRANSACTION_ORDERBOOKINGHEADERENTITY_FOR_DISTR),
+                Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode(),
+                        StringConstants.CONST_PARAM_2, model.getDistrCode()), OrderBookingHeaderEntity.class);
+        var orderDetailMap = repository.queryForList(queryService.get(
+                                StringConstants.FETCH_TRANSACTION_ORDERBOOKINGDETAILSENTITY_FOR_DISTR),
+                        Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode(),
+                                StringConstants.CONST_PARAM_2, model.getDistrCode()), OrderBookingDetailsEntity.class)
+                .stream().collect(Collectors.groupingBy(OrderBookingDetailsEntity::orderKey));
+        var orderSchemeDetailMap = repository.queryForList(queryService.get(
+                                StringConstants.FETCH_TRANSACTION_ORDERBOOKINGSCHEMEDETAILSENTITY_FOR_DISTR),
+                        Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode(),
+                                StringConstants.CONST_PARAM_2, model.getDistrCode()),
+                        OrderBookingSchemeDetailsEntity.class)
+                .stream().collect(Collectors.groupingBy(OrderBookingSchemeDetailsEntity::orderKey));
+        var orderSchemeProdRuleMap = repository.queryForList(queryService.get(
+                                StringConstants.FETCH_TRANSACTION_ORDERBOOKINGSCHEMEPRODUCTRULEENTITY_FOR_DISTR),
+                        Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode(),
+                                StringConstants.CONST_PARAM_2, model.getDistrCode()),
+                        OrderBookingSchemeProductRuleEntity.class)
+                .stream().collect(Collectors.groupingBy(OrderBookingSchemeProductRuleEntity::orderKey));
+        return convertOrderList(orderHeaderList, orderDetailMap, orderSchemeDetailMap, orderSchemeProdRuleMap);
+    }
+
+    /**
+     * Method to convert order for company.
+     * @param model model
+     * @return order list
+     */
+    private List<OrderBookingHeaderEntity> convertOrderForCompany(final TransactionModel model) {
+        var orderHeaderList = repository.queryForList(queryService.get(
+                        StringConstants.FETCH_TRANSACTION_ORDERBOOKINGHEADERENTITY_FOR_CMP),
+                Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode()), OrderBookingHeaderEntity.class);
+        var orderDetailMap = repository.queryForList(queryService.get(
+                                StringConstants.FETCH_TRANSACTION_ORDERBOOKINGDETAILSENTITY_FOR_CMP),
+                        Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode()), OrderBookingDetailsEntity.class)
+                .stream().collect(Collectors.groupingBy(OrderBookingDetailsEntity::orderKey));
+        var orderSchemeDetailMap = repository.queryForList(queryService.get(
+                                StringConstants.FETCH_TRANSACTION_ORDERBOOKINGSCHEMEDETAILSENTITY_FOR_CMP),
+                        Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode()),
+                        OrderBookingSchemeDetailsEntity.class)
+                .stream().collect(Collectors.groupingBy(OrderBookingSchemeDetailsEntity::orderKey));
+        var orderSchemeProdRuleMap = repository.queryForList(queryService.get(
+                                StringConstants.FETCH_TRANSACTION_ORDERBOOKINGSCHEMEPRODUCTRULEENTITY_FOR_CMP),
+                        Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode()),
+                        OrderBookingSchemeProductRuleEntity.class)
+                .stream().collect(Collectors.groupingBy(OrderBookingSchemeProductRuleEntity::orderKey));
+        return convertOrderList(orderHeaderList, orderDetailMap, orderSchemeDetailMap, orderSchemeProdRuleMap);
+    }
+
+    /**
+     * Method to form final order list.
+     * @param orderHeaderList        orderHeaderList
+     * @param orderDetailMap         orderDetailMap
+     * @param orderSchemeDetailMap   orderSchemeDetailMap
+     * @param orderSchemeProdRuleMap orderSchemeProdRuleMap
+     * @return order list
+     */
+    private List<OrderBookingHeaderEntity> convertOrderList(
+            final List<OrderBookingHeaderEntity> orderHeaderList,
+            final Map<String, List<OrderBookingDetailsEntity>> orderDetailMap,
+            final Map<String, List<OrderBookingSchemeDetailsEntity>> orderSchemeDetailMap,
+            final Map<String, List<OrderBookingSchemeProductRuleEntity>> orderSchemeProdRuleMap) {
+        List<OrderBookingHeaderEntity> finalList = new ArrayList<>();
+        orderHeaderList.forEach(data -> {
+            if (orderSchemeProdRuleMap.containsKey(data.orderKey())) {
+                data.setOrderBookingSchemeProductRuleList(orderSchemeProdRuleMap.get(data.orderKey()));
+            }
+            if (orderSchemeDetailMap.containsKey(data.orderKey())) {
+                data.setOrderBookingSchemeDetailsList(orderSchemeDetailMap.get(data.orderKey()));
+            }
+            if (orderDetailMap.containsKey(data.orderKey())) {
+                data.setOrderBookingDetailsList(orderDetailMap.get(data.orderKey()));
+                finalList.add(data);
+            }
+        });
+        return finalList;
+    }
+
+    /**
+     * Method to convert feed back.
+     * @param model model
+     * @return feedback list
+     */
+    private List<FeedBackEntity> convertFeedback(final TransactionModel model) {
+        if (model.getDistrCode() != null && !model.getDistrCode().isEmpty()) {
+            return convertFeedbackImage(repository.queryForList(queryService.get(
+                            StringConstants.FETCH_TRANSACTION_FEEDBACKENTITY_FOR_DISTR),
+                    Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode(),
+                            StringConstants.CONST_PARAM_2, model.getDistrCode()), FeedBackEntity.class));
+        } else {
+            return convertFeedbackImage(repository.queryForList(queryService.get(
+                            StringConstants.FETCH_TRANSACTION_FEEDBACKENTITY_FOR_CMP),
+                    Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode()), FeedBackEntity.class));
+        }
+    }
+
+    /**
+     * Method to convert feedback image.
+     * @param list list
+     * @return list
+     */
+    private List<FeedBackEntity> convertFeedbackImage(final List<FeedBackEntity> list) {
+        list.forEach(data -> {
+            if (data.getImagePath() != null && !data.getImagePath().isEmpty()) {
+                var imagePath = imageLocalFilePath + File.separatorChar
+                        + StringConstants.FEEDBACK_IMAGES + File.separatorChar + data.getImagePath();
+                data.setImage(Function.encoder(imagePath));
+            }
+        });
+        return list;
+    }
+
+    /**
+     * Method to convert location update.
+     * @param model model
+     * @return location update list
+     */
+    private List<LocationUpdateEntity> convertLocationUpdate(final TransactionModel model) {
+        if (model.getDistrCode() != null && !model.getDistrCode().isEmpty()) {
+            return convertLocationUpdateImage(repository.queryForList(queryService.get(
+                            StringConstants.FETCH_TRANSACTION_LOCATIONUPDATEENTITY_FOR_DISTR),
+                    Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode(),
+                            StringConstants.CONST_PARAM_2, model.getDistrCode()), LocationUpdateEntity.class));
+        } else {
+            return convertLocationUpdateImage(repository.queryForList(queryService.get(
+                            StringConstants.FETCH_TRANSACTION_LOCATIONUPDATEENTITY_FOR_CMP),
+                    Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode()), LocationUpdateEntity.class));
+        }
+    }
+
+    /**
+     * Method to convert location update with image.
+     * @param list list
+     * @return list
+     */
+    private List<LocationUpdateEntity> convertLocationUpdateImage(final List<LocationUpdateEntity> list) {
+        list.forEach(data -> {
+            if (data.getImagePath() != null && !data.getImagePath().isEmpty()) {
+                var imagePath = imageLocalFilePath + File.separatorChar
+                        + StringConstants.LOCATION_UPDATE_IMAGES + File.separatorChar + data.getImagePath();
+                data.setImage(Function.encoder(imagePath));
+            }
+        });
+        return list;
+    }
+
+    /**
+     * Method to update the order.
+     * @param model model
+     */
+    private void updateOrder(final TransactionModel model) {
+        try {
+            repository.updateStatus(queryService.get(StringConstants.UPDATE_TRANSACTION_ORDERBOOKINGHEADERENTITY),
+                    model.getUpdateList());
+            repository.updateStatus(queryService.get(StringConstants.UPDATE_TRANSACTION_ORDERBOOKINGDETAILSENTITY),
+                    model.getUpdateList());
+            repository.updateStatus(queryService.get(
+                    StringConstants.UPDATE_TRANSACTION_ORDERBOOKINGSCHEMEDETAILSENTITY), model.getUpdateList());
+            repository.updateStatus(queryService.get(
+                    StringConstants.UPDATE_TRANSACTION_ORDERBOOKINGSCHEMEPRODUCTRULEENTITY), model.getUpdateList());
+        } catch (Exception e) {
+            LOG.error("update order transaction exception :: ", e);
+        }
+    }
+
+    /**
+     * Method to update the feed back.
+     * @param model model
+     */
+    private void updateFeedback(final TransactionModel model) {
+        try {
+            repository.updateStatus(queryService.get(StringConstants.UPDATE_TRANSACTION_FEEDBACKENTITY),
+                    model.getUpdateList());
+        } catch (Exception e) {
+            LOG.error("update feed back transaction exception :: ", e);
+        }
+    }
+
+    /**
+     * Method to update the location update transaction.
+     * @param model model
+     */
+    private void updateLocationUpdate(final TransactionModel model) {
+        try {
+            repository.updateStatus(queryService.get(StringConstants.UPDATE_TRANSACTION_LOCATIONUPDATEENTITY),
+                    model.getUpdateList());
+        } catch (Exception e) {
+            LOG.error("update location update transaction exception :: ", e);
+        }
+    }
+
+    /**
+     * This method is used to fetch Login Referral server.
+     * @param model TransactionModel
+     * @return Login Referral Entity
+     */
+    private List<LoginReferralEntity> fetchLoginReferral(final TransactionModel model) {
+        return repository.queryForList(queryService.get(
+                        StringConstants.FETCH_LOGIN_REFERRAL),
+                Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode(),
+                        StringConstants.CONST_PARAM_2, model.getDistrCode()), LoginReferralEntity.class);
+    }
+
+    /**
+     * This method is used to fetch order Referral server.
+     * @param model TransactionModel
+     * @return Login Referral Entity
+     */
+    private List<OrderReferralModel> fetchOrderReferral(final TransactionModel model) {
+        return repository.queryForList(queryService.get(
+                        StringConstants.FETCH_ORDER_REFERRAL),
+                Map.of(StringConstants.CONST_PARAM_1, model.getCmpCode()), OrderReferralModel.class);
+    }
+
+    /**
+     * This method is used to fetch sync log.
+     * @return sync log Entity
+     */
+    private List<SyncLogEntity> fetchSyncLog() {
+        return repository.queryForList(queryService.get(StringConstants.FETCH_SYNC_LOG),
+                Map.of(StringConstants.CONST_PARAM_1, "N"),
+                SyncLogEntity.class);
+    }
+
+    /**
+     * This method is used to update Login Referral.
+     * @param model TransactionModel
+     */
+    private void updateLoginReferral(final TransactionModel model) {
+        try {
+            repository.updateStatus(queryService.get(StringConstants.UPDATE_LOGIN_REFERRAL_ENTITY),
+                    model.getUpdateList());
+        } catch (Exception e) {
+            LOG.error("update login referral exception :: ", e);
+        }
+    }
+
+    /**
+     * This method is used to update order Referral.
+     * @param model TransactionModel
+     */
+    private void updateOrderReferral(final TransactionModel model) {
+        try {
+            repository.updateStatus(queryService.get(StringConstants.UPDATE_ORDER_REFERRAL_ENTITY),
+                    model.getUpdateList());
+        } catch (Exception e) {
+            LOG.error("update order referral transaction exception :: ", e);
+        }
+    }
+
+
+    /**
+     * This method is used to update syncLog.
+     * @param model TransactionModel
+     */
+    private void updateSyncLog(final TransactionModel model) {
+        try {
+            repository.updateStatus(queryService.get(StringConstants.UPDATE_SYNC_ENTITY),
+                    model.getUpdateList());
+        } catch (Exception e) {
+            LOG.error("update sync transaction exception :: ", e);
+        }
+    }
+
+}

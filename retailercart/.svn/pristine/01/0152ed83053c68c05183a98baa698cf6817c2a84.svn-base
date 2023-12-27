@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { DigitalContentService } from './digital-content.service';
+
+describe('DigitalContentService', () => {
+  let service: DigitalContentService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [DigitalContentService],
+    }).compile();
+
+    service = module.get<DigitalContentService>(DigitalContentService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

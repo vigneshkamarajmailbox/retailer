@@ -1,0 +1,52 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsEmail } from 'class-validator';
+
+export class CreateKycDetailDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  userName: string;
+
+  @ApiProperty()
+  @IsNumber()
+  @IsNotEmpty()
+  accountNo: number;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  accountName: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  bank_name: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  bankBranch: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  ifsc: string;
+
+  @ApiProperty()
+  @IsEmail()
+  @IsString()
+  @IsOptional()
+  email: string;
+
+  @IsString()
+  @IsOptional()
+  retailerImageIcon: string
+
+  @IsString()
+  @IsOptional()
+  docImage: string;
+
+  @IsString()
+  @IsOptional()
+  docType: string;
+}

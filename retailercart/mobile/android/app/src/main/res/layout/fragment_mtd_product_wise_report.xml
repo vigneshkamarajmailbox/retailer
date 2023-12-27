@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/chart_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_collapseMode="parallax">
+
+        <LinearLayout
+            android:id="@+id/brandLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/brand"
+                android:textColor="@color/cardview_dark_background"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/txt_size_semi_medium"
+                android:textStyle="bold"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/brand_name_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="@dimen/txt_size_semi_medium"
+                android:textStyle="bold"
+                android:typeface="serif" />
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/mtd_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@color/color_list_divider"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_bg"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/name_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:gravity="center"
+                            android:maxEms="8"
+                            android:maxLines="1"
+                            android:minEms="8"
+                            android:drawableLeft="@drawable/filter"
+                            android:padding="@dimen/text_padding_small"
+                            android:text="@string/prodname"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_size_normal" />
+
+                        <TextView
+                            android:id="@+id/week_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:gravity="center"
+                            android:maxEms="5"
+                            android:maxLines="1"
+                            android:minEms="5"
+                            android:padding="@dimen/text_padding_small"
+                            android:text="Week"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_size_normal" />
+
+                        <TextView
+                            android:id="@+id/day_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:gravity="center"
+                            android:maxEms="5"
+                            android:maxLines="1"
+                            android:minEms="5"
+                            android:padding="@dimen/text_padding_small"
+                            android:text="Day"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_size_normal" />
+
+                        <TextView
+                            android:id="@+id/tvInvoice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:gravity="center"
+                            android:maxEms="5"
+                            android:maxLines="1"
+                            android:minEms="5"
+                            android:padding="@dimen/text_padding_small"
+                            android:text="Net Amt"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_size_normal" />
+
+                        <TextView
+                            android:id="@+id/tvValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:gravity="center"
+                            android:maxEms="3"
+                            android:maxLines="1"
+                            android:minEms="3"
+                            android:padding="@dimen/text_padding_small"
+                            android:text="Sales Qty"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/txt_size_normal" />
+                    </LinearLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvEmpty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:drawableTop="@drawable/sad"
+                            android:drawablePadding="10dp"
+                            android:gravity="center"
+                            android:padding="50dp"
+                            android:text="@string/not_available"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/txt_size_large"
+                            android:visibility="visible" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvList"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scrollbars="none"
+                            tools:listitem="@layout/salesman_wise_list_item"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </HorizontalScrollView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+

@@ -1,0 +1,20 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { UomMasterController } from './uom-master.controller';
+import { UomMasterService } from './uom-master.service';
+
+describe('UomMasterController', () => {
+  let controller: UomMasterController;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [UomMasterController],
+      providers: [UomMasterService],
+    }).compile();
+
+    controller = module.get<UomMasterController>(UomMasterController);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});

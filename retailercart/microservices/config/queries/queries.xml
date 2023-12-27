@@ -1,0 +1,2920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+
+    <!-- INTEGRATION OAUTH QUERIES -->
+    <query name="USER_LOGIN">
+        SELECT u.LoginCode,
+               u.UserName
+        FROM consumers u
+        WHERE u.LoginCode = ?
+          AND u.Password = ?
+          AND u.UserStatus = 'Y'
+    </query>
+    <query name="INSERT_USER_LOGIN_LOG">
+        INSERT INTO user_logs_t (user_code,
+                                 last_login_time,
+                                 last_login_ip,
+                                 is_logged_in,
+                                 logout_time)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?)
+        on duplicate KEY UPDATE last_login_time = VALUES(last_login_time),
+                                last_login_ip   = VALUES(last_login_ip),
+                                is_logged_in    = VALUES(is_logged_in)
+
+    </query>
+
+    <query name="UPDATE_USER_LOGOUT_LOG">
+        UPDATE user_logs_t
+        SET is_logged_in = :is_logged_in,
+            logout_time  = :logout_time
+        WHERE user_code = :user_code
+    </query>
+
+    <!-- MASTER INSERT OR UPDATE RELATED QUERIES -->
+    <query name="INSERT_MASTER_COMPANYENTITY">
+        INSERT INTO company (CmpCode,
+                            CmpName,
+                            CmpAddr1,
+                            CmpAddr2,
+                            CmpAddr3,
+                            City,
+                            State,
+                            Country,
+                            PostalCode,
+                            UploadFlag,
+                            ModDt)
+        VALUES (:cmpCode,
+                :cmpName,
+                :cmpAddr1,
+                :cmpAddr2,
+                :cmpAddr3,
+                :city,
+                :state,
+                :country,
+                :postalCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE CmpName    = :cmpName,
+                   CmpAddr1   = :cmpAddr1,
+                   CmpAddr2   = :cmpAddr2,
+                   CmpAddr3   = :cmpAddr3,
+                   City       = :city,
+                   State      = :state,
+                   Country    = :country,
+                   PostalCode = :postalCode,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_CUSTOMERENTITY">
+        INSERT INTO customer (CmpCode,
+                              DistrCode,
+                              CustomerCode,
+                              CustomerName,
+                              MobileNo,
+                              PinCode,
+                              PhoneNo,
+                              ContactPerson,
+                              EmailID,
+                              RetailerStatus,
+                              FssaiNo,
+                              CreditBills,
+                              CreditDays,
+                              CreditLimit,
+                              CashDiscPerc,
+                              ChannelCode,
+                              SubChannelCode,
+                              GroupCode,
+                              ClassCode,
+                              StoreType,
+                              ParentCustomerCode,
+                              Latitude,
+                              Longitude,
+                              CustomerType,
+                              GSTTinNo,
+                              PanNo,
+                              District,
+                              OutstandingAmt,
+                              UploadFlag,
+                              ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :customerCode,
+                :customerName,
+                :mobileNo,
+                :pinCode,
+                :phoneNo,
+                :contactPerson,
+                :emailID,
+                :retailerStatus,
+                :fssaiNo,
+                :creditBills,
+                :creditDays,
+                :creditLimit,
+                :cashDiscPerc,
+                :channelCode,
+                :subChannelCode,
+                :groupCode,
+                :classCode,
+                :storeType,
+                :parentCustomerCode,
+                :latitude,
+                :longitude,
+                :customerType,
+                :gstTinNo,
+                :panNo,
+                :district,
+                :outstandingAmt,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE CustomerName       = :customerName,
+                   MobileNo           = :mobileNo,
+                   PinCode            = :pinCode,
+                   PhoneNo            = :phoneNo,
+                   ContactPerson      = :contactPerson,
+                   EmailID            = :emailID,
+                   RetailerStatus     = :retailerStatus,
+                   FssaiNo            = :fssaiNo,
+                   CreditBills        = :creditBills,
+                   CreditDays         = :creditDays,
+                   CreditLimit        = :creditLimit,
+                   CashDiscPerc       = :cashDiscPerc,
+                   ChannelCode        = :channelCode,
+                   SubChannelCode     = :subChannelCode,
+                   GroupCode          = :groupCode,
+                   ClassCode          = :classCode,
+                   StoreType          = :storeType,
+                   ParentCustomerCode = :parentCustomerCode,
+                   Latitude           = :latitude,
+                   Longitude          = :longitude,
+                   CustomerType       = :customerType,
+                   GSTTinNo           = :gstTinNo,
+                   PanNo              = :panNo,
+                   District           = :district,
+                   OutstandingAmt     = :outstandingAmt,
+                   UploadFlag         = :uploadFlag,
+                   ModDt              = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_APPUSERENTITY">
+        INSERT INTO appuser (LoginCode,
+                             Password,
+                             UserName,
+                             UserStatus,
+                             NewPassword,
+                             GroupCode,
+                             UploadFlag,
+                             ModDt)
+        VALUES (:loginCode,
+                :password,
+                :userName,
+                :userStatus,
+                :newPassword,
+                :groupCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UserName   = :userName,
+                   UserStatus = :userStatus,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_CUSTOMERSHIPADDRESSENTITY">
+        INSERT INTO customershipaddress (CmpCode,
+                                         DistrCode,
+                                         CustomerCode,
+                                         CustomerShipCode,
+                                         CustomerShipAddr1,
+                                         CustomerShipAddr2,
+                                         CustomerShipAddr3,
+                                         City,
+                                         GSTStateCode,
+                                         PhoneNo,
+                                         DefaultShipAddr,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :customerCode,
+                :customerShipCode,
+                :customerShipAddr1,
+                :customerShipAddr2,
+                :customerShipAddr3,
+                :city,
+                :gstStateCode,
+                :phoneNo,
+                :defaultShipAddr,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE CustomerShipAddr1 = :customerShipAddr1,
+                   CustomerShipAddr2 = :customerShipAddr2,
+                   CustomerShipAddr3 = :customerShipAddr3,
+                   City              = :city,
+                   GSTStateCode      = :gstStateCode,
+                   PhoneNo           = :phoneNo,
+                   DefaultShipAddr   = :defaultShipAddr,
+                   UploadFlag        = :uploadFlag,
+                   ModDt             = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_DISTRIBUTORENTITY">
+        INSERT INTO distributor (CmpCode,
+                                 DistrCode,
+                                 DistrName,
+                                 DistrAddr1,
+                                 DistrAddr2,
+                                 DistrAddr3,
+                                 PinCode,
+                                 PhoneNo,
+                                 MobileNo,
+                                 ContactPerson,
+                                 EmailID,
+                                 GSTStateCode,
+                                 DayOff,
+                                 DistrStatus,
+                                 LoadStockProd,
+                                 UploadFlag,
+                                 ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :distrName,
+                :distrAddr1,
+                :distrAddr2,
+                :distrAddr3,
+                :pinCode,
+                :phoneNo,
+                :mobileNo,
+                :contactPerson,
+                :emailID,
+                :gstStateCode,
+                :dayOff,
+                :distrStatus,
+                :loadStockProd,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE DistrName     = :distrName,
+                   DistrAddr1    = :distrAddr1,
+                   DistrAddr2    = :distrAddr2,
+                   DistrAddr3    = :distrAddr3,
+                   PinCode       = :pinCode,
+                   PhoneNo       = :phoneNo,
+                   MobileNo      = :mobileNo,
+                   ContactPerson = :contactPerson,
+                   EmailID       = :emailID,
+                   GSTStateCode  = :gstStateCode,
+                   DayOff        = :dayOff,
+                   DistrStatus   = :distrStatus,
+                   LoadStockProd = :loadStockProd,
+                   UploadFlag    = :uploadFlag,
+                   ModDt         = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_DISTRIBUTORLOBMAPPINGENTITY">
+        INSERT INTO distributorlobmapping (CmpCode,
+                                           DistrCode,
+                                           LOBCode,
+                                           UploadFlag,
+                                           ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :lobCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_LOBMASTERENTITY">
+        INSERT INTO lobmaster (CmpCode,
+                               LOBCode,
+                               LOBName,
+                               UploadFlag,
+                               ModDt)
+        VALUES (:cmpCode,
+                :lobCode,
+                :lobName,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE LOBName    = :lobName,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_PRODUCTHIERLEVELENTITY">
+        INSERT INTO producthierlevel (CmpCode,
+                                      ProdHierLvlCode,
+                                      ProdHierLvlName,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (:cmpCode,
+                :prodHierLvlCode,
+                :prodHierLvlName,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdHierLvlName = :prodHierLvlName,
+                   UploadFlag      = :uploadFlag,
+                   ModDt           = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_PRODUCTHIERVALUEENTITY">
+        INSERT INTO producthiervalue (CmpCode,
+                                      ProdHierLvlCode,
+                                      ProdHierValCode,
+                                      ProdHierValName,
+                                      ParentCode,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (:cmpCode,
+                :prodHierLvlCode,
+                :prodHierValCode,
+                :prodHierValName,
+                :parentCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdHierValName = :prodHierValName,
+                   ParentCode      = :parentCode,
+                   UploadFlag      = :uploadFlag,
+                   ModDt           = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_PRODUCTENTITY">
+        INSERT INTO product (CmpCode,
+                             ProdCode,
+                             ProdName,
+                             ProdShortName,
+                             ProdStatus,
+                             ProdType,
+                             ProdShelfLife,
+                             ProdNetWgt,
+                             ProdWgtType,
+                             LOBCode,
+                             LOBName,
+                             HSNCode,
+                             HSNName,
+                             ProductHierPathCode,
+                             ProductHierPathName,
+                             UploadFlag,
+                             ModDt)
+        VALUES (:cmpCode,
+                :prodCode,
+                :prodName,
+                :prodShortName,
+                :prodStatus,
+                :prodType,
+                :prodShelfLife,
+                :prodNetWgt,
+                :prodWgtType,
+                :lobCode,
+                :lobName,
+                :hsnCode,
+                :hsnName,
+                :productHierPathCode,
+                :productHierPathName,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdName            = :prodName,
+                   ProdShortName       = :prodShortName,
+                   ProdStatus          = :prodStatus,
+                   ProdType            = :prodType,
+                   ProdShelfLife       = :prodShelfLife,
+                   ProdNetWgt          = :prodNetWgt,
+                   ProdWgtType         = :prodWgtType,
+                   LOBCode             = :lobCode,
+                   LOBName             = :lobName,
+                   HSNCode             = :hsnCode,
+                   HSNName             = :hsnName,
+                   ProductHierPathCode = :productHierPathCode,
+                   ProductHierPathName = :productHierPathName,
+                   UploadFlag          = :uploadFlag,
+                   ModDt               = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_PRODUCTBATCHENTITY">
+        INSERT INTO productbatch (CmpCode,
+                                  BatchLevel,
+                                  ProdCode,
+                                  ProdBatchCode,
+                                  MRP,
+                                  SellRate,
+                                  SellRateWithTax,
+                                  ManfDate,
+                                  ExpiryDate,
+                                  LatestBatch,
+                                  GeoLevelBatch,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (:cmpCode,
+                :batchLevel,
+                :prodCode,
+                :prodBatchCode,
+                :mrp,
+                :sellRate,
+                :sellRateWithTax,
+                :manfDate,
+                :expiryDate,
+                :latestBatch,
+                :geoLevelBatch,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE MRP             = :mrp,
+                   SellRate        = :sellRate,
+                   SellRateWithTax = :sellRateWithTax,
+                   ManfDate        = :manfDate,
+                   ExpiryDate      = :expiryDate,
+                   LatestBatch     = :latestBatch,
+                   GeoLevelBatch   = :geoLevelBatch,
+                   UploadFlag      = :uploadFlag,
+                   ModDt           = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_PRODUCTUOMENTITY">
+        INSERT INTO productuom (CmpCode,
+                                ProdCode,
+                                UOMCode,
+                                UOMDescription,
+                                UomConvFactor,
+                                BaseUOM,
+                                DefaultUOM,
+                                UploadFlag,
+                                ModDt)
+        VALUES (:cmpCode,
+                :prodCode,
+                :uomCode,
+                :uomDescription,
+                :uomConvFactor,
+                :baseUOM,
+                :defaultUOM,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UOMDescription = :uomDescription,
+                   UomConvFactor  = :uomConvFactor,
+                   BaseUOM        = :baseUOM,
+                   DefaultUOM     = :defaultUOM,
+                   UploadFlag     = :uploadFlag,
+                   ModDt          = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_RETAILERCATEGORYENTITY">
+        INSERT INTO retailercategory (CmpCode,
+                                      ChannelCode,
+                                      ChannelName,
+                                      SubChannelCode,
+                                      SubChannelName,
+                                      GroupCode,
+                                      GroupName,
+                                      ClassCode,
+                                      ClassName,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (:cmpCode,
+                :channelCode,
+                :channelName,
+                :subChannelCode,
+                :subChannelName,
+                :groupCode,
+                :groupName,
+                :classCode,
+                :className,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ChannelName    = :channelName,
+                   SubChannelName = :subChannelName,
+                   GroupName      = :groupName,
+                   ClassName      = :className,
+                   UploadFlag     = :uploadFlag,
+                   ModDt          = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_TAXSTRUCTUREENTITY">
+        INSERT INTO taxstructure (CmpCode,
+                                  TaxStateCode,
+                                  ProdCode,
+                                  CGST,
+                                  SGST,
+                                  IGST,
+                                  CESS,
+                                  AdditionalTax,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (:cmpCode,
+                :taxStateCode,
+                :prodCode,
+                :cgst,
+                :sgst,
+                :igst,
+                :cess,
+                :additionalTax,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE CGST          = :cgst,
+                   SGST          = :sgst,
+                   IGST          = :igst,
+                   CESS          = :cess,
+                   AdditionalTax = :additionalTax,
+                   UploadFlag    = :uploadFlag,
+                   ModDt         = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMEDEFINITIONENTITY">
+        INSERT INTO schemedefinition (CmpCode,
+                                      SchemeCode,
+                                      SchemeDescription,
+                                      SchemeBase,
+                                      SchemeFromDt,
+                                      SchemeToDt,
+                                      PayOutType,
+                                      IsSkuLevel,
+                                      IsActive,
+                                      Combi,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :schemeDescription,
+                :schemeBase,
+                :schemeFromDt,
+                :schemeToDt,
+                :payOutType,
+                :isSkuLevel,
+                :isActive,
+                :combi,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE SchemeDescription = :schemeDescription,
+                   SchemeFromDt      = :schemeFromDt,
+                   SchemeToDt        = :schemeToDt,
+                   PayOutType        = :payOutType,
+                   IsSkuLevel        = :isSkuLevel,
+                   IsActive          = :isActive,
+                   Combi             = :combi,
+                   UploadFlag        = :uploadFlag,
+                   ModDt             = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMEDISTRIBUTORBUDGETENTITY">
+        INSERT INTO schemedistributorbudget (CmpCode,
+                                             SchemeCode,
+                                             DistrCode,
+                                             IsUnlimited,
+                                             Budget,
+                                             IsActive,
+                                             UtilizedAmt,
+                                             BudgetOs,
+                                             UploadFlag,
+                                             ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :distrCode,
+                :isUnlimited,
+                :budget,
+                :isActive,
+                :utilizedAmt,
+                :budgetOs,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE IsUnlimited = :isUnlimited,
+                   Budget      = :budget,
+                   IsActive    = :isActive,
+                   UtilizedAmt = :utilizedAmt,
+                   BudgetOs    = :budgetOs,
+                   UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMESLABENTITY">
+        INSERT INTO schemeslab (CmpCode,
+                                SchemeCode,
+                                SlabNo,
+                                SlabFrom,
+                                SlabTo,
+                                Payout,
+                                SlabRange,
+                                ForEvery,
+                                UomCode,
+                                UploadFlag,
+                                ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :slabNo,
+                :slabFrom,
+                :slabTo,
+                :payout,
+                :slabRange,
+                :forEvery,
+                :uomCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE SlabFrom   = :slabFrom,
+                   SlabTo     = :slabTo,
+                   Payout     = :payout,
+                   SlabRange  = :slabRange,
+                   ForEvery   = :forEvery,
+                   UomCode    = :uomCode,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMESLABPRODUCTENTITY">
+        INSERT INTO schemeslabproduct (CmpCode,
+                                       SchemeCode,
+                                       SlabNo,
+                                       ProdCode,
+                                       ProdName,
+                                       Qty,
+                                       IsMandatory,
+                                       UploadFlag,
+                                       ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :slabNo,
+                :prodCode,
+                :prodName,
+                :qty,
+                :isMandatory,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdName    = :prodName,
+                   Qty         = :qty,
+                   IsMandatory = :isMandatory,
+                   UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMECUSTOMERENTITY">
+        INSERT INTO schemecustomer (CmpCode,
+                                    SchemeCode,
+                                    CustomerCode,
+                                    UploadFlag,
+                                    ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :customerCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMERETAILERCATEGORYENTITY">
+        INSERT INTO schemeretailercategory (CmpCode,
+                                            SchemeCode,
+                                            ChannelCode,
+                                            SubChannelCode,
+                                            GroupCode,
+                                            ClassCode,
+                                            UploadFlag,
+                                            ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :channelCode,
+                :subChannelCode,
+                :groupCode,
+                :classCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMEPRODUCTENTITY">
+        INSERT INTO schemeproduct (CmpCode,
+                                   SchemeCode,
+                                   ProdCode,
+                                   ProdName,
+                                   UploadFlag,
+                                   ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :prodCode,
+                :prodName,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdName   = :prodName,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMEPRODUCTCATEGORYENTITY">
+        INSERT INTO schemeproductcategory (CmpCode,
+                                           SchemeCode,
+                                           ProdHierLvlCode,
+                                           ProdHierValCode,
+                                           ProdHierValName,
+                                           UploadFlag,
+                                           ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :prodHierLvlCode,
+                :prodHierValCode,
+                :prodHierValName,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdHierValName = :prodHierValName,
+                   UploadFlag      = :uploadFlag,
+                   ModDt           = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMEATTRIBUTESENTITY">
+        INSERT INTO schemeattributes (CmpCode,
+                                      AttributeCode,
+                                      AttributeValueCode,
+                                      AttrInputValues,
+                                      RefNo,
+                                      SNo,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (:cmpCode,
+                :attributeCode,
+                :attributeValueCode,
+                :attrInputValues,
+                :refNo,
+                :sNo,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SCHEMECOMBIPRODUCTENTITY">
+        INSERT INTO schemecombiproduct (CmpCode,
+                                        SchemeCode,
+                                        SlabNo,
+                                        ProdCode,
+                                        ProdName,
+                                        MinValue,
+                                        IsMandatory,
+                                        UploadFlag,
+                                        ModDt)
+        VALUES (:cmpCode,
+                :schemeCode,
+                :slabNo,
+                :prodCode,
+                :prodName,
+                :minValue,
+                :isMandatory,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdName    = :prodName,
+                   MinValue    = :minValue,
+                   IsMandatory = :isMandatory,
+                   UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_OTHERATTRIBUTESENTITY">
+        INSERT INTO otherattributes (CmpCode,
+                                     DistrCode,
+                                     AttributeCode,
+                                     AttributeValueCode,
+                                     AttrInputValues,
+                                     RefNo,
+                                     SNo,
+                                     UploadFlag,
+                                     ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :attributeCode,
+                :attributeValueCode,
+                :attrInputValues,
+                :refNo,
+                :sNo,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE AttributeValueCode = :attributeValueCode,
+                   AttrInputValues    = :attrInputValues,
+                   UploadFlag         = :uploadFlag,
+                   ModDt              = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_DISTRIBUTORSTOCKENTITY">
+        INSERT INTO distributorstock (CmpCode,
+                                      DistrCode,
+                                      SaleableStock,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :saleableStock,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE SaleableStock = :saleableStock,
+                   UploadFlag    = :uploadFlag,
+                   ModDt         = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_CUSTOMERSTOCKENTITY">
+        INSERT INTO customerstock (CmpCode,
+                                   DistrCode,
+                                   CustomerCode,
+                                   Stock,
+                                   UploadFlag,
+                                   ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :customerCode,
+                :stock,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE Stock      = :stock,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_FAVORITE_PRODUCT_ENTITY">
+        INSERT INTO favoriteproduct(CmpCode,
+                                    DistrCode,
+                                    CustomerCode,
+                                    FavProdCode,
+                                    UploadFlag,
+                                    ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :customerCode,
+                :favProdCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE FavProdCode = :favProdCode,
+                   UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <query name="INSERT_USER_CREATION_LIST">
+        INSERT INTO useractivation(LoginCode,
+                                   UserName,
+                                   UserStatus,
+                                   CreationDt,
+                                   MsgRequestDt,
+                                   ActivationDt,
+                                   DeactivationDt,
+                                   UploadFlag,
+                                   ModDt)
+        VALUES (:loginCode,
+                :userName,
+                :userStatus,
+                :creationDt,
+                :msgRequestDt,
+                :activationDt,
+                :deactivationDt,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <!-- DELETE QUERIES -->
+    <query name="DELETE_MASTER_SCHEMEPRODUCTENTITY">
+        DELETE
+        FROM schemeproduct
+        WHERE CmpCode = :cmpCode
+          AND SchemeCode = :schemeCode
+    </query>
+
+    <query name="DELETE_MASTER_SCHEMEPRODUCTCATEGORYENTITY">
+        DELETE
+        FROM schemeproductcategory
+        WHERE CmpCode = :cmpCode
+        AND SchemeCode = :schemeCode
+    </query>
+
+    <query name="DELETE_MASTER_SALESMANROUTEMAPPINGENTITY">
+        DELETE
+        FROM salesmanroutemapping
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND SalesmanCode = :salesmanCode
+    </query>
+
+    <query name="DELETE_MASTER_CUSTOMERROUTEMAPPINGENTITY">
+        DELETE
+        FROM customerroutemapping
+        WHERE CmpCode = :cmpCode
+          AND DistrCode = :distrCode
+          AND CustomerCode = :customerCode
+    </query>
+
+    <!-- FETCH QUERIES -->
+    <query name="FETCH_APPVERSION">
+        SELECT dbVersion, appVersion, url, fileName, remarks
+        FROM applicationupdate
+        WHERE Sno = (SELECT MAX(SNo) FROM applicationupdate)
+    </query>
+
+    <query name="FETCH_CONFIGURATION">
+        SELECT tableName,
+               code,
+               description
+        FROM configuration
+    </query>
+
+    <query name="FETCH_DEFAULT_KEYGENERATOR">
+        SELECT LoginCode,
+               ScreenName,
+               Prefix,
+               SuffixYY,
+               SuffixNN,
+               UploadFlag,
+               ModDt
+        FROM keygenerator
+        WHERE LoginCode = 'DEFAULT'
+    </query>
+
+    <query name="FETCH_APPUSER">
+        SELECT au.LoginCode,
+               au.Password,
+               au.UserName,
+               au.UserStatus,
+               au.NewPassword,
+               au.GroupCode,
+               au.LoginStatus,
+               au.DeviceId,
+               au.HostName,
+               au.LoggedInTime
+        FROM appuser au
+        WHERE au.LoginCode = ?
+    </query>
+
+    <query name="FETCH_DEVICEINFORMATIONENTITY">
+        SELECT LoginCode,
+               Advid,
+               Devicebrand,
+               Devicemodel,
+               Deviceversion
+        FROM deviceInformation
+        WHERE LoginCode = ?
+          AND Advid = ?
+    </query>
+
+    <query name="FETCH_USER_STATUS">
+        SELECT COUNT(LoginCode)
+        FROM appuser
+        WHERE UserStatus = 'Y'
+          AND LoginCode = ?
+    </query>
+
+    <query name="FETCH_USER_MAPPING">
+        SELECT GROUP_CONCAT(DISTINCT CmpCode)                                            AS mappedCompany,
+               GROUP_CONCAT(DISTINCT CONCAT(CmpCode, '~', DistrCode))                    AS mappedUser,
+               GROUP_CONCAT(DISTINCT CONCAT(CmpCode, '~', DistrCode, '~', CustomerCode)) AS mappedCustomer,
+               GROUP_CONCAT(DISTINCT DistrCode)                                          AS mappedDistributor,
+               GROUP_CONCAT(DISTINCT CustomerCode)                                       AS mappedCustomerCode
+        FROM customer
+        WHERE MobileNo = ?
+          AND RetailerStatus = 'Y'
+    </query>
+
+    <query name="FETCH_COMPANY">
+        SELECT c.CmpCode,
+               COALESCE(ls.ValueName, c.CmpName) AS CmpName,
+               c.CmpAddr1,
+               c.CmpAddr2,
+               c.CmpAddr3,
+               c.City,
+               c.State,
+               c.Country,
+               c.PostalCode,
+               c.UploadFlag,
+               c.ModDt
+        FROM company c
+                 LEFT JOIN LanguageSupport ls
+                           ON c.CmpCode = ls.CmpCode
+                               AND c.CmpCode = ls.ValueCode
+                               AND ls.LanguageCode = :param2
+                               AND LOWER(ls.TableName) = 'company'
+                               AND LOWER(ls.ColumnName) = 'cmpname'
+        WHERE c.CmpCode IN (:param1)
+    </query>
+
+    <query name="FETCH_KEYGENERATOR">
+        SELECT LoginCode,
+               ScreenName,
+               Prefix,
+               SuffixYY,
+               SuffixNN,
+               UploadFlag,
+               ModDt
+        FROM keygenerator
+        WHERE LoginCode = :param1
+    </query>
+
+    <query name="FETCH_GSTSTATEMASTERENTITY">
+        SELECT gm.GSTStateCode,
+               COALESCE(ls.ValueName, gm.GSTStateName) AS GSTStateName,
+               gm.UnionTerritoryFlag,
+               gm.UploadFlag,
+               gm.ModDt
+        FROM gststatemaster gm
+                 LEFT JOIN LanguageSupport ls
+                           ON gm.GSTStateCode = ls.ValueCode
+                               AND ls.LanguageCode = :param1
+                               AND LOWER(ls.TableName) = 'gststatemaster'
+                               AND LOWER(ls.ColumnName) = 'gststatecode'
+    </query>
+
+    <query name="FETCH_LOBMASTERENTITY">
+        SELECT lm.CmpCode,
+               lm.LOBCode,
+               COALESCE(ls.ValueName, lm.LOBName) AS LOBName,
+               lm.UploadFlag,
+               lm.ModDt
+        FROM lobmaster lm
+                 LEFT JOIN LanguageSupport ls
+                           ON lm.CmpCode = ls.CmpCode
+                               AND lm.LOBCode = ls.ValueCode
+                               AND ls.LanguageCode = :param2
+                               AND LOWER(ls.TableName) = 'lobmaster'
+                               AND LOWER(ls.ColumnName) = 'lobcode'
+        WHERE lm.CmpCode IN (:param1)
+    </query>
+
+    <query name="FETCH_RETAILERCATEGORYENTITY">
+        SELECT CmpCode,
+               ChannelCode,
+               ChannelName,
+               SubChannelCode,
+               SubChannelName,
+               GroupCode,
+               GroupName,
+               ClassCode,
+               ClassName,
+               UploadFlag,
+               ModDt
+        FROM retailercategory
+        WHERE CmpCode IN (:param1)
+    </query>
+
+    <query name="FETCH_DISTRIBUTORENTITY">
+        SELECT d.CmpCode,
+               d.DistrCode,
+               COALESCE(ls.ValueName, d.DistrName)   AS DistrName,
+               COALESCE(ls1.ValueName, d.DistrAddr1) AS DistrAddr1,
+               COALESCE(ls2.ValueName, d.DistrAddr2) AS DistrAddr2,
+               COALESCE(ls3.ValueName, d.DistrAddr3) AS DistrAddr3,
+               d.PinCode,
+               d.PhoneNo,
+               d.MobileNo,
+               d.ContactPerson,
+               d.EmailID,
+               d.GSTStateCode,
+               d.DayOff,
+               d.DistrStatus,
+               d.LoadStockProd,
+               d.UploadFlag,
+               d.ModDt
+        FROM distributor d
+                 LEFT JOIN LanguageSupport ls
+                           ON d.CmpCode = ls.CmpCode
+                               AND d.DistrCode = ls.ValueCode
+                               AND ls.LanguageCode = :param3
+                               AND LOWER(ls.TableName) = 'distributor'
+                               AND LOWER(ls.ColumnName) = 'distrcode'
+                 LEFT JOIN LanguageSupport ls1
+                           ON d.CmpCode = ls1.CmpCode
+                               AND d.DistrCode = ls1.ValueCode
+                               AND ls1.LanguageCode = :param3
+                               AND LOWER(ls1.TableName) = 'distributor'
+                               AND LOWER(ls1.ColumnName) = 'distraddr1'
+                 LEFT JOIN LanguageSupport ls2
+                           ON d.CmpCode = ls2.CmpCode
+                               AND d.DistrCode = ls2.ValueCode
+                               AND ls2.LanguageCode = :param3
+                               AND LOWER(ls2.TableName) = 'distributor'
+                               AND LOWER(ls2.ColumnName) = 'distraddr2'
+                 LEFT JOIN LanguageSupport ls3
+                           ON d.CmpCode = ls3.CmpCode
+                               AND d.DistrCode = ls3.ValueCode
+                               AND ls3.LanguageCode = :param3
+                               AND LOWER(ls3.TableName) = 'distributor'
+                               AND LOWER(ls3.ColumnName) = 'distraddr3'
+        WHERE d.DistrStatus = 'Y'
+          AND d.CmpCode IN (:param1)
+          AND d.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_DISTRIBUTORLOBMAPPINGENTITY">
+        SELECT dlm.CmpCode,
+               dlm.DistrCode,
+               dlm.LOBCode,
+               dlm.UploadFlag,
+               dlm.ModDt
+        FROM distributor d
+                 INNER JOIN distributorlobmapping dlm
+                            ON d.CmpCode = dlm.CmpCode
+                                AND d.DistrCode = dlm.DistrCode
+        WHERE d.DistrStatus = 'Y'
+          AND d.CmpCode IN (:param1)
+          AND d.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_CUSTOMERENTITY">
+        SELECT c.CmpCode,
+               c.DistrCode,
+               c.CustomerCode,
+               COALESCE(ls.ValueName, c.CustomerName) AS CustomerName,
+               c.MobileNo,
+               c.PinCode,
+               c.PhoneNo,
+               c.ContactPerson,
+               c.EmailID,
+               c.RetailerStatus,
+               c.FssaiNo,
+               c.CreditBills,
+               c.CreditDays,
+               c.CreditLimit,
+               c.CashDiscPerc,
+               c.ChannelCode,
+               c.SubChannelCode,
+               c.GroupCode,
+               c.ClassCode,
+               c.StoreType,
+               c.ParentCustomerCode,
+               c.Latitude,
+               c.Longitude,
+               c.CustomerType,
+               c.GSTTinNo,
+               c.PanNo,
+               c.District,
+               c.OutstandingAmt,
+               c.UploadFlag,
+               c.ModDt
+        FROM customer c
+                 LEFT JOIN LanguageSupport ls
+                           ON c.CmpCode = ls.CmpCode
+                               AND CONCAT(c.DistrCode, '~', c.CustomerCode) = ls.ValueCode
+                               AND ls.LanguageCode = :param4
+                               AND LOWER(ls.TableName) = 'customer'
+                               AND LOWER(ls.ColumnName) = 'customercode'
+        WHERE c.CmpCode IN (:param1)
+          AND c.DistrCode IN (:param2)
+          AND c.CustomerCode IN (:param3)
+    </query>
+
+    <query name="FETCH_CUSTOMERSHIPADDRESSENTITY">
+        SELECT csa.CmpCode,
+               csa.DistrCode,
+               csa.CustomerCode,
+               csa.CustomerShipCode,
+               COALESCE(ls.ValueName, csa.CustomerShipAddr1)  AS CustomerShipAddr1,
+               COALESCE(ls1.ValueName, csa.CustomerShipAddr2) AS CustomerShipAddr2,
+               COALESCE(ls2.ValueName, csa.CustomerShipAddr3) AS CustomerShipAddr3,
+               COALESCE(ls3.ValueName, csa.City)              AS City,
+               csa.GSTStateCode,
+               csa.PhoneNo,
+               csa.DefaultShipAddr,
+               csa.UploadFlag,
+               csa.ModDt
+        FROM customershipaddress csa
+                 LEFT JOIN LanguageSupport ls
+                           ON csa.CmpCode = ls.CmpCode
+                               AND CONCAT(csa.DistrCode, '~', csa.CustomerCode, '~', csa.CustomerShipCode) = ls.ValueCode
+                               AND ls.LanguageCode = :param4
+                               AND LOWER(ls.TableName) = 'customershipaddress'
+                               AND LOWER(ls.ColumnName) = 'customershipaddr1'
+                 LEFT JOIN LanguageSupport ls1
+                           ON csa.CmpCode = ls1.CmpCode
+                               AND CONCAT(csa.DistrCode, '~', csa.CustomerCode, '~', csa.CustomerShipCode) = ls1.ValueCode
+                               AND ls1.LanguageCode = :param4
+                               AND LOWER(ls1.TableName) = 'customershipaddress'
+                               AND LOWER(ls1.ColumnName) = 'customershipaddr2'
+                 LEFT JOIN LanguageSupport ls2
+                           ON csa.CmpCode = ls2.CmpCode
+                               AND CONCAT(csa.DistrCode, '~', csa.CustomerCode, '~', csa.CustomerShipCode) = ls2.ValueCode
+                               AND ls2.LanguageCode = :param4
+                               AND LOWER(ls2.TableName) = 'customershipaddress'
+                               AND LOWER(ls2.ColumnName) = 'customershipaddr3'
+                 LEFT JOIN LanguageSupport ls3
+                           ON csa.CmpCode = ls3.CmpCode
+                               AND CONCAT(csa.DistrCode, '~', csa.CustomerCode, '~', csa.CustomerShipCode) = ls3.ValueCode
+                               AND ls3.LanguageCode = :param4
+                               AND LOWER(ls3.TableName) = 'customershipaddress'
+                               AND LOWER(ls3.ColumnName) = 'city'
+        WHERE csa.CmpCode IN (:param1)
+          AND csa.DistrCode IN (:param2)
+          AND csa.CustomerCode IN (:param3)
+    </query>
+
+    <query name="FETCH_PRODUCTHIERLEVELENTITY">
+        SELECT phl.CmpCode,
+               phl.ProdHierLvlCode,
+               COALESCE(ls.ValueName, phl.ProdHierLvlName) AS ProdHierLvlName,
+               phl.UploadFlag,
+               phl.ModDt
+        FROM producthierlevel phl
+                 LEFT JOIN LanguageSupport ls
+                           ON phl.CmpCode = ls.CmpCode
+                               AND phl.ProdHierLvlCode = ls.ValueCode
+                               AND ls.LanguageCode = :param2
+                               AND LOWER(ls.TableName) = 'producthierlevel'
+                               AND LOWER(ls.ColumnName) = 'prodhierlvlcode'
+        WHERE phl.CmpCode IN (:param1)
+    </query>
+
+    <query name="FETCH_PRODUCTHIERVALUEENTITY">
+        SELECT phv.CmpCode,
+               phv.ProdHierLvlCode,
+               phv.ProdHierValCode,
+               COALESCE(ls.ValueName, phv.ProdHierValName) AS ProdHierValName,
+               phv.ParentCode,
+               phv.UploadFlag,
+               phv.ModDt
+        FROM producthiervalue phv
+                 LEFT JOIN LanguageSupport ls
+                           ON phv.CmpCode = ls.CmpCode
+                               AND CONCAT(phv.ProdHierLvlCode, '~', phv.ProdHierValCode) = ls.ValueCode
+                               AND ls.LanguageCode = :param2
+                               AND LOWER(ls.TableName) = 'producthiervalue'
+                               AND LOWER(ls.ColumnName) = 'prodhiervalcode'
+        WHERE phv.CmpCode IN (:param1)
+    </query>
+
+    <query name="FETCH_PRODUCTENTITY">
+        SELECT DISTINCT p.CmpCode,
+                        p.ProdCode,
+                        COALESCE(ls.ValueName, p.ProdName) AS ProdName,
+                        p.ProdShortName,
+                        p.ProdStatus,
+                        p.ProdType,
+                        p.ProdShelfLife,
+                        p.ProdNetWgt,
+                        p.ProdWgtType,
+                        p.LOBCode,
+                        p.LOBName,
+                        p.HSNCode,
+                        p.HSNName,
+                        p.ProductHierPathCode,
+                        p.ProductHierPathName,
+                        p.UploadFlag,
+                        p.ModDt
+        FROM distributorlobmapping dlm
+                 INNER JOIN product p
+                            ON p.CmpCode = dlm.CmpCode
+                                AND p.LOBCode = dlm.LOBCode
+                                AND p.ProdStatus = 'Y'
+                 LEFT JOIN LanguageSupport ls
+                           ON p.CmpCode = ls.CmpCode
+                               AND p.ProdCode = ls.ValueCode
+                               AND ls.LanguageCode = :param3
+                               AND LOWER(ls.TableName) = 'product'
+                               AND LOWER(ls.ColumnName) = 'prodname'
+        WHERE dlm.CmpCode IN (:param1)
+          AND dlm.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_PRODUCTUOMENTITY">
+        SELECT DISTINCT pu.CmpCode,
+                        pu.ProdCode,
+                        pu.UOMCode,
+                        pu.UOMDescription,
+                        pu.UomConvFactor,
+                        pu.BaseUOM,
+                        pu.DefaultUOM,
+                        pu.UploadFlag,
+                        pu.ModDt
+        FROM distributorlobmapping dlm
+                 INNER JOIN product p
+                            ON p.CmpCode = dlm.CmpCode
+                                AND p.LOBCode = dlm.LOBCode
+                                AND p.ProdStatus = 'Y'
+                 INNER JOIN productuom pu
+                            ON pu.CmpCode = p.CmpCode
+                                AND pu.ProdCode = p.ProdCode
+        WHERE dlm.CmpCode IN (:param1)
+          AND dlm.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_TAXSTRUCTUREENTITY">
+        SELECT ts.CmpCode,
+               ts.TaxStateCode,
+               ts.ProdCode,
+               ts.CGST,
+               ts.SGST,
+               ts.IGST,
+               ts.CESS,
+               ts.AdditionalTax,
+               ts.UploadFlag,
+               ts.ModDt
+        FROM distributor d
+                 INNER JOIN distributorlobmapping dlm
+                            ON d.CmpCode = dlm.CmpCode
+                                AND d.DistrCode = dlm.DistrCode
+                 INNER JOIN product p
+                            ON dlm.CmpCode = p.CmpCode
+                                AND dlm.LOBCode = p.LOBCode
+                                AND p.ProdStatus = 'Y'
+                 INNER JOIN taxstructure ts
+                            ON d.CmpCode = ts.CmpCode
+                                AND d.GSTStateCode = ts.TaxStateCode
+                                AND p.CmpCode = ts.CmpCode
+                                AND p.ProdCode = ts.ProdCode
+        WHERE d.CmpCode IN (:param1)
+          AND d.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_PRODUCTBATCHENTITY">
+        SELECT pb.CmpCode,
+               d.DistrCode AS BatchLevel,
+               pb.ProdCode,
+               pb.ProdBatchCode,
+               pb.MRP,
+               pb.SellRate,
+               pb.SellRateWithTax,
+               pb.ManfDate,
+               pb.ExpiryDate,
+               pb.LatestBatch,
+               pb.GeoLevelBatch,
+               pb.UploadFlag,
+               pb.ModDt
+        FROM distributor d
+                 INNER JOIN distributorlobmapping dlm
+                            ON d.CmpCode = dlm.CmpCode
+                                AND d.DistrCode = dlm.DistrCode
+                 INNER JOIN product p
+                            ON dlm.CmpCode = p.CmpCode
+                                AND dlm.LOBCode = p.LOBCode
+                                AND p.ProdStatus = 'Y'
+                 INNER JOIN productbatch pb
+                            ON d.CmpCode = pb.CmpCode
+                                AND ((GeoLevelBatch = 'Y' AND d.GSTStateCode = pb.BatchLevel)
+                                    OR (GeoLevelBatch = 'N' AND d.DistrCode = pb.BatchLevel))
+                                AND p.CmpCode = pb.CmpCode
+                                AND p.ProdCode = pb.ProdCode
+                                AND pb.LatestBatch = 'Y'
+                                AND pb.ExpiryDate &gt;= CURDATE()
+        WHERE d.CmpCode IN (:param1)
+          AND d.DistrCode IN (:param2)
+        GROUP BY pb.CmpCode,
+               pb.ProdCode
+    </query>
+
+    <query name="FETCH_SCREENACCESS">
+        SELECT a.LoginCode,
+               a.GroupCode,
+               sa.GroupName,
+               sa.ModuleNo,
+               sa.ScreenNo,
+               sa.IsAccess,
+               s.ModuleName,
+               s.ScreenName,
+               s.ScreenType,
+               s.Sequence
+        FROM appuser a
+                 INNER JOIN screenaccess sa
+                            ON a.Groupcode = sa.Groupcode
+                 INNER JOIN screen s
+                            ON sa.Moduleno = s.Moduleno
+                                AND sa.Screenno = s.Screenno
+        WHERE a.Logincode = :param1
+    </query>
+
+    <query name="FETCH_USERACCESSDETAILENTITY">
+        SELECT LoginCode,
+               RemoteAddr,
+               Token,
+               TokenGenerationTime
+        FROM useraccessdetail
+        WHERE LoginCode = ?
+        ORDER BY ModDt DESC LIMIT 1
+    </query>
+
+    <query name="FETCH_SCHEMEDEFINITIONENTITY">
+        SELECT DISTINCT sd.CmpCode,
+               sd.SchemeCode,
+               COALESCE(ls.ValueName, sd.SchemeDescription) AS SchemeDescription,
+               sd.SchemeBase,
+               sd.SchemeFromDt,
+               sd.SchemeToDt,
+               sd.PayOutType,
+               sd.IsSkuLevel,
+               sd.IsActive,
+               sd.Combi
+        FROM schemedefinition sd
+                 INNER JOIN schemedistributorbudget sdb
+                            ON sd.CmpCode = sdb.CmpCode
+                                AND sd.SchemeCode = sdb.SchemeCode
+                 LEFT JOIN LanguageSupport ls
+                           ON sd.CmpCode = ls.CmpCode
+                               AND CONCAT(sd.CmpCode, '~', sd.SchemeCode) = ls.ValueCode
+                               AND ls.LanguageCode = :param3
+                               AND LOWER(ls.TableName) = 'schemedefinition'
+                               AND LOWER(ls.ColumnName) = 'schemecode'
+        WHERE sdb.CmpCode IN (:param1)
+          AND sdb.DistrCode IN (:param2)
+          AND sdb.IsActive = 'Y'
+          AND sd.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd.SchemeFromDt AND sd.SchemeToDt
+    </query>
+
+    <query name="FETCH_SCHEMESLABENTITY">
+        SELECT DISTINCT sl.CmpCode,
+               sl.SchemeCode,
+               sl.SlabNo,
+               sl.SlabFrom,
+               sl.SlabTo,
+               sl.Payout,
+               sl.SlabRange,
+               sl.Forevery,
+               sl.UomCode
+        FROM schemedefinition sd
+                 INNER JOIN schemedistributorbudget sdb
+                            ON sd.CmpCode = sdb.CmpCode
+                                AND sd.SchemeCode = sdb.SchemeCode
+                 INNER JOIN schemeslab sl
+                            ON sd.CmpCode = sl.CmpCode
+                                AND sd.SchemeCode = sl.SchemeCode
+        WHERE sdb.CmpCode IN (:param1)
+          AND sdb.DistrCode IN (:param2)
+          AND sdb.IsActive = 'Y'
+          AND sd.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd.SchemeFromDt AND sd.SchemeToDt
+    </query>
+
+    <query name="FETCH_SCHEMESLABPRODUCTENTITY">
+        SELECT DISTINCT slp.CmpCode,
+               slp.SchemeCode,
+               slp.SlabNo,
+               slp.ProdCode,
+               slp.ProdName,
+               slp.Qty,
+               slp.IsMandatory
+        FROM schemedefinition sd
+                 INNER JOIN schemedistributorbudget sdb
+                            ON sd.CmpCode = sdb.CmpCode
+                                AND sd.SchemeCode = sdb.SchemeCode
+                 INNER JOIN schemeslabproduct slp
+                            ON sd.CmpCode = slp.CmpCode
+                                AND sd.SchemeCode = slp.SchemeCode
+        WHERE sdb.CmpCode IN (:param1)
+          AND sdb.DistrCode IN (:param2)
+          AND sdb.IsActive = 'Y'
+          AND sd.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd.SchemeFromDt AND sd.SchemeToDt
+    </query>
+
+    <query name="FETCH_SCHEMECOMBIPRODUCTENTITY">
+        SELECT DISTINCT scp.CmpCode,
+               scp.SchemeCode,
+               scp.SlabNo,
+               scp.ProdCode,
+               scp.ProdName,
+               scp.MinValue,
+               scp.IsMandatory
+        FROM schemedefinition sd
+                 INNER JOIN schemedistributorbudget sdb
+                            ON sd.CmpCode = sdb.CmpCode
+                                AND sd.SchemeCode = sdb.SchemeCode
+                 INNER JOIN schemecombiproduct scp
+                            ON sd.CmpCode = scp.CmpCode
+                                AND sd.SchemeCode = scp.SchemeCode
+        WHERE sdb.CmpCode IN (:param1)
+          AND sdb.DistrCode IN (:param2)
+          AND sdb.IsActive = 'Y'
+          AND sd.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd.SchemeFromDt AND sd.SchemeToDt
+    </query>
+
+    <query name="FETCH_SCHEME_CUSTOMER_MAPPING">
+        SELECT sd.CmpCode,
+               sdb.DistrCode,
+               r.CustomerCode,
+               p.ProdCode,
+               p.ProdName,
+               sd.SchemeCode,
+               sd.SchemeBase,
+               sd.PayOutType,
+               sd.SchemeFromDt,
+               sd.SchemeToDt,
+               sd.Combi,
+               sd.SchemeDescription
+        FROM schemedefinition sd
+                 INNER JOIN schemedistributorbudget sdb
+                            ON sd.CmpCode = sdb.CmpCode
+                                AND sd.SchemeCode = sdb.SchemeCode
+                 INNER JOIN schemeretailercategory srcl
+                            ON sd.CmpCode = srcl.CmpCode
+                                AND sd.SchemeCode = srcl.SchemeCode
+                 INNER JOIN Customer r
+                            ON r.CmpCode = sdb.CmpCode
+                                AND r.DistrCode = sdb.DistrCode
+                                AND r.CmpCode = srcl.CmpCode
+                                AND r.ChannelCode IN (IF(srcl.ChannelCode = 'ALL', r.ChannelCode, srcl.ChannelCode))
+                                AND r.SubChannelCode IN (IF(srcl.SubChannelCode = 'ALL', r.SubChannelCode, srcl.SubChannelCode))
+                                AND r.GroupCode IN (IF(srcl.GroupCode = 'ALL', r.GroupCode, srcl.GroupCode))
+                                AND r.ClassCode IN (IF(srcl.ClassCode = 'ALL', r.ClassCode, srcl.ClassCode))
+                                AND r.CmpCode IN (:param1)
+                                AND r.DistrCode IN (:param2)
+                                AND r.CustomerCode IN (:param3)
+                 INNER JOIN schemeproduct sp
+                            ON sd.CmpCode = sp.CmpCode
+                                AND sd.SchemeCode = sp.SchemeCode
+                 INNER JOIN product p
+                            ON p.cmpcode = sp.cmpcode
+                                AND p.prodcode = sp.prodcode
+        WHERE sdb.CmpCode IN (:param1)
+          AND sdb.DistrCode IN (:param2)
+          AND sdb.IsActive = 'Y'
+          AND sd.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd.SchemeFromDt AND sd.SchemeToDt
+          AND sd.SchemeCode NOT IN (SELECT DISTINCT refNo FROM schemeattributes)
+        UNION
+        SELECT sd1.CmpCode,
+               sdb1.DistrCode,
+               r1.CustomerCode,
+               p1.ProdCode,
+               p1.ProdName,
+               sd1.SchemeCode,
+               sd1.SchemeBase,
+               sd1.PayOutType,
+               sd1.SchemeFromDt,
+               sd1.SchemeToDt,
+               sd1.Combi,
+               sd1.SchemeDescription
+        FROM schemedefinition sd1
+                 INNER JOIN schemedistributorbudget sdb1
+                            ON sd1.CmpCode = sdb1.CmpCode
+                                AND sd1.SchemeCode = sdb1.SchemeCode
+                 INNER JOIN schemeretailercategory srcl1
+                            ON sd1.CmpCode = srcl1.CmpCode
+                                AND sd1.SchemeCode = srcl1.SchemeCode
+                 INNER JOIN Customer r1
+                            ON r1.CmpCode = sdb1.CmpCode
+                                AND r1.DistrCode = sdb1.DistrCode
+                                AND r1.CmpCode = srcl1.CmpCode
+                                AND r1.ChannelCode IN (IF(srcl1.ChannelCode = 'ALL', r1.ChannelCode, srcl1.ChannelCode))
+                                AND r1.SubChannelCode IN
+                                    (IF(srcl1.SubChannelCode = 'ALL', r1.SubChannelCode, srcl1.SubChannelCode))
+                                AND r1.GroupCode IN (IF(srcl1.GroupCode = 'ALL', r1.GroupCode, srcl1.GroupCode))
+                                AND r1.ClassCode IN (IF(srcl1.ClassCode = 'ALL', r1.ClassCode, srcl1.ClassCode))
+                                AND r1.CmpCode IN (:param1)
+                                AND r1.DistrCode IN (:param2)
+                                AND r1.CustomerCode IN (:param3)
+                 INNER JOIN schemeproductcategory spd1
+                            ON sd1.CmpCode = spd1.CmpCode
+                                AND sd1.SchemeCode = spd1.SchemeCode
+                 INNER JOIN product p1
+                            ON p1.CmpCode = sd1.CmpCode
+                                AND REPLACE(p1.ProductHierPathCode, CONCAT('/', p1.ProdCode, '/'), '/') LIKE (
+                                    CONCAT('%/', spd1.ProdHierValCode, '/%'))
+        WHERE sdb1.CmpCode IN (:param1)
+          AND sdb1.DistrCode IN (:param2)
+          AND sdb1.IsActive = 'Y'
+          AND sd1.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd1.SchemeFromDt AND sd1.SchemeToDt
+          AND sd1.SchemeCode NOT IN (SELECT DISTINCT refNo FROM schemeattributes)
+        UNION
+        SELECT sd2.CmpCode,
+               sdb2.DistrCode,
+               sc2.CustomerCode,
+               p2.ProdCode,
+               p2.ProdName,
+               sd2.SchemeCode,
+               sd2.SchemeBase,
+               sd2.PayOutType,
+               sd2.SchemeFromDt,
+               sd2.SchemeToDt,
+               sd2.Combi,
+               sd2.SchemeDescription
+        FROM schemedefinition sd2
+                 INNER JOIN schemedistributorbudget sdb2
+                            ON sd2.CmpCode = sdb2.CmpCode
+                                AND sd2.SchemeCode = sdb2.SchemeCode
+                 INNER JOIN schemecustomer sc2
+                            ON sd2.cmpcode = sc2.cmpcode
+                                AND sd2.schemecode = sc2.schemecode
+                 INNER JOIN Customer r2
+                            ON r2.CmpCode = sdb2.CmpCode
+                                AND r2.DistrCode = sdb2.DistrCode
+                                AND r2.CmpCode = sc2.CmpCode
+                                AND r2.CustomerCode = sc2.CustomerCode
+                                AND r2.CmpCode IN (:param1)
+                                AND r2.DistrCode IN (:param2)
+                                AND r2.CustomerCode IN (:param3)
+                 INNER JOIN schemeproduct sp2
+                            ON sd2.CmpCode = sp2.CmpCode
+                                AND sd2.SchemeCode = sp2.SchemeCode
+                 INNER JOIN product p2
+                            ON p2.cmpcode = sp2.cmpcode
+                                AND p2.prodcode = sp2.prodcode
+        WHERE sdb2.CmpCode IN (:param1)
+          AND sdb2.DistrCode IN (:param2)
+          AND sdb2.IsActive = 'Y'
+          AND sd2.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd2.SchemeFromDt AND sd2.SchemeToDt
+          AND sd2.SchemeCode NOT IN (SELECT DISTINCT refNo FROM schemeattributes)
+        UNION
+        SELECT sd3.CmpCode,
+               sdb3.DistrCode,
+               sc3.CustomerCode,
+               p3.ProdCode,
+               p3.ProdName,
+               sd3.SchemeCode,
+               sd3.SchemeBase,
+               sd3.PayOutType,
+               sd3.SchemeFromDt,
+               sd3.SchemeToDt,
+               sd3.Combi,
+               sd3.SchemeDescription
+        FROM schemedefinition sd3
+                 INNER JOIN schemedistributorbudget sdb3
+                            ON sd3.CmpCode = sdb3.CmpCode
+                                AND sd3.SchemeCode = sdb3.SchemeCode
+                 INNER JOIN schemecustomer sc3
+                            ON sd3.cmpcode = sc3.cmpcode
+                                AND sd3.schemecode = sc3.schemecode
+                 INNER JOIN Customer r3
+                            ON r3.CmpCode = sdb3.CmpCode
+                                AND r3.DistrCode = sdb3.DistrCode
+                                AND r3.CmpCode = sc3.CmpCode
+                                AND r3.CustomerCode = sc3.CustomerCode
+                                AND r3.CmpCode IN (:param1)
+                                AND r3.DistrCode IN (:param2)
+                                AND r3.CustomerCode IN (:param3)
+                 INNER JOIN schemeproductcategory spd3
+                            ON sd3.CmpCode = spd3.CmpCode
+                                AND sd3.SchemeCode = spd3.SchemeCode
+                 INNER JOIN product p3
+                            ON p3.CmpCode = sd3.CmpCode
+                                AND REPLACE(p3.ProductHierPathCode, CONCAT('/', p3.ProdCode, '/'), '/') LIKE (
+                                    CONCAT('%/', spd3.ProdHierValCode, '/%'))
+        WHERE sdb3.CmpCode IN (:param1)
+          AND sdb3.DistrCode IN (:param2)
+          AND sdb3.IsActive = 'Y'
+          AND sd3.IsActive = 'Y'
+          AND CURDATE() BETWEEN sd3.SchemeFromDt AND sd3.SchemeToDt
+          AND sd3.SchemeCode NOT IN (SELECT DISTINCT refNo FROM schemeattributes)
+    </query>
+
+    <query name="FETCH_FEEDBACKMASTER">
+        SELECT fm.FeedBackType,
+               COALESCE(ls.ValueName, fm.FeedBackName) AS FeedBackName,
+               fm.ModDt
+        FROM feedbackmaster fm
+                 LEFT JOIN LanguageSupport ls
+                           ON  fm.FeedBackType = ls.ValueCode
+                               AND ls.LanguageCode = :param1
+                               AND LOWER(ls.TableName) = 'feedbackmaster'
+                               AND LOWER(ls.ColumnName) = 'feedbacktype'
+    </query>
+
+    <query name="FETCH_NOTIFICATIONTYPE_MASTER">
+        SELECT nm.NotificationType,
+               COALESCE(ls.ValueName, nm.NotificationName) AS NotificationName,
+               nm.ModDt
+        FROM notificationtypemaster nm
+                 LEFT JOIN LanguageSupport ls
+                           ON  nm.NotificationType = ls.ValueCode
+                               AND ls.LanguageCode = :param1
+                               AND LOWER(ls.TableName) = 'notificationtypemaster'
+                               AND LOWER(ls.ColumnName) = 'notificationtype'
+    </query>
+
+    <query name="FETCH_FIREBASE_USER">
+        SELECT FireBaseKey,
+               LoginCode
+        FROM firebaseuser
+    </query>
+
+    <query name="FETCH_NOTIFICATION_BY_UPLOADSTATUS">
+        SELECT NotificationId,
+               LoginCode,
+               NotificationType,
+               CreatedDt,
+               Subject,
+               Message,
+               MessageDetail,
+               FileName,
+               Important,
+               CmpCode,
+               UploadStatus,
+               ModDt
+        FROM notification
+        WHERE UploadStatus = 'N'
+    </query>
+
+    <query name="FETCH_ORDERBOOKINGHEADERENTITY_FOR_REPORT">
+        SELECT oh.CmpCode,
+               oh.DistrCode,
+               d.DistrName,
+               oh.OrderNo,
+               oh.CustomerRefNo,
+               oh.CustomerCode,
+               oh.CustomerShipCode,
+               oh.OrderDt,
+               oh.Remarks,
+               oh.Latitude,
+               oh.Longitude,
+               oh.StartTime,
+               oh.EndTime,
+               oh.OrderStatus,
+               oh.TotalGrossValue,
+               oh.TotalDiscount,
+               oh.TotalTax,
+               oh.TotalOrderValue
+        FROM orderbookingheader oh
+                 INNER JOIN distributor d
+                            ON oh.CmpCode = d.CmpCode
+                                AND oh.DistrCode = d.DistrCode
+        WHERE oh.CmpCode IN (:param1)
+          AND oh.DistrCode IN (:param2)
+          AND oh.CustomerCode IN (:param3)
+          AND oh.OrderDt BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), '%Y-%m-01') AND CURDATE()
+        ORDER BY oh.OrderDt DESC, oh.CustomerRefNo DESC
+    </query>
+
+    <query name="FETCH_ORDERBOOKINGDETAILSENTITY_FOR_REPORT">
+        SELECT od.CmpCode,
+               od.DistrCode,
+               od.OrderNo,
+               od.ProdCode,
+               od.ProdName,
+               od.ProdBatchCode,
+               od.OrderQty,
+               od.ServicedQty,
+               od.UomCode,
+               od.inputStr,
+               od.SellRate,
+               od.ActualSellRate,
+               od.GrossValue,
+               od.SchAmt,
+               od.TaxAmt,
+               od.TaxCode,
+               od.CgstPerc,
+               od.CgstAmt,
+               od.SgstPerc,
+               od.SgstAmt,
+               od.UgstPerc,
+               od.UgstAmt,
+               od.IgstPerc,
+               od.IgstAmt,
+               od.OrderValue,
+               od.ProdType
+        FROM orderbookingheader oh
+                 INNER JOIN orderbookingdetails od
+                            ON oh.CmpCode = od.CmpCode
+                                AND oh.DistrCode = od.DistrCode
+                                AND oh.OrderNo = od.OrderNo
+        WHERE oh.CmpCode IN (:param1)
+          AND oh.DistrCode IN (:param2)
+          AND oh.CustomerCode IN (:param3)
+          AND oh.OrderDt BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), '%Y-%m-01') AND CURDATE()
+        ORDER BY oh.OrderDt DESC
+    </query>
+
+    <query name="FETCH_ACTIONORDERSTATUSENTITY_FOR_REPORT">
+        SELECT api.CmpCode,
+               api.DistrCode,
+               api.OrderNo,
+               api.OrderStatus,
+               api.ActionTime,
+               api.FreeText
+        FROM orderbookingheader oh
+                 INNER JOIN action_order_status api
+                            ON oh.CmpCode = api.CmpCode
+                                AND oh.DistrCode = api.DistrCode
+                                AND oh.OrderNo = api.OrderNo
+        WHERE oh.CmpCode IN (:param1)
+          AND oh.DistrCode IN (:param2)
+          AND oh.CustomerCode IN (:param3)
+          AND oh.OrderDt BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), '%Y-%m-01') AND CURDATE()
+        ORDER BY api.CmpCode, api.DistrCode, api.OrderNo, api.ActionTime DESC
+    </query>
+
+    <query name="FETCH_DISTRIBUTORSTOCKENTITY">
+        SELECT ds.CmpCode,
+               ds.DistrCode,
+               ds.SaleableStock,
+               ds.UploadFlag,
+               ds.ModDt
+        FROM distributorstock ds
+        WHERE ds.CmpCode IN (:param1)
+          AND ds.DistrCode IN (:param2)
+    </query>
+
+    <query name="FETCH_CUSTOMERSTOCKENTITY">
+        SELECT cs.CmpCode,
+               cs.DistrCode,
+               cs.CustomerCode,
+               cs.Stock,
+               cs.UploadFlag,
+               cs.ModDt
+        FROM customerstock cs
+        WHERE cs.CmpCode IN (:param1)
+          AND cs.DistrCode IN (:param2)
+          AND cs.CustomerCode IN (:param3)
+    </query>
+
+    <query name="FETCH_CATEGORY_SEQUENCE">
+        SELECT Category,
+               SequenceNo,
+               ModDt
+        FROM categorysequence
+    </query>
+
+    <query name="FETCH_USER_MOBILENO">
+        SELECT au.LoginCode,
+               au.UserName,
+               au.LoginCode AS MobileNo
+        FROM appuser au
+        WHERE au.LoginCode = ?
+    </query>
+
+    <query name="FETCH_NOTIFICATION_BY_USER">
+        SELECT NotificationId,
+               LoginCode,
+               NotificationType,
+               CreatedDt,
+               CreatedTime,
+               Subject,
+               Message,
+               MessageDetail,
+               FileName,
+               Important,
+               CmpCode,
+               UploadStatus,
+               ModDt
+        FROM notification
+        WHERE LoginCode = :param1
+        ORDER BY Important DESC, CreatedDt DESC, CreatedTime DESC
+    </query>
+
+    <query name="FETCH_BANNER_IMAGE_TEMPLATE">
+        SELECT bt.CmpCode,
+               bt.BannerDesc,
+               bt.BannerType,
+               bt.FileName,
+               bt.DistrCode,
+               bt.UploadFlag,
+               bt.ModDt
+        FROM bannerimagetemplate bt
+        WHERE bt.CmpCode = :param1
+          AND (bt.DistrCode IS NULL
+            OR FIND_IN_SET(:param2, bt.DistrCode))
+    </query>
+
+    <query name="FETCH_RECOMMENDED_PRODUCTS">
+        SELECT tmp.CustomerCode AS customerCode, GROUP_CONCAT(tmp.ProdCode) AS prodCode
+        FROM (SELECT oh.CustomerCode,
+                     od.ProdCode,
+                     COUNT(od.ProdCode)
+              FROM orderbookingheader oh
+                       INNER JOIN orderbookingdetails od
+                                  ON oh.CmpCode = od.CmpCode
+                                      AND oh.DistrCode = od.DistrCode
+                                      AND oh.OrderNo = od.OrderNo
+              WHERE oh.CmpCode IN (:param1)
+                AND oh.DistrCode IN (:param2)
+                AND oh.CustomerCode IN (:param3)
+                AND oh.OrderDt BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 MONTH),
+                                                   '%Y-%m-01') AND CURDATE()
+              GROUP BY oh.CustomerCode, od.ProdCode
+              HAVING COUNT(od.ProdCode) > 1) tmp
+        GROUP BY tmp.CustomerCode
+    </query>
+
+    <query name="FETCH_FAVORITE_PRODUCTS">
+        SELECT fp.CmpCode,
+               fp.DistrCode,
+               fp.CustomerCode,
+               fp.FavProdCode,
+               fp.UploadFlag,
+               fp.ModDt
+        FROM favoriteproduct fp
+        WHERE fp.CmpCode IN (:param1)
+          AND fp.DistrCode IN (:param2)
+          AND fp.CustomerCode IN (:param3)
+    </query>
+
+    <query name="FETCH_USER_ACTIVE_LIST">
+        SELECT loginCode AS users
+        FROM useractivation
+        WHERE UserStatus != 'D'
+    </query>
+
+    <query name="FETCH_USER_INACTIVE_LIST">
+        SELECT loginCode AS users
+        FROM useractivation
+        WHERE UserStatus = 'D'
+    </query>
+
+    <query name="FETCH_CUSTOMER_SALESMAN_MAPPING">
+        SELECT c.CmpCode        AS cmpCode,
+               cp.CmpName       AS cmpName,
+               c.DistrCode      AS distrCode,
+               d.DistrName      AS distrName,
+               d.MobileNo       AS distrMobileNo,
+               d.EmailID        AS distrEmailID,
+               crm.RouteCode    AS routeCode,
+               r.RouteName      AS routeName,
+               srm.SalesmanCode AS salesmanCode,
+               s.SalesmanName   AS salesmanName,
+               s.MobileNo       AS salesmanMobileNo,
+               s.EmailID        AS salesmanEmailID,
+               srm.coverageDay  AS coverageDay
+        FROM customer c
+                 INNER JOIN company cp
+                            ON c.CmpCode = cp.CmpCode
+                 INNER JOIN distributor d
+                            ON c.CmpCode = d.CmpCode
+                                AND c.DistrCode = d.DistrCode
+                                AND d.DistrStatus = 'Y'
+                 INNER JOIN customerroutemapping crm
+                            ON c.CmpCode = crm.CmpCode
+                                AND c.DistrCode = crm.DistrCode
+                                AND c.CustomerCode = crm.CustomerCode
+                 INNER JOIN route r
+                            ON crm.CmpCode = r.CmpCode
+                                AND crm.DistrCode = r.DistrCode
+                                AND crm.RouteCode = r.RouteCode
+                                AND r.RouteStatus = 'Y'
+                 INNER JOIN salesmanroutemapping srm
+                            ON r.CmpCode = srm.CmpCode
+                                AND r.DistrCode = srm.DistrCode
+                                AND r.RouteCode = srm.RouteCode
+                 INNER JOIN salesman s
+                            ON srm.CmpCode = s.CmpCode
+                                AND srm.DistrCode = s.DistrCode
+                                AND srm.SalesmanCode = s.SalesmanCode
+                                AND s.Status = 'Y'
+        WHERE c.CmpCode IN (:param1)
+          AND c.DistrCode IN (:param2)
+          AND c.CustomerCode IN (:param3)
+    </query>
+
+
+    <!-- INSERT AND UPDATE QUERIES -->
+    <query name="INSERT_DEFAULT_KEYGENERATORENTITY">
+        INSERT INTO keygenerator (LoginCode,
+                                  ScreenName,
+                                  Prefix,
+                                  SuffixYY,
+                                  SuffixNN,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (:loginCode,
+                :screenName,
+                :prefix,
+                :suffixYY,
+                :suffixNN,
+                'Y',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = 'Y',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_USERACCESSDETAILENTITY">
+        INSERT INTO useraccessdetail (LoginCode,
+                                      RemoteAddr,
+                                      Token,
+                                      TokenGenerationTime,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (:loginCode,
+                :remoteAddr,
+                :token,
+                :tokenGenerationTime,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE Token               = :token,
+                   TokenGenerationTime = :tokenGenerationTime,
+                   UploadFlag          = :uploadFlag,
+                   ModDt               = :modDt
+    </query>
+
+    <query name="INSERT_FIREBASEUSERENTITY">
+        INSERT INTO firebaseuser (FireBaseKey,
+                                  LoginCode,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (:fireBaseKey,
+                :loginCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE LoginCode  = :loginCode,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_DEVICEINFORMATIONENTITY">
+        INSERT INTO deviceInformation (Logincode,
+                                       Advid,
+                                       Devicebrand,
+                                       Devicemodel,
+                                       Deviceversion,
+                                       UploadFlag,
+                                       ModDt)
+        VALUES (:loginCode,
+                :advId,
+                :deviceBrand,
+                :deviceModel,
+                :deviceVersion,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE Devicebrand   = :deviceBrand,
+                   Devicemodel   = :deviceModel,
+                   Deviceversion = :deviceVersion,
+                   UploadFlag    = :uploadFlag,
+                   ModDt         = :modDt
+    </query>
+
+    <query name="INSERT_ORDERBOOKINGHEADERENTITY">
+        INSERT INTO orderbookingheader(CmpCode,
+                                       DistrCode,
+                                       OrderNo,
+                                       CustomerRefNo,
+                                       CustomerCode,
+                                       CustomerShipCode,
+                                       OrderDt,
+                                       Remarks,
+                                       Latitude,
+                                       Longitude,
+                                       StartTime,
+                                       EndTime,
+                                       OrderStatus,
+                                       TotalGrossValue,
+                                       TotalDiscount,
+                                       TotalTax,
+                                       TotalOrderValue,
+                                       UploadFlag,
+                                       ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :customerRefNo,
+                :customerCode,
+                :customerShipCode,
+                :orderDt,
+                :remarks,
+                :latitude,
+                :longitude,
+                :startTime,
+                :endTime,
+                :orderStatus,
+                :totalGrossValue,
+                :totalDiscount,
+                :totalTax,
+                :totalOrderValue,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE CustomerRefNo    = :customerRefNo,
+                   CustomerCode     = :customerCode,
+                   CustomerShipCode = :customerShipCode,
+                   OrderDt          = :orderDt,
+                   Remarks          = :remarks,
+                   Latitude         = :latitude,
+                   Longitude        = :longitude,
+                   StartTime        = :startTime,
+                   EndTime          = :endTime,
+                   OrderStatus      = :orderStatus,
+                   TotalGrossValue  = :totalGrossValue,
+                   TotalDiscount    = :totalDiscount,
+                   TotalTax         = :totalTax,
+                   TotalOrderValue  = :totalOrderValue,
+                   UploadFlag       = :uploadFlag,
+                   ModDt            = :modDt
+    </query>
+
+    <query name="INSERT_ORDERBOOKINGDETAILSENTITY">
+        INSERT INTO orderbookingdetails (CmpCode,
+                                         DistrCode,
+                                         OrderNo,
+                                         ProdCode,
+                                         ProdName,
+                                         ProdBatchCode,
+                                         OrderQty,
+                                         ServicedQty,
+                                         UomCode,
+                                         inputStr,
+                                         SellRate,
+                                         ActualSellRate,
+                                         GrossValue,
+                                         SchAmt,
+                                         TaxAmt,
+                                         TaxCode,
+                                         CgstPerc,
+                                         CgstAmt,
+                                         SgstPerc,
+                                         SgstAmt,
+                                         UgstPerc,
+                                         UgstAmt,
+                                         IgstPerc,
+                                         IgstAmt,
+                                         OrderValue,
+                                         ProdType,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :prodCode,
+                :prodName,
+                :prodBatchCode,
+                :orderQty,
+                :servicedQty,
+                :uomCode,
+                :inputStr,
+                :sellRate,
+                :actualSellRate,
+                :grossValue,
+                :schAmt,
+                :taxAmt,
+                :taxCode,
+                :cgstPerc,
+                :cgstAmt,
+                :sgstPerc,
+                :sgstAmt,
+                :ugstPerc,
+                :ugstAmt,
+                :igstPerc,
+                :igstAmt,
+                :orderValue,
+                :prodType,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE ProdName       = :prodName,
+                   OrderQty       = :orderQty,
+                   ServicedQty    = :servicedQty,
+                   UomCode        = :uomCode,
+                   inputStr       = :inputStr,
+                   SellRate       = :sellRate,
+                   ActualSellRate = :actualSellRate,
+                   GrossValue     = :grossValue,
+                   SchAmt         = :schAmt,
+                   TaxAmt         = :taxAmt,
+                   TaxCode        = :taxCode,
+                   CgstPerc       = :cgstPerc,
+                   CgstAmt        = :cgstAmt,
+                   SgstPerc       = :sgstPerc,
+                   SgstAmt        = :sgstAmt,
+                   UgstPerc       = :ugstPerc,
+                   UgstAmt        = :ugstAmt,
+                   IgstPerc       = :igstPerc,
+                   IgstAmt        = :igstAmt,
+                   OrderValue     = :orderValue,
+                   ProdType       = :prodType,
+                   UploadFlag     = :uploadFlag,
+                   ModDt          = :modDt
+    </query>
+
+    <query name="INSERT_ORDERBOOKINGSERVICEDETAILSENTITY">
+        INSERT INTO orderbookingservicedetails (CmpCode,
+                                                DistrCode,
+                                                OrderNo,
+                                                InvoiceNo,
+                                                ProdCode,
+                                                ProdName,
+                                                ProdBatchCode,
+                                                SellRate,
+                                                SoqQty,
+                                                SoqValue,
+                                                OrderQty,
+                                                OrderValue,
+                                                ServicedQty,
+                                                ServicedValue,
+                                                UploadFlag,
+                                                ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :invoiceNo,
+                :prodCode,
+                :prodName,
+                :prodBatchCode,
+                :sellRate,
+                :soqQty,
+                :soqValue,
+                :orderQty,
+                :orderValue,
+                :servicedQty,
+                :servicedValue,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE InvoiceNo     = :invoiceNo,
+                   ProdName      = :prodName,
+                   SellRate      = :sellRate,
+                   SoqQty        = :soqQty,
+                   SoqValue      = :soqValue,
+                   OrderQty      = :orderQty,
+                   OrderValue    = :orderValue,
+                   ServicedQty   = :servicedQty,
+                   ServicedValue = :servicedValue,
+                   UploadFlag    = :uploadFlag,
+                   ModDt         = :modDt
+    </query>
+
+    <query name="INSERT_ORDERBOOKINGSCHEMEDETAILSENTITY">
+        INSERT INTO orderbookingschemedetails (CmpCode,
+                                               DistrCode,
+                                               OrderNo,
+                                               SchemeCode,
+                                               SlabNo,
+                                               FreeProdCode,
+                                               FreeQty,
+                                               UploadFlag,
+                                               ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :schemeCode,
+                :slabNo,
+                :freeProdCode,
+                :freeQty,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE FreeQty    = :freeQty,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_ORDERBOOKINGSCHEMEPRODUCTRULEENTITY">
+        INSERT INTO orderbookingschemeproductrule (CmpCode,
+                                                   DistrCode,
+                                                   OrderNo,
+                                                   SchemeCode,
+                                                   SlabNo,
+                                                   ProdCode,
+                                                   DiscPerc,
+                                                   DiscAmt,
+                                                   UploadFlag,
+                                                   ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :orderNo,
+                :schemeCode,
+                :slabNo,
+                :prodCode,
+                :discPerc,
+                :discAmt,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE DiscPerc   = :discPerc,
+                   DiscAmt    = :discAmt,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_KEYGENERATORENTITY">
+        INSERT INTO keygenerator (LoginCode,
+                                  ScreenName,
+                                  Prefix,
+                                  SuffixYY,
+                                  SuffixNN,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (:loginCode,
+                :screenName,
+                :prefix,
+                :suffixYY,
+                :suffixNN,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE Prefix     = :prefix,
+                   SuffixYY   = :suffixYY,
+                   SuffixNN   = :suffixNN,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_SYNCLOGENTITY">
+        INSERT into synclog (LoginCode,
+                            AppVersion,
+                            SyncDt,
+                            SyncStartTime,
+                            SyncEndTime,
+                            Mode,
+                            ProcessName,
+                            UserName,
+                            Message,
+                            UploadFlag,
+                            ModDt)
+        VALUES (:loginCode,
+                :appVersion,
+                :syncDt,
+                :syncStartTime,
+                :syncEndTime,
+                :mode,
+                :processName,
+                :userName,
+                :message,
+                :uploadFlag,
+                :modDt)
+    </query>
+
+    <query name="INSERT_FEEDBACKENTITY">
+        INSERT INTO feedback (CmpCode,
+                              DistrCode,
+                              FeedbackNo,
+                              CustomerCode,
+                              FeedBackDt,
+                              FeedbackType,
+                              Message,
+                              ImagePath,
+                              UploadFlag,
+                              ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :feedbackNo,
+                :customerCode,
+                :feedBackDt,
+                :feedbackType,
+                :message,
+                :imagePath,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE CustomerCode =:customerCode,
+                   FeedBackDt   = :feedBackDt,
+                   FeedbackType = :feedbackType,
+                   Message      = :message,
+                   ImagePath    = :imagePath,
+                   UploadFlag   = :uploadFlag,
+                   ModDt        = :modDt
+    </query>
+
+    <query name="INSERT_LOCATION_UPDATE_ENTITY">
+        INSERT INTO locationupdate (LoginCode,
+                                    UpdateDt,
+                                    Latitude,
+                                    Longitude,
+                                    ImagePath,
+                                    PostalCode,
+                                    UploadTo,
+                                    UploadFlag,
+                                    ModDt)
+        VALUES (:loginCode,
+                :updateDt,
+                :latitude,
+                :longitude,
+                :imagePath,
+                :postalCode,
+                :uploadTo,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE Latitude   = :latitude,
+                   Longitude  = :longitude,
+                   ImagePath  = :imagePath,
+                   PostalCode = :postalCode,
+                   UploadTo   = :uploadTo,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_LOCATION_UPDATE_STATUS_ENTITY">
+        INSERT INTO locationupdatestatus (CmpCode,
+                                          DistrCode,
+                                          LoginCode,
+                                          UpdateDt,
+                                          UploadFlag,
+                                          ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :loginCode,
+                :updateDt,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_ACTION_API_ENTITY">
+        INSERT INTO actionapi (CmpCode,
+                               DistrCode,
+                               ActionTime,
+                               ActionCode,
+                               ActionTemplate,
+                               ProcessedFlag,
+                               ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :actionTime,
+                :actionCode,
+                :actionTemplate,
+                'N',
+                NOW())
+    </query>
+
+    <query name="INSERT_MASTER_MESSAGEENTITY">
+        INSERT INTO message (LoginCode,
+                             MessageDate,
+                             MessageTime,
+                             UserName,
+                             MobileNo,
+                             OtpCode,
+                             RefCode,
+                             Message,
+                             DeliveryStatus,
+                             UploadFlag,
+                             ModDt)
+        VALUES (:loginCode,
+                :messageDate,
+                :messageTime,
+                :userName,
+                :mobileNo,
+                :otpCode,
+                :refCode,
+                :message,
+                :deliveryStatus,
+                'N',
+                NOW())
+    </query>
+
+    <query name="INSERT_MASTER_DISTRIBUTORSALESHIERARCHYENTITY">
+        INSERT INTO distributorsaleshierarchy(CmpCode,
+                                              DistrCode,
+                                              SalesForceCode,
+                                              LobCode,
+                                              SalesHierPath,
+                                              UploadFlag,
+                                              ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :salesForceCode,
+                :lobCode,
+                :salesHierPath,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE SalesHierPath = :salesHierPath,
+                   UploadFlag    = :uploadFlag,
+                   ModDt         = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_COMPANYUSERENTITY">
+        INSERT INTO companyuser(CmpCode,
+                                LoginCode,
+                                UserName,
+                                UserType,
+                                MappedCode,
+                                EmailId,
+                                MobileNo,
+                                UserStatus,
+                                UploadFlag,
+                                ModDt)
+        VALUES (:cmpCode,
+                :loginCode,
+                :userName,
+                :userType,
+                :mappedCode,
+                :emailId,
+                :mobileNo,
+                :userStatus,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UserName   = :userName,
+                   UserType   = :userType,
+                   MappedCode = :mappedCode,
+                   EmailId    = :emailId,
+                   MobileNo   = :mobileNo,
+                   UserStatus = :userStatus,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_ROUTEENTITY">
+        INSERT INTO route(CmpCode,
+                          DistrCode,
+                          RouteCode,
+                          RouteName,
+                          RouteType,
+                          RouteStatus,
+                          UploadFlag,
+                          ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :routeCode,
+                :routeName,
+                :routeType,
+                :routeStatus,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE RouteName   = :routeName,
+                   RouteType   = :routeType,
+                   RouteStatus = :routeStatus,
+                   UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SALESMANENTITY">
+        INSERT INTO salesman(CmpCode,
+                             DistrCode,
+                             SalesmanCode,
+                             SalesmanName,
+                             MobileNo,
+                             EmailID,
+                             Status,
+                             UploadFlag,
+                             ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :salesmanCode,
+                :salesmanName,
+                :mobileNo,
+                :emailID,
+                :status,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE SalesmanName = :salesmanName,
+                   MobileNo     = :mobileNo,
+                   EmailID      = :emailID,
+                   Status       = :status,
+                   UploadFlag   = :uploadFlag,
+                   ModDt        = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_SALESMANROUTEMAPPINGENTITY">
+        INSERT INTO salesmanroutemapping(CmpCode,
+                                         DistrCode,
+                                         SalesmanCode,
+                                         RouteCode,
+                                         CoverageDay,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :salesmanCode,
+                :routeCode,
+                :coverageDay,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE CoverageDay = :coverageDay,
+                   UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <query name="INSERT_MASTER_CUSTOMERROUTEMAPPINGENTITY">
+        INSERT INTO customerroutemapping(CmpCode,
+                                         DistrCode,
+                                         CustomerCode,
+                                         RouteCode,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (:cmpCode,
+                :distrCode,
+                :customerCode,
+                :routeCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="UPDATE_USER_PASS_WORD">
+        UPDATE appuser
+        SET Password    = :password,
+            NewPassword = 'N',
+            ModDt       = NOW()
+        WHERE LoginCode = :loginCode
+    </query>
+
+    <query name="UPDATE_ACTIVATION_USER_PASS_WORD">
+        UPDATE appuser
+        SET Password    = :password,
+            NewPassword = 'Y',
+            ModDt       = NOW()
+        WHERE LoginCode = :loginCode
+    </query>
+
+    <query name="UPDATE_USER_LOGIN_STATUS">
+        UPDATE appuser
+        SET LoginStatus  = :loginStatus,
+            DeviceId     = :deviceId,
+            HostName     = :hostName,
+            LoggedInTime = :loggedInTime,
+            ModDt        = NOW()
+        WHERE LoginCode = :loginCode
+    </query>
+
+    <query name="UPDATE_NOTIFICATION_BY_UPLOADSTATUS">
+        UPDATE notification
+        SET UploadStatus = 'Y',
+            ModDt        = NOW()
+        WHERE NotificationId = :notificationId
+    </query>
+
+    <query name="UPDATE_USER_CREATION_LIST">
+        UPDATE useractivation
+        SET UserName   = :userName,
+            UserStatus = :userStatus,
+            UploadFlag = :uploadFlag,
+            ModDt      = :modDt
+        WHERE LoginCode = :loginCode
+    </query>
+
+    <query name="UPDATE_USER_DEACTIVATION_LIST">
+        UPDATE useractivation
+        SET UserName   = :userName,
+            UserStatus = :userStatus,
+            DeactivationDt = :deactivationDt,
+            UploadFlag = :uploadFlag,
+            ModDt      = :modDt
+        WHERE LoginCode = :loginCode
+    </query>
+
+    <query name="UPDATE_PRODUCT_BATCH_LATEST">
+        UPDATE productbatch
+        SET LatestBatch = 'N',
+            UploadFlag  = 'N',
+            ModDt       = NOW()
+        WHERE CmpCode = :cmpCode
+          AND BatchLevel = :batchLevel
+          AND ProdCode = :prodCode
+          AND ProdBatchCode != :prodBatchCode
+          AND LatestBatch = 'Y'
+    </query>
+
+    <query name="UPDATE_USER_HOST_NAME">
+        UPDATE appuser
+        SET LoginStatus  = :param1,
+            HostName     = :param2,
+            LoggedInTime = :param3,
+            ModDt        = NOW()
+        WHERE LoginCode = :param4
+    </query>
+
+    <query name="FETCH_SALES_OFFICER">
+        SELECT distinct
+            cu.CmpCode,
+            cu.UserName AS userName,
+            cu.EmailId AS emailId,
+            cu.MobileNo AS mobileNo
+        FROM
+            customer cust
+        INNER JOIN
+            distributorsaleshierarchy dsh ON cust.Cmpcode = dsh.Cmpcode
+            AND cust.DistrCode = dsh.DistrCode
+        INNER JOIN
+            companyuser cu ON dsh.CmpCode = cu.CmpCode
+            AND dsh.SalesHierPath LIKE CONCAT('%/', cu.MappedCode, '/%')
+        WHERE
+            cust.MobileNo = :param1 AND
+            cust.RetailerStatus = 'Y' AND
+            cu.UserStatus = 'Y' AND char_length(cu.LoginCode)=8
+    </query>
+    <query name="FETCH_DASHBOARD_WIDGET">
+        	SELECT
+             CmpCode,
+             DistrCode,
+             CustomerCode,
+             DisplayCode1,
+             DisplayValue1,
+             DisplayIcon1,
+             DisplayColor1,
+             DisplayCode2,
+             DisplayValue2,
+             DisplayIcon2,
+             DisplayColor2,
+             DisplayCode3,
+             DisplayValue3,
+             DisplayIcon3,
+             DisplayColor3,
+             DisplayCode4,
+             DisplayValue4,
+             DisplayIcon4,
+             DisplayColor4,
+             DisplayCode5,
+             DisplayValue5,
+             DisplayIcon5,
+             DisplayColor5,
+             DisplayCode6,
+             DisplayValue6,
+             DisplayIcon6,
+             DisplayColor6,
+             DisplayCode7,
+             DisplayValue7,
+             DisplayIcon7,
+             DisplayColor7,
+             DisplayCode8,
+             DisplayValue8,
+             DisplayIcon8,
+             DisplayColor8,
+             DisplayCode9,
+             DisplayValue9,
+             DisplayIcon9,
+             DisplayColor9,
+             DisplayCode10,
+             DisplayValue10,
+             DisplayIcon10,
+             DisplayColor10
+                FROM
+                dashboard_widget
+            WHERE CustomerCode = :param1
+    </query>
+
+    <query name="FETCH_CUSTOMER_CODE">
+        SELECT customerCode from
+        customer WHERE mobileNo = ?
+    </query>
+
+    <query name="INSERT_MASTER_DASHBOARDENTITY">
+        INSERT INTO dashboard_widget
+            (CmpCode,
+            DistrCode,
+            CustomerCode,
+            DisplayCode1,
+            DisplayValue1,
+            DisplayIcon1,
+            DisplayColor1,
+            DisplayCode2,
+            DisplayValue2,
+            DisplayIcon2,
+            DisplayColor2,
+            DisplayCode3,
+            DisplayValue3,
+            DisplayIcon3,
+            DisplayColor3,
+            DisplayCode4,
+            DisplayValue4,
+            DisplayIcon4,
+            DisplayColor4,
+            DisplayCode5,
+            DisplayValue5,
+            DisplayIcon5,
+            DisplayColor5,
+            DisplayCode6,
+            DisplayValue6,
+            DisplayIcon6,
+            DisplayColor6,
+            DisplayCode7,
+            DisplayValue7,
+            DisplayIcon7,
+            DisplayColor7,
+            DisplayCode8,
+            DisplayValue8,
+            DisplayIcon8,
+            DisplayColor8,
+            DisplayCode9,
+            DisplayValue9,
+            DisplayIcon9,
+            DisplayColor9,
+            DisplayCode10,
+            DisplayValue10,
+            DisplayIcon10,
+            DisplayColor10,
+            UploadFlag,
+            ModDt)
+        VALUES
+            (:cmpCode,
+            :distrCode,
+            :customerCode,
+            :displayCode1,
+            :displayValue1,
+            :displayIcon1,
+            :displayColor1,
+            :displayCode2,
+            :displayValue2,
+            :displayIcon2,
+            :displayColor2,
+            :displayCode3,
+            :displayValue3,
+            :displayIcon3,
+            :displayColor3,
+            :displayCode4,
+            :displayValue4,
+            :displayIcon4,
+            :displayColor4,
+            :displayCode5,
+            :displayValue5,
+            :displayIcon5,
+            :displayColor5,
+            :displayCode6,
+            :displayValue6,
+            :displayIcon6,
+            :displayColor6,
+            :displayCode7,
+            :displayValue7,
+            :displayIcon7,
+            :displayColor7,
+            :displayCode8,
+            :displayValue8,
+            :displayIcon8,
+            :displayColor8,
+            :displayCode9,
+            :displayValue9,
+            :displayIcon9,
+            :displayColor9,
+            :displayCode10,
+            :displayValue10,
+            :displayIcon10,
+            :displayColor10,
+            :uploadFlag,
+           :modDt) ON DUPLICATE KEY
+        UPDATE
+            CmpCode         = :cmpCode,
+            DistrCode       = :distrCode,
+            CustomerCode    = :customerCode,
+            DisplayCode1    = :displayCode1,
+            DisplayValue1   = :displayValue1,
+            DisplayIcon1    = :displayIcon1,
+            DisplayColor1   = :displayColor1,
+            DisplayCode2    = :displayCode2,
+            DisplayValue2   = :displayValue2,
+            DisplayIcon2    = :displayIcon2,
+            DisplayColor2   = :displayColor2,
+            DisplayCode3    = :displayCode3,
+            DisplayValue3   = :displayValue3,
+            DisplayIcon3    = :displayIcon3,
+            DisplayColor3   = :displayColor3,
+            DisplayCode4    = :displayCode4,
+            DisplayValue4   = :displayValue4,
+            DisplayIcon4    = :displayIcon4,
+            DisplayColor4   = :displayColor4,
+            DisplayCode5    = :displayCode5,
+            DisplayValue5   = :displayValue5,
+            DisplayIcon5    = :displayIcon5,
+            DisplayColor5   = :displayColor5,
+            DisplayCode6    = :displayCode6,
+            DisplayValue6   = :displayValue6,
+            DisplayIcon6    = :displayIcon6,
+            DisplayColor6   = :displayColor6,
+            DisplayCode7    = :displayCode7,
+            DisplayValue7   = :displayValue7,
+            DisplayIcon7    = :displayIcon7,
+            DisplayColor7   = :displayColor7,
+            DisplayCode8    = :displayCode8,
+            DisplayValue8   = :displayValue8,
+            DisplayIcon8    = :displayIcon8,
+            DisplayColor8   = :displayColor8,
+            DisplayCode9    = :displayCode9,
+            DisplayValue9   = :displayValue9,
+            DisplayIcon9    = :DisplayIcon9,
+            DisplayColor9   = :displayColor9,
+            DisplayCode10   = :displayCode10,
+            DisplayValue10  = :displayValue10,
+            DisplayIcon10   = :displayIcon10,
+            DisplayColor10  = :displayColor10,
+            UploadFlag     = :uploadFlag,
+            ModDt   =   :modDt
+    </query>
+
+
+    <query name="INSERT_INTO_CUSTOMER_STOCK">
+        INSERT INTO customerstock
+            (CmpCode,
+            DistrCode,
+            CustomerCode,
+            Stock,
+            UploadFlag,
+            ModDt)
+        VALUES
+            (CmpCode,
+            DistrCode,
+            CustomerCode,
+            Stock,
+            UploadFlag,
+            ModDt) ON DUPLICATE KEY
+        UPDATE
+            CmpCode     =:cmpCode,
+            DistrCode   =:distrCode,
+            CustomerCode =:customerCode,
+            Stock        =:stock,
+            UploadFlag   =:uploadFlag,
+            ModDt        =:ModDt
+    </query>
+</queries>

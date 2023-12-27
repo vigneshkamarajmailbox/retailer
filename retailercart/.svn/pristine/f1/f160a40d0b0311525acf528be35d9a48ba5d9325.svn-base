@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { MediaCategoryService } from './media-category.service';
+
+describe('MediaCategoryService', () => {
+  let service: MediaCategoryService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [MediaCategoryService],
+    }).compile();
+
+    service = module.get<MediaCategoryService>(MediaCategoryService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

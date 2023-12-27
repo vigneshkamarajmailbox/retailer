@@ -1,0 +1,20 @@
+[
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": null,
+    "modDt": null,
+    "changeNo": null,
+    "tableName": "APKAutoUpdate",
+    "code": "N",
+    "description": "Enable APK AutoUpdate in Play Store",
+    "groupName": null,
+    "usedBy": null,
+    "component": null,
+    "input1": null,
+    "input2": null,
+    "input3": null,
+    "input4": null,
+    "input5": null
+  }
+]

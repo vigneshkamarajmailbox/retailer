@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <query name="FETCH_USER_LOGGING">
+        SELECT COALESCE(HostName, 'UnKnown') AS Server,
+               COUNT(a.LoginCode)            AS User_Connected_To_Application,
+               0                             AS User_Connected_To_Reporting,
+               0                             AS User_Connected_To_Transaction
+        FROM appuser a
+                 INNER JOIN configuration c
+                            ON c.TableName = 'LoggerExportFreq'
+        WHERE STR_TO_DATE(a.LoggedInTime, '%Y-%m-%d %H:%i:%s') >= DATE_SUB(NOW(), INTERVAL c.code MINUTE)
+        GROUP BY HostName
+    </query>
+</queries>

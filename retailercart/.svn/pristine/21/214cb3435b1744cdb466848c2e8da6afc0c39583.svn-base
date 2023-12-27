@@ -1,0 +1,15 @@
+import { IsNotEmpty, IsNumber } from 'class-validator';
+
+export class UserOtpDto {
+  @IsNumber()
+  @IsNotEmpty()
+  mobileNo: number; // primary key foreign key
+
+  @IsNumber()
+  @IsNotEmpty()
+  otp: number;
+
+  expired_time: Date;
+
+  mod_dt: Date;
+}

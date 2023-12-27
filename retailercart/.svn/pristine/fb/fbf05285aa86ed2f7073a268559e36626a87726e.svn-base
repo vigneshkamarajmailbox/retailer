@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { RetailerCategoryService } from './retailer-category.service';
+
+describe('RetailerCategoryService', () => {
+  let service: RetailerCategoryService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [RetailerCategoryService],
+    }).compile();
+
+    service = module.get<RetailerCategoryService>(RetailerCategoryService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

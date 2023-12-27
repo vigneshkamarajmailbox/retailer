@@ -1,0 +1,42 @@
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { In, Repository } from 'typeorm';
+import { CreateLobMasterDto } from './dto/create-lob-master.dto';
+import { UpdateLobMasterDto } from './dto/update-lob-master.dto';
+import { LobMaster } from './entities/lob-master.entity';
+
+@Injectable()
+export class LobMasterService {
+
+  constructor(
+    @InjectRepository(LobMaster)
+    private lobRepository : Repository<LobMaster>
+  ){}
+  create(createLobMasterDto: CreateLobMasterDto) {
+    return 'This action adds a new lobMaster';
+  }
+
+  async findAll() {
+    let lob = await this.lobRepository.find({select:{cmpCode:true,lobCode:true,lobName:true}});
+    return {
+      statusCode : HttpStatus.OK,
+      lob : lob
+    }
+  }
+
+  async fetchAllByCode(data){
+     return await this.lobRepository.find({where:{lobCode: In([data.lobCode])}});
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} lobMaster`;
+  }
+
+  update(id: number, updateLobMasterDto: UpdateLobMasterDto) {
+    return `This action updates a #${id} lobMaster`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} lobMaster`;
+  }
+}

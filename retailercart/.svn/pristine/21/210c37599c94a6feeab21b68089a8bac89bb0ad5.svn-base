@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { KycTypeService } from './kyc-type.service';
+
+describe('KycTypeService', () => {
+  let service: KycTypeService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [KycTypeService],
+    }).compile();
+
+    service = module.get<KycTypeService>(KycTypeService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

@@ -1,0 +1,8 @@
+import { IsNotEmpty, IsNumber } from 'class-validator';
+
+export class sendOtpDto {
+ 
+  @IsNumber()
+  @IsNotEmpty()
+  mobileNo: number; // primary key foreign key
+}

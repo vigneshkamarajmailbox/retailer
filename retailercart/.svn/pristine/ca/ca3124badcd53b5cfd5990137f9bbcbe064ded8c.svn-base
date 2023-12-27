@@ -1,0 +1,88 @@
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UsersService } from '../users/users.service';
+import * as moment from 'moment';
+import { SignupDto } from 'src/users/dto/signup.dto';
+
+@Injectable()
+export class AuthService {
+  constructor(private usersService: UsersService, private jwtService: JwtService) { }
+
+  async signup(signupDto: SignupDto) {
+    await this.usersService.create(signupDto);
+    return {
+      message: "User Created Successfully"
+    };
+  }
+
+  async signIn(username: any, pass: string) {
+
+    const user = await this.usersService.validateUser(username, pass);
+    let listCompany;
+    let list = [];
+    let value;
+
+    if (user) {
+      listCompany = await this.usersService.findAllByUserCompanyMap(username);
+
+      value = await listCompany.map(value => value.cmpCode);
+      for (const element of value) {
+
+        listCompany = await this.usersService.findCmpName(element);
+
+        list.push({ cmpCode: element, cmpName: listCompany })
+      }
+    }
+
+    if (list.length == 0) {
+      throw new HttpException('User not Registered with Any Company', HttpStatus.BAD_REQUEST)
+    }
+
+    const payload = { cmpCode: value, username: user.userName, mobile: user.mobile, groupCode: user.groupCode };
+
+    return {
+      accessToken: await this.jwtService.signAsync(payload),
+      tokenType: 'Bearer',
+      expiresIn: moment(new Date().getTime()).add(8, 'hours').format('YYYY-MM-DD hh:mm A'),
+      userName: user.userName,
+      list: list
+
+    };
+
+  }
+
+  async loginwithOTP(mobile: number, otp: number) {
+    const user = await this.usersService.validateUserotp(mobile, otp);
+
+    let listCompany;
+    let list = [];
+    let value;
+
+    if (user) {
+      listCompany = await this.usersService.findAllByUserCompanyMap(user.userName);
+
+      value = await listCompany.map(value => value.cmpCode);
+
+      for (const element of value) {
+
+        listCompany = await this.usersService.findCmpName(element);
+
+        list.push({ cmpCode: element, cmpName: listCompany })
+      }
+    }
+    if (list.length == 0) {
+      throw new HttpException('User not Registered with Any Company', HttpStatus.BAD_REQUEST)
+    }
+
+    const payload = { cmpCode: value, username: user.userName, mobile: user.mobile, groupCode: user.groupCode };
+
+    return {
+      accessToken: await this.jwtService.signAsync(payload),
+      tokenType: 'Bearer',
+      expiresIn: moment(new Date().getTime()).add(8, 'hours').format('YYYY-MM-DD hh:mm A'),
+      username: user.userName,
+      list: list
+    };
+  }
+
+}

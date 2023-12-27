@@ -1,0 +1,102 @@
+package com.botree.interdbentity.model;
+
+public class OrderReferralEntity {
+
+    /** CmpCode. */
+    private String cmpCode;
+    /** DistrCode. */
+    private String distrCode;
+    /** SalesmanCode. */
+    private String salesmanCode;
+    /** orderNo. */
+    private String orderNo;
+    /** uploadFlag. */
+    private char uploadFlag;
+    /** modDt. */
+    private String modDt;
+
+
+    /**
+     * @return the cmpCode
+     */
+    public final String getCmpCode() {
+        return cmpCode;
+    }
+
+    /**
+     * @param cmpCodeIn the cmpCode to set
+     */
+    public final void setCmpCode(final String cmpCodeIn) {
+        cmpCode = cmpCodeIn;
+    }
+
+    /**
+     * @return the distrCode
+     */
+    public final String getDistrCode() {
+        return distrCode;
+    }
+
+    /**
+     * @param distrCodeIn the distrCode to set
+     */
+    public final void setDistrCode(final String distrCodeIn) {
+        distrCode = distrCodeIn;
+    }
+
+    /**
+     * @return the salesmanCode
+     */
+    public final String getSalesmanCode() {
+        return salesmanCode;
+    }
+
+    /**
+     * @param salesmanCodeIn the salesmanCode to set
+     */
+    public final void setSalesmanCode(final String salesmanCodeIn) {
+        salesmanCode = salesmanCodeIn;
+    }
+
+    /**
+     * @return the orderNo
+     */
+    public final String getOrderNo() {
+        return orderNo;
+    }
+
+    /**
+     * @param orderNoIn the orderNo to set
+     */
+    public final void setOrderNo(final String orderNoIn) {
+        orderNo = orderNoIn;
+    }
+
+    /**
+     * @return the uploadFlag
+     */
+    public final char getUploadFlag() {
+        return uploadFlag;
+    }
+
+    /**
+     * @param uploadFlagIn the uploadFlag to set
+     */
+    public final void setUploadFlag(final char uploadFlagIn) {
+        uploadFlag = uploadFlagIn;
+    }
+
+    /**
+     * @return the modDt
+     */
+    public final String getModDt() {
+        return modDt;
+    }
+
+    /**
+     * @param modDtIn the modDt to set
+     */
+    public final void setModDt(final String modDtIn) {
+        modDt = modDtIn;
+    }
+}

@@ -1,0 +1,20 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, PrimaryColumn } from "typeorm";
+
+@Entity({name:TableName.SCREEN_ACCESS})
+export class ScreenAccess extends AbstractModel {
+    @PrimaryColumn({ name: 'module_no', type: SQLColumnType.INT, nullable: false })
+    moduleNo: number;
+
+    @PrimaryColumn({ name: 'screen_no', type: SQLColumnType.INT, nullable: false })
+    screenNo: number;
+
+    @PrimaryColumn({ name: 'group_code', type: SQLColumnType.INT, nullable: false })
+    groupCode: number;
+
+    @Column({ name: 'group_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    groupName: string; 
+
+}

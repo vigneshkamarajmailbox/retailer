@@ -1,0 +1,40 @@
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateRetailerCategoryDto } from './dto/create-retailer-category.dto';
+import { UpdateRetailerCategoryDto } from './dto/update-retailer-category.dto';
+import { RetailerCategory } from './entities/retailer-category.entity';
+
+@Injectable()
+export class RetailerCategoryService {
+  constructor(
+    @InjectRepository(RetailerCategory)
+    private retailerRepository : Repository<RetailerCategory>
+  ){
+
+  }
+
+  create(createRetailerCategoryDto: CreateRetailerCategoryDto) {
+    return 'This action adds a new retailerCategory';
+  }
+
+  async findAll() {
+    let retailerCat = await this.retailerRepository.find();
+    return {
+      statusCode : HttpStatus.OK,
+      retailerCategory : retailerCat
+    }
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} retailerCategory`;
+  }
+
+  update(id: number, updateRetailerCategoryDto: UpdateRetailerCategoryDto) {
+    return `This action updates a #${id} retailerCategory`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} retailerCategory`;
+  }
+}

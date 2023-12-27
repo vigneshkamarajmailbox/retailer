@@ -1,0 +1,47 @@
+.access-card {
+  background-image: url(../layout/images/768x1024.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover !important;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media screen and (min-width: 768px) {
+  .access-card {
+    background-image: url(../layout/images/1024x768.jpg);
+    background-position: left top;
+    background-size: contain;
+  }
+}
+
+.login-to-btn {
+  box-sizing: border-box;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid currentColor;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 15px;
+  border-radius: 4px;
+  overflow: visible;
+  background: #FFF7FA;
+  color: #ff4081;
+}
+
+.login-to-btn:hover {
+  background: rgba(0, 0, 0, 0.14);
+}
+
+

@@ -1,0 +1,23 @@
+import { HttpServer, Query } from '@nestjs/common';
+import { SMS } from './sms.model.dto';
+import { ConfigService } from '@nestjs/config';
+import qs from 'qs';
+
+export class SMSCommunicatorService {
+  constructor(private httpService: HttpServer, private config: ConfigService) {}
+
+  async sentSMS(phoneNo: string, otp: string, id: string) {
+    const template: string = this.config.get('SMS_OTP_TEMPLATE');
+    template.replace('{0}', otp);
+    template.replace('{1}', id);
+    const smsModel: SMS = {
+      from: this.config.get('SMS_FROM'),
+      to: this.config.get('SMS_CODE') + phoneNo,
+      password: this.config.get('SMS_PASSWORD'),
+      username: this.config.get('SMS_USERNAME'),
+      text: encodeURIComponent(template),
+    };
+    const queryString: string = this.config.get('SMS_URL') + qs.stringify(smsModel);
+    return await this.httpService.get(queryString, {} as any);
+  }
+}

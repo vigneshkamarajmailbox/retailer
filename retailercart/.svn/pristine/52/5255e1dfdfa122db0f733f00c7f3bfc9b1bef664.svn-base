@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RSSFA -WEB</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      id="theme-css"
+      rel="stylesheet"
+      type="text/css"
+      href="assets/theme/theme-pink-cyan.css"
+    />
+    <link
+      id="layout-css"
+      rel="stylesheet"
+      type="text/css"
+      href="assets/layout/css/layout-pink-cyan.css"
+    />
+  </head>
+  <style>
+    body,
+    html {
+      height: 100%;
+    }
+  </style>
+
+  <body>
+    <app-root>
+      <div class="splash-screen loader">
+        <svg
+          class="logo"
+          width="40px"
+          height="44px"
+          viewBox="0 0 38 42"
+          version="1.1"
+        >
+          <defs></defs>
+          <!-- <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="branding" transform="translate(-563.000000, -727.000000)" fill="#FFFFFF">
+                            <g id="rssfa-logo" transform="translate(563.000000, 727.000000)">
+                                <polygon id="M" points="37.128 42 30.927 42 30.927 21.118 18.631 39.456 6.282 21.118 6.282 42 0.134 42 0.134 0.872 18.631 28.432 37.128 0.872"></polygon>
+                            </g>
+                        </g>
+                    </g> -->
+        </svg>
+      </div>
+    </app-root>
+  </body>
+</html>

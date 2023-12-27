@@ -1,0 +1,27 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, PrimaryColumn } from "typeorm";
+
+@Entity({ name: TableName.KPI })
+export class Kpi extends AbstractModel {
+
+    @PrimaryColumn({ name: 'kpi_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    kpiCode: string;
+
+    @Column({ name: 'cmp_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    cmpCode: string;
+
+    @Column({ name: 'name', type: SQLColumnType.VARCHAR, length: 50, nullable: true, })
+    name: string;
+
+    @Column({ name: 'target', type: SQLColumnType.VARCHAR, length: 75, nullable: true, })
+    target: string;
+
+    @Column({ name: 'achieved', type: SQLColumnType.VARCHAR, length: 75, nullable: true, })
+    achieved: string;
+
+    @Column({ name: 'achieved_percentage', type: SQLColumnType.VARCHAR, length: 75, nullable: true, })
+    achievedPercentage: string;
+
+}

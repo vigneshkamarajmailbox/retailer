@@ -1,0 +1,145 @@
+<div class="retailer-info-screen">
+    <div style="text-align: end;">
+        <p>
+            <span style="font-size: 18px;">Helpline:</span>&nbsp;
+            <i class="fa fa-envelope icon-circle" style="color: darkred;"></i>&nbsp;
+            <a href="mailto:amit.arora@dabur.com">drishtisupport@botree.co.in</a>
+        </p>
+    </div>
+    <mat-grid-list cols="{{cols}}" rowHeight="1245px" (window:resize)="onResize($event)">
+        <mat-grid-tile *ngFor="let data of customers" style="background: #f7f7f7" class="display-tile">
+            <mat-card class="retailer-info-div">
+                <div class="flex-column">
+                    <img width="auto" height="120px" style="align-self: center" src="{{data.image}}">
+                    <form style="margin-top: 10%">
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.RETAILER_NAME'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.customerName}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.CONTACT_PERSON'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.contactPerson}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.CONTACT_NUMBER'|translate}}</mat-label>
+                            <div class="flex-row">
+                                <input matInput disabled value="{{data.phoneNo}}">
+                                <a *ngIf="data.phoneNo > 0" href="tel:{{data.phoneNo}}" class="material-icons cursor"
+                                    style="text-decoration: none !important; color: #333333">phone</a>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.ADDRESS1'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.customerShipAddr1}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.ADDRESS2'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.customerShipAddr2}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.TOWN'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.city}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.DISTRICT'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.district}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.PIN_CODE'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.pinCode}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.OUTSTANDING_AMT'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.outstandingAmt}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.GSTN_REGISTERED'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.customerType}}">
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>{{'RETAILER.GSTN_NUMBER'|translate}}</mat-label>
+                            <input matInput disabled value="{{data.gstTinNo}}">
+                        </mat-form-field>
+                        <div class="retailer-mapping-div">
+                            <table class="width-100 height-100">
+                                <tr class="profile-card-align" *ngFor="let val of data.salesmanMapping">
+                                    <td style="padding: 1% !important;">
+                                        <mat-card class="profile-card">
+                                            <div class="flex-row justify-content-between">
+                                                <div class="profile-header">{{val.distrName}}</div>
+                                            </div>
+                                            <div class="flex-column profile-detail-card">
+                                                <div class="profile-list-card">
+                                                    <span
+                                                        class="profile-list-card-header">{{'RETAILER.SALESMAN_NAME'|translate}}
+                                                        : </span>
+                                                    <span class="profile-master-list-card-detail">
+                                                        {{val.salesmanName}}</span>
+                                                </div>
+                                                <div class="profile-list-card">
+                                                    <span
+                                                        class="profile-list-card-header">{{'RETAILER.SALESMAN_NUMBER'|translate}}
+                                                        : </span>
+                                                    <span class="profile-master-list-card-detail">
+                                                        {{val.salesmanMobileNo}}</span>
+                                                </div>
+                                                <div class="profile-list-card">
+                                                    <span
+                                                        class="profile-list-card-header">{{'RETAILER.COVERAGE_DAY'|translate}}
+                                                        : </span>
+                                                    <span class="profile-master-list-card-detail">
+                                                        {{val.coverageDay}}</span>
+                                                </div>
+                                            </div>
+                                        </mat-card>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="divider">{{'RETAILER.SALES_OFFICER'|translate}}</div>
+
+    <mat-grid-list cols="{{cols}}" rowHeight="300px" (window:resize)="onResize($event)">
+        <mat-grid-tile *ngFor="let data of salesOfficerInitialData" style="background: #f7f7f7">
+            <mat-card class="retailer-info-div">
+                <form>
+                    <mat-form-field style="width: 100%">
+                        <mat-label>{{'RETAILER.USER_NAME'|translate}}</mat-label>
+                        <input matInput disabled value="{{data.userName}}">
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%">
+                        <mat-label>{{'RETAILER.CONTACT_NUMBER'|translate}}</mat-label>
+                        <div class="flex-row">
+                            <input matInput disabled value="{{data.mobileNo}}">
+                            <a *ngIf="data.mobileNo > 0" href="tel:{{data.mobileNo}}" class="material-icons cursor"
+                                style="text-decoration: none !important; color: #333333">phone</a>
+                        </div>
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%">
+                        <mat-label>{{'RETAILER.USER_EMAIL'|translate}}</mat-label>
+                        <div class="flex-row">
+                            <input matInput disabled value="{{data.emailId}}">
+                            <a *ngIf="data.emailId" href="mailto:{{data.emailId}}" class="fa fa-envelope icon-circle"
+                                style="text-decoration: none !important; color: #333333"></a>
+                        </div>
+                    </mat-form-field>
+                </form>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div style="padding-top: 10px;
+    padding-bottom: 30px;
+    text-align: right;" *ngIf="showMorebtn">
+        <button mat-raised-button color="primary" (click)="showMore()" style="padding: 0 15px !important;">
+            {{'ORDER.FOOTER.SHOWMORE'|translate}}
+        </button>
+    </div>
+</div>
+
+<div class="page spinner" *ngIf="loading">
+</div>

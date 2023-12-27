@@ -1,0 +1,8 @@
+rootProject.name = 'retailercart-microservices'
+include 'interdbentity'
+include 'interdb'
+include 'sfaweb'
+include 'common'
+include 'sfadbrepository'
+include 'reportcompute'
+

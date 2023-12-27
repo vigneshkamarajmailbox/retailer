@@ -1,0 +1,32 @@
+.form-class input {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid rgb(182, 179, 179);
+}
+.form-class .pi {
+  padding-top: 10px;
+  font-size: 25px;
+}
+.form-class .grid .col{
+  padding: 0px 15px;
+}
+.form-class .grid{
+  margin: 10px 0px;
+}
+.form-button{
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+//   background-color: #BB0000;
+  border-radius: 5px;
+}
+
+.form-button:hover{
+//   background-color: rgb(187, 71, 71) !important;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}

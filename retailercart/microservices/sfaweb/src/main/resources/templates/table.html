@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Template for HTML email with table</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style th:inline="text">
+        #dynamictable {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #dynamictable td,
+        #dynamictable th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #dynamictable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #dynamictable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        p {
+            letter-spacing: 1px;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<p>Hi <span style="font-weight: bold" th:text="*{username}">name</span>,
+    <br/>
+    Please find the <span style="font-weight: bold;" th:text="*{title}">title</span> report.
+</p>
+<table aria-describedby="Populate data in dynamic table" id="dynamictable" style='margin-top: 20px;'>
+    <tr>
+        <th scope="col" th:each="childElement : *{columns}" th:text="*{childElement.label}"></th>
+    </tr>
+    <tr th:each="obj : *{rows}">
+        <td id="row" th:each="cols : *{columns}" th:text="*{obj[cols.id]}"></td>
+    </tr>
+</table>
+<p>Thanks,<br/><span style="font-weight: bold">SMDMS Team</span></p>
+</body>
+</html>

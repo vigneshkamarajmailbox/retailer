@@ -1,0 +1,52 @@
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { contactUsRepository } from './contact-us.repository';
+import { CreateContactUsDto } from './dto/create-contact-us.dto';
+import { UpdateContactUsDto } from './dto/update-contact-us.dto';
+import { ContactUs } from './entities/contact-us.entity';
+
+@Injectable()
+export class ContactUsService {
+
+
+    @Inject()
+    contactUsRepository: contactUsRepository;
+
+    async create(saveContactUs: CreateContactUsDto) {
+        let find = await this.contactUsRepository.create(saveContactUs);
+        if (!find) {
+            throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+        }
+        else 
+        {
+            return {
+                statusCode : HttpStatus.CREATED,
+                message    : "Contact Details Saved Successfully"
+            };
+        }
+    }
+
+    async findAll(): Promise<any> {
+
+        let find = await this.contactUsRepository.findAll();
+        
+        if (!find) {
+            throw new HttpException('List Empty', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return  {contact:find};
+        }
+    }
+
+
+    findOne(cmpCode: string): Promise<ContactUs | null> {
+        return this.contactUsRepository.findOne(cmpCode);
+    }
+
+    update(id: number, updateContactUsDto: UpdateContactUsDto) {
+        return `This action updates a #${id} contactUs`;
+    }
+
+    remove(id: number) {
+        return `This action removes a #${id} contactUs`;
+    }
+}

@@ -1,0 +1,68 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, Index, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { RetailerAddMapping } from "./retailer-add-mapping.entity";
+import { RetailerCredit } from "./retailer-credit.entity";
+
+@Entity({ name: TableName.RETAILER })
+export class Retailer extends AbstractModel {
+
+    @PrimaryColumn({ name: 'cmp_code', type: SQLColumnType.VARCHAR, length: 10, nullable: false })
+    cmpCode: string;
+
+    @Index()
+    @PrimaryColumn({ name: 'user_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    userName: string;
+
+    @PrimaryColumn({ name: 'retailer_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    retailerCode: string;
+
+    @Column({ name: 'retailer_name', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    retailerName: string;
+
+    @Column({ name: 'mobile_no', type: SQLColumnType.VARCHAR, length: 10, nullable: false })
+    mobileNo: string;
+    
+    @Column({ name: 'alt_mobile_no', type: SQLColumnType.VARCHAR, length: 10, nullable: true })
+    altMobileNo: string;
+
+    @Column({ name: 'email', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    email: string;
+
+    @Column({ name: 'gst_no', type: SQLColumnType.VARCHAR, length: 50, nullable: true })
+    gstNo: string;
+
+    @Column({ name: 'pan_no', type: SQLColumnType.VARCHAR, length: 50, nullable: true })
+    panNo: string;
+    
+    @Column({ name: 'group_code', type: SQLColumnType.VARCHAR, length: 50, nullable: true })
+    groupCode: string;
+
+    @ManyToOne(() => RetailerCredit, (retailercredit) => retailercredit.userName, {
+        eager: true,
+        deferrable: 'INITIALLY IMMEDIATE',
+        cascade: ['insert', 'update'],
+    })
+    @JoinColumn([
+        {
+            name: 'user_name',
+            referencedColumnName: 'userName',
+        },
+    ])
+    credit: RetailerCredit;
+
+    @OneToMany(() => RetailerAddMapping, (retaileraddmapping) => retaileraddmapping.userName, {
+        eager: true,
+        deferrable: 'INITIALLY IMMEDIATE',
+        cascade: ['insert', 'update'],
+    })
+    @JoinColumn([
+        {
+            name: 'user_name',
+            referencedColumnName: 'userName',
+        },
+    ])
+    address: RetailerAddMapping;
+}
+

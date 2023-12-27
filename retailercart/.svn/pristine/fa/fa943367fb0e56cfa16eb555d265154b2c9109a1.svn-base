@@ -1,0 +1,4 @@
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateUomMasterDto } from './create-uom-master.dto';
+
+export class UpdateUomMasterDto extends PartialType(CreateUomMasterDto) {}

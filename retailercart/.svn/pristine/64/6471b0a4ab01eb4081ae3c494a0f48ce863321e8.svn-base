@@ -1,0 +1,30 @@
+
+<div *ngIf="isref!=1">
+    <div style="display: flex;align-items: center;">
+        <i class="material-icons order-confirmation-icon">thumb_up</i>{{'ORDER.CONFIRM.POST.ORDER_CONFIRMATION'|translate}}
+    </div>
+    <hr>
+    <div mat-dialog-content class="flex-column justify-content-between">
+        <p>{{'ORDER.CONFIRM.POST.ORDER_SAVED_SUCCESSFULLY'|translate}}
+            <span style="color: #1B5E20;font-weight: bold">{{data.refNo}}</span>
+        </p>
+        <p>{{'ORDER.CONFIRM.POST.TENTATIVE_DELIVERY'|translate}}
+            <span style="color: #1B5E20;font-weight: bold">{{data.delivery}}</span>
+        </p>
+    </div>
+    <div mat-dialog-actions style="display: flex; flex-direction: column;  align-items: center;">
+        <button mat-stroked-button mat-dialog-close color="accent">{{'ORDER.CONFIRM.POST.OK'|translate}}</button>
+    </div>
+</div>
+<div *ngIf="isref==1">
+    <div style="display: flex;align-items: center;">
+        <i class="material-icons order-confirmation-icon">thumb_up</i>{{'ORDER.CONFIRM.POST.ORDER_REFERRAL_CONFIRMATION'|translate}}
+    </div>
+    <hr>
+    <div mat-dialog-content class="flex-column justify-content-between">
+        <p>{{'ORDER.CONFIRM.POST.ORDER_REFERRAL_SAVED_SUCCESSFULLY'|translate}}. </p>
+    </div>
+    <div mat-dialog-actions style="display: flex; flex-direction: column;  align-items: center;">
+        <button mat-stroked-button mat-dialog-close color="accent" (click)="onClose();">{{'ORDER.CONFIRM.POST.OK'|translate}}</button>
+    </div>
+</div>

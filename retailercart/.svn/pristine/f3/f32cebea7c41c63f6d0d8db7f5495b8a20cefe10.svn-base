@@ -1,0 +1,54 @@
+[
+  {
+    "loginCode": 9635585398,
+    "appVersion": "1.0.0",
+    "syncDt": "2019-08-20",
+    "syncStartTime": "18:14:31",
+    "syncEndTime": "18:14:31",
+    "mode": "online",
+    "processName": "login",
+    "userName": "HARI RAM AMARNATH 8",
+    "message": "Success",
+    "uploadFlag": "N",
+    "modDt": "1519385942000"
+  },
+  {
+    "loginCode": 9635585398,
+    "appVersion": "1.0.0",
+    "syncDt": "2019-08-20",
+    "syncStartTime": "18:14:54",
+    "syncEndTime": "18:14:54",
+    "mode": "online",
+    "processName": "Download",
+    "userName": "HARI RAM AMARNATH 8",
+    "message": "Success",
+    "uploadFlag": "N",
+    "modDt": "1519385942000"
+  },
+  {
+    "loginCode": 9635585398,
+    "appVersion": "1.0.0",
+    "syncDt": "2019-08-20",
+    "syncStartTime": "18:14:31",
+    "syncEndTime": "18:14:31",
+    "mode": "online",
+    "processName": "login",
+    "userName": "HARI RAM AMARNATH 8",
+    "message": "Success",
+    "uploadFlag": "N",
+    "modDt": "1519385942000"
+  },
+  {
+    "loginCode": 9635585398,
+    "appVersion": "1.0.0",
+    "syncDt": "2019-08-20",
+    "syncStartTime": "18:14:54",
+    "syncEndTime": "18:14:54",
+    "mode": "online",
+    "processName": "Download",
+    "userName": "HARI RAM AMARNATH 8",
+    "message": "Success",
+    "uploadFlag": "N",
+    "modDt": "1519385942000"
+  }
+]

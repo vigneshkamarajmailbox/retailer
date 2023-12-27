@@ -1,0 +1,24 @@
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Public } from 'src/auth/decorators/public.decorator';
+import { sendOtpDto } from './dto/send-otp.dto';
+import { UsersService } from './users.service';
+
+@Controller('user')
+export class UserController {
+  constructor(private userService: UsersService) {}
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('user')
+  async findAll() {
+    return await this.userService.findAllUsers();
+  }
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('sendOTP')
+  async sendOTP(@Body() userOtpDto: sendOtpDto) {
+    console.log(userOtpDto, 'pof');
+    return await this.userService.sendOTP(userOtpDto.mobileNo);
+  }
+}

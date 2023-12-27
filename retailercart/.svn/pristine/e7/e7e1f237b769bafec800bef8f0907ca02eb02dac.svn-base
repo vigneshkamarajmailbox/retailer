@@ -1,0 +1,17 @@
+export enum TableName {
+  PRODUCT = 'product_t',
+  PRODUCT_UOM = 'product_uom_t',
+  PRODUCT_BATCH = 'product_batch_t',
+  PRODUCT_HIERARCHY_LEVEL = 'product_hier_level_t',
+  PRODUCT_HIERARCHY_VALUE = 'product_hier_value_t',
+  PRODUCT_MEDIA = 'product_media_t',
+  PRODUCT_TAX_INFO = 'product_tax_info_t',
+  PRODUCT_GROUP_MAPPING = 'product_group_mapping_t',
+  PRODUCT_DISTRIBUTOR_STOCK = 'product_distributor_stock_t',
+  PRODUCT_RETAILER_MAPPING = 'product_retailer_mapping_t',
+  PRODUCT_TAGS = 'product_tags_t',
+  HOME_BANNER = 'home_banner_t',
+  HOME_HIGHLIGHTS = 'home_highlights_t',
+  PRODUCT_PRICING = 'product_pricing_t',
+  PRODUCT_CROSS_MAPPING = 'product_hier_cross_mapping_t',
+}

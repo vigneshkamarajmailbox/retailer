@@ -1,0 +1,20 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { LobMasterController } from './lob-master.controller';
+import { LobMasterService } from './lob-master.service';
+
+describe('LobMasterController', () => {
+  let controller: LobMasterController;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [LobMasterController],
+      providers: [LobMasterService],
+    }).compile();
+
+    controller = module.get<LobMasterController>(LobMasterController);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});

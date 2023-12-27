@@ -1,0 +1,18 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { LobMasterService } from './lob-master.service';
+
+describe('LobMasterService', () => {
+  let service: LobMasterService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [LobMasterService],
+    }).compile();
+
+    service = module.get<LobMasterService>(LobMasterService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.botree.retailerssfa">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name=" android.permission.USE_BIOMETRIC" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name="com.botree.retailerssfa.main.SFAApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:manageSpaceActivity=".main.ManageSpaceActivity"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:label, android:icon, android:theme ,android:allowBackup">
+        <activity android:name="com.botree.retailerssfa.main.CustomerWiseSalesReportActivity"
+            android:configChanges="locale|orientation" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".main.ManageSpaceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.botree.retailerssfa.main.LoginActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="user"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="locale|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
+
+        <activity
+            android:name="com.botree.retailerssfa.main.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="user"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            android:configChanges="locale|orientation" /> <!-- android:windowSoftInputMode="stateAlwaysHidden|adjustResize" -->
+        <activity
+            android:name="com.botree.retailerssfa.print.BTWrapperActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="user"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            android:configChanges="locale|orientation"/>
+
+        <service
+            android:name="com.botree.retailerssfa.backgroundservices.BackgroundSyncService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="com.botree.retailerssfa.backgroundservices.BackgroundUploadService"
+            android:enabled="true" />
+
+        <activity android:name="com.botree.retailerssfa.main.SearchActivity"
+            android:configChanges="locale|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <service
+            android:name="com.botree.retailerssfa.firebase.MyFirebaseInstanceIDService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.botree.retailerssfa.firebase.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name="com.botree.retailerssfa.service.DownloadService" />
+
+        <activity
+            android:name="com.botree.retailerssfa.main.VoiceToStringActivity"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:configChanges="locale|orientation" />
+        <activity android:name="com.botree.retailerssfa.bot.BotActivity"
+            android:configChanges="locale|orientation" />
+
+        <service android:name="com.botree.retailerssfa.bot.backgroundbot.VoiceService" />
+        <!--
+        <receiver
+            android:name=".bot.backgroundbot.BootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        -->
+        <activity
+            android:name="com.botree.retailerssfa.main.OrderBookProductActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.botree.retailerssfa.main.DistributorMasterActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.botree.retailerssfa.main.ProductMasterActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.botree.retailerssfa.main.FingerPrintActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.botree.retailerssfa.main.SchemeDistributorListActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.botree.retailerssfa.main.RetailerSchemeUtilizationActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.botree.retailerssfa.main.PreviousOrderBookingReportActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.botree.retailerssfa.main.DaySummaryDetailReportActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity android:name=".main.FeedbackActivity"
+            android:configChanges="locale|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <service
+            android:name="com.botree.retailerssfa.util.Usbservice"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name="com.botree.retailerssfa.backgroundservices.LocationUpdateService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e8a7edc283cb5711d47e3820385683b5c86fa0c4" />
+
+        <!-- <activity android:name=".main.MasterDistrActivity" /> -->
+        <activity android:name="com.botree.retailerssfa.main.ForgotPasswordActivity"
+            android:configChanges="locale|orientation" />
+
+        <service android:name="com.botree.retailerssfa.printer.PrintJobMonitorService" />
+    </application>
+
+</manifest>

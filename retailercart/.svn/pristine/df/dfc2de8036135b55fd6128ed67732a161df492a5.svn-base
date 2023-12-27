@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentrelativeLayoutotpdialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@drawable/dialog_bg"
+    android:animationCache="true"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:drawableStart="@drawable/alert"
+        android:drawableLeft="@drawable/alert"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/otp_dialog_title"
+        android:textColor="@color/red"
+        android:textSize="@dimen/txt_size_semi_medium" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:background="@color/color_list_divider" />
+
+    <TextView
+        android:id="@+id/otp_send_info_msg_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center"
+        android:textColor="@color/navig_list_normal_clr"
+        android:textSize="@dimen/txt_size_semi_medium"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/edit_bg"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/otp_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_padding_small"
+            android:layout_weight="0.8"
+            android:gravity="left|center"
+            android:hint="@string/otp_hint"
+            android:inputType="number"
+            android:maxLength="6"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:textColor="#666666"
+            android:textSize="@dimen/txt_size_semi_medium"
+            android:visibility="visible"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp">
+
+            <com.botree.retailerssfa.arcprogressbar.ArcProgress
+                android:id="@+id/otparcProgress"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                app:arc_angle="360"
+                app:arc_bottom_text_size="@dimen/txt_size_small"
+                app:arc_finished_color="@color/navig_list_normal_clr"
+                app:arc_max="120"
+                app:arc_progress="0"
+                app:arc_stroke_width="4dp"
+                app:arc_suffix_text_size="0dp"
+                app:arc_text_color="@color/black"
+                app:arc_text_size="12sp"
+                app:arc_unfinished_color="@color/colorPrimary" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/resend_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/resend_otp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/txt_size_semi_medium"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/alert_cancel_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_btn_red"
+            android:text="@string/cancel"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/alert_ok_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/custom_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/validate"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+</LinearLayout>

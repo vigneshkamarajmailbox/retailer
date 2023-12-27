@@ -1,0 +1,34 @@
+buildscript {
+    ext { springBootVersion = '2.4.5' }
+    dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+}
+
+plugins {
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+}
+
+group = 'com.botree.common'
+version = '1.3.1'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation project(':interdbentity')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.glassfish.jaxb:jaxb-runtime')
+    implementation('org.apache.poi:poi:3.17')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+}
+

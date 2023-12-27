@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/custom_toolbar" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/mtd_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:background="@color/color_list_divider"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvRetailerCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:gravity="center"
+                        android:maxEms="4"
+                        android:maxLines="1"
+                        android:minEms="4"
+                        android:padding="@dimen/text_padding_small"
+                        android:text="@string/retailer_code"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/txt_size_normal" />
+
+                    <TextView
+                        android:id="@+id/tvRetailer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:gravity="center"
+                        android:maxEms="8"
+                        android:maxLines="1"
+                        android:minEms="8"
+                        android:padding="@dimen/text_padding_small"
+                        android:text="@string/retailer"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/txt_size_normal" />
+
+                    <TextView
+                        android:id="@+id/tvInvoice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:gravity="center"
+                        android:maxEms="4"
+                        android:maxLines="1"
+                        android:minEms="4"
+                        android:padding="@dimen/text_padding_small"
+                        android:text="@string/noOfInvoice"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/txt_size_normal" />
+
+                    <TextView
+                        android:id="@+id/tvValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:gravity="center"
+                        android:maxEms="4"
+                        android:maxLines="1"
+                        android:minEms="4"
+                        android:padding="@dimen/text_padding_small"
+                        android:text="@string/custom_data_value"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/txt_size_normal" />
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvEmpty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:drawableTop="@drawable/sad"
+                        android:drawablePadding="10dp"
+                        android:gravity="center"
+                        android:padding="50dp"
+                        android:text="@string/not_available"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/txt_size_large"
+                        android:visibility="visible" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/top_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/top_sheet_behavior"
+            tools:ignore="MissingPrefix">
+
+            <include layout="@layout/report_filter_dialog" />
+
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

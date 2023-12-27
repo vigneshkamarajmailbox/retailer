@@ -1,0 +1,48 @@
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, Table } from 'typeorm';
+import { SQLColumnType } from '../enum/column-type.enum';
+import { AbstractModel } from './abstract.model';
+import { TableName } from '../enum/table-name.enum';
+import { Company } from './company.entity';
+
+@Entity({ name: TableName.COMPANY_ADDRESS })
+export class CompanyAddress extends AbstractModel {
+  @PrimaryColumn({ type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+  cmpCode: string;
+
+  @Column({ type: SQLColumnType.VARCHAR, length: 150, nullable: false })
+  address1: string;
+
+  @Column({ type: SQLColumnType.VARCHAR, length: 150, nullable: false })
+  address2: string;
+
+  @Column({ type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+  country: string;
+
+  @Column({ type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+  state: string;
+
+  @Column({ type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+  city: string;
+
+  @Column({ type: SQLColumnType.TINYINT, scale: 1, default: false })
+  isMainBranch: string;
+
+  @Column({ type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+  landmark: string;
+
+  @Column({ type: SQLColumnType.VARCHAR, length: 10, nullable: false })
+  pincode: string;
+
+  @ManyToOne(() => Company, (cmp) => cmp.cmpCode, {
+    eager: true,
+    deferrable: 'INITIALLY IMMEDIATE',
+    cascade: ['insert', 'update'],
+  })
+  @JoinColumn([
+    {
+      name: 'cmp_code',
+      referencedColumnName: 'cmpCode',
+    },
+  ])
+  company: Company;
+}

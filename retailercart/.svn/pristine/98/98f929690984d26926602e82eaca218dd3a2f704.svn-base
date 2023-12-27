@@ -1,0 +1,51 @@
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { In, Repository } from 'typeorm';
+import { CreateKycTypeDto } from './dto/create-kyc-type.dto';
+import { UpdateKycTypeDto } from './dto/update-kyc-type.dto';
+import { KycType } from './entities/kyc-type.entity';
+
+@Injectable()
+export class KycTypeService {
+  constructor(
+  @InjectRepository(KycType)
+  private kycDocTypeRepository: Repository<KycType>
+  ){}
+
+  async create(createKycTypeDto: CreateKycTypeDto) {
+    let find = await this.kycDocTypeRepository.save(createKycTypeDto);
+        if (!find) {
+            throw new HttpException('Details not saved', HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return {
+                statusCode : HttpStatus.CREATED,
+                message    : "KYC types Saved Successfully"
+            };
+        }
+  }
+
+  async findAll(): Promise<any> {
+    let kycTypeData = await this.kycDocTypeRepository.find({select:{code:true,name:true}});
+    return {
+      statusCode : HttpStatus.OK,
+      kycTypes : kycTypeData
+    }
+  }
+
+  async fetchKycTypeByCode(data){
+     return await this.kycDocTypeRepository.find({where:{code: In([data.code])}});
+  }
+
+  async findOne(code: string) {
+    return await this.kycDocTypeRepository.findOne({select:{code:true,name:true}, where:{code:code}});
+  }
+
+  update(id: number, updateKycTypeDto: UpdateKycTypeDto) {
+    return `This action updates a #${id} kycType`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} kycType`;
+  }
+}

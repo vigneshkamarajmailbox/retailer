@@ -1,0 +1,126 @@
+import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  ProductListAPI,
+  ProductListRequestDto,
+  ProductPlaceOrder,
+  cart,
+  contact_us,
+  deliveryTracking,
+  getBrochure,
+  getKYC,
+  getProfile,
+  kpiStaticData,
+  kycType,
+  notificationHistory,
+  orderSummary,
+  requestProductList,
+  saveKYC,
+  savefeedback,
+} from './static.content';
+import { Public } from 'src/auth/decorators/public.decorator';
+import { ApiBody } from '@nestjs/swagger';
+
+@Controller()
+export class StaticController {
+  @Public()
+  @Get('/profile')
+  async getProfile() {
+    return getProfile;
+  }
+
+  @Public()
+  @Get('/kyc/types')
+  async getKycType() {
+    return kycType;
+  }
+
+  @HttpCode(HttpStatus.CREATED)
+  @Public()
+  @Post('/kyc')
+  async saveKYC() {
+    return {
+      statusCode: HttpStatus.CREATED,
+      message: 'KYC Saved Successfully',
+    };
+  }
+  @Public()
+  @Get('/kyc')
+  async getKYC() {
+    return getKYC;
+  }
+  @Public()
+  @Get('contact-us')
+  async getContactus() {
+    return contact_us;
+  }
+
+  @Public()
+  @Post('feedback')
+  async getfb() {
+    return savefeedback;
+  }
+
+  @Public()
+  @Get('brochure')
+  async getDigitalContent() {
+    return getBrochure;
+  }
+
+  @Public()
+  @Post('product-list')
+  async getProductList(@Body() productList: ProductListRequestDto) {
+    console.log(productList);
+    return ProductListAPI;
+  }
+
+  @Public()
+  @Get('cart')
+  async myCart() {
+    return cart;
+  }
+
+  @Public()
+  @Post()
+  async productPlaceOrder(@Body() productPlaceOrder: ProductPlaceOrder) {
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Order placed Successfully',
+    };
+  }
+
+  @Public()
+  @Get('delivery/tracking')
+  async deliveryTracking() {
+    return deliveryTracking;
+  }
+
+  @Public()
+  @Get('order/history')
+  async orderHistory() {
+    return deliveryTracking;
+  }
+
+  @Public()
+  @Get('order/summary')
+  async orderSummary() {
+    return orderSummary;
+  }
+
+  // @Public()
+  // @Get('notification')
+  // async notification() {
+  //   return notificationHistory;
+  // }
+
+  // @Public()
+  // @Get('kpi')
+  // async kpi() {
+  //   return kpiStaticData;
+  // }
+
+  //request
+  //on-select-product
+  //place-order-screen
+  //request-place-order-screen
+  //my-cart
+}

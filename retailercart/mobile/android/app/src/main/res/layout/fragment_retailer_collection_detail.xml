@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <com.botree.retailerssfa.support.NestedCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll|enterAlways">
+
+                    <TextView
+                        android:id="@+id/coll_retailer_name_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edit_bg"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        android:text="@string/retaielr_name"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/txt_size_semi_medium" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.8"
+                            android:maxLines="1"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/invoice_no"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_semi_medium"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/due_since"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_semi_medium"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:id="@+id/tvDays"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableRight="@drawable/ic_swap_vert_black_24dp"
+                            android:drawableEnd="@drawable/ic_swap_vert_black_24dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/days"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_semi_medium"
+                            android:typeface="serif" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.3"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/balance"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/txt_size_semi_medium"
+                            android:typeface="serif" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:sfaActivity="com.botree.retailerssfa.main.MainActivity">
+
+                <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/collectiondetail_recyclerview"
+                    android:name="com.botree.productsfa.fragment_pending_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:clipToPadding="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:listitem="@layout/collection_report_list_item"
+                    tools:sfaActivity=".main.MainActivity" />
+
+                <TextView
+                    android:id="@+id/collectiondetail_empty_tag_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/no_record"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/txt_size_large"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </com.botree.retailerssfa.support.NestedCoordinatorLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/due_date_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/txt_size_small"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/due_amount_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/txt_size_semi_medium"
+                android:typeface="serif" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/collection_next_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_btn_red"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:text="@string/next"
+            android:textColor="@color/colorWhite"
+            android:typeface="serif" />
+    </LinearLayout>
+</LinearLayout>

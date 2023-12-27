@@ -1,0 +1,32 @@
+[
+  {
+    "cmpCode": "AMUL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587454440000,
+    "changeNo": null,
+    "cmpName": "Gujarat Cooperative Milk Marketing Federation",
+    "cmpAddr1": "PO Box 10",
+    "cmpAddr2": "Amul Dairy Road",
+    "cmpAddr3": null,
+    "city": "Anand",
+    "state": "Gujarat",
+    "country": "India",
+    "postalCode": "388001"
+  },
+  {
+    "cmpCode": "DIL",
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587528540000,
+    "changeNo": null,
+    "cmpName": "Dabur",
+    "cmpAddr1": "Delhi",
+    "cmpAddr2": "",
+    "cmpAddr3": "",
+    "city": "Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "postalCode": "876543"
+  }
+]

@@ -1,0 +1,24 @@
+.order-confirmation-icon {
+  font-size: 32px;
+  color: #4CAF50;
+}
+
+@media screen and (max-width: 640px) {
+  .order-confirmation-icon {
+    padding-top: 1% !important;
+  }
+}
+
+.order-confirmation-title {
+  margin: 0 !important;
+  padding-left: 1% !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+
+@media screen and (max-width: 767px) {
+  .order-confirmation-title {
+    font-size: 0.88rem !important;
+  }
+}

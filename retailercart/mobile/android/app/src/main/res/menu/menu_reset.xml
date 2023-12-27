@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:sfaActivity="com.botree.retailerssfa.main.MainActivity">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/search_icon"
+        android:orderInCategory="100"
+        android:title="@string/search"
+        android:visible="true"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+    <item
+        android:id="@+id/action_reset"
+        android:orderInCategory="100"
+        android:title="@string/reset"
+        android:visible="false"
+        app:showAsAction="always|collapseActionView" />
+</menu>

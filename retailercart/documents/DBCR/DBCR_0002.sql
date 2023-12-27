@@ -1,0 +1,2 @@
+ALTER TABLE notification
+ADD COLUMN CreatedTime VARCHAR(50) NOT NULL AFTER CreatedDt;

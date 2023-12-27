@@ -1,0 +1,5 @@
+{
+  "externalAPIUrl": "https://retailerorder.tataconsumer.com/sfaweb",
+  "version": "1.1.0",
+  "brandFilter": 8
+}

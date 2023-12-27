@@ -1,0 +1,75 @@
+<div class="order-booking-screen " style="overflow-x: scroll">
+    <div class="order-booking-product-listing-div">
+        <div class="topBar">
+            <div class="width-auto height-auto">
+                <mat-form-field class="product-search-input">
+                    <input matInput (keyup)="applyFilter()" [(ngModel)]="searchInput"
+                           placeholder="{{'PREVIOUS_ORDER.FILTER_SEARCH'|translate}}" #input>
+                </mat-form-field>
+                <i class="material-icons cursor filter_search_btn" (click)="clearFilter()">close</i>
+            </div>
+        </div>
+        <mat-grid-list cols="{{cols}}" class="order-booking-align" (window:resize)="onResize($event)"
+                       rowHeight="{{rowHeight}}">
+            <mat-grid-tile *ngFor="let data of schemeDefinition" style="background: #f7f7f7;">
+                <mat-card class="order-booking-mat-card" [style.background-color]="data.color">
+                    <div class="scheme-card-container">
+                        <table class="width-100 height-100">
+                            <tr class="width-100 height-100">
+                                <td class="width-100 height-100">
+                                    <div class="scheme-master-list-container">
+                                        <div class="scheme-master-desc-card">
+                                            <p class="width-100">{{data.schemeDescription}}</p>
+                                        </div>
+                                        <div class="scheme-date-card">
+                                            <div class="scheme-list-card">
+                                                <span class="scheme-master-list-card-header">{{'ORDER.SCHEME.SCHEME_TYPE'|translate}}</span>
+                                                <span class="scheme-master-list-card-detail">
+                              {{dataService.getSchemeBase(data.schemeBase)}}</span>
+                                            </div>
+                                            <div class="scheme-list-card">
+                                                <span class="scheme-master-list-card-header">{{'ORDER.SCHEME.FROM_DATE'|translate}}</span>
+                                                <span class="scheme-master-list-card-detail">
+                              {{dataService.formatDateToStandard(data.schemeFromDt)}}</span>
+                                            </div>
+                                            <div class="scheme-list-card">
+                                                <span class="scheme-master-list-card-header">{{'ORDER.SCHEME.TO_DATE'|translate}}</span>
+                                                <span class="scheme-master-list-card-detail">
+                              {{dataService.formatDateToStandard(data.schemeToDt)}}</span>
+                                            </div>
+                                        </div>
+                                        <hr class="width-95">
+                                        <div class="height-60">
+                                            <div class="scheme-master-prod-card">
+                                                <div class="width-100">
+                                                    <span class="scheme-master-list-card-header">{{'SCHEME.PRODUCT'|translate}}</span>
+                                                    <div *ngFor="let element of data.schemeProduct">
+                                                        <span class="scheme-master-prod">{{element.prodName}}</span>
+                                                        <br>
+                                                    </div>
+                                                    <span class="scheme-master-list-card-header">{{'SCHEME.APPLICABLE_FOR_PURCHASE'|translate}}</span>
+                                                    <div *ngFor="let element of data.schemeSlab">
+                                                        <span class="scheme-master-notification">{{element.desc}}</span>
+                                                        <span class="scheme-master-notification"> ({{element.everyDesc}}
+                                                            )</span>
+                                                        <br>
+                                                    </div>
+                                                    <span class="scheme-master-list-card-header"
+                                                          *ngIf="data.schemeSlabProd !== null && data.schemeSlabProd !== undefined && data.schemeSlabProd.length > 0">Free Product</span>
+                                                    <div *ngFor="let element of data.schemeSlabProd">
+                                                        <span class="scheme-master-prod">{{element.desc}}</span>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

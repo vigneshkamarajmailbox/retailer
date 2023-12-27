@@ -1,0 +1,7 @@
+<div class="toast" [class.show]="show">
+  <div class="desc flex-column">
+    <p class="app-update-desc">A new update is available. Please update.</p>
+    <button mat-flat-button color="warn" class="app-update-btn" (click)="reload()" (mouseenter)="reload()">Update
+    </button>
+  </div>
+</div>

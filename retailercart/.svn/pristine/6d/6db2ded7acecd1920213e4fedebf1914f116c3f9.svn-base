@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:sfaActivity="com.botree.retailerssfa.main.MainActivity">
+    <item
+        android:id="@+id/action_login"
+        android:orderInCategory="100"
+        android:title="@string/action_logout"
+        android:visible="true"
+        android:icon="@drawable/logout"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/listqus"
+        android:orderInCategory="100"
+        android:title="@string/action_logout"
+        android:visible="false"
+        android:icon="@drawable/ic_date_range"
+        app:showAsAction="always" />
+</menu>

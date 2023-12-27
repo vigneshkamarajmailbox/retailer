@@ -1,0 +1,408 @@
+<div class="height-100" *ngIf="navigatePage('login')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <div class="login-image-padding">
+                <img src="/assets/layout/images/logo.png" alt="logo" class="login-logo">
+            </div>
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="loginForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.SIGN_IN'|translate}}</h1>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-form-field class="login-wrapper-full-width">
+                            <input matInput placeholder="{{'LOGIN.USERNAME_MOBILE_NUMBER'|translate}}"
+                                formControlName="loginCode" autocomplete="off">
+                        </mat-form-field>
+                        <mat-radio-group aria-label="Select sign in option"
+                            class="login-wrapper-full-width flex-row justify-content-between"
+                            formControlName="signInOption">
+                            <mat-radio-button value="withOtp" disabled>{{'LOGIN.SEND_OTP'|translate}}</mat-radio-button>
+                            <mat-radio-button value="withPassword" checked>{{'LOGIN.I_HAVE_PASSWORD'|translate}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </mat-card-content>
+                    <div class="flex-column">
+                        <app-field-error-display [displayError]="loginMessage()" errorMsg={{errorMsg}}>
+                        </app-field-error-display>
+                    </div>
+                    <div class="flex-row justify-content-between">
+                        <a class="color-blue forgot-password-mb3 login-form-size" href="#"
+                            (click)="toggleScreen('forgot_password')">{{'LOGIN.FORGOT_PASSWORD'|translate}}</a>
+                        <div class="login-button-pos">
+                            <button mat-stroked-button class="login-btn-block login-btn-padding" *ngIf="showButton()"
+                                [disabled]="!loginForm.valid || loginOtpLoading" [class.spinner]="loginOtpLoading"
+                                (click)="sendLoginOtp(loginForm.value)">
+                                {{'LOGIN.GENERATE_OTP'|translate}}
+                            </button>
+                            <button mat-stroked-button class="login-btn-block login-btn-padding" *ngIf="!showButton()"
+                                [disabled]="!loginForm.valid || loading" [class.spinner]="loading"
+                                (click)="navigateLoginWithPassword()">
+                                {{'LOGIN.NEXT'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-row justify-content-between padding-top-2" style="font-size: 0.9rem;">
+                        <div class="flex-row cursor" (click)="languageDialog()">
+                            <i class="material-icons cursor padding-left-1">language</i>
+                            <span class="padding-top-2">Language</span>
+                        </div>
+                        <span class="padding-top-1">Ver{{app.version}}</span>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+        <div class="login-footer">
+            <p> Copyright Botree Software. All Rights Reserved
+                <i class="material-icons copyright-position">copyright</i>
+                2020
+            </p>
+        </div>
+    </mat-card>
+</div>
+
+<div class="height-100" *ngIf="navigatePage('sign_in_with_otp')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="loginOtpForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.LOGIN_WITH_OTP'|translate}}</h1>
+                    </mat-card-content>
+                    <mat-card-content style="padding-bottom: 0 !important;">
+                        <div class="flex-column login-wrapper-full-width">
+                            <div class="login-otp-card login-wrapper-full-width">
+                                <mat-form-field class="width-60">
+                                    <input matInput placeholder="{{'LOGIN.ENTER_THE_OTP'|translate}}"
+                                        formControlName="otp" autocomplete="off">
+                                </mat-form-field>
+                                <div class="width-10 opt-circle">{{interval}}</div>
+                                <div class="width-30" *ngIf="enableResend">
+                                    <p class="resend-otp-mb3 float-right">
+                                        <a class="color-blue" href="#" (click)="sendLoginOtp(loginOtpForm.value)">
+                                            {{'LOGIN.RESEND'|translate}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <div class="flex-column">
+                        <app-field-error-display [displayError]="loginMessage()" errorMsg={{errorMsg}}>
+                        </app-field-error-display>
+                    </div>
+                    <div class="flex-row justify-content-between">
+                        <p class="otp-mb3"><a class="color-blue" href="#" (click)="toggleScreen('login')">
+                                {{'LOGIN.SIGN_IN'|translate}}</a></p>
+                        <div class="login-button-pos">
+                            <button mat-stroked-button class="login-btn-block validate-otp-padding"
+                                [disabled]="!checkLoginOtpForm()" (click)="loginWithOtp()" [class.spinner]="loading">
+                                {{'LOGIN.LOGIN'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="login-footer">
+                    <p> Copyright Botree Software. All Rights Reserved
+                        <i class="material-icons copyright-position">copyright</i>
+                        2020
+                    </p>
+                </div>
+            </mat-card>
+        </div>
+    </mat-card>
+</div>
+
+<div class="height-100" *ngIf="navigatePage('sign_in_with_password')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="loginPasswordForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.LOGIN_WITH_PASSWORD'|translate}}</h1>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-form-field class="login-wrapper-full-width">
+                            <input matInput placeholder="{{'LOGIN.PASSWORD'|translate}}" formControlName="password"
+                                autocomplete="off" [type]="hide ? 'password' : 'text'">
+                            <i class="material-icons" style="cursor: pointer" (click)="hide = !hide" matSuffix>
+                                {{hide ? 'visibility_off' : 'visibility'}}
+                            </i>
+                        </mat-form-field>
+                    </mat-card-content>
+                    <div class="flex-column">
+                        <app-field-error-display [displayError]="loginMessage()" errorMsg={{errorMsg}}>
+                        </app-field-error-display>
+                    </div>
+                    <div class="flex-row justify-content-between">
+                        <p class="otp-mb3"><a class="color-blue" href="#" (click)="toggleScreen('login')">
+                                {{'LOGIN.SIGN_IN'|translate}}
+                            </a></p>
+                        <div class="login-button-pos">
+                            <button mat-stroked-button class="login-btn-block validate-otp-padding"
+                                [disabled]="!checkLoginPasswordForm()" (click)="loginWithPassword()"
+                                [class.spinner]="loading">
+                                {{'LOGIN.LOGIN'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="login-footer">
+                    <p> Copyright Botree Software. All Rights Reserved
+                        <i class="material-icons copyright-position">copyright</i>
+                        2020
+                    </p>
+                </div>
+            </mat-card>
+        </div>
+    </mat-card>
+</div>
+
+<div class="height-100" *ngIf="navigatePage('forgot_password')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="forgotPasswordForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.FORGOT_PASSWORD'|translate}}</h1>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <div class="login-otp-card login-wrapper-full-width">
+                            <mat-form-field class="login-wrapper-full-width">
+                                <input matInput placeholder="{{'LOGIN.MOBILE_NUMBER'|translate}}"
+                                    formControlName="loginCode" autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                    </mat-card-content>
+                    <app-field-error-display [displayError]="loginMessage()" errorMsg={{errorMsg}}>
+                    </app-field-error-display>
+                    <div class="flex-row justify-content-between">
+                        <p class="otp-mb3"><a class="color-blue" href="#" (click)="toggleScreen('login')">
+                                {{'LOGIN.SIGN_IN'|translate}}</a></p>
+                        <div class="login-button-pos">
+                            <button mat-stroked-button class="login-btn-block login-btn-padding"
+                                [disabled]="!checkOtpForm() || otpLoading" [class.spinner]="otpLoading"
+                                (click)="sendOtp(forgotPasswordForm.value)">
+                                {{'LOGIN.GENERATE_OTP'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="login-footer">
+                    <p> Copyright Botree Software. All Rights Reserved
+                        <i class="material-icons copyright-position">copyright</i>
+                        2020
+                    </p>
+                </div>
+            </mat-card>
+        </div>
+    </mat-card>
+</div>
+
+
+<div class="height-100" *ngIf="navigatePage('verify_otp')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="forgotPasswordForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.VERIFY_OTP'|translate}}</h1>
+                    </mat-card-content>
+                    <mat-card-content style="padding-bottom: 0 !important;">
+                        <div class="flex-column login-wrapper-full-width">
+                            <div class="login-otp-card login-wrapper-full-width">
+                                <mat-form-field class="width-60">
+                                    <input matInput placeholder="{{'LOGIN.ENTER_THE_OTP'|translate}}"
+                                        formControlName="otp" autocomplete="off">
+                                </mat-form-field>
+                                <div class="width-10 opt-circle">{{interval}}</div>
+                                <div class="width-30" *ngIf="enableResend">
+                                    <p class="resend-otp-mb3 float-right">
+                                        <a class="color-blue" href="#" (click)="sendOtp(forgotPasswordForm.value)">
+                                            {{'LOGIN.RESEND'|translate}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <div class="flex-column">
+                        <span class="indigo500 otp-mb3">{{'MSG_OTP_TEXT_1'|translate}}
+                            {{otpMobileNo}}{{'MSG_OTP_TEXT_2'|translate}}{{otpRefCode}}</span>
+                        <app-field-error-display [displayError]="loginMessage()" errorMsg={{errorMsg}}>
+                        </app-field-error-display>
+                    </div>
+                    <div class="flex-row justify-content-between">
+                        <p class="otp-mb3"><a class="color-blue" href="#" (click)="toggleScreen('login')">
+                                {{'LOGIN.SIGN_IN'|translate}}</a></p>
+                        <div class="login-button-pos">
+                            <button mat-stroked-button class="login-btn-block validate-otp-padding"
+                                [disabled]="!checkVerifyOtpForm()" (click)="validateOtp()">
+                                {{'LOGIN.VALIDATE_OTP'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="login-footer">
+                    <p> Copyright Botree Software. All Rights Reserved
+                        <i class="material-icons copyright-position">copyright</i>
+                        2020
+                    </p>
+                </div>
+            </mat-card>
+        </div>
+    </mat-card>
+</div>
+
+
+<div class="height-100" *ngIf="navigatePage('change_forgot_password')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="changePasswordForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.CHANGE_PASSWORD'|translate}}</h1>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-form-field class="login-wrapper-full-width">
+                            <input matInput placeholder="{{'LOGIN.NEW_PASSWORD'|translate}}"
+                                formControlName="new_password" autocomplete="off"
+                                [type]="newPasswordEye ? 'password' : 'text'">
+                            <i class="material-icons cursor" (click)="newPasswordEye = !newPasswordEye" matSuffix>
+                                {{newPasswordEye ? 'visibility_off' : 'visibility'}}
+                            </i>
+                        </mat-form-field>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-form-field class="login-wrapper-full-width">
+                            <input matInput placeholder="{{'LOGIN.CONFIRM_PASSWORD'|translate}}"
+                                formControlName="confirm_password" autocomplete="off"
+                                [type]="confirmPasswordEye ? 'password' : 'text'">
+                            <i class="material-icons cursor" (click)="confirmPasswordEye = !confirmPasswordEye"
+                                matSuffix>
+                                {{confirmPasswordEye ? 'visibility_off' : 'visibility'}}
+                            </i>
+                        </mat-form-field>
+                    </mat-card-content>
+                    <app-field-error-display [displayError]="changePasswordMsg()" errorMsg={{changePasswordErrMsg}}>
+                    </app-field-error-display>
+                    <div class="flex-row justify-content-between">
+                        <p class="otp-mb3"><a class="color-blue" href="#" (click)="toggleScreen('login')">
+                                {{'LOGIN.SIGN_IN'|translate}}</a></p>
+                        <div class="login-button-pos">
+                            <button mat-stroked-button class="login-btn-block login-btn-padding login-button-pos"
+                                [disabled]="!changePasswordForm.valid || loading" [class.spinner]="loading"
+                                (click)="onChangeForgotPasswordSubmit()">
+                                {{'LOGIN.CHANGE_PASSWORD'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+        <div class="login-footer">
+            <p> Copyright Botree Software. All Rights Reserved
+                <i class="material-icons copyright-position">copyright</i>
+                2020
+            </p>
+        </div>
+    </mat-card>
+</div>
+
+
+<div class="height-100" *ngIf="navigatePage('change_password')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="changePasswordForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.CHANGE_PASSWORD'|translate}}</h1>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-form-field class="login-wrapper-full-width">
+                            <input matInput placeholder="{{'LOGIN.NEW_PASSWORD'|translate}}"
+                                formControlName="new_password" autocomplete="off"
+                                [type]="newPasswordEye ? 'password' : 'text'">
+                            <i class="material-icons cursor" (click)="newPasswordEye = !newPasswordEye" matSuffix>
+                                {{newPasswordEye ? 'visibility_off' : 'visibility'}}
+                            </i>
+                        </mat-form-field>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <mat-form-field class="login-wrapper-full-width">
+                            <input matInput placeholder="{{'LOGIN.CONFIRM_PASSWORD'|translate}}"
+                                formControlName="confirm_password" autocomplete="off"
+                                [type]="confirmPasswordEye ? 'password' : 'text'">
+                            <i class="material-icons cursor" (click)="confirmPasswordEye = !confirmPasswordEye"
+                                matSuffix>
+                                {{confirmPasswordEye ? 'visibility_off' : 'visibility'}}
+                            </i>
+                        </mat-form-field>
+                    </mat-card-content>
+                    <app-field-error-display [displayError]="changePasswordMsg()" errorMsg={{changePasswordErrMsg}}>
+                    </app-field-error-display>
+                    <div>
+                        <!-- <button mat-stroked-button class="login-btn-block login-btn-padding skip-button-pos"
+                            (click)="navigateToReferalPage()" [class.spinner]="loading">
+                            {{'LOGIN.SKIP'|translate}}
+                        </button> -->
+                        <button mat-stroked-button class="login-btn-block login-btn-padding login-button-pos"
+                            [disabled]="!changePasswordForm.valid || loading" [class.spinner]="loading"
+                            (click)="onChangePasswordSubmit()">
+                            {{'LOGIN.CHANGE_PASSWORD'|translate}}
+                        </button>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+        <div class="login-footer">
+            <p> Copyright Botree Software. All Rights Reserved
+                <i class="material-icons copyright-position">copyright</i>
+                2020
+            </p>
+        </div>
+    </mat-card>
+</div>
+
+<div class="height-100" *ngIf="navigatePage('referral_salesman')">
+    <mat-card class="login-mat-card-2">
+        <div class="login-wrapper">
+            <mat-card style="opacity: 0.8">
+                <form class="login-wrapper-form" [formGroup]="referralCodeForm">
+                    <mat-card-content>
+                        <h1 class="sign-in-text-weight">{{'LOGIN.REFERRAL_SALESMAN'|translate}}
+                        </h1>
+                    </mat-card-content>
+                    <mat-card-content>
+                        <!--Select with pure css-->
+                        <div class="select">
+                            <select class="select-text" required formControlName="referral_code" placeHolder="test">
+                                <option *ngFor="let salesmanOption of salesmanOptions"
+                                    value="{{salesmanOption.salesmanCode}}">{{salesmanOption.salesmanName }}</option>
+                            </select>
+                            <label class="select-label">{{'REF_SALESMAN_SELECT'|translate}}</label>
+                        </div>
+                        <!--Select with pure css-->
+                    </mat-card-content>
+                    <app-field-error-display [displayError]="changePasswordMsg()" errorMsg={{changePasswordErrMsg}}>
+                    </app-field-error-display>
+                    <div>
+                        <button mat-stroked-button class="login-btn-block login-btn-padding skip-button-pos"
+                            (click)="navigateToHome()" [class.spinner]="loading">
+                            {{'LOGIN.SKIP'|translate}}
+                        </button>
+                        <button mat-stroked-button class="login-btn-block login-btn-padding login-button-pos"
+                            [disabled]="!referralCodeForm.valid || loading" [class.spinner]="loading"
+                            (click)="onSubmitCode()">
+                            {{'REF_CODE.SAVE_BTN'|translate}}
+                        </button>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+        <div class="login-footer">
+            <p> Copyright Botree Software. All Rights Reserved
+                <i class="material-icons copyright-position">copyright</i>
+                2020
+            </p>
+        </div>
+    </mat-card>
+</div>

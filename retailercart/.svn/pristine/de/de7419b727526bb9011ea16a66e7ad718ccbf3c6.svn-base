@@ -1,0 +1,39 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { MediaSubCategoryService } from './media-sub-category.service';
+import { CreateMediaSubCategoryDto } from './dto/create-media-sub-category.dto';
+import { UpdateMediaSubCategoryDto } from './dto/update-media-sub-category.dto';
+
+@Controller('media-sub-category')
+export class MediaSubCategoryController {
+  constructor(private readonly mediaSubCategoryService: MediaSubCategoryService) {}
+
+  @Post()
+  create(@Body() createMediaSubCategoryDto: CreateMediaSubCategoryDto) {
+    return this.mediaSubCategoryService.create(createMediaSubCategoryDto);
+  }
+
+  @Post('by-code')
+  fetchCSubategoryByCode(@Body() data ) {
+    return this.mediaSubCategoryService.fetchCSubategoryByCode(data);
+  }
+
+  @Get()
+  findAll() {
+    return this.mediaSubCategoryService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.mediaSubCategoryService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateMediaSubCategoryDto: UpdateMediaSubCategoryDto) {
+    return this.mediaSubCategoryService.update(+id, updateMediaSubCategoryDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.mediaSubCategoryService.remove(+id);
+  }
+}

@@ -1,0 +1,243 @@
+<div class="loginBg">
+  <div class="loginBgInner">
+    <p-toast></p-toast>
+    <div class="grid">
+      <div class="col-12 md:col-6 loginBgLeft" *ngIf="!otpVerification">
+        <h4 class="padding-xs">Login</h4>
+        <p *ngIf="loginType == 'Password'">Enter your credentails to login</p>
+        <p *ngIf="loginType == 'OTP'">Enter your mobile number and get code</p>
+
+        <form
+          class="form-class"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+          *ngIf="loginType == 'Password'"
+        >
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-user"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="userName"
+                    class="w-full"
+                    type="text"
+                    minlength="3"
+                    pInputText
+                    formControlName="userName"
+                  />
+                  <label for="username"> User Name</label>
+                </div>
+                <small
+                  *ngIf="
+                    loginForm.get('userName').invalid &&
+                    loginForm.get('userName').touched
+                  "
+                  class="p-error"
+                >
+                  User Name is required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-lock"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="password"
+                    class="w-full"
+                    type="password"
+                    minlength="8"
+                    pInputText
+                    formControlName="password"
+                  />
+                  <label for="password"> Password</label>
+                </div>
+                <small
+                  *ngIf="
+                    loginForm.get('password').invalid &&
+                    loginForm.get('password').touched
+                  "
+                  class="p-error"
+                >
+                  Password is required..!
+                </small>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="form-group p-field" style="text-align: center">
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Login"
+              class="loginBtn"
+            ></button>
+          </div>
+          <a href="javascript:void(0)" (click)="forgotpassword()" class="forgotpassword">Forgot password?</a>
+        </form>
+
+        <form
+          class="form-class"
+          [formGroup]="loginWithOtpForm"
+          (ngSubmit)="onSubmit()"
+          *ngIf="loginType == 'OTP'"
+        >
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-mobile"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="mobileNo"
+                    class="w-full"
+                    type="number"
+                    minlength="7"
+                    maxlength="10"
+                    pInputText
+                    formControlName="mobileNo"
+                  />
+                  <label for="mobileNo"> Mobile Number</label>
+                </div>
+                <small
+                  *ngIf="
+                    loginWithOtpForm.get('mobileNo').invalid &&
+                    loginWithOtpForm.get('mobileNo').touched
+                  "
+                  class="p-error"
+                >
+                  Mobile No required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group p-field" style="text-align: center">
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Get OTP"
+              class="loginBtn"
+            ></button>
+          </div>
+        </form>
+
+        <!-- <span class="p-float-label">
+                    <input pInputText id="username" />
+                    <i class="pi pi-user"></i>
+                    <label htmlFor="username">User Name / Mobile Number</label>
+                   
+                </span>
+                <span class="p-float-label">
+                    <input pInputText id="password" />
+                    <i class="pi pi-lock"></i>
+                    <label htmlFor="username">Password</label>
+                </span>
+                <a class="forgotpassword">Forgot password?</a>
+                <button type="submit" pButton label="Login" class="loginBtn" ></button> -->
+        <div class="flex align-items-center mt-5">
+          <div class="flex flex-wrap gap-3">
+            <div class="flex align-items-center mr-4">
+              <p-radioButton
+                name="loginType"
+                value="Password"
+                [(ngModel)]="loginType"
+                inputId="ingredient1"
+                (click)="loginTypeChange()"
+              ></p-radioButton>
+              <label for="ingredient1" class="ml-2">Password</label>
+            </div>
+
+            <div class="flex align-items-center ml-4">
+              <p-radioButton
+                name="loginType"
+                value="OTP"
+                [(ngModel)]="loginType"
+                inputId="ingredient2"
+                (click)="loginTypeChange()"
+              ></p-radioButton>
+              <label for="ingredient2" class="ml-2">OTP</label>
+            </div>
+          </div>
+        </div>
+        <div class="flex mt-5 align-items-center">
+          <span class="dontaccount"
+            >Don't have an account ?
+            <span (click)="signUP()">Sign up </span></span
+          >
+        </div>
+      </div>
+      <div class="col-12 md:col-6 loginBgLeft" *ngIf="otpVerification">
+        <h4 class="padding-xs">Login</h4>
+        <p>
+          Enter the 4-Digit OTP verification cade that was sent to entered
+          mobile number
+        </p>
+
+        <form
+          class="form-class"
+          [formGroup]="otpVerificationForm"
+          (ngSubmit)="onOtpSubmit()"
+        >
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-mobile"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="otp"
+                    class="w-full"
+                    type="number"
+                    pInputText
+                    formControlName="otp"
+                  />
+                  <label for="otp"> OTP</label>
+                </div>
+                <small
+                  *ngIf="
+                    otpVerificationForm.get('otp').invalid &&
+                    otpVerificationForm.get('otp').touched
+                  "
+                  class="p-error"
+                >
+                  OTP required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group p-field" style="text-align: center">
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Verify OTP"
+              class="loginBtn"
+            ></button>
+          </div>
+        </form>
+          <span class="dontaccount"
+            >Haven't receive the code ?
+            <span (click)="resentOtp()">Resent OTP </span></span
+          >
+      </div>
+      <div class="col-12 md:col-6 loginBgRight">
+        <img src="assets/layout/images/loginbg1.jpg" /> `
+      </div>
+    </div>
+  </div>
+</div>

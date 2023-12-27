@@ -1,0 +1,4 @@
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateMediaCategoryDto } from './create-media-category.dto';
+
+export class UpdateMediaCategoryDto extends PartialType(CreateMediaCategoryDto) {}

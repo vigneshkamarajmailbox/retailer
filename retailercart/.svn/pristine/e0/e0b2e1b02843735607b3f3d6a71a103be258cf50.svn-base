@@ -1,0 +1,17 @@
+
+import { Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { SQLColumnType } from '../enum/column-type.enum';
+
+export class AbstractModel {
+  @Column({ name: 'upload_flag', type: SQLColumnType.CHAR, default: 'N' })
+  upload_flag: string;
+
+  @Column({ name: 'status', type: SQLColumnType.BOOLEAN, default: true })
+  isActive: boolean;
+
+  @CreateDateColumn({ name: 'created_at'})
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'mod_dt'})
+  modDt: Date;
+}

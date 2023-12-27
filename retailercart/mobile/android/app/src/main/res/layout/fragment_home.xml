@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".main.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.botree.retailerssfa.support.CustomViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false" />
+
+        <LinearLayout
+            android:id="@+id/layoutPageIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_vertical"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:background="@color/color1"
+        android:id="@+id/main_layout">
+
+        <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/home_recyclerview"
+            android:name="com.botree.productsfa.fragment_pending_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:sfaActivity=".main.MainActivity" />
+
+        <TextView
+            android:id="@+id/empty_tag_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/no_record"
+            android:drawableTop="@drawable/no_records"
+            android:drawablePadding="10dp"
+            android:textColor="@color/color3"
+            android:textSize="@dimen/txt_size_large"
+            android:visibility="gone" />
+
+        <com.botree.retailerssfa.support.MovableFloatingActionButton
+            android:id="@+id/quick_access"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            app:useCompatPadding="@dimen/fab_margin"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_add_img"
+            app:backgroundTint="@color/navig_list_pressed_clr"
+            app:layout_anchorGravity="bottom|right|end"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+</LinearLayout>

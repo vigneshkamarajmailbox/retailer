@@ -1,0 +1,12 @@
+import { Module } from '@nestjs/common';
+import { KycTypeService } from './kyc-type.service';
+import { KycTypeController } from './kyc-type.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { KycType } from './entities/kyc-type.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([KycType])],
+  controllers: [KycTypeController],
+  providers: [KycTypeService]
+})
+export class KycTypeModule {}

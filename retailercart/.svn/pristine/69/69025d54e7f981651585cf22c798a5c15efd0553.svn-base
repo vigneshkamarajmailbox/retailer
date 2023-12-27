@@ -1,0 +1,19 @@
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsEmail, Matches, Max, MaxLength, Min, MinLength } from 'class-validator';
+  
+export class CreateKycDocTypeDto {
+
+    @IsString() 
+    @IsNotEmpty()
+    code: string;
+
+    @IsString() 
+    @IsNotEmpty() 
+    name: string;
+
+    // @IsOptional()
+    // status: boolean;
+
+    // create_date: Date;
+
+    // update_date: Date;
+}

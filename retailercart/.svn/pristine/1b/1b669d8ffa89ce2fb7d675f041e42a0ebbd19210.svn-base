@@ -1,0 +1,1362 @@
+import { ApiBody, ApiExtraModels, ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsArray, IsObject, IsString } from 'class-validator';
+
+export const saveKYC = {
+  accountNo: '0112345678',
+  accountName: 'Veera Simha Reddy',
+  bankName: 'Indian Bank',
+  bankBranch: 'Triplicane',
+  ifsc: 'IDIB000T055',
+  mailId: 'veerasimhareddy@gamil.com',
+  documentImage: '{url}/drivinglicence.png',
+  documentType: 'DL',
+};
+export const getKYC = {
+  kycDetails: {
+    accountNo: '0112345678',
+    accountName: 'Veera Simha Reddy',
+    bankName: 'Indian Bank',
+    banckBranch: 'Triplicane',
+    ifsc: 'IDIB000T055',
+    mailId: 'veerasimhareddy@gamil.com',
+    retailerImageIcon: 'veerasimhareddy.png',
+    documentImage: '{url}/drivinglicence.png',
+    documentType: 'DL',
+  },
+};
+export const contact_us = {
+  contactUs: [
+    {
+      cpmCode: 'companycode',
+      mailID: 'support@botree.in',
+      mobileNo: '9876543210',
+      tollFreeNo: '1800 00245',
+    },
+  ],
+};
+
+export const savefeedback = {
+  userName: 'string',
+  title: 'string',
+  comments: 'string',
+  imagePath: 'string',
+};
+
+export const getBrochure = {
+  digitalContent: [
+    {
+      title: 'Amul Pasteurised Butter',
+      description: 'Just to keep your trust intact Bigbasket brings to you Amul pasteurized butter priced just at Rs. 220 for a 500gm pack.',
+      media: [
+        {
+          mediaName: 'amulbutter1',
+          mediaType: 'png',
+        },
+        {
+          mediaName: 'amulbutter2',
+          mediaType: 'mp4',
+        },
+        {
+          mediaName: 'amulbutterdoc',
+          mediaType: 'pdf',
+        },
+      ],
+      isDownload: true,
+    },
+  ],
+};
+export const kycType = {
+  types: [
+    {
+      code: 'DL',
+      name: 'drivingLicence',
+    },
+    {
+      code: 'AC',
+      name: 'aadhaarCard',
+    },
+    {
+      code: 'CHE',
+      name: 'cheque',
+    },
+    {
+      code: 'PAN',
+      name: 'panCard',
+    },
+    {
+      code: 'VOT',
+      name: 'voterId',
+    },
+  ],
+};
+export const getProfile = {
+  profileDetails: [
+    {
+      retailerName: 'ABC Super Market',
+      firstName: 'Naveen',
+      middleName: 'Kumar',
+      lastName: 'R',
+      mobileNo: '7402695090',
+      altMobileNo: '8072521893',
+      mailId: 'naveen@gmail.com',
+      credit: [
+        {
+          cmpCode: 'companyCode',
+          totalCreditLimit: '50000',
+          creditUsage: '33000',
+          outStandingAmt: '17000',
+        },
+      ],
+      gstNo: '22AAAAA0000A1Z5',
+      panNo: 'AAAAA0000A',
+      retailerProfilePic: 'abcsupermarket.png',
+      aadhaarDetails: {
+        aadhaarNo: '2653856446634663',
+        nameInAadhaar: 'Naveen Kumar R',
+      },
+      address: [
+        {
+          address1: '1A/97, Engineer street',
+          address2: 'Egmore, pudupet',
+          city: 'Chennai',
+          state: 'Tamil Nadu',
+          pinCode: '600005',
+          isDefault: true,
+        },
+        {
+          address1: '5D/200, Ellis Road',
+          address2: 'Tripilicane',
+          city: 'tripicane',
+          state: 'chennai',
+          pinCode: '600005',
+          isDefault: false,
+        },
+      ],
+    },
+  ],
+};
+
+export const ProductListAPI = {
+  productList: [
+    {
+      cmpCode: 'company',
+      distrCode: 'Distr001',
+      code: 'prod001',
+      image: 'product.png',
+      name: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      desc: "We'll Chew Them Out",
+      mrp: 75,
+      priceAfterDiscount: 50,
+      priceToRetailer: 60,
+      suggestOrderQty: 10,
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      distrCode: 'Distr002',
+      image: 'product1.png',
+      category: 'cosmetics',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      distrCode: 'Distr001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+    {
+      cmpCode: 'company',
+      code: 'prod001',
+      image: 'product1.png',
+      name: 'Tea 500 g',
+      desc: 'Enchance Immunity',
+      currencySymbol: '₹',
+      shortName: 'company Tooth paste 50 g',
+      shortDesc: 'company Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      mrp: 300,
+      priceAfterDiscount: 200,
+      priceToRetailer: 276,
+      suggestOrderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      netWeight: [
+        {
+          code: 'GRAM',
+          name: '100 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 100,
+      stockInHand: 1000,
+      isWishlist: false,
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+  ],
+  url: 'https://s3bucket/base/url',
+  currentPage: 1,
+  limit: 10,
+  offset: 1,
+  totalPage: 100,
+};
+
+export const requestProductList = {
+  category: ['Foods Supplement', 'Home and personal Care', 'Oral Care'],
+  brand: ['compancode1', 'compancode2'],
+  price: {
+    min: 100,
+    max: 1000,
+  },
+  sortBy: 'Price - high to Low',
+  name: 'product search keyword',
+  limit: 10,
+  offset: 1,
+};
+
+export const requestSingleProduct = {
+  brand: 'Dabur',
+  code: 'prod001',
+  categoryCode: 'cos001',
+  uom: {
+    code: 'PC',
+    name: 'Piece',
+  },
+  weight: {
+    code: 'GRAM',
+    name: '100 gram',
+  },
+  qty: 100,
+};
+
+export const singleProuctView = {
+  orderDetails: [
+    {
+      productImage: ['https://s3bucket/assets/prod003.png', 'https://s3bucket/assets/prod003.mp4'],
+      productName: 'Dark chocolate',
+      prodCode: 'prod001',
+      distriCode: 'distr001',
+      cmpCode: 'company',
+      mrp: 145,
+      pricetoRetailer: 120,
+      priceAfterDiscount: 114,
+      suggestedOderQty: 10,
+      uom: [
+        {
+          code: 'CS',
+          name: 'Case',
+        },
+        {
+          code: 'PC',
+          name: 'Piece',
+        },
+      ],
+      weight: [
+        {
+          code: 'GRAM001',
+          name: '100 gram',
+        },
+        {
+          code: 'GRAM002',
+          name: '200 gram',
+        },
+        {
+          code: 'KILO',
+          name: '2 Kg',
+        },
+      ],
+      minimumOrderQty: 5,
+      netWeight: 'KG',
+      outofStock: false,
+      stockInHand: 20,
+      isWishlist: true,
+      shortName: 'Dabur Tooth paste 50 g',
+      shortDesc: 'Dabur Tooth paste 50 g',
+      category: 'cosmetics',
+      categoryCode: 'c001',
+      subCategory: 'cosmetics',
+      subCategoryCode: 'sub002',
+      desc: "We'll Chew Them Out",
+      appliedScheme: {
+        code: 'scheme05',
+        name: 'offer 5 %',
+        desc: 'diwali Offer',
+      },
+      scheme: [
+        {
+          code: 'scheme30',
+          name: 'Off 30 % ',
+          desc: 'on order above 10 qty apply 30 % off',
+        },
+        {
+          code: 'scheme50',
+          name: 'Off 50 % ',
+          desc: 'on order above 50 qty apply 50 % off',
+        },
+      ],
+    },
+  ],
+};
+
+export const placeorder = {
+  prodCode: 'prod001',
+  prodName: 'product Name',
+  cmpCode: 'companyName',
+  distrCode: 'distr001',
+  quantity: 10,
+  uomCode: 'BOX',
+  netWeight: 'code001',
+};
+
+export const cart = {
+  cartCount: '2',
+  data: [
+    {
+      cmpCode: 'companyCode',
+      distrCode: 'Distr001',
+      prodCode: 'prod001',
+      productImage: '/assets/catalog/7385/1316.png',
+      productName: ' Protein Buttermilk',
+      qty: '10',
+      uom: {
+        code: 'PC',
+        name: 'Piece',
+      },
+      mrp: '40',
+      sellingPrice: '36',
+      scheme: null,
+      taxAmount: 6,
+      totalAmount: '30',
+    },
+    {
+      cmpCode: 'Company002',
+      distrCode: 'Distr002',
+      prodCode: 'prod002',
+      productImage: '/assets/catalog/7385/1314.png',
+      productName: 'Ice Cream Butterscotch',
+      Qty: '5',
+      uom: {
+        code: 'BX',
+        name: 'box',
+      },
+      price: '450',
+      discountScheme: '8 %',
+      scheme: 'null',
+      totalAmount: '430',
+    },
+  ],
+};
+
+export const orderSummary = {
+  orderSummary: [
+    {
+      billingShippingAddress: 'No.21, Mannar Street',
+      billingShippingAddress2: 'Nungambakkam, Chennai',
+      totalGrossAmount: 10000,
+      totalNetAmount: 8473,
+      taxBreakup: [
+        {
+          taxCode: 'GST',
+          taxValue: 100,
+        },
+        {
+          taxCode: 'CGST',
+          taxValue: 80,
+        },
+      ],
+      totalTaxAmount: 180,
+      priceAfterDiscount: 8000,
+      detail: [
+        {
+          productName: ' Milk Shake',
+          uom: 'case',
+        },
+        {
+          productName: 'Dark Chocolate',
+          uom: 'case',
+          totalQty: '12',
+        },
+      ],
+      scheme: [
+        {
+          code: 'scheme001',
+          name: '30 % offer ',
+        },
+      ],
+    },
+  ],
+  termAndCondition: {
+    title: 'Replacement Condition',
+    details: 'Replacement details in 7 days of delivery',
+  },
+};
+
+export const deliveryTracking = {
+  deliveryTracking: [
+    {
+      orderNo: 'ORD00075',
+      orderDate: '25-09-2023 03:05:15 PM',
+      orderPlacedDate: '25-09-2023 04:05:15 PM',
+      vehicleAllocatedDate: '30-09-2023 10:05:15 AM',
+      deliveryDate: '30-09-2023 10:05:15 PM',
+      isOrderBilled: true,
+      isOrderPlaced: true,
+      isVehicleAllocated: true,
+      isDelivered: true,
+    },
+  ],
+};
+
+export const orderHistoryStatic = {
+  orderHistory: [
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+    {
+      orderNo: 'ORD20230920',
+      orderDate: '15-09-2023 03:03:05 PM',
+      billDate: '15-09-2023 04:03:05 PM',
+      deliveryDate: '20-09-2023 03:03:05 PM',
+      orderStats: 'delivered',
+      netAmount: 2000,
+      grossAmount: 2500,
+      taxAmount: 100,
+      productGroup: [
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'prod.png',
+          ptr: 700,
+          qty: 14,
+        },
+        {
+          prodName: 'Dark Chocolate',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 800,
+          qty: 13,
+        },
+        {
+          prodName: 'Milk Shake',
+          prodImage: 'http://s3/bucket/prod.png',
+          ptr: 500,
+          qty: 12,
+        },
+      ],
+    },
+  ],
+  url: 'https://s3bucket/base/url',
+  currentPage: 1,
+  limit: 10,
+  offset: 1,
+  totalPage: 100,
+};
+
+export const notificationHistory = {
+  notification: [
+    {
+      cmpCode: 'company',
+      title: 'Thank you for placing the order',
+      desc: 'We received your order# [ORD1234567890].Your order will be processed shortly',
+      notificationTime: '15-09-2023 03:03:05 PM',
+    },
+    {
+      cmpCode: 'company',
+      title: 'Order Placed',
+      desc: 'Your Order# [ORD1234567890] [DD/MM/YYYY] has been invoiced by distributor name and the bill # is [INVK/17-06/1234].has context menu',
+      notificationTime: '15-09-2023 04:03:05 PM',
+    },
+    {
+      cmpCode: 'company',
+      title: 'Order confirmation',
+      desc: 'Your Order Confirmed',
+      notificationTime: '15-09-2023 05:03:05 PM',
+    },
+  ],
+  recordCount: 100,
+};
+
+export const kpiStaticData = {
+  kpi: [
+    {
+      cmpCode: 'companycode1',
+      name: 'Sales',
+      target: '2000',
+      Achieved: '1000',
+      achievedPercentage: '50 % percentage',
+    },
+    {
+      cmpCode: 'companycode2',
+      name: 'Purchase',
+      target: '3000',
+      Achieved: '2000',
+      achievedPercentage: '70 % percentage',
+    },
+  ],
+};
+
+export class ProductPlaceOrder {
+  @ApiProperty()
+  prodCode: string;
+
+  @ApiProperty()
+  prodName: string;
+
+  @ApiProperty()
+  cmpCode: string;
+
+  @ApiProperty()
+  distrCode: string;
+
+  @ApiProperty()
+  qty: number;
+
+  @ApiProperty()
+  uomCode: string;
+
+  @ApiProperty()
+  netWeightCode: string;
+}
+
+export class ProductListRequestDto {
+  @ApiProperty()
+  @IsArray()
+  category: string[];
+  @ApiProperty()
+  @IsArray()
+  brand: string[];
+
+  price: Price;
+
+  @ApiPropertyOptional()
+  @IsString()
+  sortBy: string;
+
+  @ApiProperty()
+  @IsString()
+  name: string;
+  @ApiProperty()
+  limit: number;
+  @ApiProperty()
+  offset: number;
+}
+
+export class Price {
+  @ApiPropertyOptional()
+  min: number;
+  @ApiPropertyOptional()
+  max: number;
+}
+
+export class SingleProductRequest {
+  cmpCode: string;
+  prodCode: string;
+  categoryCode: string;
+  subCategoryCode: string;
+  uom: Uom;
+  weight: Weight;
+  qty: number;
+}
+
+export interface Uom {
+  code: string;
+  name: string;
+}
+
+export interface Weight {
+  code: string;
+  name: string;
+}

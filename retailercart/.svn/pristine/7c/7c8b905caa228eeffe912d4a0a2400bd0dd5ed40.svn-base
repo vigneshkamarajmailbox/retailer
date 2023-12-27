@@ -1,0 +1,54 @@
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { KycDetail } from './entities/kyc-detail.entity';
+import { CreateKycDetailDto } from './dto/create-kyc-detail.dto';
+import { KycDocType } from './entities/kyc-doc-types.entity';
+import { CreateKycDocTypeDto } from './dto/create-kyc-doc-type.dto';
+
+export class kycRepository {
+    @InjectRepository(KycDetail)
+    private kycDetailsRepository: Repository<KycDetail>;
+    @InjectRepository(KycDocType)
+    private kycDocTypeRepository: Repository<KycDocType>;
+
+
+    async createKycDetail(saveKycDetailDto: CreateKycDetailDto): Promise<any> {
+        console.log(saveKycDetailDto);
+
+        return await this.kycDetailsRepository.save(saveKycDetailDto);
+    }
+
+    async findAll() {
+        const fetchField = { 
+            accountNo:true, 
+            accountName:true, 
+            bankName:true,
+            bankBranch:true,
+            ifsc:true, 
+            mailId:true,
+            retailerImageIcon:true, 
+            documentImage:true, 
+            documentType:true, 
+        }
+
+        return await this.kycDetailsRepository.find({select:fetchField});
+    }
+
+    findOne(userName: string): Promise<KycDetail | null> {
+        return this.kycDetailsRepository.findOneBy({ userName: userName });
+    }
+
+    // update(id: number, updateKycDetailDto: UpdateKycDetailDto) {
+    //     return `This action updates a #${id} kycDetail`;
+    // }
+
+    // remove(id: number) {
+    //     return `This action removes a #${id} kycDetail`;
+    // }
+
+    //KYC Document Types
+    async createKycDocType(data : CreateKycDocTypeDto): Promise<any>  {
+        console.log(data);
+       return await this.kycDocTypeRepository.save(data);
+    }
+}

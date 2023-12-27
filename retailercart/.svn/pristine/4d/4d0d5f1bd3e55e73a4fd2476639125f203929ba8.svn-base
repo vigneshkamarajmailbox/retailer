@@ -1,0 +1,43 @@
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { In, Repository } from 'typeorm';
+import { CreateMediaCategoryDto } from './dto/create-media-category.dto';
+import { UpdateMediaCategoryDto } from './dto/update-media-category.dto';
+import { MediaCategory } from './entities/media-category.entity';
+
+@Injectable()
+export class MediaCategoryService {
+
+  constructor(
+    @InjectRepository(MediaCategory)
+    private mediaCategoryRepository: Repository<MediaCategory>
+    ){}
+
+  create(createMediaCategoryDto: CreateMediaCategoryDto) {
+    return 'This action adds a new mediaCategory';
+  }
+
+  async findAll(): Promise<any> {
+    let mediaData = await this.mediaCategoryRepository.find({select:{code:true,name:true}});
+    return {
+      statusCode : HttpStatus.OK,
+      mediaCategory : mediaData
+    }
+  }
+
+  async fetchCategoryByCode(data) {
+    return await this.mediaCategoryRepository.find({where:{code: In([data.code])}});
+  }
+
+  async findOne(code: string) {
+    return await this.mediaCategoryRepository.findOne({select:{code:true,name:true}, where:{code:code}});
+  }
+
+  update(id: number, updateMediaCategoryDto: UpdateMediaCategoryDto) {
+    return `This action updates a #${id} mediaCategory`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} mediaCategory`;
+  }
+}

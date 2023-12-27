@@ -1,0 +1,15 @@
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { KycDetail } from './entities/kyc-detail.entity';
+import { KycDocType } from './entities/kyc-doc-types.entity';
+import { KycDetailsService } from './kyc-details.service';
+import { KycDetailsController } from './kyc-details.controller';
+import { kycRepository } from './kyc-details.repository';
+
+@Module({
+  controllers: [KycDetailsController],
+  providers: [KycDetailsService, kycRepository],
+  imports: [TypeOrmModule.forFeature([KycDetail,KycDocType])],
+  exports: [KycDetailsService, kycRepository],
+})
+export class KycDetailsModule {}

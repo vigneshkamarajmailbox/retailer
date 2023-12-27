@@ -1,0 +1,552 @@
+<div class="container innerpages">
+    <p-galleria [(value)]="images" [numVisible]="5" [circular]="true" [showItemNavigators]="true"
+        [showThumbnails]="false" [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '100%' , 'max-height': '100%' }">
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item.img" style="width: 100%; display: block;max-height:450px" alt="banner" />
+        </ng-template>
+    </p-galleria>
+    <div>
+
+        <!-- <block-viewer header="Feature" [code]="block2"> -->
+        <div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center shop-category">
+            <div class="mb-3 font-bold text-2xl">
+                <h4 class="text-900">Shop by Category </h4>
+                <h2 class="text-900 font-bold text-6xl">Handpicked for you </h2>
+            </div>
+            <div class="grid">
+                <div class="col-12 md:col-2 mb-4 px-5">
+                   <img src="assets/layout/images/cat1.avif">
+                </div>
+                <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat2.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat3.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat4.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat5.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat2.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat3.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat4.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat5.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                    <img src="assets/layout/images/cat1.avif">
+                 </div>
+                 <div class="col-12 md:col-2 mb-4 px-5">
+                     <img src="assets/layout/images/cat2.avif">
+                  </div>
+                  <div class="col-12 md:col-2 mb-4 px-5">
+                     <img src="assets/layout/images/cat3.avif">
+                  </div>
+                  <div class="col-12 md:col-2 mb-4 px-5">
+                     <img src="assets/layout/images/cat4.avif">
+                  </div>
+                  <div class="col-12 md:col-2 mb-4 px-5">
+                     <img src="assets/layout/images/cat5.avif">
+                  </div>
+                
+                
+            </div>
+        </div>
+        <!-- </block-viewer> -->
+
+        <!-- <block-viewer header="Pricing" [code]="block3"> -->
+        <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+            <h2 class="text-900 font-bold text-5xl text-center">Most Popular </h2>
+
+            <div class="grid">
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-trend">Trending</span>
+                            <img src="assets/layout/images/menu1.avif">
+                            <div class="product-name">Amul Organic Trial Packs Combo, 4 kg | 6 Products</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹630</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹157.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="flex align-items-center">
+                                <span class="font-bold text-2xl text-900">$9</span>
+                                <span class="ml-2 font-medium text-600">per month</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <ul class="list-none p-0 m-0 flex-grow-1">
+                                <li class="flex align-items-center mb-3">
+                                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                                    <span>Arcu vitae elementum</span>
+                                </li>
+                                <li class="flex align-items-center mb-3">
+                                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                                    <span>Dui faucibus in ornare</span>
+                                </li>
+                                <li class="flex align-items-center mb-3">
+                                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                                    <span>Morbi tincidunt augue</span>
+                                </li>
+                            </ul>
+                            <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
+                            <button pButton pRipple label="Buy Now" class="p-3 w-full mt-auto"></button>  -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-trend">Trending</span>
+                            <img src="assets/layout/images/menu2.avif">
+                            <div class="product-name">Amul Whole Milk Powder, 450 g | Pack of 2</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹0.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-trend">Trending</span>
+                            <img src="assets/layout/images/menu3.avif">
+                            <div class="product-name">Amul PRO Malted Food, 500 g | Pack of 3</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹360.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-trend">Trending</span>
+                            <img src="assets/layout/images/menu4.avif">
+                            <div class="product-name">Amul Camel Milk Bottle, 200 mL | Pack of 30</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹750</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹125.50/l)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+            <h2 class="text-900 font-bold text-5xl text-center"> Power of Protein </h2>
+
+            <div class="grid">
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-best">Bestseller</span>
+                            <img src="assets/layout/images/pro1.avif">
+                            <div class="product-name">Amul Organic Trial Packs Combo, 4 kg | 6 Products</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹630</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹157.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="flex align-items-center">
+                                <span class="font-bold text-2xl text-900">$9</span>
+                                <span class="ml-2 font-medium text-600">per month</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <ul class="list-none p-0 m-0 flex-grow-1">
+                                <li class="flex align-items-center mb-3">
+                                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                                    <span>Arcu vitae elementum</span>
+                                </li>
+                                <li class="flex align-items-center mb-3">
+                                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                                    <span>Dui faucibus in ornare</span>
+                                </li>
+                                <li class="flex align-items-center mb-3">
+                                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                                    <span>Morbi tincidunt augue</span>
+                                </li>
+                            </ul>
+                            <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
+                            <button pButton pRipple label="Buy Now" class="p-3 w-full mt-auto"></button>  -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <img src="assets/layout/images/pro2.avif">
+                            <div class="product-name">Amul Whole Milk Powder, 450 g | Pack of 2</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹0.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-4 lg:col-4 text-center border-right p-0">
+                                   <span class="menu-status font-bold">Out of stock</span>
+                                </div>
+                                <div class="col-4 lg:col-4 text-center border-right p-0">
+                                    <span class="menu-status font-bold">Notify Me</span>
+                                </div>
+                                <div class="col-4 lg:col-4 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-new">New</span>
+                            <img src="assets/layout/images/pro3.avif">
+                            <div class="product-name">Amul PRO Malted Food, 500 g | Pack of 3</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹360.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-4 lg:col-4 text-center border-right p-0">
+                                   <span class="menu-status font-bold">Out of stock</span>
+                                </div>
+                                <div class="col-4 lg:col-4 text-center border-right p-0">
+                                    <span class="menu-status font-bold">Notify Me</span>
+                                </div>
+                                <div class="col-4 lg:col-4 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-best">Bestseller</span>
+                            <img src="assets/layout/images/pro4.avif">
+                            <div class="product-name">Amul Camel Milk Bottle, 200 mL | Pack of 30</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹750</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹125.50/l)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+            <h2 class="text-900 font-bold text-5xl text-center">Go Organic </h2>
+
+            <div class="grid">
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-trend">Trending</span>
+                            <img src="assets/layout/images/menu1.avif">
+                            <div class="product-name">Amul Organic Trial Packs Combo, 4 kg | 6 Products</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹630</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹157.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-new">New</span>
+                            <img src="assets/layout/images/org1.avif">
+                            <div class="product-name">Amul Whole Milk Powder, 450 g | Pack of 2</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹0.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-new">New</span>
+                            <img src="assets/layout/images/org2.avif">
+                            <div class="product-name">Amul PRO Malted Food, 500 g | Pack of 3</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹360.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-best">Bestseller</span>
+                            <img src="assets/layout/images/org3.avif">
+                            <div class="product-name">Amul Camel Milk Bottle, 200 mL | Pack of 30</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹750</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹125.50/l)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+            <h2 class="text-900 font-bold text-5xl text-center">New Arrivals </h2>
+            <div class="grid">
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-trend">Trending</span>
+                            <img src="assets/layout/images/new1.avif">
+                            <div class="product-name">Amul Organic Trial Packs Combo, 4 kg | 6 Products</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹630</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹157.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-new">New</span>
+                            <img src="assets/layout/images/new2.avif">
+                            <div class="product-name">Amul Whole Milk Powder, 450 g | Pack of 2</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹0.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-new">New</span>
+                            <img src="assets/layout/images/new3.avif">
+                            <div class="product-name">Amul PRO Malted Food, 500 g | Pack of 3</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP 540</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹360.50/kg)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-6 lg:col-6 text-center border-right">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-cart-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="col-6 lg:col-6 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-3">
+                    <div class="p-1 h-full">
+                        <div class="shadow-2 p-3 h-full flex-column surface-card" style="border-radius: 6px">
+                            <span class=" mb-2 menu-best">Bestseller</span>
+                            <img src="assets/layout/images/new4.avif">
+                            <div class="product-name">Amul Camel Milk Bottle, 200 mL | Pack of 30</div>
+                             <div class="flex align-items-center mt-3">
+                                <span class="font-bold text-1xl text-900">MRP ₹750</span>
+                                <span class="ml-2 font-medium text-600">(USP ₹125.50/l)</span>
+                            </div>
+                            <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+                            <div class="grid">
+                                <div class="col-4 lg:col-4 text-center border-right p-0">
+                                   <span class="menu-status font-bold">Out of stock</span>
+                                </div>
+                                <div class="col-4 lg:col-4 text-center border-right p-0">
+                                    <span class="menu-status font-bold">Notify Me</span>
+                                </div>
+                                <div class="col-4 lg:col-4 text-center">
+                                    <a href="#">
+                                        <i class="text-2xl pi pi-fw pi-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </block-viewer> -->

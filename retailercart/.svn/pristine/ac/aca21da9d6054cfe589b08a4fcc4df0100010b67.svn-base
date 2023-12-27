@@ -1,0 +1,362 @@
+[
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "01",
+    "gstStateName": "Jammu & Kashmir",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "02",
+    "gstStateName": "Himachal Pradesh",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "03",
+    "gstStateName": "Punjab",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "04",
+    "gstStateName": "Chandigarh",
+    "unionTerritoryFlag": "Y"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "05",
+    "gstStateName": "Uttranchal",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "06",
+    "gstStateName": "Haryana",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "07",
+    "gstStateName": "Delhi",
+    "unionTerritoryFlag": "Y"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "08",
+    "gstStateName": "Rajasthan",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "09",
+    "gstStateName": "Uttar Pradesh",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "10",
+    "gstStateName": "Bihar",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "11",
+    "gstStateName": "Sikkim",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "12",
+    "gstStateName": "Arunachal Pradesh",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "13",
+    "gstStateName": "Nagaland",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "14",
+    "gstStateName": "Manipur",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "15",
+    "gstStateName": "Mizoram",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "16",
+    "gstStateName": "Tripura",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "17",
+    "gstStateName": "Meghalaya",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "18",
+    "gstStateName": "Assam",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "19",
+    "gstStateName": "West Bengal",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "20",
+    "gstStateName": "Jharkhand",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "21",
+    "gstStateName": "Orissa",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "22",
+    "gstStateName": "Chhattisgarh",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "23",
+    "gstStateName": "Madhya Pradesh",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "24",
+    "gstStateName": "Gujarat",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "25",
+    "gstStateName": "Daman & Diu",
+    "unionTerritoryFlag": "Y"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "26",
+    "gstStateName": "Dadra & Nagar Haveli",
+    "unionTerritoryFlag": "Y"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "27",
+    "gstStateName": "Maharashtra",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "29",
+    "gstStateName": "Karnataka",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "30",
+    "gstStateName": "Goa",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "31",
+    "gstStateName": "Lakshdweep",
+    "unionTerritoryFlag": "Y"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "32",
+    "gstStateName": "Kerala",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "33",
+    "gstStateName": "Tamil Nadu",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "34",
+    "gstStateName": "Pondicherry",
+    "unionTerritoryFlag": "Y"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "35",
+    "gstStateName": "Andaman & Nicobar Islands",
+    "unionTerritoryFlag": "Y"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "36",
+    "gstStateName": "Telangana",
+    "unionTerritoryFlag": "N"
+  },
+  {
+    "cmpCode": null,
+    "consoleFlag": null,
+    "uploadFlag": "N",
+    "modDt": 1587446401000,
+    "changeNo": null,
+    "gstStateCode": "37",
+    "gstStateName": "Andhra Pradesh",
+    "unionTerritoryFlag": "N"
+  }
+]

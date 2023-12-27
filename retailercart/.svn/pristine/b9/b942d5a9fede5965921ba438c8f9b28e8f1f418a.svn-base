@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark" />
+
+
+        <TextView
+            android:id="@+id/slabNo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:text="@string/scheme_slabno"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/txt_size_normal"
+            android:textStyle="normal"
+            android:typeface="normal" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark" />
+
+
+        <TextView
+            android:id="@+id/slabFrom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:text="@string/scheme_slabfrom"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="normal"
+            android:typeface="serif" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark" />
+
+
+        <TextView
+            android:id="@+id/slabTo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:text="@string/scheme_slabto"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="normal"
+            android:typeface="serif" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark" />
+
+
+        <TextView
+            android:id="@+id/slabForEveryOne"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:text="@string/scheme_slab_forevery"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="normal"
+            android:typeface="serif" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark" />
+
+
+        <TextView
+            android:id="@+id/slabPayOut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:text="@string/scheme_slab_payout"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="normal"
+            android:typeface="serif" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:paddingTop="3dp"
+        android:background="@color/colorPrimaryDark" />
+
+
+</LinearLayout>

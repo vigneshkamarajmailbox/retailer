@@ -1,0 +1,20 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { MediaSubCategoryController } from './media-sub-category.controller';
+import { MediaSubCategoryService } from './media-sub-category.service';
+
+describe('MediaSubCategoryController', () => {
+  let controller: MediaSubCategoryController;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [MediaSubCategoryController],
+      providers: [MediaSubCategoryService],
+    }).compile();
+
+    controller = module.get<MediaSubCategoryController>(MediaSubCategoryController);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});

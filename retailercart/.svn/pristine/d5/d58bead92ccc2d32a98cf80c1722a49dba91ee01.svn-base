@@ -1,0 +1,73 @@
+<p-toast></p-toast>
+<div class="grid forgot-background" >
+  <div class="col-1 "></div>
+  <div class="col-4" style="padding-top: 250px">
+    <p-card [style]="{ 
+        border: '3px solid black',  
+        borderRadius: '25px',  
+        width: '450px',  
+        backgroundColor: '##B6B6B6',  
+    }">
+      <ng-template pTemplate="header">
+        <h1 style="text-align: center; padding-top: 20px; font-weight: bold">
+          Forgot Password
+        </h1>
+        <p style="text-align: center">
+          Please Enter Mail ID to receive the verification code
+        </p>
+      </ng-template>
+      <ng-template pTemplate="body">
+        <form class="form-class" [formGroup]="forgotPasswordForm" (ngSubmit)="onSubmit()"> 
+          
+
+          <div class="grid">
+            <div class="col-1-fixed">
+              <i class="pi pi-envelope"></i>
+            </div>
+            <div class="col">
+              <div class="form-group p-field">
+                <div class="p-float-label">
+                  <input
+                    id="email"
+                    class="w-full"
+                    type="email"
+                    pInputText
+                    formControlName="email"
+                  />
+                  <label for="email"> Email Id</label>
+                </div>
+                <small
+                  *ngIf="
+                    forgotPasswordForm.get('email').invalid &&
+                    forgotPasswordForm.get('email').touched
+                  "
+                  class="p-error"
+                >
+                  Email required..!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group p-field" style="text-align: center">
+            <button
+              pButton
+              pRipple
+              type="submit"
+              label="Continue"
+              class="w-full form-button"
+            ></button>
+            </div>
+            <div class="form-group p-field" style="text-align: center;">
+              <p><a href="#">Back To Login</a></p>
+            </div>
+          <!-- <div class="form-group p-field" style="text-align: center;">
+            <button pButton pRipple type="submit" label="Continue" class="p-button-rounded  mr-2 mb-2"></button>
+            <button pButton pRipple type="button" (click)="Login()" label="Go To Login" class="p-button-rounded p-button-danger  mr-2 mb-2"></button>
+          </div> -->
+        </form>
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="col-4"></div>
+</div>

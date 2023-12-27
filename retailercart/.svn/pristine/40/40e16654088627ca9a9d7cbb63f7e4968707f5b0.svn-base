@@ -1,0 +1,34 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { RetailerCategoryService } from './retailer-category.service';
+import { CreateRetailerCategoryDto } from './dto/create-retailer-category.dto';
+import { UpdateRetailerCategoryDto } from './dto/update-retailer-category.dto';
+
+@Controller('retailer-category')
+export class RetailerCategoryController {
+  constructor(private readonly retailerCategoryService: RetailerCategoryService) {}
+
+  @Post()
+  create(@Body() createRetailerCategoryDto: CreateRetailerCategoryDto) {
+    return this.retailerCategoryService.create(createRetailerCategoryDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.retailerCategoryService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.retailerCategoryService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateRetailerCategoryDto: UpdateRetailerCategoryDto) {
+    return this.retailerCategoryService.update(+id, updateRetailerCategoryDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.retailerCategoryService.remove(+id);
+  }
+}

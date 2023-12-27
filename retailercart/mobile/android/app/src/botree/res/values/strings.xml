@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Retailer SSFA</string>
+
+<!--    <string name="BASE_URL_DEBUG">http://59.163.170.67:9003/sfaweb/</string>-->
+<!--    <string name="BASE_URL_RELEASE">http://59.163.170.67:9003/sfaweb/</string>-->
+    <string name="BASE_URL_DEBUG">https://botreeuat.csngsfa.com:9002/sfaweb/</string>
+    <string name="BASE_URL_RELEASE">https://botreeuat.csngsfa.com:9002/sfaweb/</string>
+    <!--LOCAL-->
+<!--    <string name="BASE_URL_DEBUG">http://192.168.2.33:8085/sfaweb/</string>-->
+<!--    <string name="BASE_URL_RELEASE">http://192.168.2.33:8085/sfaweb/</string>-->
+
+    <string name="about_us_txt">Botree is a leader in Downstream Supply Chain Management, offering collaborative Sales, Marketing, Distribution and Supply Chain Solutions across the distribution network. Since inception in 1997, the company is uniquely positioned to deliver benefits of the integrated supply chain to the FMCG, Consumer Durables and Telecom industries.
+
+Today, Botree’s solution connects more than 18,000 distributors with their branded suppliers and addresses the complexities of global, consumer-driven marketplace. Built on the rich heritage of growth, innovation and market leadership Botree is committed to its customers in making their businesses more efficient, sustainable and profitable.</string>
+
+
+</resources>

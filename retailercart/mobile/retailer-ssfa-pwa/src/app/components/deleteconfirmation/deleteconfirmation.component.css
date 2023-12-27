@@ -1,0 +1,17 @@
+.delete-confirmation-icon {
+  padding-top: 1% !important;
+  color: #EF5350;
+}
+
+@media screen and (max-width: 640px) {
+  .delete-confirmation-icon {
+    padding-top: 1.5% !important;
+  }
+}
+
+.delete-confirmation-title {
+  margin: 0 !important;
+  padding-left: 3% !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}

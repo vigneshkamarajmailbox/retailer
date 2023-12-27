@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+
+    <query name="INSERT_COMPANY">
+        INSERT INTO company (CmpCode,
+                             CmpName,
+                             CmpAddr1,
+                             CmpAddr2,
+                             CmpAddr3,
+                             City,
+                             State,
+                             Country,
+                             PostalCode,
+                             UploadFlag,
+                             ModDt)
+        VALUES (?,
+                NULLIF(?, ''),
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE CmpName    = VALUES(CmpName),
+                   CmpAddr1   = VALUES(CmpAddr1),
+                   CmpAddr2   = VALUES(CmpAddr2),
+                   CmpAddr3   = VALUES(CmpAddr3),
+                   City       = VALUES(City),
+                   State      = VALUES(State),
+                   Country    = VALUES(Country),
+                   PostalCode = VALUES(PostalCode),
+                   UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_COMPANYUSER">
+        INSERT INTO companyuser(CmpCode,
+                                LoginCode,
+                                UserName,
+                                UserType,
+                                MappedCode,
+                                EmailId,
+                                MobileNo,
+                                UserStatus,
+                                UploadFlag,
+                                ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UserName   = VALUES(UserName),
+                   UserType   = VALUES(userType),
+                   MappedCode = VALUES(MappedCode),
+                   EmailId    = VALUES(EmailId),
+                   MobileNo   = VALUES(MobileNo),
+                   UserStatus = VALUES(UserStatus),
+                   UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_CUSTOMER">
+        INSERT INTO customer (CmpCode,
+                              DistrCode,
+                              CustomerCode,
+                              CustomerName,
+                              MobileNo,
+                              PinCode,
+                              PhoneNo,
+                              ContactPerson,
+                              EmailID,
+                              RetailerStatus,
+                              FssaiNo,
+                              CreditBills,
+                              CreditDays,
+                              CreditLimit,
+                              CashDiscPerc,
+                              ChannelCode,
+                              SubChannelCode,
+                              GroupCode,
+                              ClassCode,
+                              StoreType,
+                              ParentCustomerCode,
+                              Latitude,
+                              Longitude,
+                              CustomerType,
+                              GSTTinNo,
+                              PanNo,
+                              District,
+                              OutstandingAmt,
+                              UploadFlag,
+                              ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 'Y'),
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 0),
+                IFNULL(NULLIF(?, ''), 0),
+                IFNULL(NULLIF(?, ''), 0.00),
+                IFNULL(NULLIF(?, ''), 0.00),
+                ?,
+                ?,
+                ?,
+                ?,
+                IFNULL(NULLIF(?, ''), 'I'),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 'U'),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 0.00),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE CustomerName       = VALUES(CustomerName),
+                   MobileNo           = VALUES(MobileNo),
+                   PinCode            = VALUES(PinCode),
+                   PhoneNo            = VALUES(PhoneNo),
+                   ContactPerson      = VALUES(ContactPerson),
+                   EmailID            = VALUES(EmailID),
+                   RetailerStatus     = VALUES(RetailerStatus),
+                   FssaiNo            = VALUES(FssaiNo),
+                   CreditBills        = VALUES(CreditBills),
+                   CreditDays         = VALUES(CreditDays),
+                   CreditLimit        = VALUES(CreditLimit),
+                   CashDiscPerc       = VALUES(CashDiscPerc),
+                   ChannelCode        = VALUES(ChannelCode),
+                   SubChannelCode     = VALUES(SubChannelCode),
+                   GroupCode          = VALUES(GroupCode),
+                   ClassCode          = VALUES(ClassCode),
+                   StoreType          = VALUES(StoreType),
+                   ParentCustomerCode = VALUES(ParentCustomerCode),
+                   Latitude           = VALUES(Latitude),
+                   Longitude          = VALUES(Longitude),
+                   CustomerType       = VALUES(CustomerType),
+                   GSTTinNo           = VALUES(GSTTinNo),
+                   PanNo              = VALUES(PanNo),
+                   District           = VALUES(District),
+                   OutstandingAmt     = VALUES(OutstandingAmt),
+                   UploadFlag         = 'N',
+                   ModDt              = NOW()
+    </query>
+
+    <query name="INSERT_CUSTOMERROUTEMAPPING">
+        INSERT INTO customerroutemapping(CmpCode,
+                                         DistrCode,
+                                         CustomerCode,
+                                         RouteCode,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_CUSTOMERSHIPADDRESS">
+        INSERT INTO customershipaddress (CmpCode,
+                                         DistrCode,
+                                         CustomerCode,
+                                         CustomerShipCode,
+                                         CustomerShipAddr1,
+                                         CustomerShipAddr2,
+                                         CustomerShipAddr3,
+                                         City,
+                                         GSTStateCode,
+                                         PhoneNo,
+                                         DefaultShipAddr,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                ?,
+                ?,
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 'N'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE CustomerShipAddr1 = VALUES(CustomerShipAddr1),
+                   CustomerShipAddr2 = VALUES(CustomerShipAddr2),
+                   CustomerShipAddr3 = VALUES(CustomerShipAddr3),
+                   City              = VALUES(City),
+                   GSTStateCode      = VALUES(GSTStateCode),
+                   PhoneNo           = VALUES(PhoneNo),
+                   DefaultShipAddr   = VALUES(DefaultShipAddr),
+                   UploadFlag        = 'N',
+                   ModDt             = NOW()
+    </query>
+
+    <query name="INSERT_CUSTOMERSTOCK">
+        INSERT INTO customerstock (CmpCode,
+                                   DistrCode,
+                                   CustomerCode,
+                                   Stock,
+                                   UploadFlag,
+                                   ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE Stock      = VALUES(Stock),
+                   UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_DISTRIBUTOR">
+        INSERT INTO distributor (CmpCode,
+                                 DistrCode,
+                                 DistrName,
+                                 DistrAddr1,
+                                 DistrAddr2,
+                                 DistrAddr3,
+                                 PinCode,
+                                 PhoneNo,
+                                 MobileNo,
+                                 ContactPerson,
+                                 EmailID,
+                                 GSTStateCode,
+                                 DayOff,
+                                 DistrStatus,
+                                 LoadStockProd,
+                                 UploadFlag,
+                                 ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                ?,
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 'Y'),
+                IFNULL(NULLIF(?, ''), 'N'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE DistrName     = VALUES(DistrName),
+                   DistrAddr1    = VALUES(DistrAddr1),
+                   DistrAddr2    = VALUES(DistrAddr2),
+                   DistrAddr3    = VALUES(DistrAddr3),
+                   PinCode       = VALUES(PinCode),
+                   PhoneNo       = VALUES(PhoneNo),
+                   MobileNo      = VALUES(MobileNo),
+                   ContactPerson = VALUES(ContactPerson),
+                   EmailID       = VALUES(EmailID),
+                   GSTStateCode  = VALUES(GSTStateCode),
+                   DayOff        = VALUES(DayOff),
+                   DistrStatus   = VALUES(DistrStatus),
+                   LoadStockProd = VALUES(LoadStockProd),
+                   UploadFlag    = 'N',
+                   ModDt         = NOW()
+    </query>
+
+    <query name="INSERT_DISTRIBUTORLOBMAPPING">
+        INSERT INTO distributorlobmapping (CmpCode,
+                                           DistrCode,
+                                           LOBCode,
+                                           UploadFlag,
+                                           ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_DISTRIBUTORSALESHIERARCHY">
+        INSERT INTO distributorsaleshierarchy(CmpCode,
+                                              DistrCode,
+                                              SalesForceCode,
+                                              LobCode,
+                                              SalesHierPath,
+                                              UploadFlag,
+                                              ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE SalesHierPath = VALUES(SalesHierPath),
+                   UploadFlag    = 'N',
+                   ModDt         = NOW()
+    </query>
+
+    <query name="INSERT_DISTRIBUTORSTOCK">
+        INSERT INTO distributorstock (CmpCode,
+                                      DistrCode,
+                                      SaleableStock,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE SaleableStock = VALUES(SaleableStock),
+                   UploadFlag    = 'N',
+                   ModDt         = NOW()
+    </query>
+
+    <query name="INSERT_LOBMASTER">
+        INSERT INTO lobmaster (CmpCode,
+                               LOBCode,
+                               LOBName,
+                               UploadFlag,
+                               ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE LOBName    = VALUES(LOBName),
+                   UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_OTHERATTRIBUTES">
+        INSERT INTO otherattributes (CmpCode,
+                                     DistrCode,
+                                     AttributeCode,
+                                     AttributeValueCode,
+                                     AttrInputValues,
+                                     RefNo,
+                                     SNo,
+                                     UploadFlag,
+                                     ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                ?,
+                IFNULL(NULLIF(?, ''), 1),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE AttributeValueCode = VALUES(AttributeValueCode),
+                   AttrInputValues    = VALUES(AttrInputValues),
+                   UploadFlag         = 'N',
+                   ModDt              = NOW()
+    </query>
+
+    <query name="INSERT_PRODUCT">
+        INSERT INTO product (CmpCode,
+                             ProdCode,
+                             ProdName,
+                             ProdShortName,
+                             ProdStatus,
+                             ProdType,
+                             ProdShelfLife,
+                             ProdNetWgt,
+                             ProdWgtType,
+                             LOBCode,
+                             LOBName,
+                             HSNCode,
+                             HSNName,
+                             ProductHierPathCode,
+                             ProductHierPathName,
+                             UploadFlag,
+                             ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                IFNULL(NULLIF(?, ''), 'Y'),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ProdName            = VALUES(ProdName),
+                   ProdShortName       = VALUES(ProdShortName),
+                   ProdStatus          = VALUES(ProdStatus),
+                   ProdType            = VALUES(ProdType),
+                   ProdShelfLife       = VALUES(ProdShelfLife),
+                   ProdNetWgt          = VALUES(ProdNetWgt),
+                   ProdWgtType         = VALUES(ProdWgtType),
+                   LOBCode             = VALUES(LOBCode),
+                   LOBName             = VALUES(LOBName),
+                   HSNCode             = VALUES(HSNCode),
+                   HSNName             = VALUES(HSNName),
+                   ProductHierPathCode = VALUES(ProductHierPathCode),
+                   ProductHierPathName = VALUES(ProductHierPathName),
+                   UploadFlag          = 'N',
+                   ModDt               = NOW()
+    </query>
+
+    <query name="INSERT_PRODUCTBATCH">
+        INSERT INTO productbatch (CmpCode,
+                                  BatchLevel,
+                                  ProdCode,
+                                  ProdBatchCode,
+                                  MRP,
+                                  SellRate,
+                                  SellRateWithTax,
+                                  ManfDate,
+                                  ExpiryDate,
+                                  LatestBatch,
+                                  GeoLevelBatch,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                IFNULL(NULLIF(?, ''), 'N'),
+                IFNULL(NULLIF(?, ''), 'Y'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE MRP             = VALUES(MRP),
+                   SellRate        = VALUES(SellRate),
+                   SellRateWithTax = VALUES(SellRateWithTax),
+                   ManfDate        = VALUES(ManfDate),
+                   ExpiryDate      = VALUES(ExpiryDate),
+                   LatestBatch     = VALUES(LatestBatch),
+                   GeoLevelBatch   = VALUES(GeoLevelBatch),
+                   UploadFlag      = 'N',
+                   ModDt           = NOW()
+    </query>
+
+    <query name="INSERT_PRODUCTHIERLEVEL">
+        INSERT INTO producthierlevel (CmpCode,
+                                      ProdHierLvlCode,
+                                      ProdHierLvlName,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ProdHierLvlName = VALUES(ProdHierLvlName),
+                   UploadFlag      = 'N',
+                   ModDt           = NOW()
+    </query>
+
+    <query name="INSERT_PRODUCTHIERVALUE">
+        INSERT INTO producthiervalue (CmpCode,
+                                      ProdHierLvlCode,
+                                      ProdHierValCode,
+                                      ProdHierValName,
+                                      ParentCode,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ProdHierValName = VALUES(ProdHierValName),
+                   ParentCode      = VALUES(ParentCode),
+                   UploadFlag      = 'N',
+                   ModDt           = NOW()
+    </query>
+
+    <query name="INSERT_PRODUCTUOM">
+        INSERT INTO productuom (CmpCode,
+                                ProdCode,
+                                UOMCode,
+                                UOMDescription,
+                                UomConvFactor,
+                                BaseUOM,
+                                DefaultUOM,
+                                UploadFlag,
+                                ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UOMDescription = VALUES(UOMDescription),
+                   UomConvFactor  = VALUES(UomConvFactor),
+                   BaseUOM        = VALUES(BaseUOM),
+                   DefaultUOM     = VALUES(DefaultUOM),
+                   UploadFlag     = 'N',
+                   ModDt          = NOW()
+    </query>
+
+    <query name="INSERT_RETAILERCATEGORY">
+        INSERT INTO retailercategory (CmpCode,
+                                      ChannelCode,
+                                      ChannelName,
+                                      SubChannelCode,
+                                      SubChannelName,
+                                      GroupCode,
+                                      GroupName,
+                                      ClassCode,
+                                      ClassName,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ChannelName    = VALUES(ChannelName),
+                   SubChannelName = VALUES(SubChannelName),
+                   GroupName      = VALUES(GroupName),
+                   ClassName      = VALUES(ClassName),
+                   UploadFlag     = 'N',
+                   ModDt          = NOW()
+    </query>
+
+    <query name="INSERT_ROUTE">
+        INSERT INTO route(CmpCode,
+                          DistrCode,
+                          RouteCode,
+                          RouteName,
+                          RouteType,
+                          RouteStatus,
+                          UploadFlag,
+                          ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                IFNULL(NULLIF(?, ''), 'S'),
+                IFNULL(NULLIF(?, ''), 'Y'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE RouteName   = VALUES(RouteName),
+                   RouteType   = VALUES(RouteType),
+                   RouteStatus = VALUES(RouteStatus),
+                   UploadFlag  = 'N',
+                   ModDt       = NOW()
+    </query>
+
+    <query name="INSERT_SALESMAN">
+        INSERT INTO salesman(CmpCode,
+                             DistrCode,
+                             SalesmanCode,
+                             SalesmanName,
+                             MobileNo,
+                             EmailID,
+                             Status,
+                             UploadFlag,
+                             ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 'Y'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE SalesmanName = VALUES(SalesmanName),
+                   MobileNo     = VALUES(MobileNo),
+                   EmailID      = VALUES(EmailID),
+                   Status       = VALUES(Status),
+                   UploadFlag   = 'N',
+                   ModDt        = NOW()
+    </query>
+
+    <query name="INSERT_SALESMANROUTEMAPPING">
+        INSERT INTO salesmanroutemapping(CmpCode,
+                                         DistrCode,
+                                         SalesmanCode,
+                                         RouteCode,
+                                         CoverageDay,
+                                         UploadFlag,
+                                         ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE CoverageDay = VALUES(CoverageDay),
+                   UploadFlag  = 'N',
+                   ModDt       = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMEATTRIBUTES">
+        INSERT INTO schemeattributes (CmpCode,
+                                      AttributeCode,
+                                      AttributeValueCode,
+                                      AttrInputValues,
+                                      RefNo,
+                                      SNo,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                ?,
+                IFNULL(NULLIF(?, ''), 1),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMECOMBIPRODUCT">
+        INSERT INTO schemecombiproduct (CmpCode,
+                                        SchemeCode,
+                                        SlabNo,
+                                        ProdCode,
+                                        ProdName,
+                                        MinValue,
+                                        IsMandatory,
+                                        UploadFlag,
+                                        ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                ?,
+                IFNULL(NULLIF(?, ''), 'N'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ProdName    = VALUES(ProdName),
+                   MinValue    = VALUES(MinValue),
+                   IsMandatory = VALUES(IsMandatory),
+                   UploadFlag  = 'N',
+                   ModDt       = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMECUSTOMER">
+        INSERT INTO schemecustomer (CmpCode,
+                                    SchemeCode,
+                                    CustomerCode,
+                                    UploadFlag,
+                                    ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMEDEFINITION">
+        INSERT INTO schemedefinition (CmpCode,
+                                      SchemeCode,
+                                      SchemeDescription,
+                                      SchemeBase,
+                                      SchemeFromDt,
+                                      SchemeToDt,
+                                      PayOutType,
+                                      IsSkuLevel,
+                                      IsActive,
+                                      Combi,
+                                      UploadFlag,
+                                      ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                IFNULL(NULLIF(?, ''), 'N'),
+                IFNULL(NULLIF(?, ''), 'N'),
+                IFNULL(NULLIF(?, ''), 'N'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE SchemeDescription = VALUES(SchemeDescription),
+                   SchemeFromDt      = VALUES(SchemeFromDt),
+                   SchemeToDt        = VALUES(SchemeToDt),
+                   PayOutType        = VALUES(PayOutType),
+                   IsSkuLevel        = VALUES(IsSkuLevel),
+                   IsActive          = VALUES(IsActive),
+                   Combi             = VALUES(Combi),
+                   UploadFlag        = 'N',
+                   ModDt             = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMEDISTRIBUTORBUDGET">
+        INSERT INTO schemedistributorbudget (CmpCode,
+                                             SchemeCode,
+                                             DistrCode,
+                                             IsUnlimited,
+                                             Budget,
+                                             IsActive,
+                                             UtilizedAmt,
+                                             BudgetOs,
+                                             UploadFlag,
+                                             ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                IFNULL(NULLIF(?, ''), 'Y'),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE IsUnlimited = VALUES(IsUnlimited),
+                   Budget      = VALUES(Budget),
+                   IsActive    = VALUES(IsActive),
+                   UtilizedAmt = VALUES(UtilizedAmt),
+                   BudgetOs    = VALUES(BudgetOs),
+                   UploadFlag  = 'N',
+                   ModDt       = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMEPRODUCT">
+        INSERT INTO schemeproduct (CmpCode,
+                                   SchemeCode,
+                                   ProdCode,
+                                   ProdName,
+                                   UploadFlag,
+                                   ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ProdName   = VALUES(ProdName),
+                   UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMEPRODUCTCATEGORY">
+        INSERT INTO schemeproductcategory (CmpCode,
+                                           SchemeCode,
+                                           ProdHierLvlCode,
+                                           ProdHierValCode,
+                                           ProdHierValName,
+                                           UploadFlag,
+                                           ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ProdHierValName = VALUES(ProdHierValName),
+                   UploadFlag      = 'N',
+                   ModDt           = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMERETAILERCATEGORY">
+        INSERT INTO schemeretailercategory (CmpCode,
+                                            SchemeCode,
+                                            ChannelCode,
+                                            SubChannelCode,
+                                            GroupCode,
+                                            ClassCode,
+                                            UploadFlag,
+                                            ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMESLAB">
+        INSERT INTO schemeslab (CmpCode,
+                                SchemeCode,
+                                SlabNo,
+                                SlabFrom,
+                                SlabTo,
+                                Payout,
+                                SlabRange,
+                                ForEvery,
+                                UomCode,
+                                UploadFlag,
+                                ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                IFNULL(NULLIF(?, ''), 'N'),
+                ?,
+                ?,
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE SlabFrom   = VALUES(SlabFrom),
+                   SlabTo     = VALUES(SlabTo),
+                   Payout     = VALUES(Payout),
+                   SlabRange  = VALUES(SlabRange),
+                   ForEvery   = VALUES(Forevery),
+                   UomCode    = VALUES(UomCode),
+                   UploadFlag = 'N',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="INSERT_SCHEMESLABPRODUCT">
+        INSERT INTO schemeslabproduct (CmpCode,
+                                       SchemeCode,
+                                       SlabNo,
+                                       ProdCode,
+                                       ProdName,
+                                       Qty,
+                                       IsMandatory,
+                                       UploadFlag,
+                                       ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                ?,
+                IFNULL(NULLIF(?, ''), 'N'),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE ProdName    = VALUES(ProdName),
+                   Qty         = VALUES(Qty),
+                   IsMandatory = VALUES(IsMandatory),
+                   UploadFlag  = 'N',
+                   ModDt       = NOW()
+    </query>
+
+    <query name="INSERT_TAXSTRUCTURE">
+        INSERT INTO taxstructure (CmpCode,
+                                  TaxStateCode,
+                                  ProdCode,
+                                  CGST,
+                                  SGST,
+                                  IGST,
+                                  CESS,
+                                  AdditionalTax,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (?,
+                ?,
+                ?,
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                NULLIF(?, ''),
+                'N',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE CGST          = VALUES(CGST),
+                   SGST          = VALUES(SGST),
+                   IGST          = VALUES(IGST),
+                   CESS          = VALUES(CESS),
+                   AdditionalTax = VALUES(AdditionalTax),
+                   UploadFlag    = 'N',
+                   ModDt         = NOW()
+    </query>
+
+    <!-- Query for user creation -->
+    <query name="FETCH_CUSTOMERENTITY">
+        SELECT c.CmpCode,
+               c.DistrCode,
+               c.CustomerCode,
+               c.CustomerName,
+               c.MobileNo,
+               c.PinCode,
+               c.PhoneNo,
+               c.ContactPerson,
+               c.EmailID,
+               c.RetailerStatus,
+               c.FssaiNo,
+               c.CreditBills,
+               c.CreditDays,
+               c.CreditLimit,
+               c.CashDiscPerc,
+               c.ChannelCode,
+               c.SubChannelCode,
+               c.GroupCode,
+               c.ClassCode,
+               c.StoreType,
+               c.ParentCustomerCode,
+               c.Latitude,
+               c.Longitude,
+               c.CustomerType,
+               c.GSTTinNo,
+               c.PanNo,
+               c.District,
+               c.OutstandingAmt,
+               c.UploadFlag,
+               c.ModDt
+        FROM customer c
+        WHERE c.UploadFlag = 'N'
+    </query>
+
+    <query name="FETCH_DEFAULT_KEYGENERATOR">
+        SELECT LoginCode,
+               ScreenName,
+               Prefix,
+               SuffixYY,
+               SuffixNN,
+               UploadFlag,
+               ModDt
+        FROM keygenerator
+        WHERE LoginCode = 'DEFAULT'
+    </query>
+
+    <query name="INSERT_MASTER_APPUSERENTITY">
+        INSERT INTO appuser (LoginCode,
+                             Password,
+                             UserName,
+                             UserStatus,
+                             NewPassword,
+                             GroupCode,
+                             UploadFlag,
+                             ModDt)
+        VALUES (:loginCode,
+                :password,
+                :userName,
+                :userStatus,
+                :newPassword,
+                :groupCode,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UserName   = :userName,
+                   UserStatus = :userStatus,
+                   UploadFlag = :uploadFlag,
+                   ModDt      = :modDt
+    </query>
+
+    <query name="INSERT_DEFAULT_KEYGENERATORENTITY">
+        INSERT INTO keygenerator (LoginCode,
+                                  ScreenName,
+                                  Prefix,
+                                  SuffixYY,
+                                  SuffixNN,
+                                  UploadFlag,
+                                  ModDt)
+        VALUES (:loginCode,
+                :screenName,
+                :prefix,
+                :suffixYY,
+                :suffixNN,
+                'Y',
+                NOW())
+        ON DUPLICATE KEY
+            UPDATE UploadFlag = 'Y',
+                   ModDt      = NOW()
+    </query>
+
+    <query name="FETCH_USER_ACTIVE_LIST">
+        SELECT loginCode AS users
+        FROM useractivation
+        WHERE UserStatus != 'D'
+    </query>
+
+    <query name="FETCH_USER_INACTIVE_LIST">
+        SELECT loginCode AS users
+        FROM useractivation
+        WHERE UserStatus = 'D'
+    </query>
+
+    <query name="INSERT_USER_CREATION_LIST">
+        INSERT INTO useractivation(LoginCode,
+                                   UserName,
+                                   UserStatus,
+                                   CreationDt,
+                                   MsgRequestDt,
+                                   ActivationDt,
+                                   DeactivationDt,
+                                   UploadFlag,
+                                   ModDt)
+        VALUES (:loginCode,
+                :userName,
+                :userStatus,
+                :creationDt,
+                :msgRequestDt,
+                :activationDt,
+                :deactivationDt,
+                :uploadFlag,
+                :modDt)
+        ON DUPLICATE KEY
+            UPDATE UploadFlag  = :uploadFlag,
+                   ModDt       = :modDt
+    </query>
+
+    <query name="UPDATE_USER_DEACTIVATION_LIST">
+        UPDATE useractivation
+        SET UserName   = :userName,
+            UserStatus = :userStatus,
+            DeactivationDt = :deactivationDt,
+            UploadFlag = :uploadFlag,
+            ModDt      = :modDt
+        WHERE LoginCode = :loginCode
+    </query>
+
+    <query name="UPDATE_USER_CREATION_LIST">
+        UPDATE useractivation
+        SET UserName   = :userName,
+            UserStatus = :userStatus,
+            UploadFlag = :uploadFlag,
+            ModDt      = :modDt
+        WHERE LoginCode = :loginCode
+    </query>
+
+    <query name="UPDATE_CUSTOMERENTITY">
+        UPDATE customer
+        SET UploadFlag = 'Y',
+            ModDt      = NOW()
+        WHERE MobileNo = :loginCode
+    </query>
+</queries>

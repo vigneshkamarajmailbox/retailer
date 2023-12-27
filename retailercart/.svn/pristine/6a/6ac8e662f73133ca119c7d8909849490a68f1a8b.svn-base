@@ -1,0 +1,12 @@
+import { Module } from '@nestjs/common';
+import { MediaCategoryService } from './media-category.service';
+import { MediaCategoryController } from './media-category.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { MediaCategory } from './entities/media-category.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([MediaCategory])],
+  controllers: [MediaCategoryController],
+  providers: [MediaCategoryService]
+})
+export class MediaCategoryModule {}

@@ -1,0 +1,19 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, PrimaryColumn } from "typeorm";
+
+@Entity({ name: TableName.LOCATION })
+export class Location extends AbstractModel {
+    @PrimaryColumn({ name: 'cmp_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    cmpCode: string;
+
+    @PrimaryColumn({ name: 'country_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    countryCode: string;
+
+    @PrimaryColumn({ name: 'state_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    stateCode: string;
+
+    @PrimaryColumn({ name: 'city_code', type: SQLColumnType.VARCHAR, length: 100, nullable: false })
+    cityCode: string;
+}

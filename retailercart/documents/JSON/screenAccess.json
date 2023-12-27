@@ -1,0 +1,110 @@
+[
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 1,
+    "ScreenNo": 1,
+    "IsAccess": "Y",
+    "ModuleName": "Order",
+    "ScreenName": "New Order",
+    "ScreenType": "T",
+    "Sequence": 1
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 1,
+    "ScreenNo": 2,
+    "IsAccess": "Y",
+    "ModuleName": "Order",
+    "ScreenName": "Scheme",
+    "ScreenType": "M",
+    "Sequence": 2
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 1,
+    "ScreenNo": 3,
+    "IsAccess": "Y",
+    "ModuleName": "Order",
+    "ScreenName": "Product",
+    "ScreenType": "M",
+    "Sequence": 3
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 1,
+    "ScreenNo": 4,
+    "IsAccess": "Y",
+    "ModuleName": "Order",
+    "ScreenName": "Feedback",
+    "ScreenType": "T",
+    "Sequence": 4
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 2,
+    "ScreenNo": 2,
+    "IsAccess": "Y",
+    "ModuleName": "Order Details",
+    "ScreenName": "Order Details",
+    "ScreenType": "R",
+    "Sequence": 2
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 3,
+    "ScreenNo": 3,
+    "IsAccess": "Y",
+    "ModuleName": "Day Summary",
+    "ScreenName": "Day Summary",
+    "ScreenType": "R",
+    "Sequence": 3
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 4,
+    "ScreenNo": 4,
+    "IsAccess": "Y",
+    "ModuleName": "Update Location",
+    "ScreenName": "Update Location",
+    "ScreenType": "T",
+    "Sequence": 4
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 5,
+    "ScreenNo": 5,
+    "IsAccess": "Y",
+    "ModuleName": "Distributor Info",
+    "ScreenName": "Distributor Info",
+    "ScreenType": "M",
+    "Sequence": 5
+  },
+  {
+    "LoginCode": "9627912189",
+    "GroupCode": "DEFAULT",
+    "GroupName": "DEFAULT",
+    "ModuleNo": 6,
+    "ScreenNo": 6,
+    "IsAccess": "Y",
+    "ModuleName": "Reports",
+    "ScreenName": "Reports",
+    "ScreenType": "R",
+    "Sequence": 6
+  }
+]

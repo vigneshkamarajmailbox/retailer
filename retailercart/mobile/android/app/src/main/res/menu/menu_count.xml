@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:sfaActivity="com.botree.airtelsfa.main.Beat_activity">
+
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_favorite_star"
+        android:orderInCategory="9999"
+        android:title="@string/favorite"
+        android:visible="false"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/count_bubble"
+        android:orderInCategory="5"
+        android:actionLayout="@layout/coverage_msg"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+
+</menu>

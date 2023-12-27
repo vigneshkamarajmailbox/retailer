@@ -1,0 +1,34 @@
+import { BadRequestException, Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { Public } from './decorators/public.decorator';
+import { UserDto } from 'src/users/dto/user.dto';
+import { SignupDto } from 'src/users/dto/signup.dto';
+import { UserOtpDto } from 'src/users/dto/otp.dto';
+
+@Controller('auth')
+export class AuthController {
+  constructor(private authService: AuthService) {}
+
+  @Public()
+  @Post('sign-up')
+  async signUp(@Body() signup: SignupDto) {
+    return await this.authService.signup(signup);
+  }
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('login')
+  signIn(@Body() signInDto: UserDto) {
+    if ( signInDto.password == null) {
+      throw new BadRequestException(['Please fill out the otp or password.']);
+    }
+    return this.authService.signIn(signInDto.userName, signInDto.password);
+  }
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('loginOtp')
+  signInWithOTP(@Body() UserOtpDto: UserOtpDto) {
+    return this.authService.loginwithOTP(UserOtpDto.mobileNo, UserOtpDto.otp);
+  }
+}

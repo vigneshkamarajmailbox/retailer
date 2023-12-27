@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/color_list_divider"
+    android:foreground="?android:selectableItemBackground"
+    android:orientation="horizontal"
+    android:paddingBottom="1dp">
+
+    <TextView
+        android:id="@+id/tvChannel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="left"
+        android:maxEms="5"
+        android:maxLines="1"
+        android:minEms="5"
+        android:padding="@dimen/text_padding_small"
+        android:background="@color/white"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal" />
+
+    <TextView
+        android:id="@+id/tvRetailer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="left"
+        android:maxEms="8"
+        android:maxLines="1"
+        android:minEms="8"
+        android:padding="@dimen/text_padding_small"
+        android:background="@color/white"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal" />
+
+    <TextView
+        android:id="@+id/tvPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="center"
+        android:maxEms="4"
+        android:maxLines="1"
+        android:minEms="4"
+        android:padding="@dimen/text_padding_small"
+        android:background="@color/white"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal" />
+
+    <TextView
+        android:id="@+id/tvInvoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="center"
+        android:maxEms="4"
+        android:maxLines="1"
+        android:minEms="4"
+        android:padding="@dimen/text_padding_small"
+        android:background="@color/white"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal" />
+
+    <TextView
+        android:id="@+id/tvValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="center"
+        android:maxEms="5"
+        android:maxLines="1"
+        android:minEms="5"
+        android:padding="@dimen/text_padding_small"
+        android:background="@color/white"
+        android:textColor="@color/color_prod_txt"
+        android:textSize="@dimen/txt_size_normal" />
+</LinearLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "962111540075",
+    "firebase_url": "https://retailer-ssfa.firebaseio.com",
+    "project_id": "retailer-ssfa",
+    "storage_bucket": "retailer-ssfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962111540075:android:8ac6c16982e5d344165a2e",
+        "android_client_info": {
+          "package_name": "com.botree.retailerssfa.botree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962111540075-2441d1960n43d5hftebv4jlmp8ou0ge3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC5hcW35xNNuhrjc3kP4eScV_D4qinqmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962111540075-2441d1960n43d5hftebv4jlmp8ou0ge3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

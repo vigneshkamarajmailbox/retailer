@@ -1,0 +1,47 @@
+import { Transform, TransformFnParams } from "class-transformer";
+import moment from "moment";
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { Company } from "src/shared/entities/company.entity";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { format } from 'date-fns';
+
+@Entity({ name: TableName.NOTIFICATION })
+export class Notification extends AbstractModel {
+
+    @PrimaryColumn({ name: 'notification_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    notificationCode: string;
+
+    @Column({ name: 'cmp_code', type: SQLColumnType.VARCHAR, length: 50, nullable: false })
+    cmpCode: string;
+
+    @Column({ name: 'title', type: SQLColumnType.VARCHAR, length: 50, nullable: true, })
+    title: string;
+
+    @Column({ name: 'desc', type: SQLColumnType.VARCHAR, length: 75, nullable: true, })
+    desc: string;
+
+    
+    @Column({ name: 'notification_time', type: SQLColumnType.DATETIME,  nullable: true,})
+    @Transform((params: TransformFnParams) => {
+        const date = params.value;
+        const formattedDate = format(date, 'dd-MM-yyyy hh:mm:ss aa');;
+        return formattedDate;
+    })
+    notificationTime: string;
+
+     @ManyToOne(() => Company, (cmp) => cmp.cmpCode, {
+          eager: true,
+          deferrable: 'INITIALLY IMMEDIATE',
+          cascade: ['insert', 'update'],
+        })
+      
+        @JoinColumn([
+          {
+            name: 'cmpCode',
+            referencedColumnName: 'cmpCode',
+          },
+        ])
+        company: Company;
+}

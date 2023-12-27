@@ -1,0 +1,4 @@
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateKycDetailDto } from './create-kyc-detail.dto';
+
+export class UpdateKycDetailDto extends PartialType(CreateKycDetailDto) {}

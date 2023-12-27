@@ -1,0 +1,37 @@
+import { AbstractModel } from "src/shared/entities/abstract.model";
+import { SQLColumnType } from "src/shared/enum/column-type.enum";
+import { TableName } from "src/shared/enum/table-name.enum";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
+import { State } from "./state.entity";
+
+@Entity({name:TableName.CITY})
+export class City extends AbstractModel{
+
+     @PrimaryColumn({name:'state_code',type:SQLColumnType.VARCHAR, length:50, nullable:false})
+     stateCode:string;
+
+     @PrimaryColumn({name:'city_code',type:SQLColumnType.VARCHAR, length:50, nullable:false})
+     cityCode:string;
+
+     @Column({name:'city_name',type:SQLColumnType.VARCHAR, length:50, nullable:false})
+     cityName:string;
+
+     @Column({name:'latitude',type:SQLColumnType.VARCHAR, length:50, nullable:false})
+     latitude:string;
+
+     @Column({name:'longitude',type:SQLColumnType.VARCHAR, length:50, nullable:false})
+     longitude:string;
+
+     @OneToOne(()=>State, (state)=>state.stateCode,{
+        eager: true,
+        deferrable: 'INITIALLY IMMEDIATE',
+        cascade: ['insert', 'update'],
+    })
+    @JoinColumn([
+        {
+        name: 'state_code',
+        referencedColumnName: 'stateCode',
+        },
+    ])
+    state: State;
+}

@@ -1,0 +1,28 @@
+::ng-deep .mat-tab-header {
+    overflow-x: scroll !important;
+  }
+  
+  ::ng-deep .mat-tab-label-container { 
+    overflow: visible !important;
+  }
+  ::ng-deep .mat-tab-header::-webkit-scrollbar {
+    display: none;
+  }
+
+  .noSaleableQty{
+    color: red;
+  }
+
+  .qtyClass{
+    display: block !important;
+  }
+
+  .schemeDis{
+    color: black;
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 15px !important;
+  }
+ 

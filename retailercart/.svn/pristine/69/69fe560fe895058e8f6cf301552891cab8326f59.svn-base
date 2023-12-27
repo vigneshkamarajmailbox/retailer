@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <title>Retailer SSFA PWA - Error</title>
+  <link rel="stylesheet" href="../css/animation.css">
+</head>
+<script>
+  function redirectLogin() {
+    window.location = "/";
+  }
+</script>
+<body class="access-card">
+<div>
+  <h1 style="font-size: xx-large">ACCESS DENIED</h1>
+  <h5>You don't have the necessary permissions. Please contact administrator.</h5>
+  <button class="login-to-btn" onclick="redirectLogin()">Go To Login</button>
+</div>
+
+</body>
+</html>
+
